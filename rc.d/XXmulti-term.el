@@ -1,0 +1,31 @@
+(require 'multi-term)
+(setq multi-term-program "/bin/bash")
+(global-set-key (kbd "C-c n") 'multi-term-next)
+(global-set-key (kbd "C-c p") 'multi-term-prev)
+(set-language-environment  'utf-8)
+(prefer-coding-system 'utf-8)
+;; http://sakito.jp/emacs/emacsshell.html
+;(cond
+; ((or (eq window-system 'mac) (eq window-system 'ns))
+;  (require 'ucs-normalize)
+;  (setq file-name-coding-system 'utf-8-hfs)
+;  (setq locale-coding-system 'utf-8-hfs))
+; ((or (eq system-type 'cygwin) (eq system-type 'windows-nt))
+;  (setq file-name-coding-system 'utf-8)
+;  (setq locale-coding-system 'utf-8)
+  ;; もしコマンドプロンプトを利用するなら sjis にする
+  ;; (setq file-name-coding-system 'sjis)
+  ;; (setq locale-coding-system 'sjis)
+  ;; 古い Cygwin だと EUC-JP にする
+  ;; (setq file-name-coding-system 'euc-jp)
+  ;; (setq locale-coding-system 'euc-jp)
+;  )
+; (t
+;  (setq file-name-coding-system 'utf-8)
+;  (setq locale-coding-system 'utf-8)))
+(setq system-uses-terminfo nil)
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(global-set-key (kbd "C-c t") '(lambda ()
+				 (interactive)
+				 (multi-term)))
