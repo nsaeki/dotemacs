@@ -12,6 +12,7 @@
 
 ;; http proxy
 ;; (setq url-proxy-services '(("http" . "proxy.host:8080")))
+;; (auto-install-update-emacswiki-package-name t)
 
 ;; (install-elisp-from-emacswiki "open-junk-file.el")
 (require 'open-junk-file)
