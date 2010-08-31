@@ -9,28 +9,20 @@
 
 ;;(anything-iswitchb-setup)
 
-;; (defun my-anything-for-files ()
-;;   (interactive)
-;;   (anything-other-buffer
-;;    '(anything-c-source-buffers
-;;      anything-c-source-recentf
-;;    " *my-anything*"))
-;(global-set-key (kbd "C-:") 'my-anything)
-
-(setq anything-for-files-prefered-list
-      '(anything-c-source-ffap-line
-	anything-c-source-ffap-guesser
-	anything-c-source-buffers+
-	anything-c-source-recentf
-	anything-c-source-bookmarks
-	anything-c-source-file-cache
-	anything-c-source-files-in-current-dir+
-	;; for linux
-	;anything-c-source-locate
-	;; for mac
-	anything-c-source-mac-spotlight
-	)
-)
+;; (setq anything-for-files-prefered-list
+;;       '(anything-c-source-ffap-line
+;; 	anything-c-source-ffap-guesser
+;; 	anything-c-source-buffers+
+;; 	anything-c-source-recentf
+;; 	anything-c-source-bookmarks
+;; 	anything-c-source-file-cache
+;; 	anything-c-source-files-in-current-dir+
+;; 	;; for linux
+;; 	;anything-c-source-locate
+;; 	;; for mac
+;; 	anything-c-source-mac-spotlight
+;; 	)
+;; )
 
 (global-set-key (kbd "C-;") 'anything-for-files)
 (global-set-key (kbd "C-.") 'anything-imenu)
