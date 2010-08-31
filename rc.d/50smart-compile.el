@@ -1,7 +1,11 @@
 (require 'smart-compile)
 (global-set-key "\C-cc" 'smart-compile)
+
+;; run scripts 
 (setq smart-compile-alist
-      (append '(("\\.pl\\'" . "perl -w %f")
-		("\\.rb\\'" . "ruby -w %f"))
-	      smart-compile-alist))
-;;; TODO customize to fail back into executable-interpret
+      (append '(("\\.php\\'" . "php %f")) smart-compile-alist))
+
+;; set to default (using shebang)
+(delete '("\\.pl\\'" . "perl -cw %f") smart-compile-alist)
+(delete '("\\.rb\\'" . "ruby -cw %f") smart-compile-alist)
+
