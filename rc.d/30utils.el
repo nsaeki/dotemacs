@@ -51,10 +51,6 @@
 ;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
 (require 'text-adjust)
 
-;; (install-elisp-from-emacswiki "open-junk-file.el")
-(require 'open-junk-file)
-(setq open-junk-file-format "~/work/sandbox/%Y-%m-%d-%H%M%S.")
-
 ;; (install-elisp-from-emacswiki "summarye.el")
 ;(require 'summarye)
 
