@@ -59,5 +59,7 @@
 
 ;; (install-elisp-from-emacswiki "point-undo.el")
 (require 'point-undo)
+(define-key global-map (kbd "C-z") 'point-undo)
+(define-key global-map (kbd "C-M-z") 'point-redo)
 ;; (define-key global-map [f5] 'point-undo)
 ;; (define-key global-map [f6] 'point-redo)

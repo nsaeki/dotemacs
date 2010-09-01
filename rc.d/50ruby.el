@@ -37,6 +37,8 @@
             ;; (local-set-key "\M-\C-i" 'ri-ruby-complete-symbol) 
             (local-set-key "\M-c" 'rct-complete-symbol)
             ;; (local-set-key "\M-g" 'ri-ruby-show-args)
+	    (setq ac-sources (append '(ac-source-rcodetools)
+				     ac-sources))
 	    ))
 
 ;; ruby-electric
@@ -54,6 +56,10 @@ and source-file directory for your debugger." t)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
+
+;; rvm
+(require 'rvm)
+(rvm-use-default)
 
 ;; flymake for ruby
 ;; Invoke ruby with '-c' to get syntax checking
