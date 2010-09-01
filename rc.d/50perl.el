@@ -1,8 +1,8 @@
 ;; extensions
 (setq auto-mode-alist
       (append '(("\\.t$" . cperl-mode)
-		("\\.psgi$" . cperl-mode))
-	      auto-mode-alist))
+                ("\\.psgi$" . cperl-mode))
+              auto-mode-alist))
 
 ;; cperl-mode
 (defalias 'perl-mode 'cperl-mode)

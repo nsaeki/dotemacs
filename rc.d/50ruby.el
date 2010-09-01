@@ -30,19 +30,21 @@
 (autoload 'ri "ri-ruby.el" nil t)
 
 ;; ruby-mode hooks
-(add-hook 'ruby-mode-hook (lambda ()
-			    (local-set-key "\M-r" 'ri)
-;;			    (local-set-key "\M-\C-i" 'ri-ruby-complete-symbol)
-			    (local-set-key "\M-c" 'rct-complete-symbol)
-;;			    (local-set-key "\M-g" 'ri-ruby-show-args)
-			    ))
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key "\M-r" 'ri)
+            (local-set-key "\C-cd" 'ri)
+            ;; (local-set-key "\M-\C-i" 'ri-ruby-complete-symbol) 
+            (local-set-key "\M-c" 'rct-complete-symbol)
+            ;; (local-set-key "\M-g" 'ri-ruby-show-args)
+	    ))
 
 ;; ruby-electric
 (require 'ruby-electric)
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (custom-set-variables '(ruby-electric-expand-delimiters-list nil))
 
-;; rubydb
+;; ruby debug
 (autoload 'rubydb "rubydb3x"
   "run rubydb on program file in buffer *gud-file*.
 the directory containing file becomes the initial working directory
