@@ -30,19 +30,23 @@
 (autoload 'ri "ri-ruby.el" nil t)
 
 ;; ruby-mode hooks
-(add-hook 'ruby-mode-hook (lambda ()
-			    (local-set-key "\M-r" 'ri)
-;;			    (local-set-key "\M-\C-i" 'ri-ruby-complete-symbol)
-			    (local-set-key "\M-c" 'rct-complete-symbol)
-;;			    (local-set-key "\M-g" 'ri-ruby-show-args)
-			    ))
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key "\M-r" 'ri)
+            (local-set-key "\C-cd" 'ri)
+            ;; (local-set-key "\M-\C-i" 'ri-ruby-complete-symbol) 
+            (local-set-key "\M-c" 'rct-complete-symbol)
+            ;; (local-set-key "\M-g" 'ri-ruby-show-args)
+	    (setq ac-sources (append '(ac-source-rcodetools)
+				     ac-sources))
+	    ))
 
 ;; ruby-electric
 (require 'ruby-electric)
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (custom-set-variables '(ruby-electric-expand-delimiters-list nil))
 
-;; rubydb
+;; ruby debug
 (autoload 'rubydb "rubydb3x"
   "run rubydb on program file in buffer *gud-file*.
 the directory containing file becomes the initial working directory
@@ -52,6 +56,10 @@ and source-file directory for your debugger." t)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
+
+;; rvm
+(require 'rvm)
+(rvm-use-default)
 
 ;; flymake for ruby
 ;; Invoke ruby with '-c' to get syntax checking
