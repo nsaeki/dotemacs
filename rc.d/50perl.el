@@ -13,6 +13,7 @@
 ;; cperl-hairy for electric mode
 ;; see also: http://www.emacswiki.org/emacs/CPerlMode
 ;;(setq cperl-hairy t)
+
 (add-hook 'cperl-mode-hook
           (lambda ()
             (set-face-background 'cperl-array-face nil)
@@ -21,6 +22,9 @@
         (setq-default indent-tabs-mode nil)
         (setq-default tab-width 4)
         ))
+
+;; key-map
+(define-key cperl-mode-map (kbd "M-p") 'cperl-perldoc)
 
 ;; http://search.cpan.org/~schwigon/pod-mode/
 (require 'pod-mode)

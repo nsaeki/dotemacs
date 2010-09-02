@@ -21,6 +21,10 @@
 ;(global-set-key "\C-cc" 'compile)
 (global-unset-key "\C-z")
 (global-set-key (kbd "C-c r") 'query-replace)
+;(define-key global-map (kbd "C-m") 'newline-and-indent)
+;(define-key global-map (kbd "M-k") 'kill-this-buffer)
+;(define-key global-map (kbd "C-t") 'other-window)
+
 
 ;; editing in dired-mode
 (require 'dired)
