@@ -3,6 +3,7 @@
   (add-to-list 'ac-dictionary-directories
 	       "~/.emacs.d/ac-dict")
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  (define-key ac-mode-map (kbd "M-/") 'auto-complete)
   (ac-config-default))
 
 ;; fixed auto-complete-config.el to work with yasnippet 0.6.1c
@@ -22,5 +23,5 @@
               parent))
       candidates)))
 
-(global-set-key "\M-/" 'auto-complete)
+;;(global-set-key "\M-/" 'auto-complete)
 (setq ac-use-menu-map t)
