@@ -7,3 +7,5 @@
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
     (lambda () (rinari-launch)))
+
+(add-to-list 'auto-mode-alist '("\\.js\\.erb$" . js2-mode))
