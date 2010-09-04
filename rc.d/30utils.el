@@ -22,6 +22,9 @@
 ;(require 'develock)
 ;(require 'jaspace)
 
+;; (install-elisp-from-emacswiki "open-junk-file.el")
+(require 'open-junk-file)
+
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
 (autoload 'camelCase-mode "camelCase-mode" nil t)
