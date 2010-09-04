@@ -3,12 +3,13 @@
   "Mode for editing ruby source files" t)
 (setq auto-mode-alist
       (append '(("\\.rb$" . ruby-mode)
-		("\\.rjs$" . ruby-mode)
-		("Rakefile$" . ruby-mode)
-		)
-	      auto-mode-alist))
+                ("\\.rjs$" . ruby-mode)
+                ("Rakefile$" . ruby-mode)
+                )
+              auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
                                      interpreter-mode-alist))
+
 (autoload 'run-ruby "inf-ruby"
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"
@@ -26,7 +27,7 @@
 (setq rct-get-all-methods-command "PAGER=cat fri -l")
 
 ;; See docs in anything
-(define-key anything-map "\C-z" 'anything-execute-persistent-action)
+;(define-key anything-map "\C-z" 'anything-execute-persistent-action)
 
 ;; xmp
 (define-key ruby-mode-map (kbd "M-p") 'xmp)
@@ -63,6 +64,11 @@ and source-file directory for your debugger." t)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
+
+;; snippet
+;; requires it because 'snippet-insert' is called when expanding
+;; from auto-completed word such as 'where', 'each' and so on.
+(require 'snippet)
 
 ;; rvm
 (require 'rvm)
