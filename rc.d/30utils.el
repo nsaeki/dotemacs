@@ -24,7 +24,7 @@
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
-(require 'camelCase)
+(autoload 'camelCase-mode "camelCase-mode" nil t)
 
 ;; ThingAtPoint and isearch-word-at-point
 (require 'thingatpt)
