@@ -1,21 +1,21 @@
 ;; frame size
 (setq initial-frame-alist
-      (append (list
-	       ;; '(width . 84)
-	       ;; '(height . 42)
-	       '(width . 168)
-	       '(height . 46)
-	       )
+      (append '((top . 42)
+                (left . 45)
+                ;; (width . 84)
+                ;; (height . 42)
+                (width . 168)
+                (height . 46))
 	      initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
 (split-window-horizontally)
 
 ;; http proxy
 ;; (setq url-proxy-services '(("http" . "proxy.host:8080")))
-;; (auto-install-update-emacswiki-package-name t)
 
-;; (install-elisp-from-emacswiki "open-junk-file.el")
-(require 'open-junk-file)
+;; for auto-install
+(setq update-emacswiki-package-name-at-launch nil)
+
 (setq open-junk-file-format "~/work/sandbox/%Y-%m-%d-%H%M%S.")
 
 (setq anything-for-files-prefered-list
