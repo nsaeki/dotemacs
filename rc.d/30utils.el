@@ -22,6 +22,32 @@
 ;(require 'develock)
 ;(require 'jaspace)
 
+;; (install-elisp-from-emacswiki "open-junk-file.el")
+(require 'open-junk-file)
+
+;; camelCase-mode
+;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
+(autoload 'camelCase-mode "camelCase-mode" nil t)
+
+;; ThingAtPoint and isearch-word-at-point
+(require 'thingatpt)
+(defun isearch-yank-symbol ()
+  "*Put symbol at current point into search string."
+  (interactive)
+  (let ((sym (symbol-at-point)))
+    (if sym
+        (progn
+          (setq isearch-regexp t
+                isearch-string (concat "\\_<"
+                                       (regexp-quote (symbol-name sym)) "\\_>")
+                isearch-message (mapconcat
+                                 'isearch-text-char-description isearch-string "")
+                isearch-yank-flag t))
+      (ding)))
+  (isearch-search-and-update))
+(define-key isearch-mode-map "\M-w" 'isearch-yank-symbol)
+
+
 ;; (auto-install-batch "sequential-command")
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
@@ -51,10 +77,6 @@
 ;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
 (require 'text-adjust)
 
-;; (install-elisp-from-emacswiki "open-junk-file.el")
-(require 'open-junk-file)
-(setq open-junk-file-format "~/work/sandbox/%Y-%m-%d-%H%M%S.")
-
 ;; (install-elisp-from-emacswiki "summarye.el")
 ;(require 'summarye)
 
@@ -65,3 +87,5 @@
 (require 'point-undo)
 (define-key global-map (kbd "C-z") 'point-undo)
 (define-key global-map (kbd "C-M-z") 'point-redo)
+;; (define-key global-map [f5] 'point-undo)
+;; (define-key global-map [f6] 'point-redo)

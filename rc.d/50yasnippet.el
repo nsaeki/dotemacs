@@ -7,4 +7,7 @@
 
 (require 'yasnippet-config)
 (yas/setup "~/.emacs.d/plugins/yasnippet/")
-(yas/load-directory "~/.emacs.d/repos/yasnippets-rails/rails-snippets")
+
+;; rails snippets
+(load "~/.emacs.d/plugins/yasnippets-rails/setup")
+;; (yas/load-directory "~/.emacs.d/plugins/yasnippets-rails/rails-snippets")

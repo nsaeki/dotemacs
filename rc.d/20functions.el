@@ -19,6 +19,7 @@
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
 	((looking-at "\\s\)") (forward-char 1) (backward-list 1))))
 
+;; toggle truncate lines
 ;; http://ubulog.blogspot.com/2007/09/emacsonoff.html
 (defun toggle-truncate-lines ()
   "toggle trancate lines"
@@ -35,3 +36,24 @@
   (when (one-window-p) (split-window-horizontally))
   (other-window 1))
 (global-set-key (kbd "C-,") 'other-window-or-split)
+
+;; preserve scratch buffer
+;; http://www-tsujii.is.s.u-tokyo.ac.jp/~yoshinag/tips/elisp_tips.html#scratch
+(defun my-make-scratch (&optional arg)
+  (interactive)
+  (progn
+    (set-buffer (get-buffer-create "*scratch*"))
+    (funcall initial-major-mode)
+    (erase-buffer)
+    (when (and initial-scratch-message (not inhibit-startup-message))
+      (insert initial-scratch-message))
+    (or arg (progn (setq arg 0)
+                   (switch-to-buffer "*scratch*")))
+    (cond ((= arg 0) (message "*scratch* is cleared up."))
+          ((= arg 1) (message "another *scratch* is created")))))
+;; just clear when killing *scratch* buffer
+(add-hook 'kill-buffer-query-functions
+          (lambda ()
+            (if (string= "*scratch*" (buffer-name))
+                (progn (my-make-scratch 0) nil)
+              t)))

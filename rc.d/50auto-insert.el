@@ -1,5 +1,6 @@
 (auto-insert-mode)
 (setq auto-insert-directory "~/.emacs.d/insert/")
-(define-auto-insert "\\.sh$" "sh-template.sh")
+;; (define-auto-insert "\\.sh$" "sh-template.sh")
 (define-auto-insert "\\.pl$" "perl-template.pl")
 (define-auto-insert "\\.rb$" "ruby-template.rb")
+(define-auto-insert "\\.py$" "python-template.py")
