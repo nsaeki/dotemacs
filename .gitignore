@@ -11,3 +11,4 @@ save-places
 anything-c-adaptive-history
 ac-dict/
 ac-comphist.dat
+rc.d/[0-9]*setup.el
