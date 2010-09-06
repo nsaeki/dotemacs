@@ -2,7 +2,7 @@
 
 ;; org-remember
 (org-remember-insinuate)
-(setq org-directory "~/notes/")
+;; (setq org-directory "~/notes/")
 (setq org-default-notes-file (expand-file-name "memo.org" org-directory))
 (setq org-remember-templates
       '(("Note" ?n "** %?\n   %i\n   %a\n   %T" nil "Inbox")
