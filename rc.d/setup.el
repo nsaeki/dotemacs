@@ -16,6 +16,7 @@
 ;; for auto-install
 (setq update-emacswiki-package-name-at-launch nil)
 
+(setq org-directory "~/notes/")
 (setq open-junk-file-format "~/work/sandbox/%Y-%m-%d-%H%M%S.")
 
 (setq anything-for-files-prefered-list
