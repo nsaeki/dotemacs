@@ -13,6 +13,7 @@
 (column-number-mode t)
 (line-number-mode t)
 ;(setq-default tab-width 4 indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 (savehist-mode 1)
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
