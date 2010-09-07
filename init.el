@@ -1,32 +1,37 @@
 (setq ring-bell-function '(lambda ()))
 (tool-bar-mode 0)
-(setq scroll-preserve-screen-position t)
-(set-scroll-bar-mode 'right)
 (scroll-bar-mode 0)
+;(set-scroll-bar-mode 'right)
 (setq scroll-step 1)
+(setq scroll-preserve-screen-position t)
 (setq inhibit-startup-message t)
-;(setq-default transient-mark-mode t)
 (windmove-default-keybindings)
 (mouse-wheel-mode t)
 (setq mouse-wheel-follow-mouse t)
 (blink-cursor-mode 0)
-(column-number-mode t)
 (line-number-mode t)
-;(setq-default tab-width 4 indent-tabs-mode nil)
+(column-number-mode t)
+(setq-default indent-tabs-mode nil)
 (savehist-mode 1)
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; keyboard shortcuts
+;; keybindings
 ;(global-set-key "\C-cc" 'compile)
 (global-unset-key "\C-z")
 (global-set-key (kbd "C-c r") 'query-replace)
+(define-key global-map (kbd "C-m") 'newline-and-indent)
+(define-key global-map (kbd "M-k") 'kill-this-buffer)
+;(define-key global-map (kbd "C-t") 'other-window)
+;(keyboard-translate ?\C-h ?\C-?)
+;(global-set-key (kbd "C-x ?") 'help-command)
 
 ;; editing in dired-mode
 (require 'dired)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
 ;; hi-line
+;(setq hl-line-face 'underline)
 ;(setq hl-line-face 'underline)
 ;(global-hl-line-mode 1)
 
@@ -84,10 +89,20 @@
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
 
 (defun add-to-load-path-recompile (dir)
-  (add-to-list 'load-path dir)
-  (let (save-abbrevs) (byte-recompile-directory dir)))
-(add-to-load-path-recompile "~/.emacs.d/elisp/")
-(add-to-load-path-recompile "~/.emacs.d/auto-install/")
+   (add-to-list 'load-path dir)
+   (let (save-abbrevs) (byte-recompile-directory dir)))
+;(add-to-load-path-recompile "~/.emacs.d/elisp/")
+;(add-to-load-path-recompile "~/.emacs.d/auto-install/")
+
+(defun add-to-load-path (&rest paths)
+  (let (path)
+    (dolist (path paths paths)
+      (let ((default-directory
+	      (expand-file-name (concat user-emacs-directory path))))
+	(add-to-list 'load-path default-directory)
+	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+	    (normal-top-level-add-subdirs-to-load-path))))))
+(add-to-load-path "auto-install" "elisp" "plugins")
 
 ;; init scripts
 (setq rc-directory "~/.emacs.d/rc.d/")
