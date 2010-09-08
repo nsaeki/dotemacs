@@ -1,4 +1,5 @@
 (require 'org)
+(setq org-startup-folded 'content)
 
 ;; org-remember
 (org-remember-insinuate)
@@ -8,7 +9,6 @@
       '(("Note" ?n "** %?\n   %i\n   %a\n   %T" nil "Inbox")
 ;        ("Todo" ?t "** TODO %?\n   %i\n   %a   %T\n" nil "Inbox")
        ))
-
 (defalias 'memo 'org-remember)
 
 (defun org-insert-upheading (arg)
