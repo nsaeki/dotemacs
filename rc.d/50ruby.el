@@ -71,8 +71,8 @@ and source-file directory for your debugger." t)
 (require 'snippet)
 
 ;; rvm
-(require 'rvm)
-(rvm-use-default)
+;(require 'rvm)
+;(rvm-use-default)
 
 ;; flymake for ruby
 ;; Invoke ruby with '-c' to get syntax checking
