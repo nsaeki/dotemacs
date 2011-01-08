@@ -76,6 +76,14 @@
 (push '(".+\\.pm$" flymake-perl-init) flymake-allowed-file-name-masks)
 (push '(".+\\.t$" flymake-perl-init) flymake-allowed-file-name-masks)
 
+(defun flymake-perl-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "perl" (list "-wc" local-file))))
+
 (add-hook 'cperl-mode-hook
           '(lambda ()
              (interactive)
@@ -83,6 +91,6 @@
                (before flymake-force-check-was-interrupted)
                (setq flymake-check-was-interrupted t))
              (ad-activate 'flymake-post-syntax-check)
-             (define-key cperl-mode-map "\C-c\C-d" 'flymake-display-err-minibuf)
+;;             (define-key cperl-mode-map "\C-c\C-d" 'flymake-display-err-minibuf)
              (set-perl5lib)
              (flymake-mode)))

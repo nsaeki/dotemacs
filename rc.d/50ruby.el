@@ -91,6 +91,4 @@ and source-file directory for your debugger." t)
  'ruby-mode-hook
  '(lambda ()
     ;; Don't want flymake mode for ruby regions in rhtml files
-    (if (not (null buffer-file-name)) (flymake-mode))
-    ;; Print error message in mini buffer
-    (define-key ruby-mode-map "\C-c\C-d" 'flymake-display-err-minibuf)))
+    (if (not (null buffer-file-name)) (flymake-mode))))
