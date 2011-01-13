@@ -27,8 +27,8 @@
 (viewer-stay-in-setup)
 
 ;; changes mode line color
-(setq viewer-modeline-color-unwritable "tomato")
-(setq viewer-modeline-color-view "orange")
+(setq viewer-modeline-color-unwritable "dark slate blue")
+(setq viewer-modeline-color-view "tomato4")
 (viewer-change-modeline-color-setup)
 
 ;; doesn't need any more...
