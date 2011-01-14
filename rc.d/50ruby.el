@@ -1,4 +1,5 @@
 ;; ruby-mode
+(require 'ruby-mode)
 (autoload 'ruby-mode "ruby-mode"
   "Mode for editing ruby source files" t)
 (setq auto-mode-alist
