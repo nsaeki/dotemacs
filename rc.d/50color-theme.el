@@ -5,6 +5,7 @@
 
 (require 'color-theme-tangotango)
 (load-file "~/.emacs.d/elisp/themes/color-theme-railscasts.el")
+(load-file "~/.emacs.d/elisp/themes/color-theme-idle-fingers.el")
 
 ;; select theme - first list element is for windowing system, second is for console/terminal
 ;; Source : http://www.emacswiki.org/emacs/ColorTheme#toc9
@@ -40,3 +41,4 @@
 
 ;(color-theme-tangotango)
 (color-theme-railscasts)
+;(color-theme-idle-fingers)
