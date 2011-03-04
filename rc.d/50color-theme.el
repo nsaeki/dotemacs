@@ -1,7 +1,10 @@
 (require 'color-theme)
 (setq color-theme-load-all-themes nil)
 
+(setq load-path (cons "~/.emacs.d/elisp/themes" load-path))
+
 (require 'color-theme-tangotango)
+(load-file "~/.emacs.d/elisp/themes/color-theme-railscasts.el")
 
 ;; select theme - first list element is for windowing system, second is for console/terminal
 ;; Source : http://www.emacswiki.org/emacs/ColorTheme#toc9
@@ -35,4 +38,5 @@
 ;; hook on after-make-frame-functions
 (add-hook 'after-make-frame-functions 'test-win-sys)
 
-(color-theme-tangotango)
+;(color-theme-tangotango)
+(color-theme-railscasts)
