@@ -11,8 +11,7 @@
 (global-set-key "\C-cgs" 'gtags-find-symbol)
 (global-set-key "\C-cgp" 'gtags-find-pattern)
 (global-set-key "\C-cgf" 'gtags-find-file)
-;(global-set-key "\C-cgb" 'gtags-pop-stack)
-
+(global-set-key "\C-cgb" 'gtags-pop-stack)
 
 (require 'anything-gtags)
 ;; http://emacs.g.hatena.ne.jp/k1LoW/20090204/1233759384
