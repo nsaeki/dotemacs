@@ -28,8 +28,8 @@
 (viewer-stay-in-setup)
 
 ;; changes mode line color
-;(setq viewer-modeline-color-unwritable "dark slate blue")
-;(setq viewer-modeline-color-view "tomato")
+(setq viewer-modeline-color-unwritable "dark slate blue")
+(setq viewer-modeline-color-view "tomato")
 ;(setq viewer-modeline-color-default "#A5BAF1")
 (viewer-change-modeline-color-setup)
 
