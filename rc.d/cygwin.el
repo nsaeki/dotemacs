@@ -1,6 +1,6 @@
 ;; PATH
-;(setq exec-path (cons "c:/cygwin/bin" exec-path))
-;(setenv "PATH" (concat '"c:/cygwin/bin:" (getenv "PATH")))
+(setq exec-path (cons "c:/cygwin/bin" exec-path))
+(setenv "PATH" (concat '"c:/cygwin/bin:" (getenv "PATH")))
 ;(setq exec-path (cons "c:/cygwin/usr/bin" exec-path))
 ;(setenv "PATH" (concat '"c:/cygwin/usr/bin:" (getenv "PATH")))
 ;(setq exec-path (cons "c:/cygwin/usr/local/bin" exec-path))
