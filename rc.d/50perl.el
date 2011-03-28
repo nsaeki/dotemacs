@@ -12,6 +12,7 @@
 (setq cperl-continued-statement-offset 4)
 (setq cperl-comment-column 40)
 (setq cperl-indent-parens-as-block t)
+(setq cperl-electric-parens nil)
 ;; cperl-hairy for electric mode
 ;; see also: http://www.emacswiki.org/emacs/CPerlMode
 ;(setq cperl-hairy t)
