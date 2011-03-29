@@ -4,4 +4,4 @@
 (slime-setup '(slime-repl))
 ;(slime-setup '(slime-repl slime-fancy slime-banner))
 
-(add-to-list auto-mode-alist '("\\.clj$" . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.clj$" . lisp-mode))
