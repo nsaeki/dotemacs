@@ -89,3 +89,7 @@
 (define-key global-map (kbd "C-M-z") 'point-redo)
 ;; (define-key global-map [f5] 'point-undo)
 ;; (define-key global-map [f6] 'point-redo)
+
+;; AutoPairs
+(require 'autopair)
+(autopair-global-mode)
