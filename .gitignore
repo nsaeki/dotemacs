@@ -3,6 +3,7 @@ auto-save-list
 backup
 bin
 elisp
+elpa
 repos
 plugins
 bookmark
@@ -13,3 +14,4 @@ anything-c-adaptive-history
 ac-dict/
 ac-comphist.dat
 rc.d/[0-9]*environment.el
+srecode-map.el
