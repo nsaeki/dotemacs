@@ -15,6 +15,7 @@
 (savehist-mode 1)
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq read-file-name-completion-ignore-case t)
 
 ;; keybindings
 ;(global-set-key "\C-cc" 'compile)
@@ -109,3 +110,4 @@
 (add-to-list 'load-path rc-directory)
 (dolist (file (directory-files rc-directory t "^[0-9]+\.*\\.el$"))
   (load file))
+

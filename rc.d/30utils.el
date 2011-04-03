@@ -93,3 +93,14 @@
 ;; AutoPairs
 (require 'autopair)
 (autopair-global-mode)
+(setq autopair-blink nil)
+(add-hook 'c++-mode-hook
+          #'(lambda ()
+              (push '(?< . ?>)
+                    (getf autopair-extra-pairs :code))))
+(add-hook 'python-mode-hook
+          #'(lambda ()
+              (setq autopair-handle-action-fns
+                    (list #'autopair-default-handle-action
+                          #'autopair-python-triple-quote-action))))
+ 
