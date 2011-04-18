@@ -9,5 +9,5 @@
 (yas/setup "~/.emacs.d/plugins/yasnippet/")
 
 ;; rails snippets
-;(load "~/.emacs.d/plugins/yasnippets-rails/setup")
+;; (load "~/.emacs.d/plugins/yasnippets-rails/setup")
 ;; (yas/load-directory "~/.emacs.d/plugins/yasnippets-rails/rails-snippets")
