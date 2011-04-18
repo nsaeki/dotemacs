@@ -22,6 +22,10 @@
 ;(require 'develock)
 ;(require 'jaspace)
 
+; (require 'linum)
+; (global-linum-mode t)
+; (setq linum-format "%4d ")
+
 ;; (install-elisp-from-emacswiki "open-junk-file.el")
 (require 'open-junk-file)
 
