@@ -9,4 +9,5 @@ anything-c-adaptive-history
 srecode-map.el
 ac-dict/
 ac-comphist.dat
+server
 rc.d/[0-9]*environment.el
