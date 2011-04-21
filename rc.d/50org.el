@@ -28,3 +28,6 @@
 
 ;; overwrites default: <C-return>      org-insert-heading-respect-content
 ;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
+
+;; disables C-,
+(define-key org-mode-map (kbd "C-,") nil)
