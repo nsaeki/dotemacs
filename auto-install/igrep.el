@@ -597,10 +597,11 @@ the file name component of FILES (and whose contents match REGEX)."
 			    (mapconcat (lambda (file)
 					 (let ((dir (file-name-directory file)))
 					   (if dir
-					       (expand-file-name
-						(file-name-nondirectory file)
-						(igrep-quote-file-name dir))
-					     file)))
+					       (file-relative-name
+                                                (expand-file-name
+                                                 (file-name-nondirectory file)
+                                                 (igrep-quote-file-name dir)))
+                                             file)))
 				       files " "))
 			  igrep-null-device)))
     (if igrep-find
@@ -888,10 +889,10 @@ If the `buffer-file-name' variable is nil, return \"*\"."
       (setq files (cdr files)))
     (format (cond ((eq igrep-find-use-xargs 'gnu)
 		   ;; | \\\n
-		   "%s %s %s %s %s -print0 | xargs -0 -e %s")
+		   "%s %s %s %s %s -print0 | xargs -0 %s")
 		  (igrep-find-use-xargs
 		   ;; | \\\n
-		   "%s %s %s %s %s -print | xargs -e %s")
+		   "%s %s %s %s %s -print | xargs %s")
 		  (t
 		   "%s %s %s %s %s -exec %s %s"))
 	    igrep-find-program

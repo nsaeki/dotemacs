@@ -33,5 +33,8 @@
 ;(setq viewer-modeline-color-default "#A5BAF1")
 (viewer-change-modeline-color-setup)
 
+(setq view-mode-by-default-regexp "[_.]log$")
+(viewer-aggressive-setup t)
+
 ;; doesn't need any more...
 ;(require 'view-support)
