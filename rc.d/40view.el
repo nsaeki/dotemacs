@@ -34,7 +34,7 @@
 (viewer-change-modeline-color-setup)
 
 (setq view-mode-by-default-regexp "[_.]log$")
-(viewer-aggressive-setup t)
+;(viewer-aggressive-setup t)
 
 ;; doesn't need any more...
 ;(require 'view-support)
