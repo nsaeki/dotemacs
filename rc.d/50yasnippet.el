@@ -3,7 +3,7 @@
 ;; yas/setup adds yasnippet directory to load-path,
 ;; but requires yasnippet.el before do so, and fails to initialze.
 ;; this line is probably workaround.
-(add-to-load-path-recompile "~/.emacs.d/plugins/yasnippet/")
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet/")
 
 (require 'yasnippet-config)
 (yas/setup "~/.emacs.d/plugins/yasnippet/")

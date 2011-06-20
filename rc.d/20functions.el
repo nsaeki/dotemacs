@@ -1,5 +1,11 @@
+;; insert date
+(defun my-get-datetime (fmt) (insert (format-time-string fmt)))
+(defun date () (interactive) (my-get-datetime "[%Y-%m-%d]"))
+(defun time () (interactive) (my-get-datetime "[%H:%M:%S]"))
+(defun dtime () (interactive) (my-get-datetime "[%Y-%m-%d %H:%M:%S]"))
+
 ;; save script file as executable
-(defun make-file-executable()
+(defun make-file-executable ()
   "Make the file of this buffer executable, when it is a script source."
   (save-restriction
     (widen)

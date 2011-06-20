@@ -1,4 +1,3 @@
-(require 'get-date)
 ;(require 'memo-mode)
 ;(require 'embed-memo)
 
@@ -10,6 +9,7 @@
 ;(setq-default physical-line-mode t)
 ;(setq physical-line-ignoring-mode-list '(dired-mode))
 
+;; now using anything-show-kill-ring
 ;; (require 'browse-kill-ring)
 ;; (browse-kill-ring-default-keybindings)
 ;; ;(global-set-key "\M-y" 'browse-kill-ring)
@@ -31,6 +31,7 @@
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
+;; Emacs 23 has `capitalized-words-mode', but it doesn't work correctly.
 (autoload 'camelCase-mode "camelCase-mode" nil t)
 
 ;; ThingAtPoint and isearch-word-at-point
@@ -50,7 +51,6 @@
       (ding)))
   (isearch-search-and-update))
 (define-key isearch-mode-map "\M-w" 'isearch-yank-symbol)
-
 
 ;; (auto-install-batch "sequential-command")
 (require 'sequential-command-config)
@@ -85,7 +85,7 @@
 ;(require 'summarye)
 
 ;; (install-elisp-from-emacswiki "multiverse.el")
-(require 'multiverse)
+;(require 'multiverse)
 
 ;; (install-elisp-from-emacswiki "point-undo.el")
 (require 'point-undo)
@@ -107,4 +107,3 @@
               (setq autopair-handle-action-fns
                     (list #'autopair-default-handle-action
                           #'autopair-python-triple-quote-action))))
- 

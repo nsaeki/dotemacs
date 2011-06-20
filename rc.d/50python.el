@@ -1,7 +1,16 @@
 (require 'python)
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code ""
+ python-shell-completion-string-code
+ "';'.join(__IP.complete('''%s'''))\n")
+
+;(autoload 'python-mode "python-mode" "Python editing mode." t)
+;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; flymake for python
 ;; http://tech.lampetty.net/tech/index.php/archives/380

@@ -1,3 +1,3 @@
-(add-to-load-path-recompile "~/.emacs.d/elisp/nxhtml/util")
-(load "mumamo")
+(add-to-list 'load-path "~/.emacs.d/elisp/nxhtml/util")
+(require 'mumamo)
 (setq mumamo-background-colors nil)

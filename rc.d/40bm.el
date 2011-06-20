@@ -10,4 +10,3 @@
 (global-set-key (kbd "M-SPC") 'bm-toggle)
 (global-set-key (kbd "M-[") 'bm-previous)
 (global-set-key (kbd "M-]") 'bm-next)
-

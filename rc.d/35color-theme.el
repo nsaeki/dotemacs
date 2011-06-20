@@ -3,14 +3,13 @@
 
 (setq load-path (cons "~/.emacs.d/elisp/themes" load-path))
 
-(require 'color-theme-tangotango)
-(load-file "~/.emacs.d/elisp/themes/color-theme-railscasts.el")
-(load-file "~/.emacs.d/elisp/themes/color-theme-idle-fingers.el")
+;(require 'color-theme-tangotango)
+(autoload 'color-theme-railscasts "color-theme-railscasts" nil t)
+(autoload 'color-theme-idle-fingers "color-theme-idle-fingers" nil t)
 
+;; Source : http://www.emacswiki.org/emacs/ColorTheme#toc10
 ;; select theme - first list element is for windowing system, second is for console/terminal
-;; Source : http://www.emacswiki.org/emacs/ColorTheme#toc9
-(setq color-theme-choices 
-      '(color-theme-tangotango color-theme-tangotango))
+(setq color-theme-choices '(color-theme-railscasts color-theme-standard))
 
 ;; default-start
 (funcall (lambda (cols)
@@ -21,24 +20,17 @@
     			      cols)))))
     	 color-theme-choices)
 
-;; test for each additional frame or console
-(require 'cl)
-(fset 'test-win-sys 
-      (funcall (lambda (cols)
-    		 (lexical-let ((cols cols))
-    		   (lambda (frame)
-    		     (let ((color-theme-is-global nil))
-		       ;; must be current for local ctheme
-		       (select-frame frame)
-		       ;; test winsystem
-		       (eval 
-			(append '(if (window-system frame)) 
-				(mapcar (lambda (x) (cons x nil)) 
-					cols)))))))
-    	       color-theme-choices ))
+;; test for each frame or console
+(require 'cl)	
+(lexical-let ( (cols color-theme-choices) )
+  (defun test-win-sys (frame)
+    (let ( (color-theme-is-global nil) )
+      (select-frame frame)
+      (eval (append '(if (window-system frame)) 
+     		    (mapcar (lambda (x) (cons x nil)) cols))))))
 ;; hook on after-make-frame-functions
 (add-hook 'after-make-frame-functions 'test-win-sys)
 
 ;(color-theme-tangotango)
-(color-theme-railscasts)
+;(color-theme-railscasts)
 ;(color-theme-idle-fingers)
