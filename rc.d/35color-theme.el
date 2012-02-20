@@ -34,3 +34,5 @@
 ;(color-theme-tangotango)
 ;(color-theme-railscasts)
 ;(color-theme-idle-fingers)
+
+(set-face-background 'modeline "#e3e3e3")

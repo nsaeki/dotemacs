@@ -39,7 +39,8 @@
 
 (defun other-window-or-split ()
   (interactive)
-  (when (one-window-p) (split-window-horizontally))
+;;  (when (one-window-p) (split-window-horizontally))
+  (when (one-window-p) (split-window-vertically))
   (other-window 1))
 (global-set-key (kbd "C-,") 'other-window-or-split)
 
