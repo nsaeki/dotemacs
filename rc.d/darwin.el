@@ -7,8 +7,10 @@
 
 ;; font
 (when (= emacs-major-version 23)
+  ;; (create-fontset-from-ascii-font
+  ;;  "-apple-monaco-medium-normal-normal-*-12-*" nil "hirakaku12")
   (create-fontset-from-ascii-font
-   "-apple-monaco-medium-normal-normal-*-12-*" nil "hirakaku12")
+   "-apple-menlo-medium-normal-normal-*-12-*" nil "hirakaku12")
 
   (set-frame-font "fontset-hirakaku12")
   (add-to-list 'default-frame-alist '(font . "fontset-hirakaku12"))
@@ -31,5 +33,4 @@
   (set-fontset-font
    "fontset-hirakaku12"
    'katakana-jisx0201
-   "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1")
-)
+   "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1"))
