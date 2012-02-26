@@ -20,7 +20,7 @@
 (require 'anything-rcodetools)
 
 ;; Command to get all Ri entries.
-(setq rct-get-all-methods-command "PAGER=cat fri -l")
+;; (setq rct-get-all-methods-command "PAGER=cat fri -l")
 
 ;; See docs in anything
 ;(define-key anything-map "\C-z" 'anything-execute-persistent-action)
@@ -88,3 +88,33 @@ and source-file directory for your debugger." t)
  '(lambda ()
     ;; Don't want flymake mode for ruby regions in rhtml files
     (if (not (null buffer-file-name)) (flymake-mode))))
+
+
+;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
+;(require 'anything)
+
+(defvar anything-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
+(defvar anything-c-source-gem-open      
+  '((name . "gem open")
+    (init . (lambda ()
+              (let ((buffer (anything-candidate-buffer 'global)))
+                (with-current-buffer buffer
+                  (call-process-shell-command anything-gem-open-ruby-command  nil buffer)
+                  (sort-lines nil (point-min) (point-max))))))
+    (candidates-in-buffer)
+    (candidate-number-limit . 99999)
+    (action ("Open" . anything-c-source-gem-open-action))))
+
+(defun anything-c-source-gem-open-action (candidate)
+  (unless (executable-find "which-gemfile.rb")
+    (error "couldn't find which-gemfile.rb in your path."))
+  (find-file (with-temp-buffer
+               (call-process "which-gemfile.rb" nil t 0 candidate)
+               (delete-backward-char 1)
+               (buffer-string))))
+
+(defun anything-gem-open ()
+  (interactive)
+  (anything anything-c-source-gem-open))
+
+(defalias 'gem 'anything-gem-open)
