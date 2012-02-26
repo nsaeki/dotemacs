@@ -1,14 +1,26 @@
 ;; PATH
-(setq exec-path (cons "/usr/local/bin" exec-path))
-(setenv "PATH" (concat '"/usr/local/bin:" (getenv "PATH")))
-(setq exec-path (cons "/usr/local/git/bin" exec-path))
-(setenv "PATH" (concat '"/usr/local/git/bin:" (getenv "PATH")))
+;(setq exec-path (cons "/usr/local/bin" exec-path))
+;(setenv "PATH" (concat '"/usr/local/bin:" (getenv "PATH")))
 
 ;; perlbrew
-(setq exec-path (cons "~/perl5/perlbrew/bin" exec-path))
-(setenv "PATH" (concat '"~/perl5/perlbrew/bin:" (getenv "PATH")))
+;(setq exec-path (cons "~/perl5/perlbrew/bin" exec-path))
+;(setenv "PATH" (concat '"~/perl5/perlbrew/bin:" (getenv "PATH")))
 
-;; rvm
-;; (install-elisp "http://github.com/senny/rvm.el/raw/master/rvm.el")
-(setq exec-path (cons "~/.rvm/rubies/default/bin" exec-path))
-(setenv "PATH" (concat '"~/.rvm/rubies/default/bin:" (getenv "PATH")))
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell 
+         (replace-regexp-in-string "[[:space:]\n]*$" "" 
+           (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))
+))
+(when (equal system-type 'darwin) (set-exec-path-from-shell-PATH))
+
+;; gem path
+;; [ -x `which gem` ]
+;; && PATH="`gem env | perl -ne 'print $1 if /EXECUTABLE DIRECTORY: (.+)$/'`":$PATH
+
+(let ((gempath
+       (replace-regexp-in-string ".*EXECUTABLE DIRECTORY:\\s-*\\([^\s\n]+\\)[\s\n]*$" "\\1"
+         (shell-command-to-string "gem env | grep 'EXECUTABLE DIRECTORY'"))))
+      (setenv "PATH" (concat gempath ":" (getenv "PATH")))
+      (setq exec-path (cons gempath exec-path)))
