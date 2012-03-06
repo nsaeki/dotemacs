@@ -1,5 +1,6 @@
 (autoload 'js2-mode "js2" nil t)
-(defalias 'javascript-mode 'js2-mode)
+;(autoload 'js-mode "js" nil t)
+;(defalias 'javascript-mode 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; http://8-p.info/emacs-javascript.html
@@ -18,7 +19,10 @@
 
 ;; http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode
 ;; http://d.hatena.ne.jp/speg03/20091011/1255244329
-(autoload 'espresso-mode "espresso")
+
+;; http://16777215.blogspot.com/2011/05/emacs23-js2-mode-without-espresso.html
+;(autoload 'espresso-mode "espresso")
+
 (defun my-js2-indent-function ()
   (interactive)
   (save-restriction
