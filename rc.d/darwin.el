@@ -12,8 +12,15 @@
   (create-fontset-from-ascii-font
    "-apple-menlo-medium-normal-normal-*-12-*" nil "hirakaku12")
 
-  (set-frame-font "fontset-hirakaku12")
-  (add-to-list 'default-frame-alist '(font . "fontset-hirakaku12"))
+  ;(set-frame-font "fontset-hirakaku12")
+  ;(add-to-list 'default-frame-alist '(font . "fontset-hirakaku12"))
+
+  ;; Ricty
+  (set-face-attribute 'default nil :family "Ricty" :height 140)
+  (set-fontset-font "fontset-default" 'japanese-jisx0208 '("Ricty" . "iso10646-*"))
+  ;; (set-fontset-font "fontset-default" 'japanese-jisx0208 
+  ;;                   (font-spec :family "Ricty"))
+  ;; (set-face-attribute 'default nil :family "Ricty" :height 140)
 
   (set-fontset-font
    "fontset-hirakaku12"
@@ -34,3 +41,4 @@
    "fontset-hirakaku12"
    'katakana-jisx0201
    "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1"))
+
