@@ -1,6 +1,7 @@
 ;; Command-Key and Option-Key
 (setq ns-command-modifier (quote meta))
 (setq ns-alternate-modifier (quote super))
+(setq ns-pop-up-frames nil)
 
 ;; drag and drop
 (define-key global-map [ns-drag-file] 'ns-find-file)
@@ -17,7 +18,7 @@
 
   ;; Ricty
   ;;(set-face-attribute 'default nil :family "Ricty" :height 140)
-  (set-fontset-font "fontset-default" 'japanese-jisx0208 '("Ricty" . "iso10646-*"))
+  ;;(set-fontset-font "fontset-default" 'japanese-jisx0208 '("Ricty" . "iso10646-*"))
 
   (set-fontset-font
    "fontset-hirakaku12"
