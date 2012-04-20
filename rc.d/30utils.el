@@ -107,3 +107,8 @@
               (setq autopair-handle-action-fns
                     (list #'autopair-default-handle-action
                           #'autopair-python-triple-quote-action))))
+
+;; dmacro
+(defconst *dmacro-key* "\C-t" "repeat key")
+(global-set-key *dmacro-key* 'dmacro-exec)
+(autoload 'dmacro-exec "dmacro" nil t)
