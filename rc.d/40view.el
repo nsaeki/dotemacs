@@ -24,10 +24,10 @@
 ;; (install-elisp-from-emacswiki "viewer.el")
 (require 'viewer)
 
-;; Forces view-mode if file is read-only
+;; Force view-mode if file is read-only
 (viewer-stay-in-setup)
 
-;; changes mode line color
+;; change mode line color
 (setq viewer-modeline-color-unwritable "dark slate blue")
 (setq viewer-modeline-color-view "tomato")
 ;(setq viewer-modeline-color-default "#A5BAF1")
@@ -38,3 +38,10 @@
 
 ;; doesn't need any more...
 ;(require 'view-support)
+
+;; http://d.hatena.ne.jp/znz/20081226/emacs
+;(static-when (functionp 'hl-line-mode)
+  (add-hook 'view-mode-hook '(lambda () (hl-line-mode 1)))
+  (defadvice view-mode-disable (after disable-hl-line-mode activate)
+    (hl-line-mode -1))
+;)
