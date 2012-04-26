@@ -1,3 +1,5 @@
+;; reference
+;; http://d.hatena.ne.jp/samurai20000/20100907/1283791433
 ;; http://d.hatena.ne.jp/ground256/20111008/1318063872
 
 (require 'migemo)
