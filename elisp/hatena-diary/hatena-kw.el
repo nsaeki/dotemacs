@@ -2,28 +2,28 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; kw-cheating-section.
 
-;;hatena-kw-cheating ¤ò»È¤¦¾ì¹ç¡£`hatena-tools.pl' ¤Î¤¢¤ë¥Ç¥£¥ì¥¯¥È¥ê¡£
-;;hatena-mode.el ¤ÈÆ±¤¸¡£
+;;hatena-kw-cheating ã‚’ä½¿ã†å ´åˆã€‚`hatena-tools.pl' ã®ã‚ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€‚
+;;hatena-mode.el ã¨åŒã˜ã€‚
 (defvar hatena-plugin-directory nil)
 
 (defconst hatena-kw-if nil
-  "¥Ç¥Õ¥©¥ë¥È¤Ç kw-cheating(Â¾¿Í¤ÎÆüµ­¤ÎÎ®¤·ÆÉ¤ß) ¤ò¤¹¤ë¤«¤É¤¦¤«")
+  "ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ kw-cheating(ä»–äººã®æ—¥è¨˜ã®æµã—èª­ã¿) ã‚’ã™ã‚‹ã‹ã©ã†ã‹")
 
 (defvar hatena-kw-list-buf nil)
 (defvar hatena-kw-cheating-buf nil)
 (defvar hatena-edit-buf nil)
 
 (defvar hatena-kw-process nil
-  "perl ¤Î¥×¥í¥»¥¹")
+  "perl ã®ãƒ—ãƒ­ã‚»ã‚¹")
 
 (defun hatena-kw-init()
   (interactive)
-  ;;¤Ş¤ºÁë¤ò°ì¤Ä¤Ë¥ê¥»¥Ã¥È¤·¤Æ¤«¤é¡¢Æó¤Ä¤Ë³ä¤ë¡£
-  ;;¤³¤¦¤¹¤ë¤È¡¢¤¤¤Ä `M-x hatena' ¤·¤Æ¤âÁë¤¬Æó¤Ä¤¢¤ë¾õ¶·¤Ë¤Ê¤ë¡£
+  ;;ã¾ãšçª“ã‚’ä¸€ã¤ã«ãƒªã‚»ãƒƒãƒˆã—ã¦ã‹ã‚‰ã€äºŒã¤ã«å‰²ã‚‹ã€‚
+  ;;ã“ã†ã™ã‚‹ã¨ã€ã„ã¤ `M-x hatena' ã—ã¦ã‚‚çª“ãŒäºŒã¤ã‚ã‚‹çŠ¶æ³ã«ãªã‚‹ã€‚
   (delete-other-windows)
   (setq hatena-edit-buf (current-buffer))
-  ;;hatena-edit-wdw Æüµ­¤ò½ñ¤¯¥Ğ¥Ã¥Õ¥¡
-  ;;hatena-keyword-cheating-wdw Â¾¤ÎÆüµ­¤ò¸«¤ë¥¦¥£¥ó¥É¥¦
+  ;;hatena-edit-wdw æ—¥è¨˜ã‚’æ›¸ããƒãƒƒãƒ•ã‚¡
+  ;;hatena-keyword-cheating-wdw ä»–ã®æ—¥è¨˜ã‚’è¦‹ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
   (setq hatena-edit-wdw (selected-window))
   (setq hatena-kw-cheating-wdw 
 	(split-window hatena-edit-wdw 
@@ -34,7 +34,7 @@
     (setq hatena-kw-cheating-buf
 	  (switch-to-buffer "*hatena-keyword-cheating*"))
     (setq mode-name "Hatena kw-cheating"))
-  ;;¥¿¥¤¥Ş¡¼¥¹¥¿¡¼¥È
+  ;;ã‚¿ã‚¤ãƒãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
   (if hatena-kw-post-timer
       (cancel-timer hatena-kw-post-timer))
   (if hatena-kw-ruby-timer
@@ -50,10 +50,10 @@
 		     hatena-kw-repeat
 		     'hatena-kw-ruby-func))
   (setq hatena-kw-get-timer
-	(run-at-time (/ hatena-kw-repeat 2);; get ¤Ï post ¤è¤ê¾¯¤·ÃÙ¤é¤»¤ë
+	(run-at-time (/ hatena-kw-repeat 2);; get ã¯ post ã‚ˆã‚Šå°‘ã—é…ã‚‰ã›ã‚‹
 		     hatena-kw-repeat
 		     'hatena-kw-get-func))
-  ;; ¤Ï¤Æ¤Ê¤Ë¥­¡¼¥ï¡¼¥É¤òÌä¤¤¹ç¤ï¤»¤ë¤¿¤á¤Î¥Ú¡¼¥¸¤òºî¤ë
+  ;; ã¯ã¦ãªã«ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’å•ã„åˆã‚ã›ã‚‹ãŸã‚ã®ãƒšãƒ¼ã‚¸ã‚’ä½œã‚‹
   (hatena-kw-submit hatena-kw-temp-diary t)
   (message (concat "creating diary on " hatena-url "for kw-cheating"))
   )
@@ -68,25 +68,25 @@
       (cancel-timer hatena-kw-get-timer)))
 
 (defun hatena-kw-post-func()
-  "`hatena-kw-temp-diary' ¤ËÈóÆ±´ü¥İ¥¹¥È. "
+  "`hatena-kw-temp-diary' ã«éåŒæœŸãƒã‚¹ãƒˆ. "
 ;  (if (string-match "Hatena" mode-name)
       (progn
 	(hatena-kw-submit hatena-kw-temp-diary))
-;    (cancel-timer hatena-kw-post-timer));; hatena-diary-mode ¤Ç¤Ê¤±¤ì¤Ğ¡¢Ä¾¤Á¤ËÄä»ß¤¹¤ë¡£
+;    (cancel-timer hatena-kw-post-timer));; hatena-diary-mode ã§ãªã‘ã‚Œã°ã€ç›´ã¡ã«åœæ­¢ã™ã‚‹ã€‚
   )
 
 (defun hatena-kw-get-func()
-  "ruby ¤Î output ¤ò hatena-kw-cheating-buf ¤ËÉ½¼¨¤¹¤ë¡£"
+  "ruby ã® output ã‚’ hatena-kw-cheating-buf ã«è¡¨ç¤ºã™ã‚‹ã€‚"
 ;  (if (string-match "Hatena" mode-name)
 ;      (progn
 	  (with-current-buffer (current-buffer)
 	    (set-buffer hatena-kw-cheating-buf)
-	    (delete-region (point-min) (point-max)) ;;Á´Éô¾Ã¤·¤Æ
+	    (delete-region (point-min) (point-max)) ;;å…¨éƒ¨æ¶ˆã—ã¦
 	    ;;from insert-file-contents-as-coding-system
 	    (let ((coding-system-for-read 'euc-jp)
 		  format-alist)
 	      (insert-file-contents hatena-kw-result-file))
-	    ;;´Ê°×¥ì¥ó¥À¥ê¥ó¥°
+	    ;;ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°
 	    (goto-char (point-min))
 	    (while (re-search-forward "<[^>]+>" nil t)
 			       (replace-match "" nil nil))
@@ -99,13 +99,13 @@
 	    
 	    )
 ;	  )
-;    (cancel-timer hatena-kw-get-timer) ;; hatena-diary-mode ¤Ç¤Ê¤±¤ì¤Ğ¡¢Ä¾¤Á¤ËÄä»ß¤¹¤ë¡£
+;    (cancel-timer hatena-kw-get-timer) ;; hatena-diary-mode ã§ãªã‘ã‚Œã°ã€ç›´ã¡ã«åœæ­¢ã™ã‚‹ã€‚
  ;   (message "Hatena get-timer cancelled"))
   )
 
 (defvar hatena-kw-process nil)
 (defun hatena-kw-perl-func(today)
-  "  hatena-tools.pl ¤Ë½èÍı¤òÅÏ¤¹¡£ "
+  "  hatena-tools.pl ã«å‡¦ç†ã‚’æ¸¡ã™ã€‚ "
       (start-process "hatena-kw-process" 
 		 "*hatena keyword*"
 		 "perl"
@@ -120,7 +120,7 @@
 
 
 (defun hatena-current-second(number)
-  "¸½ºß¤Ş¤Ç¤ÎÉÃ¿ô¤òÊÖ¤¹¡£emacs ¤Ç¤ÏÀ°¿ô¤¬¥±¥¿°î¤ì¤¹¤ë¤Î¤Ç¡¢ÉâÆ°¾®¿ôÅÀ¤Ç"
+  "ç¾åœ¨ã¾ã§ã®ç§’æ•°ã‚’è¿”ã™ã€‚emacs ã§ã¯æ•´æ•°ãŒã‚±ã‚¿æº¢ã‚Œã™ã‚‹ã®ã§ã€æµ®å‹•å°æ•°ç‚¹ã§"
   (let* ((ct (current-time))
 	 (high (float (car ct)))
 	 (low (float (car (cdr ct))))

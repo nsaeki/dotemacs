@@ -5,7 +5,7 @@
 ;; author:      hikigaeru <http://d.hatena.ne.jp/hikigaeru/>
 ;;              hirosandesu <http://d.hatena.ne.jp/suttanipaata/>
 ;;
-;; ¸ø³«¥Ú¡¼¥¸:    http://sourceforge.jp/projects/hatena-diary-el/
+;; å…¬é–‹ãƒšãƒ¼ã‚¸:    http://sourceforge.jp/projects/hatena-diary-el/
 ;; Special Thanks to :
 ;;              http://d.hatena.ne.jp/hikigaeru/20040617
 ;;              http://d.hatena.ne.jp/dev-null 
@@ -29,77 +29,77 @@
 
 (defconst hatena-version "2.1.0" "Version number of hatena.el")
 
-;; ¢£¥¤¥ó¥¹¥È¡¼¥ëÊıË¡
-;; 1) Å¬Åö¤Ê¥Ç¥£¥ì¥¯¥È¥ê¤Ë¤³¤Î¥Õ¥¡¥¤¥ë¤ò¤ª¤¯.
-;;    (~/elisp/ Æâ¤Ë¤ª¤¤¤¿¤È¤¹¤ë). 
+;; â– ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ–¹æ³•
+;; 1) é©å½“ãªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãŠã.
+;;    (~/elisp/ å†…ã«ãŠã„ãŸã¨ã™ã‚‹). 
 ;;
-;; 2) .emacs ¤Ë¼¡¤Î 4 ¹Ô¤òÄÉ²Ã¤¹¤ë.
+;; 2) .emacs ã«æ¬¡ã® 4 è¡Œã‚’è¿½åŠ ã™ã‚‹.
 ;; (setq load-path (cons (expand-file-name "~/elisp") load-path))
 ;; (load "hatena-diary-mode")
 ;; (setq hatena-usrid "your username on Hatena::Diary")
 ;; (setq hatena-plugin-directory "~/elisp")
-;;    `hatena-use-file' ¤ò non-nil ¤Ë¤¹¤ë¤È¥Ñ¥¹¥ï¡¼¥É¤ò base64 ¤Ç
-;;    °Å¹æ²½¤·¤Æ¥Õ¥¡¥¤¥ë¤ËÊİÂ¸¤·¤Ş¤¹¤¬¡¢"¿Í´Ö¤¬¸«¤Æ¤¹¤°¤ï¤«¤é¤Ê¤¤"¤°¤é¤¤¤Î
-;;    °ÕÌ£¤·¤«¤Ê¤¤¤Î¤ÇÃí°Õ¤·¤Æ²¼¤µ¤¤¡£
+;;    `hatena-use-file' ã‚’ non-nil ã«ã™ã‚‹ã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ base64 ã§
+;;    æš—å·åŒ–ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã—ã¾ã™ãŒã€"äººé–“ãŒè¦‹ã¦ã™ãã‚ã‹ã‚‰ãªã„"ãã‚‰ã„ã®
+;;    æ„å‘³ã—ã‹ãªã„ã®ã§æ³¨æ„ã—ã¦ä¸‹ã•ã„ã€‚
 ;;
-;; ¢£»È¤¤Êı
+;; â– ä½¿ã„æ–¹
 ;; 
-;; 1)Æüµ­¤ò½ñ¤¯
-;;    `M-x hatena' ¤Çº£Æü¤ÎÆüµ­¤¬³«¤­¤Ş¤¹. ¤¿¤À¤Î¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤Ç¤¹¡£
-;;    ¥¿¥¤¥È¥ë ¤òÉÕ¤±¤¿¤¤¾ì¹ç¤Ï¡¢°ì¹ÔÌÜ¤Ë "title" ¤È½ñ¤¤¤Æ¡¢¤½¤Î¸å¤Ë¥Æ¥­¥¹¥È¤ò
-;;    Â³¤±¤Æ¤¯¤À¤µ¤¤¡£
+;; 1)æ—¥è¨˜ã‚’æ›¸ã
+;;    `M-x hatena' ã§ä»Šæ—¥ã®æ—¥è¨˜ãŒé–‹ãã¾ã™. ãŸã ã®ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
+;;    ã‚¿ã‚¤ãƒˆãƒ« ã‚’ä»˜ã‘ãŸã„å ´åˆã¯ã€ä¸€è¡Œç›®ã« "title" ã¨æ›¸ã„ã¦ã€ãã®å¾Œã«ãƒ†ã‚­ã‚¹ãƒˆã‚’
+;;    ç¶šã‘ã¦ãã ã•ã„ã€‚
 ;;
-;; 2)¥İ¥¹¥È¤¹¤ë
-;;    Æüµ­¤ò½ñ¤¤¤¿¤é, \C-c\C-p ¤Ç send ¤Ç¤­¤Ş¤¹.
-;;    ¥Ş¡¼¥¯¥¢¥Ã¥×¤Ï¡¢¤Ï¤Æ¤Ê¤Îµ­Ë¡¤Ë½¾¤¤¤Ş¤¹¡£
-;;    \C-ct ¤Ç¡Ö¹¹¿·¡×¤È¡Ö¤Á¤ç¤Ã¤È¤·¤¿¹¹¿·¡×¤òÀÚ¤ê¤«¤¨¤Ş¤¹¡£
+;; 2)ãƒã‚¹ãƒˆã™ã‚‹
+;;    æ—¥è¨˜ã‚’æ›¸ã„ãŸã‚‰, \C-c\C-p ã§ send ã§ãã¾ã™.
+;;    ãƒãƒ¼ã‚¯ã‚¢ãƒƒãƒ—ã¯ã€ã¯ã¦ãªã®è¨˜æ³•ã«å¾“ã„ã¾ã™ã€‚
+;;    \C-ct ã§ã€Œæ›´æ–°ã€ã¨ã€Œã¡ã‚‡ã£ã¨ã—ãŸæ›´æ–°ã€ã‚’åˆ‡ã‚Šã‹ãˆã¾ã™ã€‚
 ;; 
-;; 3)ÊÑ¿ô¤ä´Ø¿ô
+;; 3)å¤‰æ•°ã‚„é–¢æ•°
 ;;
-;;    `hatena-change-trivial' "¤Á¤ç¤Ã¤È¤·¤¿¹¹¿·"¤«¤É¤¦¤«¤ò digit ¤ËÊÑ¤¨¤Ş¤¹¡£
-;;    `hatena-entry-type' ¥¨¥ó¥È¥ê¤Î "*" ¤ÎÆ°ºî¤òÀÚ¤ê¤«¤¨¤Ş¤¹¡£
-;;                        0 ¤Ç *pn* ¤Ë¡¢1 ¤Ç *t* (¥¿¥¤¥à¥¹¥¿¥ó¥×)¤Ë¤Ê¤ê¤Ş¤¹¡£
+;;    `hatena-change-trivial' "ã¡ã‚‡ã£ã¨ã—ãŸæ›´æ–°"ã‹ã©ã†ã‹ã‚’ digit ã«å¤‰ãˆã¾ã™ã€‚
+;;    `hatena-entry-type' ã‚¨ãƒ³ãƒˆãƒªã® "*" ã®å‹•ä½œã‚’åˆ‡ã‚Šã‹ãˆã¾ã™ã€‚
+;;                        0 ã§ *pn* ã«ã€1 ã§ *t* (ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—)ã«ãªã‚Šã¾ã™ã€‚
 ;;
-;;    `hatena-submit' (\C-c\C-p) Æüµ­¤ò¤Ï¤Æ¤Ê¤Ë¥İ¥¹¥È¤·¤Ş¤¹
-;;    `hatena-delete-diary' ¤½¤ÎÆü¤ÎÆüµ­¤ò web ¤«¤éºï½ü.
+;;    `hatena-submit' (\C-c\C-p) æ—¥è¨˜ã‚’ã¯ã¦ãªã«ãƒã‚¹ãƒˆã—ã¾ã™
+;;    `hatena-delete-diary' ãã®æ—¥ã®æ—¥è¨˜ã‚’ web ã‹ã‚‰å‰Šé™¤.
 ;;    `hatena-find-previous' (\C-c\C-b) 
-;;    `hatena-find-followings' (\C-c\C-f). ¤½¤ì¤¾¤ì¡¢Á°¤ÎÆü¤È¼¡¤ÎÆü¤Î
-;;    Æüµ­¥Õ¥¡¥¤¥ë¤ò³«¤¯¡£°ú¿ô¤òÍ¿¤¨¤ë¤È¤½¤ÎÆü¿ô¤À¤±¥¸¥ã¥ó¥×¡£
-;;    ( Îã \C 1 2 \C-c\C-b ¤Ç12ÆüÁ° )
-;;    `hatena-exit' Æüµ­ buffer ¤ò save ¤·¤Æ ¤¹¤Ù¤Æ kill
-;;    `hatena-browser-function' ¤Ë 'browse-url ¤È¤«¤ä¤ë¤ÈÆüµ­¤ò¥İ¥¹¥È
-;;    ¤·¤¿¸å¤½¤ÎÆü url ¤ò°ú¿ô¤È¤·¤Æ¥Ö¥é¥¦¥¶¤ò¸Æ¤Ó¤Ş¤¹.
-;;    `hatena-insert-webdiary' ¤Ï¤Æ¤Ê¥Ğ¥Ã¥Õ¥¡¤Ç¼Â¹Ô¤¹¤ë¤È¡¢¸½ºß web ¤Ë
-;;    ¥¢¥Ã¥×¤µ¤ì¤Æ¤¤¤ë¥Õ¥¡¥¤¥ë¤ò¼è¤Ã¤Æ¤¯¤ë¡£ o
-;;    `hatena-twitter' Æüµ­¹¹¿·»ş¤ËTwitter¤ËÄÌÃÎ¤¹¤ë¤«¤É¤¦¤«¤òÊÑ¤¨¤Ş¤¹¡£
-;;¡¡¡¡`hatena-image-insert' ¤Ï¤Æ¤Ê¥Õ¥©¥È¥é¥¤¥Õ¤Ë²èÁü¤ò¥¢¥Ã¥×¥í¡¼¥É¤·
-;;     ¥¨¥ó¥È¥ê¤Ë²èÁüÉ½¼¨ÍÑ¤Î¥¿¥°¤òÁŞÆş¤·¤Ş¤¹¡£
-;;    `hatena-get-webdiary' http://d.hatena.ne.jp/usrid/export ¤ò
-;;    ¼è¤Ã¤Æ¤­¤ÆÊÑ´¹¡£Â­¤ê¤Ê¤¤Æüµ­Ê¬¤ò¥Õ¥¡¥¤¥ë¤ËÂ­¤¹¡£
+;;    `hatena-find-followings' (\C-c\C-f). ãã‚Œãã‚Œã€å‰ã®æ—¥ã¨æ¬¡ã®æ—¥ã®
+;;    æ—¥è¨˜ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚å¼•æ•°ã‚’ä¸ãˆã‚‹ã¨ãã®æ—¥æ•°ã ã‘ã‚¸ãƒ£ãƒ³ãƒ—ã€‚
+;;    ( ä¾‹ \C 1 2 \C-c\C-b ã§12æ—¥å‰ )
+;;    `hatena-exit' æ—¥è¨˜ buffer ã‚’ save ã—ã¦ ã™ã¹ã¦ kill
+;;    `hatena-browser-function' ã« 'browse-url ã¨ã‹ã‚„ã‚‹ã¨æ—¥è¨˜ã‚’ãƒã‚¹ãƒˆ
+;;    ã—ãŸå¾Œãã®æ—¥ url ã‚’å¼•æ•°ã¨ã—ã¦ãƒ–ãƒ©ã‚¦ã‚¶ã‚’å‘¼ã³ã¾ã™.
+;;    `hatena-insert-webdiary' ã¯ã¦ãªãƒãƒƒãƒ•ã‚¡ã§å®Ÿè¡Œã™ã‚‹ã¨ã€ç¾åœ¨ web ã«
+;;    ã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–ã£ã¦ãã‚‹ã€‚ o
+;;    `hatena-twitter' æ—¥è¨˜æ›´æ–°æ™‚ã«Twitterã«é€šçŸ¥ã™ã‚‹ã‹ã©ã†ã‹ã‚’å¤‰ãˆã¾ã™ã€‚
+;;ã€€ã€€`hatena-image-insert' ã¯ã¦ãªãƒ•ã‚©ãƒˆãƒ©ã‚¤ãƒ•ã«ç”»åƒã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—
+;;     ã‚¨ãƒ³ãƒˆãƒªã«ç”»åƒè¡¨ç¤ºç”¨ã®ã‚¿ã‚°ã‚’æŒ¿å…¥ã—ã¾ã™ã€‚
+;;    `hatena-get-webdiary' http://d.hatena.ne.jp/usrid/export ã‚’
+;;    å–ã£ã¦ãã¦å¤‰æ›ã€‚è¶³ã‚Šãªã„æ—¥è¨˜åˆ†ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«è¶³ã™ã€‚
 ;;
-;; 4) ¾å°Ì¥â¡¼¥É
-;;    hatena-diary-mode ¤Ï¥Ç¥Õ¥©¥ë¥È¤Ç html-mode ¤ËÈï¤»¤Æ¤¤¤Ş¤¹¡£¤³¤ì¤ò
-;;    html-helper-mode ¤Ë¤·¤¿¤±¤ì¤Ğ¡¢
+;; 4) ä¸Šä½ãƒ¢ãƒ¼ãƒ‰
+;;    hatena-diary-mode ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ html-mode ã«è¢«ã›ã¦ã„ã¾ã™ã€‚ã“ã‚Œã‚’
+;;    html-helper-mode ã«ã—ãŸã‘ã‚Œã°ã€
 ;;
 ;;    -(define-derived-mode hatena-diary-mode html-mode "Hatena"
 ;;    +(define-derived-mode hatena-diary-mode html-helper-mode "Hatena"
 ;;
-;;    ¤È¤·¤Æ `eval-buffer' ¤·¤Æ²¼¤µ¤¤¡£
+;;    ã¨ã—ã¦ `eval-buffer' ã—ã¦ä¸‹ã•ã„ã€‚
 ;;
-;; 5) hook ¤Ë¤Ä¤¤¤Æ
-;;    hook ¤È¤Ï¥é¥¤¥Ö¥é¥ê¤òÆÉ¹ş¤ó¤À»ş¡¢½é´ü²½¤¹¤ë»ş¤Ê¤É¡¢ÆÃÄê¤Î¥¿¥¤¥ß
-;;    ¥ó¥°¤Ç¸Æ¤Ó½Ğ¤·¤¿¤¤´Ø¿ô¤òÊİ»ı¤¹¤ëÊÑ¿ô¤Ç¤¹¡£hatena-diary-mode ¤Ë¤Ï°Ê²¼¤Î
-;;    hook ¤¬¤¢¤ê¤Ş¤¹
+;; 5) hook ã«ã¤ã„ã¦
+;;    hook ã¨ã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’èª­è¾¼ã‚“ã æ™‚ã€åˆæœŸåŒ–ã™ã‚‹æ™‚ãªã©ã€ç‰¹å®šã®ã‚¿ã‚¤ãƒŸ
+;;    ãƒ³ã‚°ã§å‘¼ã³å‡ºã—ãŸã„é–¢æ•°ã‚’ä¿æŒã™ã‚‹å¤‰æ•°ã§ã™ã€‚hatena-diary-mode ã«ã¯ä»¥ä¸‹ã®
+;;    hook ãŒã‚ã‚Šã¾ã™
 ;;
-;;    `hatena-diary-mode-hooks' Hatena mode ¤Ë¤·¤¿»ş¤Ë¸Æ¤Ğ¤ì¤ë hook .
-;;     Îã .emacs ¤Ë
+;;    `hatena-diary-mode-hooks' Hatena mode ã«ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹ hook .
+;;     ä¾‹ .emacs ã«
 ;;    (add-hook 'hatena-diary-mode-hooks 
 ;;	  '(lambda ()
-;;	     (setq line-spacing 8) ;;¹Ô¤¬µÍ¤Ş¤Ã¤Æ¤ë¤È¥¤¥ä¡¢
+;;	     (setq line-spacing 8) ;;è¡ŒãŒè©°ã¾ã£ã¦ã‚‹ã¨ã‚¤ãƒ¤ã€
 ;;	     ))
 ;;
-;;    `hatena-diary-mode-submit-hook' Æüµ­¤ò¥İ¥¹¥È`hatena-submit' ¤¹¤ëÄ¾Á°¤Ë
-;;     ¸Æ¤Ó½Ğ¤¹´Ø¿ô¤Ç¤¹¡£Îã¤¨¤Ğ¡¢Ï¢Â³¤·¤Ê¤¤²ş¹Ô¤ò¤¹¤Ù¤Æ½ü¤¯¡¢¤Ê¤É¤Î½èÍı¤¬¹Í¤¨¤é¤ì¤Ş¤¹¡£
+;;    `hatena-diary-mode-submit-hook' æ—¥è¨˜ã‚’ãƒã‚¹ãƒˆ`hatena-submit' ã™ã‚‹ç›´å‰ã«
+;;     å‘¼ã³å‡ºã™é–¢æ•°ã§ã™ã€‚ä¾‹ãˆã°ã€é€£ç¶šã—ãªã„æ”¹è¡Œã‚’ã™ã¹ã¦é™¤ãã€ãªã©ã®å‡¦ç†ãŒè€ƒãˆã‚‰ã‚Œã¾ã™ã€‚
 ;;
 ;;    (add-hook 'hatena-diary-mode-submit-hook
 ;;	  '(lambda ()
@@ -114,7 +114,7 @@
 (require 'derived)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;ËÜÂÎ
+;;æœ¬ä½“
 
 (if hatena-diary-mode-map
     ()
@@ -132,14 +132,14 @@
 
 (defconst hatena-today-buffer nil)
 (defun hatena (&optional date)
-  "Hatena::Diary ¥Ú¡¼¥¸¤ò³«¤¯. "
+  "Hatena::Diary ãƒšãƒ¼ã‚¸ã‚’é–‹ã. "
   (interactive)
   (unless (file-exists-p hatena-directory)
     (make-directory hatena-directory t))
   (if (not date)
       (progn
-	;;º£Æü¤ÎÆüµ­¤Î¥Ğ¥Ã¥Õ¥¡¤ò³ÎÇ§(cookie ¤Î´ÉÍı¤Î¤¿¤á)
-	;;Â¸ºß¤·¤Ê¤±¤ì¤Ğ¡¢¥¯¥Ã¥­¡¼¤ò¼èÆÀ¤¹¤ë¡£
+	;;ä»Šæ—¥ã®æ—¥è¨˜ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºèª(cookie ã®ç®¡ç†ã®ãŸã‚)
+	;;å­˜åœ¨ã—ãªã‘ã‚Œã°ã€ã‚¯ãƒƒã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
 	(let ((buffer-new-p t)
 	      (file-new-p t))
 	  (if (memq hatena-today-buffer (buffer-list))
@@ -148,12 +148,12 @@
 	  (setq hatena-today-buffer
 		(find-file 
 		 (concat hatena-directory (hatena-today-date))))
-	  ;;¥Õ¥¡¥¤¥ë¡¢¥Ğ¥Ã¥Õ¥¡¤¬Â¸ºß¤·¤Ê¤±¤ì¤Ğ¡¢web¤ÎÆüµ­¤ò¥Á¥§¥Ã¥¯
+	  ;;ãƒ•ã‚¡ã‚¤ãƒ«ã€ãƒãƒƒãƒ•ã‚¡ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°ã€webã®æ—¥è¨˜ã‚’ãƒã‚§ãƒƒã‚¯
 	  (if (file-exists-p (concat hatena-directory (hatena-today-date)))
 	      (setq file-new-p nil))
 	  (if (and file-new-p buffer-new-p)
 	      (progn 
-		(message "Æüµ­¥Õ¥¡¥¤¥ë¤â¥Ğ¥Ã¥Õ¥¡¤â¤¢¤ê¤Ş¤»¤ó¡£Web¤ò¥Á¥§¥Ã¥¯¤·¤Ş¤¹")
+		(message "æ—¥è¨˜ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚ãƒãƒƒãƒ•ã‚¡ã‚‚ã‚ã‚Šã¾ã›ã‚“ã€‚Webã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™")
 		(hatena-insert-webdiary)))
 	  )
 	)
@@ -169,23 +169,23 @@
   )
 
 (define-derived-mode hatena-diary-mode html-mode "Hatena"
-"¤Ï¤Æ¤Ê¥â¡¼¥É. "
+"ã¯ã¦ãªãƒ¢ãƒ¼ãƒ‰. "
     (font-lock-add-keywords 'hatena-diary-mode
           (list
            (list "^\\(Title\\) \\(.*\\)$"
                  '(1 hatena-header-face t)
                  '(2 hatena-title-face t))
-	   ;; ¸«½Ğ¤·
+	   ;; è¦‹å‡ºã—
            (list  "\\(<[^\n/].*>\\)\\([^<>\n]*\\)\\(</.*>\\)"
                   '(1 hatena-html-face t)
                   '(2 hatena-link-face t)
                   '(3 hatena-html-face t))
-	   ;; ¸«½Ğ¤·2
+	   ;; è¦‹å‡ºã—2
            (list  "^\\(\\*[^\n ]*\\) \\(.*\\)$"
                   '(1 hatena-markup-face t)
                   '(2 hatena-html-face t))
-	   ;;ÆÃ¼ìµ­Ë¡
-           (list "\\(\\[?\\(a:id\\|f:id\\|i:id\\|r:id\\|map:id\\|graph:id\\|g.hatena:id\\|b:id:\\|id\\|google\\|isbn\\|asin\\|http\\|http\\|ftp\\|mailto\\|search\\|amazon\\|rakuten\\|jan\\|ean\\|question\\|tex\\):\\(\\([^\n]*\\]\\)\\|[^ ¡¡\n]*\\)\\)"
+	   ;;ç‰¹æ®Šè¨˜æ³•
+           (list "\\(\\[?\\(a:id\\|f:id\\|i:id\\|r:id\\|map:id\\|graph:id\\|g.hatena:id\\|b:id:\\|id\\|google\\|isbn\\|asin\\|http\\|http\\|ftp\\|mailto\\|search\\|amazon\\|rakuten\\|jan\\|ean\\|question\\|tex\\):\\(\\([^\n]*\\]\\)\\|[^ ã€€\n]*\\)\\)"
                  '(1 hatena-markup-face t))
            (list  "^:\\([^:\n]+\\):"
                   '(0 hatena-markup-face t)
@@ -203,7 +203,7 @@
     (set-buffer-modified-p nil)
   (run-hooks 'hatena-diary-mode-hook))
 
-;;hatena-diary-mode ¥È¥°¥ë
+;;hatena-diary-mode ãƒˆã‚°ãƒ«
 (setq auto-mode-alist
       (append 
        (list 
@@ -212,7 +212,7 @@
 
 
 (defun hatena-today-date(&optional offset date)
-;; date ¤ÏÇ¤°Õ¤ÎÆüÉÕ¡¢offset ¤ÏÇ¤°Õ¤Î»ş´Ö¡¢-24 ¤Ç°ìÆü¿Ê¤à
+;; date ã¯ä»»æ„ã®æ—¥ä»˜ã€offset ã¯ä»»æ„ã®æ™‚é–“ã€-24 ã§ä¸€æ—¥é€²ã‚€
   (let ( (lst (if date
 		  (progn
 		    (string-match "\\([0-9][0-9][0-9][0-9]\\)\\([0-9][0-9]\\)\\([0-9][0-9]\\)" date)
@@ -228,13 +228,13 @@
 			(apply 'encode-time lst ))))
 
 (defun hatena-submit (&optional file userid)
- "¤Ï¤Æ¤ÊÆüµ­ http://d.hatena.ne.jp/ ¤Ë post ¥á¥½¥Ã¥É¤ÇÆüµ­¤òÁ÷¤ë. curl ¤ò»È¤¦. "
+ "ã¯ã¦ãªæ—¥è¨˜ http://d.hatena.ne.jp/ ã« post ãƒ¡ã‚½ãƒƒãƒ‰ã§æ—¥è¨˜ã‚’é€ã‚‹. curl ã‚’ä½¿ã†. "
   (interactive)
 
   (if file nil 
     (setq file buffer-file-name)
     (save-excursion
-      ;;"*t*" ¤Ë¤¹¤ë¤« "*pn*" ¤Ë¤¹¤ë¤«
+      ;;"*t*" ã«ã™ã‚‹ã‹ "*pn*" ã«ã™ã‚‹ã‹
       (cond ( (= hatena-entry-type 0)
 	      (progn
 		(let ((i 0)
@@ -257,7 +257,7 @@
 		   ))))
     (t nil)
     )
-      ;;¥¿¥¤¥È¥ë¤Î*t*¤ò»ş´Ö¤ËÃÖ¤­¤«¤¨¤ë
+      ;;ã‚¿ã‚¤ãƒˆãƒ«ã®*t*ã‚’æ™‚é–“ã«ç½®ãã‹ãˆã‚‹
       (goto-char (point-min))
       (let ((i 0))
 	(while (re-search-forward "^\\*t\\*" nil t)
@@ -277,7 +277,7 @@
              (month (match-string 2 filename))
              (day (match-string 3 filename)) 
              (date (concat year month day))
-             ;;¤Ï¤Æ¤Ê¤ËÄÌÃÎ¤¹¤ë¥¿¥¤¥à¥¹¥¿¥ó¥×
+             ;;ã¯ã¦ãªã«é€šçŸ¥ã™ã‚‹ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
              (timestamp 
               (format-time-string "%Y%m%d%H%m%S" (current-time)))
              
@@ -291,15 +291,15 @@
              (full-body 
               (with-temp-buffer
                 (insert-file-contents send-file)
-		;; ¥Ğ¥Ã¥Õ¥¡¤òÁ÷¤ëÁ°¤Ë¸Æ¤Ğ¤ì¤ë hooks
+		;; ãƒãƒƒãƒ•ã‚¡ã‚’é€ã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ hooks
 		(run-hooks 'hatena-diary-mode-submit-hook)
-                (cond ( (string-match "\\`title[ ¡¡]*\\(.*\\)?\n" (buffer-string))
+                (cond ( (string-match "\\`title[ ã€€]*\\(.*\\)?\n" (buffer-string))
 			(progn 
 			  (setq title (match-string 1 (buffer-string)))
 			  (substring (buffer-string)
 				     (length (match-string 0 (buffer-string))))
 			  ))
-		      ;;¸Å¤¤¼ÂÁõ
+		      ;;å¤ã„å®Ÿè£…
 		      ( (string-match hatena-header-regexp (buffer-string))
 			(progn
 			  (setq title (match-string 1 (buffer-string)))
@@ -381,7 +381,7 @@
 
 
 (defun hatena-check-newpage (urldate)
-  "¥Ú¡¼¥¸¤¬ºîÀ®ºÑ¤ß¤«¤É¤¦¤«¥Á¥§¥Ã¥¯"
+  "ãƒšãƒ¼ã‚¸ãŒä½œæˆæ¸ˆã¿ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯"
   (message "checking diary ....")
   (call-process hatena-curl-command nil nil nil 
                   "-o" hatena-tmpfile2
@@ -403,8 +403,8 @@
     (if (string-match hatena-fname-regexp fname) t nil)))
 
 (defun hatena-get-diary-string(&optional date)
-  "¤Ï¤Æ¤Ê¤Ë¤¢¤ëÆüµ­¥Õ¥¡¥¤¥ë¤ò¼è¤ê¡¢¤½¤ÎÊ¸»úÎó¤òÊÖ¤¹¡£
-¥í¥°¥¤¥ó¤·¤Æ¤¤¤Ê¤±¤ì¤Ğ¤Ê¤é¤Ê¤¤¡£"
+  "ã¯ã¦ãªã«ã‚ã‚‹æ—¥è¨˜ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–ã‚Šã€ãã®æ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
+ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚"
   (if (not date) (error "not date"))
   (message "checking diary of %s ...." date)
   (let ((urldate (concat "http://d.hatena.ne.jp/"
@@ -418,7 +418,7 @@
   (with-temp-buffer
     "*hatena-get*"
     (insert-file-contents hatena-tmpfile)
-    ;;¤³¤³¤Ê¤ó¤È¤«...
+    ;;ã“ã“ãªã‚“ã¨ã‹...
     (goto-char (point-min))(while (replace-string "&quot;" "\""))
     (goto-char (point-min))(while (replace-string "&amp;" "&"))
     (goto-char (point-min))(while (replace-string "&gt;" ">"))
@@ -430,7 +430,7 @@
           (match-string 1 (buffer-string)) nil)))
 
 (defun hatena-insert-webdiary(&optional date)
-  "web ¤ÎÆüµ­¤òÁŞÆş¤¹¤ë¡£"
+  "web ã®æ—¥è¨˜ã‚’æŒ¿å…¥ã™ã‚‹ã€‚"
   (interactive)
   (if date nil
       (setq date (file-name-nondirectory buffer-file-name)))
@@ -439,9 +439,9 @@
     (error "not date or hatena file")))
 
 (defun hatena-delete-diary(&optional file userid)
-  "Æüµ­¤òºï½ü¤¹¤ë¡£¥í¡¼¥«¥ë¤Ïºï½ü¤·¤Ê¤¤¡£"
+  "æ—¥è¨˜ã‚’å‰Šé™¤ã™ã‚‹ã€‚ãƒ­ãƒ¼ã‚«ãƒ«ã¯å‰Šé™¤ã—ãªã„ã€‚"
   (interactive)
-  ;;¥Ğ¥Ã¥Õ¥¡¤«¤éÆÉ¤à¤ÈÁ÷¿®»ş´Ö¤Î¤È¤³¤í¤Ë"deleted"
+  ;;ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰èª­ã‚€ã¨é€ä¿¡æ™‚é–“ã®ã¨ã“ã‚ã«"deleted"
     (if file nil 
       (setq file buffer-file-name))
     (if (not userid)
@@ -457,7 +457,7 @@
 	       (referer (concat baseurl "edit?date=" date))
 	       (url (concat baseurl "edit"))
 
-	       (edit (hatena-url-encode-string "¤³¤ÎÆü¤òºï½ü"))
+	       (edit (hatena-url-encode-string "ã“ã®æ—¥ã‚’å‰Šé™¤"))
 	       (post-data 
 		(concat "edit=" edit
 			"&date=" date
@@ -505,7 +505,7 @@
   (let (pass str)
     (if (null hatena-use-file)
 	(setq pass (read-passwd "password ? : "))
-      ;;¥Õ¥¡¥¤¥ë¤¬Ìµ¤«¤Ã¤¿¾ì¹ç¤Ïºî¤ë¡£
+      ;;ãƒ•ã‚¡ã‚¤ãƒ«ãŒç„¡ã‹ã£ãŸå ´åˆã¯ä½œã‚‹ã€‚
       (if (not (file-exists-p hatena-password-file))
 	  (append-to-file (point) (point) hatena-password-file))
       (setq str (with-temp-buffer nil		  
@@ -520,7 +520,7 @@
     pass)))
 
 (defun hatena-exit()
-  "hatena-fname-regexp¤Ë¥Ş¥Ã¥Á¤¹¤ë¥Ğ¥Ã¥Õ¥¡¤ò¤¹¤Ù¤ÆÊİÂ¸¤·¤Æ¾Ãµî"
+  "hatena-fname-regexpã«ãƒãƒƒãƒã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ã™ã¹ã¦ä¿å­˜ã—ã¦æ¶ˆå»"
   (interactive)
   (if (yes-or-no-p "save all diaries and kill buffer ?")
       (progn
@@ -536,12 +536,12 @@
 	      (setq i (1+ i))))))))
 
 (defun hatena-find-previous (&optional count file)
-  "count ÆüÁ°¤ÎÆüµ­¤ò³«¤¯ count ¤¬ nil ¤Ê¤é°ìÆü¤À¤±Ìá¤ë"
+  "count æ—¥å‰ã®æ—¥è¨˜ã‚’é–‹ã count ãŒ nil ãªã‚‰ä¸€æ—¥ã ã‘æˆ»ã‚‹"
   (interactive "p")
   (hatena-find-pf (if count (- count) -1) (buffer-name)))
 
 (defun hatena-find-following (&optional count file)
-  "count Æü¸å¤ÎÆüµ­¤ò³«¤¯ count ¤¬ nil ¤Ê¤é°ìÆü¤À¤±¤¹¤¹¤à"
+  "count æ—¥å¾Œã®æ—¥è¨˜ã‚’é–‹ã count ãŒ nil ãªã‚‰ä¸€æ—¥ã ã‘ã™ã™ã‚€"
   (interactive "p")
   (hatena-find-pf (if count count 1) (buffer-name)))
 
@@ -567,25 +567,25 @@
 		    hatena-directory 
 		    nil hatena-fname-regexp)))
     (if previous (find-file (concat (file-name-directory file) previous))
-      ;;¸«¤Ä¤«¤é¤Ê¤¤»ş¤Ï¡¢Ì¤Íè¤ÎÆüÉÕ¤ò¿Ò¤Í¤ë¡£
-      (let ((filename (read-string "ºîÀ®¤·¤¿¤¤ÆüÉÕ¤òÆşÎÏ: " 
+      ;;è¦‹ã¤ã‹ã‚‰ãªã„æ™‚ã¯ã€æœªæ¥ã®æ—¥ä»˜ã‚’å°‹ã­ã‚‹ã€‚
+      (let ((filename (read-string "ä½œæˆã—ãŸã„æ—¥ä»˜ã‚’å…¥åŠ›: " 
 				   (hatena-today-date (* -24 count) (buffer-name)) nil)))
 	(if (string-match hatena-fname-regexp filename)
 	    (progn
 	      (find-file filename)
 	      (save-buffer))
-	  (error "ÆüÉÕ¥Õ¥¡¥¤¥ë¤Ç¤Ï¤¢¤ê¤Ş¤»¤ó!!"))))))
+	  (error "æ—¥ä»˜ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“!!"))))))
 
 (defun hatena-get-webdiary ()
-  "http://d.hatena.ne.jp/usrid/export ¤ò¼è¤Ã¤Æ¤­¤ÆÊÑ´¹¡£Â­¤ê¤Ê¤¤Æüµ­Ê¬¤ò¥Õ¥¡¥¤¥ë¤ËÂ­¤¹¡£"
+  "http://d.hatena.ne.jp/usrid/export ã‚’å–ã£ã¦ãã¦å¤‰æ›ã€‚è¶³ã‚Šãªã„æ—¥è¨˜åˆ†ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«è¶³ã™ã€‚"
   (interactive)
-  ;;export¤ò¤È¤Ã¤Æ¤¯¤ë
+  ;;exportã‚’ã¨ã£ã¦ãã‚‹
   (call-process hatena-curl-command nil nil nil 
 		"-o" hatena-tmpfile
 		"-b" hatena-cookie
 		(concat "http://d.hatena.ne.jp/" hatena-usrid "/export" ))
 
-  ;;export ¤Ï utf-8 ¤Ê¤Î¤Ç¡¢hatena-default-coding-system  ¤ËÄ¾¤¹¡£
+  ;;export ã¯ utf-8 ãªã®ã§ã€hatena-default-coding-system  ã«ç›´ã™ã€‚
   (let ((filelst (directory-files 
                   hatena-directory 
                   nil hatena-fname-regexp))
@@ -618,7 +618,7 @@
 
 
 (defun hatena-url-encode-string (str &optional coding)
-  "w3m-url-encode-string ¤«¤é¥³¥Ô¡¼"
+  "w3m-url-encode-string ã‹ã‚‰ã‚³ãƒ”ãƒ¼"
   (apply (function concat)
 	 (mapcar
 	  (lambda (ch)
@@ -639,12 +639,12 @@
 		  nil))))
 
 (defun hatena-twitter-prefix-input (ts)
-  "Æüµ­¹¹¿·»ş¤ÎÆâÍÆÆşÎÏ"
+  "æ—¥è¨˜æ›´æ–°æ™‚ã®å†…å®¹å…¥åŠ›"
   (interactive "sTwitter prefix:")
   (setq hatena-twitter-prefix ts))
 
-;----------------ÆÃ¼ìÊ¸»ú¤ÎÊÑ´¹----------------
-;;yahtml ¤ò²şÊÑ
+;----------------ç‰¹æ®Šæ–‡å­—ã®å¤‰æ›----------------
+;;yahtml ã‚’æ”¹å¤‰
 (defvar hatena-entity-reference-chars-alist
   '((?> . "gt") (?< . "lt") (?& . "amp") (?\" . "quot"))
   "translation table from character to entity reference")
@@ -683,22 +683,22 @@
   (interactive)
   (if (not hatena-trivial)
       (progn
-	(message "¤Á¤ç¤Ã¤È¤·¤¿¹¹¿·¥â¡¼¥É")
+	(message "ã¡ã‚‡ã£ã¨ã—ãŸæ›´æ–°ãƒ¢ãƒ¼ãƒ‰")
 	(setq hatena-trivial t))
     (setq hatena-trivial nil)
-    (message "¹¹¿·¥â¡¼¥É")))
+    (message "æ›´æ–°ãƒ¢ãƒ¼ãƒ‰")))
 
 (defun hatena-twitter ()
   (interactive)
   (if (not hatena-twitter-flag)
       (progn
-	(message "twitter¤ËÄÌÃÎ")
+	(message "twitterã«é€šçŸ¥")
 	(setq hatena-twitter-flag t))
     (setq hatena-twitter-flag nil)
-    (message "twitter¤Ë¤ÏÄÌÃÎ¤·¤Ê¤¤")))
+    (message "twitterã«ã¯é€šçŸ¥ã—ãªã„")))
 
 (defun hatena-current-second(number)
-  "¸½ºß¤Ş¤Ç¤ÎÉÃ¿ô¤òÊÖ¤¹¡£emacs ¤Ç¤ÏÀ°¿ô¤¬¥±¥¿°î¤ì¤¹¤ë¤Î¤Ç¡¢ÉâÆ°¾®¿ôÅÀ¤Ç"
+  "ç¾åœ¨ã¾ã§ã®ç§’æ•°ã‚’è¿”ã™ã€‚emacs ã§ã¯æ•´æ•°ãŒã‚±ã‚¿æº¢ã‚Œã™ã‚‹ã®ã§ã€æµ®å‹•å°æ•°ç‚¹ã§"
   (let* ((ct (current-time))
 	 (high (float (car ct)))
 	 (low (float (car (cdr ct))))
@@ -711,35 +711,35 @@
 
 
 ;-------------------------------------------
-; ¤Ï¤Æ¤Êµ­Ë¡¥Ø¥ë¥×
+; ã¯ã¦ãªè¨˜æ³•ãƒ˜ãƒ«ãƒ—
 (defun hatena-help-syntax1 ()
-  "¤Ï¤Æ¤Êµ­Ë¡ ¥Ø¥ë¥×ÌÜ¼¡¤òÉ½¼¨¤¹¤ë"
+  "ã¯ã¦ãªè¨˜æ³• ãƒ˜ãƒ«ãƒ—ç›®æ¬¡ã‚’è¡¨ç¤ºã™ã‚‹"
   (interactive)
   (describe-variable 'hatena-help-syntax-index))
 
 (defun hatena-help-syntax2 ()
-  "¤Ï¤Æ¤Êµ­Ë¡ ÆşÎÏ»Ù±çµ­Ë¡¤Î¥Ø¥ë¥×¤òÉ½¼¨¤¹¤ë"
+  "ã¯ã¦ãªè¨˜æ³• å…¥åŠ›æ”¯æ´è¨˜æ³•ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹"
   (interactive)
   (describe-variable 'hatena-help-syntax-input))
 
 (defun hatena-help-syntax3 ()
-  "¤Ï¤Æ¤Êµ­Ë¡ ¼«Æ°¥ê¥ó¥¯¤Î¥Ø¥ë¥×¤òÉ½¼¨¤¹¤ë"
+  "ã¯ã¦ãªè¨˜æ³• è‡ªå‹•ãƒªãƒ³ã‚¯ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹"
   (interactive)
   (describe-variable 'hatena-help-syntax-autolink))
 
 (defun hatena-help-syntax4 ()
-  "¤Ï¤Æ¤Êµ­Ë¡ ¤Ï¤Æ¤ÊÆâ¼«Æ°¥ê¥ó¥¯¤Î¥Ø¥ë¥×¤òÉ½¼¨¤¹¤ë"
+  "ã¯ã¦ãªè¨˜æ³• ã¯ã¦ãªå†…è‡ªå‹•ãƒªãƒ³ã‚¯ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹"
   (interactive)
   (describe-variable 'hatena-help-syntax-hatena-autolink))
 
 (defun hatena-help-syntax5 ()
-  "¤Ï¤Æ¤Êµ­Ë¡ ÆşÎÏ»Ù±çµ¡Ç½¤Î¥Ø¥ë¥×¤òÉ½¼¨¤¹¤ë"
+  "ã¯ã¦ãªè¨˜æ³• å…¥åŠ›æ”¯æ´æ©Ÿèƒ½ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹"
   (interactive)
   (describe-variable 'hatena-help-syntax-other))
 
 
 (defun hatena-image-insert (filename filesize)
-  "²èÁü¤ò¤Ï¤Æ¤Ê¥Õ¥©¥È¥é¥¤¥Õ¤Ë¥¢¥Ã¥×¥í¡¼¥É¤·¡¢Æüµ­¤ËÁŞÆş¤¹¤ë"
+  "ç”»åƒã‚’ã¯ã¦ãªãƒ•ã‚©ãƒˆãƒ©ã‚¤ãƒ•ã«ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ã€æ—¥è¨˜ã«æŒ¿å…¥ã™ã‚‹"
   (interactive "fImage File:\nsFile Size:")
   (let*
       ((extension (upcase (substring filename (- (length filename) 3))))

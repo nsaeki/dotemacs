@@ -11,58 +11,58 @@
   :group 'hatena)
 
 (defcustom hatena-usrid nil
-  "hatena-diary-mode ¤Î¥æ¡¼¥¶¡¼Ì¾"
+  "hatena-diary-mode ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼å"
   :type 'string
   :group 'hatena)
 
 (defcustom hatena-directory 
   (expand-file-name "~/.hatena/")
-  "Æüµ­¤òÊİÂ¸¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê."
+  "æ—¥è¨˜ã‚’ä¿å­˜ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª."
   :type 'directory
   :group 'hatena)
 
 (defcustom hatena-init-file (concat
 			     (file-name-as-directory hatena-directory)
 			     "init")
-  "*hatena-diary-mode ¤Î½é´ü²½¥Õ¥¡¥¤¥ë¡£"
+  "*hatena-diary-mode ã®åˆæœŸåŒ–ãƒ•ã‚¡ã‚¤ãƒ«ã€‚"
   :type 'file
   :group 'hatena)
 
 (defcustom hatena-password-file 
   (expand-file-name (concat hatena-directory ".password"))
-  "¥Ñ¥¹¤òÊİÂ¸¤¹¤ë¥Õ¥¡¥¤¥ë"
+  "ãƒ‘ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«"
   :type 'file
   :group 'hatena)
 
 (defcustom hatena-entry-type 1
-  "¥¨¥ó¥È¥ê¤Î¥Ş¡¼¥¯¥¢¥Ã¥× * ¤ò¤É¤Î¤è¤¦¤Ë½èÍı¤¹¤ë¤«¡£
-0¤Ê¤é * ¤ò *pn* ¤Ë¡¢1 ¤Ê¤é * ¤ò *<time>* ¤ËÃÖ¤­¤«¤¨¤ÆÁ÷¿®"
+  "ã‚¨ãƒ³ãƒˆãƒªã®ãƒãƒ¼ã‚¯ã‚¢ãƒƒãƒ— * ã‚’ã©ã®ã‚ˆã†ã«å‡¦ç†ã™ã‚‹ã‹ã€‚
+0ãªã‚‰ * ã‚’ *pn* ã«ã€1 ãªã‚‰ * ã‚’ *<time>* ã«ç½®ãã‹ãˆã¦é€ä¿¡"
   :type 'integer
   :group 'hatena)
 
 (defcustom hatena-change-day-offset 6
-  "¤Ï¤Æ¤Ê¤Ç, ÆüÉÕ¤òÊÑ¤¨¤ë»ş´Ö .+6 ¤Ç¸áÁ° 6 »ş¤ËÆüÉÕ¤òÊÑ¹¹¤¹¤ë."
+  "ã¯ã¦ãªã§, æ—¥ä»˜ã‚’å¤‰ãˆã‚‹æ™‚é–“ .+6 ã§åˆå‰ 6 æ™‚ã«æ—¥ä»˜ã‚’å¤‰æ›´ã™ã‚‹."
   :type 'integer
   :group 'hatena)
 
 (defcustom hatena-trivial nil
-  "¤Á¤ç¤Ã¤È¤·¤¿¹¹¿·¤ò¤¹¤ë¤«¤É¤¦¤«. non-nil ¤Ç\"¤Á¤ç¤Ã¤È¤·¤¿¹¹¿·\"¤Ë¤Ê¤ë"
+  "ã¡ã‚‡ã£ã¨ã—ãŸæ›´æ–°ã‚’ã™ã‚‹ã‹ã©ã†ã‹. non-nil ã§\"ã¡ã‚‡ã£ã¨ã—ãŸæ›´æ–°\"ã«ãªã‚‹"
   :type 'boolean
   :group 'hatena)
 
 (defcustom hatena-use-file t
-  "¥Ñ¥¹¥ï¡¼¥É¤ò(°Å¹æ²½¤·¤Æ)ÊİÂ¸¤¹¤ë¤«¤É¤¦¤« non-nil ¤Ê¤é¥Ñ¥¹¥ï¡¼¥É¤ò base 64 ¤Ç¥¨¥ó¥³¡¼¥É¤·¤ÆÊİÂ¸¤¹¤ë"
+  "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’(æš—å·åŒ–ã—ã¦)ä¿å­˜ã™ã‚‹ã‹ã©ã†ã‹ non-nil ãªã‚‰ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ base 64 ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ã¦ä¿å­˜ã™ã‚‹"
   :type 'boolean
   :group 'hatena)
 
 (defcustom hatena-cookie 
   (expand-file-name 
    (concat hatena-directory "Cookie@hatena"))
-  "¥¯¥Ã¥­¡¼¤ÎÌ¾Á°¡£"
+  "ã‚¯ãƒƒã‚­ãƒ¼ã®åå‰ã€‚"
   :type 'file
   :group 'hatena)
 
-(defcustom hatena-browser-function nil  ;; ÉáÄÌ¤Ï¡¢'browse-url
+(defcustom hatena-browser-function nil  ;; æ™®é€šã¯ã€'browse-url
   "Function to call browser.
 If non-nil, `hatena-submit' calls this function.  The function
 is expected to accept only one argument(URL)."
@@ -70,35 +70,35 @@ is expected to accept only one argument(URL)."
   :group 'hatena)
 
 (defcustom hatena-proxy ""
-  "curl ¤ËÉ¬Í×¤Ê»ş¡¢¤³¤³¤ÇÀßÄê¤¹¤ë"
+  "curl ã«å¿…è¦ãªæ™‚ã€ã“ã“ã§è¨­å®šã™ã‚‹"
   :type 'string
   :group 'hatena)
 
 (defcustom hatena-default-coding-system 'euc-jp
-  "¥Ç¥Õ¥©¥ë¥È¤Î¥³¡¼¥Ç¥£¥ó¥°¥·¥¹¥Æ¥à"
+  "ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚·ã‚¹ãƒ†ãƒ "
   :type 'symbol
   :group 'hatena)
 
 
 (defcustom hatena-url "http://d.hatena.ne.jp/"
-  "¤Ï¤Æ¤Ê¤Î¥¢¥É¥ì¥¹"
+  "ã¯ã¦ãªã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
   :type 'string
   :group 'hatena)
 
 (defcustom hatena-twitter-flag nil
-  "Æüµ­¹¹¿·»ş¤Ëtwitter¤ËÄÌÃÎ¤ò¤¹¤ë¤«¤É¤¦¤«. non-nil ¤Ç\"twitter¤ËÄÌÃÎ\"¤Ë¤Ê¤ë"
+  "æ—¥è¨˜æ›´æ–°æ™‚ã«twitterã«é€šçŸ¥ã‚’ã™ã‚‹ã‹ã©ã†ã‹. non-nil ã§\"twitterã«é€šçŸ¥\"ã«ãªã‚‹"
   :type 'boolean
   :group 'hatena)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;Æüµ­¥Õ¥¡¥¤¥ë¤ÎÀµµ¬É½¸½
+;;æ—¥è¨˜ãƒ•ã‚¡ã‚¤ãƒ«ã®æ­£è¦è¡¨ç¾
 (defvar hatena-fname-regexp
   "\\([0-9][0-9][0-9][0-9]\\)\\([01][0-9]\\)\\([0-3][0-9]\\)$" )
 (defvar hatena-diary-mode-map nil)
 
-;;¸Å¤¤»ÅÍÍ
+;;å¤ã„ä»•æ§˜
 (defvar hatena-header-regexp 
   (concat "\\`      Title: \\(.*\\)\n"
           "Last Update: \\(.*\\)\n"
@@ -108,9 +108,9 @@ is expected to accept only one argument(URL)."
   (expand-file-name (concat hatena-directory "hatena-temp.dat")))
 (defvar hatena-tmpfile2
   (expand-file-name (concat hatena-directory "hatena-temp2.dat")))
-(defvar hatena-curl-command "curl" "curl ¥³¥Ş¥ó¥É")
+(defvar hatena-curl-command "curl" "curl ã‚³ãƒãƒ³ãƒ‰")
 
-(defvar hatena-twitter-prefix nil "twitter¤ËÅê¹Æ¤¹¤ëÆâÍÆ")
+(defvar hatena-twitter-prefix nil "twitterã«æŠ•ç¨¿ã™ã‚‹å†…å®¹")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;face
 
@@ -125,203 +125,203 @@ is expected to accept only one argument(URL)."
 (defface hatena-title-face
   '((((class color) (background light)) (:foreground "Navy" :bold t))
     (((class color) (background dark)) (:foreground "wheat" :bold t)))
-  "title¤Î face"
+  "titleã® face"
   :group 'hatena-face)
 
 (defface hatena-header-face
   '((((class color) (background light)) (:foreground "Gray70" :bold t))
     (((class color) (background dark)) (:foreground "SkyBlue4" :bold t)))
-  "last update¤Î face"
+  "last updateã® face"
   :group 'hatena-face)
 
 (defface hatena-subtitle-face 
   '((((class color) (background light)) (:foreground "DarkOliveGreen"))
     (((class color) (background dark)) (:foreground "wheat")))
-  "¥µ¥Ö¥¿¥¤¥È¥ë¤Îface"
+  "ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«ã®face"
   :group 'hatena-face)
 
 (defface hatena-markup-face 
   '((((class color) (background light)) (:foreground "firebrick" :bold t))
     (((class color) (background dark)) (:foreground "IndianRed3" :bold t)))
-  "¤Ï¤Æ¤Ê¤Î¥Ş¡¼¥¯¥¢¥Ã¥×¤Îface"
+  "ã¯ã¦ãªã®ãƒãƒ¼ã‚¯ã‚¢ãƒƒãƒ—ã®face"
   :group 'hatena-face)
 
 (defface hatena-html-face 
   '((((class color) (background light)) (:foreground "DarkSeaGreen4"))
     (((class color) (background dark)) (:foreground "Gray50")))
-  "html¤Îface"
+  "htmlã®face"
   :group 'hatena-face)
 
 (defface hatena-link-face 
   '((((class color) (background light)) (:foreground "DarkSeaGreen4"))
     (((class color) (background dark)) (:foreground "wheat")))
-  "html¥¿¥°¤Ç¶´¤Ş¤ì¤¿ÉôÊ¬¤Îface"
+  "htmlã‚¿ã‚°ã§æŒŸã¾ã‚ŒãŸéƒ¨åˆ†ã®face"
   :group 'hatena-face)
 
 ;-----------------------------------------------------------------------------------
-; ¤Ï¤Æ¤Êµ­Ë¡¥Ø¥ë¥×
+; ã¯ã¦ãªè¨˜æ³•ãƒ˜ãƒ«ãƒ—
 ;-----------------------------------------------------------------------------------
 (defvar hatena-help-syntax-index
   'dummy
-  "ÆşÎÏ»Ù±çµ­Ë¡ `hatena-help-syntax-input'
-   ¼«Æ°¥ê¥ó¥¯ `hatena-help-syntax-autolink'
-   ¤Ï¤Æ¤ÊÆâ¼«Æ°¥ê¥ó¥¯ `hatena-help-syntax-hatena-autolink'
-   ÆşÎÏ»Ù±çµ¡Ç½ `hatena-help-syntax-other'")
+  "å…¥åŠ›æ”¯æ´è¨˜æ³• `hatena-help-syntax-input'
+   è‡ªå‹•ãƒªãƒ³ã‚¯ `hatena-help-syntax-autolink'
+   ã¯ã¦ãªå†…è‡ªå‹•ãƒªãƒ³ã‚¯ `hatena-help-syntax-hatena-autolink'
+   å…¥åŠ›æ”¯æ´æ©Ÿèƒ½ `hatena-help-syntax-other'")
 
 (defvar hatena-help-syntax-input
   'dummy
-  "ÆşÎÏ»Ù±çµ­Ë¡
+  "å…¥åŠ›æ”¯æ´è¨˜æ³•
 
 |------------------------------+------------------------------+-----------------------------------------------------|
-| µ­Ë¡Ì¾                       | ½ñ¼°                         | µ¡Ç½                                                |
+| è¨˜æ³•å                       | æ›¸å¼                         | æ©Ÿèƒ½                                                |
 |------------------------------+------------------------------+-----------------------------------------------------|
-| ¸«½Ğ¤·µ­Ë¡                   | *¢·¢·                        | Æüµ­¤Ë¸«½Ğ¤·¡Êh3¡Ë¤òÉÕ¤±¤Ş¤¹                        |
-| »ş¹ïÉÕ¤­¸«½Ğ¤·µ­Ë¡           | *t*¢·¢·, *t+1*¢·¢·           | ¸«½Ğ¤·¤ËÊÔ½¸»ş¹ï¤òÊİÂ¸¤·É½¼¨¤·¤Ş¤¹                  |
-| nameÂ°À­ÉÕ¤­¸«½Ğ¤·µ­Ë¡       | *name*¢·¢·                   | ¸«½Ğ¤·¤Ë¹¥¤­¤Ê name Â°À­¤ò¤Ä¤±¤Ş¤¹                  |
-| ¥«¥Æ¥´¥ê¡¼µ­Ë¡               | *[¢·¢·]¢·¢·                  | Æüµ­¤Ë¥«¥Æ¥´¥ê¡¼¤òÀßÄê¤·¤Ş¤¹                        |
-| ¾®¸«½Ğ¤·µ­Ë¡                 | **¢·¢·                       | Æüµ­¤Ë¾®¸«½Ğ¤·¡Êh4¡Ë¤ò¤Ä¤±¤Ş¤¹                      |
-| ¾®¡¹¸«½Ğ¤·µ­Ë¡               | ***¢·¢·                      | Æüµ­¤Ë¾®¡¹¸«½Ğ¤·µ­Ë¡¡Êh5¡Ë¤ò¤Ä¤±¤Ş¤¹                |
-| ¥ê¥¹¥Èµ­Ë¡                   | -¢·¢·, --¢·¢·, +¢·¢·, ++¢·¢· | ¥ê¥¹¥È¡Êli¡Ë¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹                      |
-| ÄêµÁ¥ê¥¹¥Èµ­Ë¡               | :¢·¢·:¢·¢·                   | ÄêµÁ¥ê¥¹¥È¡Êdt¡Ë¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹                  |
-| É½ÁÈ¤ßµ­Ë¡                   | | ¢·¢·  | ¢·¢·  |            | É½ÁÈ¤ß¡Êtable¡Ë¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹                   |
-|                              | |*¢·¢·  | ¢·¢·  |            |                                                     |
-| °úÍÑµ­Ë¡                     | >> ¢·¢· <<                   | °úÍÑ¥Ö¥í¥Ã¥¯¡Êblockquote¡Ë¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹        |
-| preµ­Ë¡                      | >| ¢·¢· |<                   | À°·Á¤·¤¿¥Æ¥­¥¹¥È¤ò¤½¤Î¤Ş¤ŞÉ½¼¨¤·¤Ş¤¹¡Êpre¡Ë         |
-| ¥¹¡¼¥Ñ¡¼preµ­Ë¡              | >|| ¢·¢· ||<                 | À°·Á¤·¤¿HTML¤Ê¤É¤Î¥½¡¼¥¹¤ò¤½¤Î¤Ş¤ŞÉ½¼¨¤·¤Ş¤¹¡Êpre¡Ë |
-| ¥¹¡¼¥Ñ¡¼preµ­Ë¡              | >|¥Õ¥¡¥¤¥ë¥¿¥¤¥×| ¢·¢· ||<   | À°·Á¤·¤¿¥×¥í¥°¥é¥à¤Î¥½¡¼¥¹¥³¡¼¥É¤ò                  |
-| ¡Ê¥·¥ó¥¿¥Ã¥¯¥¹¡¦¥Ï¥¤¥é¥¤¥È¡Ë | >|??| ¢·¢· ||<               | ¿§ÉÕ¤±¤·¤ÆÉ½¼¨¤·¤Ş¤¹¡Êpre¡Ë                         |
+| è¦‹å‡ºã—è¨˜æ³•                   | *ï½ï½                        | æ—¥è¨˜ã«è¦‹å‡ºã—ï¼ˆh3ï¼‰ã‚’ä»˜ã‘ã¾ã™                        |
+| æ™‚åˆ»ä»˜ãè¦‹å‡ºã—è¨˜æ³•           | *t*ï½ï½, *t+1*ï½ï½           | è¦‹å‡ºã—ã«ç·¨é›†æ™‚åˆ»ã‚’ä¿å­˜ã—è¡¨ç¤ºã—ã¾ã™                  |
+| nameå±æ€§ä»˜ãè¦‹å‡ºã—è¨˜æ³•       | *name*ï½ï½                   | è¦‹å‡ºã—ã«å¥½ããª name å±æ€§ã‚’ã¤ã‘ã¾ã™                  |
+| ã‚«ãƒ†ã‚´ãƒªãƒ¼è¨˜æ³•               | *[ï½ï½]ï½ï½                  | æ—¥è¨˜ã«ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’è¨­å®šã—ã¾ã™                        |
+| å°è¦‹å‡ºã—è¨˜æ³•                 | **ï½ï½                       | æ—¥è¨˜ã«å°è¦‹å‡ºã—ï¼ˆh4ï¼‰ã‚’ã¤ã‘ã¾ã™                      |
+| å°ã€…è¦‹å‡ºã—è¨˜æ³•               | ***ï½ï½                      | æ—¥è¨˜ã«å°ã€…è¦‹å‡ºã—è¨˜æ³•ï¼ˆh5ï¼‰ã‚’ã¤ã‘ã¾ã™                |
+| ãƒªã‚¹ãƒˆè¨˜æ³•                   | -ï½ï½, --ï½ï½, +ï½ï½, ++ï½ï½ | ãƒªã‚¹ãƒˆï¼ˆliï¼‰ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™                      |
+| å®šç¾©ãƒªã‚¹ãƒˆè¨˜æ³•               | :ï½ï½:ï½ï½                   | å®šç¾©ãƒªã‚¹ãƒˆï¼ˆdtï¼‰ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™                  |
+| è¡¨çµ„ã¿è¨˜æ³•                   | | ï½ï½  | ï½ï½  |            | è¡¨çµ„ã¿ï¼ˆtableï¼‰ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™                   |
+|                              | |*ï½ï½  | ï½ï½  |            |                                                     |
+| å¼•ç”¨è¨˜æ³•                     | >> ï½ï½ <<                   | å¼•ç”¨ãƒ–ãƒ­ãƒƒã‚¯ï¼ˆblockquoteï¼‰ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™        |
+| preè¨˜æ³•                      | >| ï½ï½ |<                   | æ•´å½¢ã—ãŸãƒ†ã‚­ã‚¹ãƒˆã‚’ãã®ã¾ã¾è¡¨ç¤ºã—ã¾ã™ï¼ˆpreï¼‰         |
+| ã‚¹ãƒ¼ãƒ‘ãƒ¼preè¨˜æ³•              | >|| ï½ï½ ||<                 | æ•´å½¢ã—ãŸHTMLãªã©ã®ã‚½ãƒ¼ã‚¹ã‚’ãã®ã¾ã¾è¡¨ç¤ºã—ã¾ã™ï¼ˆpreï¼‰ |
+| ã‚¹ãƒ¼ãƒ‘ãƒ¼preè¨˜æ³•              | >|ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—| ï½ï½ ||<   | æ•´å½¢ã—ãŸãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’                  |
+| ï¼ˆã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹ãƒ»ãƒã‚¤ãƒ©ã‚¤ãƒˆï¼‰ | >|??| ï½ï½ ||<               | è‰²ä»˜ã‘ã—ã¦è¡¨ç¤ºã—ã¾ã™ï¼ˆpreï¼‰                         |
 |                              |                              |                                                     |
-| aaµ­Ë¡                       | >|aa| ¢·¢· ||<               | ¥¢¥¹¥­¡¼¥¢¡¼¥È¤ò´ÊÃ±¤Ë¤­¤ì¤¤¤ËÉ½¼¨¤·¤Ş¤¹            |
-| µÓÃíµ­Ë¡                     | (( ¢·¢· ))                   | Æüµ­¤ËµÓÃí¤òÀßÄê¤·¤Ş¤¹                              |
-| Â³¤­¤òÆÉ¤àµ­Ë¡               | ====                         | ¼¡¤Î¸«½Ğ¤·¤Ş¤Ç¤½¤Î¸å¤ÎÆüµ­¤ò¡ÖÂ³¤­¤òÆÉ¤à¡×¤Ë¤·¤Ş¤¹  |
-| ¥¹¡¼¥Ñ¡¼Â³¤­¤òÆÉ¤àµ­Ë¡       | =====                        | ¸«½Ğ¤·¤â´Ş¤á¤Æ¤½¤Î¸å¤ÎÆâÍÆ¤ò¡ÖÂ³¤­¤òÆÉ¤à¡×¤Ë¤·¤Ş¤¹  |
-| ²ş¹Ôµ­Ë¡                     | (Ï¢Â³¤·¤¿¶õÇò¤Î¹Ô2¤Ä)        | ²ş¹Ô¡Êbr¡Ë¤òÁŞÆş¤·¤Ş¤¹                              |
-| p¥¿¥°Ää»ßµ­Ë¡                | >< ¢·¢· ><                   | ¼«Æ°ÁŞÆş¤µ¤ì¤ë p ¥¿¥°¤òÄä»ß¤·¤Ş¤¹                   |
-| texµ­Ë¡                      | [tex:¢·¢·]                   | mimeTeX ¤ò»È¤Ã¤Æ¿ô¼°¤òÉ½¼¨¤·¤Ş¤¹                    |
-| ¥¦¥¯¥ì¥ìµ­Ë¡                 | [uke:¢·¢·]                   | ¥¦¥¯¥ì¥ì¤Î¥³¡¼¥ÉÉè¤òÉ½¼¨¤·¤Ş¤¹                      |
+| aaè¨˜æ³•                       | >|aa| ï½ï½ ||<               | ã‚¢ã‚¹ã‚­ãƒ¼ã‚¢ãƒ¼ãƒˆã‚’ç°¡å˜ã«ãã‚Œã„ã«è¡¨ç¤ºã—ã¾ã™            |
+| è„šæ³¨è¨˜æ³•                     | (( ï½ï½ ))                   | æ—¥è¨˜ã«è„šæ³¨ã‚’è¨­å®šã—ã¾ã™                              |
+| ç¶šãã‚’èª­ã‚€è¨˜æ³•               | ====                         | æ¬¡ã®è¦‹å‡ºã—ã¾ã§ãã®å¾Œã®æ—¥è¨˜ã‚’ã€Œç¶šãã‚’èª­ã‚€ã€ã«ã—ã¾ã™  |
+| ã‚¹ãƒ¼ãƒ‘ãƒ¼ç¶šãã‚’èª­ã‚€è¨˜æ³•       | =====                        | è¦‹å‡ºã—ã‚‚å«ã‚ã¦ãã®å¾Œã®å†…å®¹ã‚’ã€Œç¶šãã‚’èª­ã‚€ã€ã«ã—ã¾ã™  |
+| æ”¹è¡Œè¨˜æ³•                     | (é€£ç¶šã—ãŸç©ºç™½ã®è¡Œ2ã¤)        | æ”¹è¡Œï¼ˆbrï¼‰ã‚’æŒ¿å…¥ã—ã¾ã™                              |
+| pã‚¿ã‚°åœæ­¢è¨˜æ³•                | >< ï½ï½ ><                   | è‡ªå‹•æŒ¿å…¥ã•ã‚Œã‚‹ p ã‚¿ã‚°ã‚’åœæ­¢ã—ã¾ã™                   |
+| texè¨˜æ³•                      | [tex:ï½ï½]                   | mimeTeX ã‚’ä½¿ã£ã¦æ•°å¼ã‚’è¡¨ç¤ºã—ã¾ã™                    |
+| ã‚¦ã‚¯ãƒ¬ãƒ¬è¨˜æ³•                 | [uke:ï½ï½]                   | ã‚¦ã‚¯ãƒ¬ãƒ¬ã®ã‚³ãƒ¼ãƒ‰è­œã‚’è¡¨ç¤ºã—ã¾ã™                      |
 |------------------------------+------------------------------+-----------------------------------------------------|
 
-¥¹¡¼¥Ñ¡¼preµ­Ë¡¤ÇÂĞ±ş¤·¤Æ¤¤¤ë¥Õ¥¡¥¤¥ë¥¿¥¤¥×
+ã‚¹ãƒ¼ãƒ‘ãƒ¼preè¨˜æ³•ã§å¯¾å¿œã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
 
 a2ps a65 aap abap abaqus abc abel acedb actionscript ada aflex ahdl alsaconf amiga aml ampl ant antlr apache  apachestyle arch art asm asm68k asmh8300 asn aspperl aspvbs asterisk  asteriskvm atlas automake ave awk ayacc b baan basic  bc bdf  bib bindzone blank bst btm c calendar catalog cdl cf cfg ch change changelog chaskell cheetah  chill chordpro cl clean clipper cmake cobol colortest conf config context cpp crm crontab cs csc csh csp css cterm ctrlh cupl cuplsim cvs cvsrc cweb cynlib cynpp d dcd dcl debchangelog debcontrol debsources def desc desktop dictconf dictdconf diff  dircolors diva  django  dns docbk docbksgml docbkxml dosbatch dosini dot doxygen dracula dsl dtd dtml dylan dylanintr dylanlid ecd edif eiffel elf elinks elmfilt erlang eruby esmtprc esqlc esterel eterm eviews exim expect exports fasm fdcc fetchmail  fgl flexwiki  focexec form forth fortran foxpro fstab fvwm fvwm2m4 gdb  gdmo gedcom gkrellmrc gnuplot go gp gpg grads gretl groff groovy group grub gsp gtkrc haskell  hb help hercules hex hitest hog html htmlcheetah htmldjango htmlm4 htmlos ia64 icemenu icon idl idlang indent inform initex inittab ipfilter ishd iss ist jal jam jargon java javacc javascript  jess jgraph jproperties jsp kconfig kix kscript kwt lace latte ld ldif lex lftp lhaskell libao lifelines lilo limits lisp lite loginaccess logindefs logtalk lotos lout lpc lprolog lscript lss lua lynx m4 mail mailaliases mailcap make man manconf manual maple masm mason master matlab maxima  mel mf mgl mgp mib  mma mmix modconf model modsim3 modula2 modula3 monk moo mp mplayerconf mrxvtrc msidl msql mupad mush muttrc mysql named nanorc nasm nastran natural  ncf netrc netrw nosyntax nqc nroff nsis objc objcpp ocaml occam omnimark openroad opl ora pamconf papp pascal passwd pcap pccts perl pf pfmain php phtml pic pike pilrc pine pinfo plaintex plm plp plsql po pod postscr pov povini ppd ppwiz prescribe procmail progress prolog protocols psf ptcap purifylog pyrex python qf quake r racc radiance ratpoison rc rcs rcslog readline  rebol registry remind resolv rexx rhelp rib rnc rnoweb robots  rpcgen rpl rst rtf ruby samba sas sather scala scheme  scilab  screen  sdl sed sendpr sensors services setserial sgml sgmldecl sgmllnx sh sicad sieve simula sinda sindacmp sindaout sisu skill sl slang slice slpconf slpreg slpspi slrnrc slrnsc sm smarty smcl smil smith sml snnsnet snnspat snnsres snobol4 spec specman spice splint spup spyce sql  sqlanywhere sqlforms sqlinformix sqlj sqloracle sqr squid sshconfig sshdconfig st stata stp strace sudoers svn syncolor synload syntax sysctl tads tags tak takcmp takout tar tasm tcl tcsh  terminfo tex  texinfo texmf tf tidy tilde tli tpp trasys trustees tsalt tsscl tssgm tssop uc udevconf udevperm udevrules uil updatedb valgrind vb vera verilog verilogams vgrindefs vhdl  vim viminfo virata vmasm vrml vsejcl wdiff web webmacro wget  whitespace winbatch wml wsh wsml wvdial xdefaults xf86conf xhtml  xinetd xkb xmath xml xmodmap xpm xpm2 xquery xs xsd xslt  xxd yacc  yaml z8a zsh
 ")
 	
 (defvar hatena-help-syntax-autolink
   'dummy
-  "¼«Æ°¥ê¥ó¥¯
+  "è‡ªå‹•ãƒªãƒ³ã‚¯
 
 |--------------------+---------------------------------+--------------------------------------------|
-| µ­Ë¡Ì¾             | ½ñ¼°                            | µ¡Ç½                                       |
+| è¨˜æ³•å             | æ›¸å¼                            | æ©Ÿèƒ½                                       |
 |--------------------+---------------------------------+--------------------------------------------|
-| httpµ­Ë¡           | http://¢·¢·                     | URL¤Ø¤Î»Ï¤Ş¤ë¥ê¥ó¥¯¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹      |
-|                    | [http: //¢·¢·:title]            |                                            |
-|                    | [http://¢·¢·:barcode]           |                                            |
-|                    | [http://¢·¢·:image]             |                                            |
+| httpè¨˜æ³•           | http://ï½ï½                     | URLã¸ã®å§‹ã¾ã‚‹ãƒªãƒ³ã‚¯ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™      |
+|                    | [http: //ï½ï½:title]            |                                            |
+|                    | [http://ï½ï½:barcode]           |                                            |
+|                    | [http://ï½ï½:image]             |                                            |
 |                    |                                 |                                            |
-| mailtoµ­Ë¡         | mailto:¢·¢·                     | ¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ø¤Î¥ê¥ó¥¯¤ò´ÊÃ±¤Ëµ­½Ò¤·¤Ş¤¹ |
-| niconicoµ­Ë¡       | [niconico:sm*******]            | ¥Ë¥³¥Ë¥³Æ°²è¤ÎºÆÀ¸¥×¥ì¡¼¥ä¡¼¤òÉ½¼¨¤·¤Ş¤¹   |
-| googleµ­Ë¡         | [google:¢·¢·]                   | Google ¤Î¸¡º÷·ë²Ì¤Ë¥ê¥ó¥¯¤·¤Ş¤¹            |
-|                    | [google:image:¢·¢·]             |                                            |
-|                    | [google:news:¢·¢·]              |                                            |
+| mailtoè¨˜æ³•         | mailto:ï½ï½                     | ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã¸ã®ãƒªãƒ³ã‚¯ã‚’ç°¡å˜ã«è¨˜è¿°ã—ã¾ã™ |
+| niconicoè¨˜æ³•       | [niconico:sm*******]            | ãƒ‹ã‚³ãƒ‹ã‚³å‹•ç”»ã®å†ç”Ÿãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã—ã¾ã™   |
+| googleè¨˜æ³•         | [google:ï½ï½]                   | Google ã®æ¤œç´¢çµæœã«ãƒªãƒ³ã‚¯ã—ã¾ã™            |
+|                    | [google:image:ï½ï½]             |                                            |
+|                    | [google:news:ï½ï½]              |                                            |
 |                    |                                 |                                            |
-| mapµ­Ë¡            | map:x¢·¢·y¢·¢· (:map)           | Google¥Ş¥Ã¥×¤òÉ½¼¨¤·¡¢¥ê¥ó¥¯¤·¤Ş¤¹         |
-|                    | [map:¢·¢·]                      |                                            |
-|                    | [map:t:¢·¢·]                    |                                            |
+| mapè¨˜æ³•            | map:xï½ï½yï½ï½ (:map)           | Googleãƒãƒƒãƒ—ã‚’è¡¨ç¤ºã—ã€ãƒªãƒ³ã‚¯ã—ã¾ã™         |
+|                    | [map:ï½ï½]                      |                                            |
+|                    | [map:t:ï½ï½]                    |                                            |
 |                    |                                 |                                            |
-| amazonµ­Ë¡         | [amazon:¢·¢·]                   | Amazon ¤Î¸¡º÷·ë²Ì¤Ë¥ê¥ó¥¯¤·¤Ş¤¹            |
-| wikipediaµ­Ë¡      | [wikipedia:¢·¢·]                | Wikipedia¤Îµ­»ö¤Ë¥ê¥ó¥¯¤·¤Ş¤¹              |
-| twitterµ­Ë¡        | twitter:¡Á¡Á:title¡¢            | Twitter¤Î¤Ä¤Ö¤ä¤­¤Ë¥ê¥ó¥¯¤·¤Ş¤¹            |
-|                    | twitter:¡Á¡Á:tweet¡¢            |                                            |
-|                    | twitter:¡Á¡Á:detail¡¢           |                                            |
-|                    | twitter:¡Á¡Á:detail:right¡¢     |                                            |
-|                    | twitter:¡Á¡Á:detail:left¡¢      |                                            |
-|                    | twitter:¡Á¡Á:tree¡¢             |                                            |
-|                    | [twitter:@hatenadiary]¡¢        |                                            |
+| amazonè¨˜æ³•         | [amazon:ï½ï½]                   | Amazon ã®æ¤œç´¢çµæœã«ãƒªãƒ³ã‚¯ã—ã¾ã™            |
+| wikipediaè¨˜æ³•      | [wikipedia:ï½ï½]                | Wikipediaã®è¨˜äº‹ã«ãƒªãƒ³ã‚¯ã—ã¾ã™              |
+| twitterè¨˜æ³•        | twitter:ã€œã€œ:titleã€            | Twitterã®ã¤ã¶ã‚„ãã«ãƒªãƒ³ã‚¯ã—ã¾ã™            |
+|                    | twitter:ã€œã€œ:tweetã€            |                                            |
+|                    | twitter:ã€œã€œ:detailã€           |                                            |
+|                    | twitter:ã€œã€œ:detail:rightã€     |                                            |
+|                    | twitter:ã€œã€œ:detail:leftã€      |                                            |
+|                    | twitter:ã€œã€œ:treeã€             |                                            |
+|                    | [twitter:@hatenadiary]ã€        |                                            |
 |                    | [http://twitter.com/hatenadiary |                                            |
-|                    | /status/¡Á¡Á:twitter:title]     |                                            |
-| ¼«Æ°¥ê¥ó¥¯Ää»ßµ­Ë¡ | [] ¤Ï¤Æ¤Êµ­Ë¡ []                | ¤Ï¤Æ¤Êµ­Ë¡¤Ë¤è¤ë¼«Æ°¥ê¥ó¥¯¤òÄä»ß¤·¤Ş¤¹     |
+|                    | /status/ã€œã€œ:twitter:title]     |                                            |
+| è‡ªå‹•ãƒªãƒ³ã‚¯åœæ­¢è¨˜æ³• | [] ã¯ã¦ãªè¨˜æ³• []                | ã¯ã¦ãªè¨˜æ³•ã«ã‚ˆã‚‹è‡ªå‹•ãƒªãƒ³ã‚¯ã‚’åœæ­¢ã—ã¾ã™     |
 |--------------------+---------------------------------+--------------------------------------------|
 ")
 
 (defvar hatena-help-syntax-hatena-autolink
   'dummy
-  "¤Ï¤Æ¤ÊÆâ¼«Æ°¥ê¥ó¥¯
+  "ã¯ã¦ãªå†…è‡ªå‹•ãƒªãƒ³ã‚¯
 
 |---------------+-------------------------------+-------------------------------------------------|
-| µ­Ë¡Ì¾        | ½ñ¼°                          | µ¡Ç½                                            |
+| è¨˜æ³•å        | æ›¸å¼                          | æ©Ÿèƒ½                                            |
 |---------------+-------------------------------+-------------------------------------------------|
-| idµ­Ë¡        | id:¢·¢·¡¢ id:¢·¢·:archive     | ¤Ï¤Æ¤Ê¥æ¡¼¥¶¡¼¤Ë¥ê¥ó¥¯¤·¡¢                      |
-|               | id:¢·¢·:about¡¢id:¢·¢·:image  | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | id:¢·¢·:detail¡¢id:¡Á¡Á+¡Á¡Á  |                                                 |
+| idè¨˜æ³•        | id:ï½ï½ã€ id:ï½ï½:archive     | ã¯ã¦ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ãƒªãƒ³ã‚¯ã—ã€                      |
+|               | id:ï½ï½:aboutã€id:ï½ï½:image  | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | id:ï½ï½:detailã€id:ã€œã€œ+ã€œã€œ  |                                                 |
 |               |                               |                                                 |
-| questionµ­Ë¡  | question:¢·¢·:title           | ¿ÍÎÏ¸¡º÷¤Ï¤Æ¤Ê¤Ë¥ê¥ó¥¯¤·¡¢                      |
-|               | question:¢·¢·:detail          | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | question:¢·¢·:image           |                                                 |
+| questionè¨˜æ³•  | question:ï½ï½:title           | äººåŠ›æ¤œç´¢ã¯ã¦ãªã«ãƒªãƒ³ã‚¯ã—ã€                      |
+|               | question:ï½ï½:detail          | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | question:ï½ï½:image           |                                                 |
 |               |                               |                                                 |
-| searchµ­Ë¡    | [search:¢·¢·]                 | ¤Ï¤Æ¤Ê¸¡º÷¤Î¸¡º÷·ë²Ì¤Ë¥ê¥ó¥¯¤·¤Ş¤¹              |
-|               | [search:keyword:¢·¢·]         |                                                 |
-|               | [search:question:¢·¢·]        |                                                 |
-|               | [search:asin:¢·¢·]            |                                                 |
-|               | [search:web:¢·¢·]             |                                                 |
+| searchè¨˜æ³•    | [search:ï½ï½]                 | ã¯ã¦ãªæ¤œç´¢ã®æ¤œç´¢çµæœã«ãƒªãƒ³ã‚¯ã—ã¾ã™              |
+|               | [search:keyword:ï½ï½]         |                                                 |
+|               | [search:question:ï½ï½]        |                                                 |
+|               | [search:asin:ï½ï½]            |                                                 |
+|               | [search:web:ï½ï½]             |                                                 |
 |               |                               |                                                 |
-| antennaµ­Ë¡   | a:id:¢·¢·                     | ¤Ï¤Æ¤Ê¥¢¥ó¥Æ¥Ê¤Ë¥ê¥ó¥¯¤·¤Ş¤¹                    |
-| bookmarkµ­Ë¡  | b:id:¢·¢· (:¢·¢·)             | ¤Ï¤Æ¤Ê¥Ö¥Ã¥¯¥Ş¡¼¥¯¤Ë¥ê¥ó¥¯¤·¤Ş¤¹                |
-|               | [b:id:¢·¢·:t:¢·¢·]            |                                                 |
-|               | [b:t:¢·¢·]                    |                                                 |
-|               | [b:keyword:¢·¢·]              |                                                 |
+| antennaè¨˜æ³•   | a:id:ï½ï½                     | ã¯ã¦ãªã‚¢ãƒ³ãƒ†ãƒŠã«ãƒªãƒ³ã‚¯ã—ã¾ã™                    |
+| bookmarkè¨˜æ³•  | b:id:ï½ï½ (:ï½ï½)             | ã¯ã¦ãªãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯ã«ãƒªãƒ³ã‚¯ã—ã¾ã™                |
+|               | [b:id:ï½ï½:t:ï½ï½]            |                                                 |
+|               | [b:t:ï½ï½]                    |                                                 |
+|               | [b:keyword:ï½ï½]              |                                                 |
 |               |                               |                                                 |
-| diaryµ­Ë¡     | d:id:¢·¢·                     | ¤Ï¤Æ¤Ê¥À¥¤¥¢¥ê¡¼¤Ë¥ê¥ó¥¯¤·¡¢                    |
-|               | d:id:¡Á¡Á+¡Á¡Á                | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | [d:keyword:¢·¢·]              |                                                 |
+| diaryè¨˜æ³•     | d:id:ï½ï½                     | ã¯ã¦ãªãƒ€ã‚¤ã‚¢ãƒªãƒ¼ã«ãƒªãƒ³ã‚¯ã—ã€                    |
+|               | d:id:ã€œã€œ+ã€œã€œ                | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | [d:keyword:ï½ï½]              |                                                 |
 |               |                               |                                                 |
-| fotolifeµ­Ë¡  | f:id:¢·¢·:¢·¢·:image          | ¤Ï¤Æ¤Ê¥Õ¥©¥È¥é¥¤¥Õ¤Î¼Ì¿¿¤òÉ½¼¨¤·¡¢              |
-|               | f:id:¢·¢·:¢·¢·:movie          | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | f:id:¢·¢·(:favorite)          |                                                 |
+| fotolifeè¨˜æ³•  | f:id:ï½ï½:ï½ï½:image          | ã¯ã¦ãªãƒ•ã‚©ãƒˆãƒ©ã‚¤ãƒ•ã®å†™çœŸã‚’è¡¨ç¤ºã—ã€              |
+|               | f:id:ï½ï½:ï½ï½:movie          | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | f:id:ï½ï½(:favorite)          |                                                 |
 |               |                               |                                                 |
-| groupµ­Ë¡     | g:¢·¢·                        | ¤Ï¤Æ¤Ê¥°¥ë¡¼¥×¤Ë¥ê¥ó¥¯¤·¡¢                      |
-|               | g:¢·¢·:id:¢·¢·                | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | [g:¢·¢·:keyword:¢·¢·]¡¢Â¾     |                                                 |
+| groupè¨˜æ³•     | g:ï½ï½                        | ã¯ã¦ãªã‚°ãƒ«ãƒ¼ãƒ—ã«ãƒªãƒ³ã‚¯ã—ã€                      |
+|               | g:ï½ï½:id:ï½ï½                | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | [g:ï½ï½:keyword:ï½ï½]ã€ä»–     |                                                 |
 |               |                               |                                                 |
-| haikuµ­Ë¡     | [h:keyword:¢·¢·]              | ¤Ï¤Æ¤Ê¥Ï¥¤¥¯¤Ë¥ê¥ó¥¯¤·¤Ş¤¹                      |
-|               | [h:id:¢·¢·]                   |                                                 |
+| haikuè¨˜æ³•     | [h:keyword:ï½ï½]              | ã¯ã¦ãªãƒã‚¤ã‚¯ã«ãƒªãƒ³ã‚¯ã—ã¾ã™                      |
+|               | [h:id:ï½ï½]                   |                                                 |
 |               |                               |                                                 |
-| ideaµ­Ë¡      | idea:¢·¢· (:title)            | ¤Ï¤Æ¤Ê¥¢¥¤¥Ç¥¢¤Ë¥ê¥ó¥¯¤·¡¢                      |
-|               | i:id:¢·¢·                     | ¼«Æ°¥È¥é¥Ã¥¯¥Ğ¥Ã¥¯¤òÁ÷¿®¤·¤Ş¤¹                  |
-|               | [i:t:¢·¢·]                    |                                                 |
+| ideaè¨˜æ³•      | idea:ï½ï½ (:title)            | ã¯ã¦ãªã‚¢ã‚¤ãƒ‡ã‚¢ã«ãƒªãƒ³ã‚¯ã—ã€                      |
+|               | i:id:ï½ï½                     | è‡ªå‹•ãƒˆãƒ©ãƒƒã‚¯ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™                  |
+|               | [i:t:ï½ï½]                    |                                                 |
 |               |                               |                                                 |
-| rssµ­Ë¡       | r:id:¢·¢·                     | ¤Ï¤Æ¤ÊRSS¤Ë¥ê¥ó¥¯¤·¤Ş¤¹                         |
-| graphµ­Ë¡     | graph:id:¢·¢·                 | ¤Ï¤Æ¤Ê¥°¥é¥Õ¤òÉ½¼¨¤·¡¢¥ê¥ó¥¯¤·¤Ş¤¹              |
-|               | [graph:id:¢·¢·:¢·¢· (:image)] |                                                 |
-|               | [graph:t:¢·¢·]                |                                                 |
+| rssè¨˜æ³•       | r:id:ï½ï½                     | ã¯ã¦ãªRSSã«ãƒªãƒ³ã‚¯ã—ã¾ã™                         |
+| graphè¨˜æ³•     | graph:id:ï½ï½                 | ã¯ã¦ãªã‚°ãƒ©ãƒ•ã‚’è¡¨ç¤ºã—ã€ãƒªãƒ³ã‚¯ã—ã¾ã™              |
+|               | [graph:id:ï½ï½:ï½ï½ (:image)] |                                                 |
+|               | [graph:t:ï½ï½]                |                                                 |
 |               |                               |                                                 |
-| keywordµ­Ë¡   | [[[[¢·¢·]]]]                      | ¥­¡¼¥ï¡¼¥É¤Ë¥ê¥ó¥¯¤·¤Ş¤¹                        |
-|               | [keyword:¢·¢·]                |                                                 |
-|               | [keyword:¢·¢·:graph]¡¢Â¾      |                                                 |
+| keywordè¨˜æ³•   | [[[[ï½ï½]]]]                      | ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã«ãƒªãƒ³ã‚¯ã—ã¾ã™                        |
+|               | [keyword:ï½ï½]                |                                                 |
+|               | [keyword:ï½ï½:graph]ã€ä»–      |                                                 |
 |               |                               |                                                 |
-| isbn/asinµ­Ë¡ | isbn:¢·¢·¡¢¡¢ ¡¢¡¢            | ½ñÀÒ¡¦²»³Ú¡¦±Ç²è¤Ê¤É¤Î¾Ò²ğ¥ê¥ó¥¯¤òÉ½¼¨¤·¤Ş¤¹    |
-|               | asin:¢·¢·                     |                                                 |
-|               | isbn:¢·¢·:title               |                                                 |
-|               | isbn:¢·¢·:image               |                                                 |
-|               | isbn:¢·¢·:detail¡¢Â¾          |                                                 |
+| isbn/asinè¨˜æ³• | isbn:ï½ï½ã€ã€ ã€ã€            | æ›¸ç±ãƒ»éŸ³æ¥½ãƒ»æ˜ ç”»ãªã©ã®ç´¹ä»‹ãƒªãƒ³ã‚¯ã‚’è¡¨ç¤ºã—ã¾ã™    |
+|               | asin:ï½ï½                     |                                                 |
+|               | isbn:ï½ï½:title               |                                                 |
+|               | isbn:ï½ï½:image               |                                                 |
+|               | isbn:ï½ï½:detailã€ä»–          |                                                 |
 |               |                               |                                                 |
-| rakutenµ­Ë¡   | [rakuten:¢·¢·]                | ³ÚÅ·»Ô¾ì¤Î¾¦ÉÊ¤Î¾Ò²ğ¥ê¥ó¥¯¤òÉ½¼¨¤·¤Ş¤¹          |
-| jan/eanµ­Ë¡   | jan:¢·¢·¡¢ ean:¢·¢·¡¢Â¾       | JAN/EAN¥³¡¼¥É¤ò»È¤Ã¤¿¾¦ÉÊ¾Ò²ğ¥ê¥ó¥¯¤òÉ½¼¨¤·¤Ş¤¹ |
-| ugomemoµ­Ë¡   | ugomemo:¢·¢·                  | ¤¦¤´¥á¥â¤òÅ½¤êÉÕ¤±¤Ş¤¹                          |
+| rakutenè¨˜æ³•   | [rakuten:ï½ï½]                | æ¥½å¤©å¸‚å ´ã®å•†å“ã®ç´¹ä»‹ãƒªãƒ³ã‚¯ã‚’è¡¨ç¤ºã—ã¾ã™          |
+| jan/eanè¨˜æ³•   | jan:ï½ï½ã€ ean:ï½ï½ã€ä»–       | JAN/EANã‚³ãƒ¼ãƒ‰ã‚’ä½¿ã£ãŸå•†å“ç´¹ä»‹ãƒªãƒ³ã‚¯ã‚’è¡¨ç¤ºã—ã¾ã™ |
+| ugomemoè¨˜æ³•   | ugomemo:ï½ï½                  | ã†ã”ãƒ¡ãƒ¢ã‚’è²¼ã‚Šä»˜ã‘ã¾ã™                          |
 |---------------+-------------------------------+-------------------------------------------------|
 ")
 
 (defvar hatena-help-syntax-other
   'dummy
-  "ÆşÎÏ»Ù±çµ¡Ç½
+  "å…¥åŠ›æ”¯æ´æ©Ÿèƒ½
 
 |--------------------------------------+----------------------------------------------------------|
-| ¥Ø¥ë¥×                               | ½ñ¼°                                                     |
+| ãƒ˜ãƒ«ãƒ—                               | æ›¸å¼                                                     |
 |--------------------------------------+----------------------------------------------------------|
-| ¡Ö*¡×¤ä¡Ö-¡×¤ò¤½¤Î¤Ş¤Ş¹ÔÆ¬¤ËÉ½¼¨¤¹¤ë | ¡Ê¹ÔÆ¬¤ËÈ¾³Ñ¤Î¶õÇò¤ò¤Ä¤±¤ë¡Ë                             |
-| ²¼½ñ¤­µ­Ë¡                           | <!-- ¢·¢· -->                                            |
-| ½¤Àµ»ş¹ïÊİÂ¸µ¡Ç½                     | <ins> ¢·¢· </ins>, <del> ¢·¢· </del>                     |
-| cite¡¢titleÂ°À­                      | <blockquote cite=\"¢·¢·\" title=\"¢·¢·\"> ¢·¢· </blockquote> |
-| ¼«Æ°¥ê¥ó¥¯¤ò¥¿¥°Æâ¤Ç»È¤¦             | <a href=\"¤Ï¤Æ¤Êµ­Ë¡\"> ¢·¢· </a>                          |
+| ã€Œ*ã€ã‚„ã€Œ-ã€ã‚’ãã®ã¾ã¾è¡Œé ­ã«è¡¨ç¤ºã™ã‚‹ | ï¼ˆè¡Œé ­ã«åŠè§’ã®ç©ºç™½ã‚’ã¤ã‘ã‚‹ï¼‰                             |
+| ä¸‹æ›¸ãè¨˜æ³•                           | <!-- ï½ï½ -->                                            |
+| ä¿®æ­£æ™‚åˆ»ä¿å­˜æ©Ÿèƒ½                     | <ins> ï½ï½ </ins>, <del> ï½ï½ </del>                     |
+| citeã€titleå±æ€§                      | <blockquote cite=\"ï½ï½\" title=\"ï½ï½\"> ï½ï½ </blockquote> |
+| è‡ªå‹•ãƒªãƒ³ã‚¯ã‚’ã‚¿ã‚°å†…ã§ä½¿ã†             | <a href=\"ã¯ã¦ãªè¨˜æ³•\"> ï½ï½ </a>                          |
 |--------------------------------------+----------------------------------------------------------|
 ")
 
