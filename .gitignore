@@ -13,3 +13,6 @@ ac-comphist.dat
 server
 rc.d/[0-9]*environment.el
 semanticdb
+.org-id-localtions
+var/
+url/
