@@ -4,7 +4,9 @@
 (setq auto-mode-alist
       (append '(("\\.rb$" . ruby-mode)
                 ("\\.rjs$" . ruby-mode)
-                ("Rakefile$" . ruby-mode))
+                ("\\.ru$" . ruby-mode)
+                ("Rakefile$" . ruby-mode)
+                )
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
