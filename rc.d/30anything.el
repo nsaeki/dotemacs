@@ -6,7 +6,6 @@
 (require 'anything-show-completion)
 (require 'anything-auto-install nil t)
 (require 'anything-grep nil t)
-(require 'anything-migemo)
 
 ;;(anything-iswitchb-setup)
 
@@ -45,3 +44,7 @@
 (setq moccur-split-word t)
 (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
 (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
+
+;; (install-elisp-from-emacswiki "anything-migemo.el")
+(require 'anything-migemo)
+(setq anything-use-migemo t)
