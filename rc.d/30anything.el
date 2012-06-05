@@ -47,4 +47,4 @@
 
 ;; (install-elisp-from-emacswiki "anything-migemo.el")
 (require 'anything-migemo)
-(setq anything-use-migemo t)
+;(setq anything-use-migemo t)
