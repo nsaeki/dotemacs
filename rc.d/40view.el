@@ -41,7 +41,10 @@
 
 ;; http://d.hatena.ne.jp/znz/20081226/emacs
 ;(static-when (functionp 'hl-line-mode)
-  (add-hook 'view-mode-hook '(lambda () (hl-line-mode 1)))
+  (add-hook 'view-mode-hook '(lambda ()
+                               (hl-line-mode 1)
+                               (setq cursor-color "gray")))
   (defadvice view-mode-disable (after disable-hl-line-mode activate)
-    (hl-line-mode -1))
+    (hl-line-mode -1)
+    (setq cursor-color "#5A647E"))
 ;)
