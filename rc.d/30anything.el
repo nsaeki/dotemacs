@@ -6,6 +6,7 @@
 (require 'anything-show-completion)
 (require 'anything-auto-install nil t)
 (require 'anything-grep nil t)
+(require 'anything-migemo)
 
 ;;(anything-iswitchb-setup)
 
