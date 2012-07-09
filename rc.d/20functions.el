@@ -37,10 +37,18 @@
 (global-set-key "\C-cl" 'toggle-truncate-lines)
 (setq-default truncate-partial-width-windows nil)
 
+(defun split-window-conditional ()
+  (interactive)
+  (if (> (* (window-height) 2) (window-width))
+      (split-window-vertically)
+    (split-window-horizontally)))
+;;(define-key windmove-map "s" 'split-window-conditional)
+
 (defun other-window-or-split ()
   (interactive)
 ;;  (when (one-window-p) (split-window-horizontally))
-  (when (one-window-p) (split-window-vertically))
+;;  (when (one-window-p) (split-window-vertically))
+  (when (one-window-p) (split-window-conditional))
   (other-window 1))
 (global-set-key (kbd "C-,") 'other-window-or-split)
 
