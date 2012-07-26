@@ -30,7 +30,7 @@
 ;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
 ;; disables C-,
-;;(define-key org-mode-map (kbd "C-,") nil)
+(define-key org-mode-map (kbd "C-,") nil)
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
