@@ -19,10 +19,11 @@
 
 ;; keybindings
 ;(global-set-key "\C-cc" 'compile)
+(global-set-key [M-return] 'indent-new-comment-line)
 (global-unset-key "\C-z")
-(global-set-key (kbd "C-c r") 'query-replace)
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 (define-key global-map (kbd "M-k") 'kill-this-buffer)
+;(global-set-key (kbd "C-c r") 'query-replace)
 ;(define-key global-map (kbd "C-t") 'other-window)
 ;(keyboard-translate ?\C-h ?\C-?)
 ;(global-set-key (kbd "C-x ?") 'help-command)

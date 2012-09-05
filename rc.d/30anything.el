@@ -25,6 +25,7 @@
 ;; )
 
 (global-set-key (kbd "C-;") 'anything-for-files)
+(global-set-key (kbd "C-'") 'anything-M-x)
 (global-set-key (kbd "C-.") 'anything-imenu)
 (global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
