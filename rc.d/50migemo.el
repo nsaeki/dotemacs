@@ -13,6 +13,7 @@
 (setq migemo-coding-system 'utf-8-unix)
 (setq migemo-regex-dictionary nil)
 (migemo-init)
+(set-process-query-on-exit-flag (get-process "migemo") nil)
 
 ;; default off
 ;(setq migemo-isearch-enable-p nil)
