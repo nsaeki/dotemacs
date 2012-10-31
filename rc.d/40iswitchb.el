@@ -1,5 +1,6 @@
+(require 'iswitchb)
 (iswitchb-mode 1)
-(iswitchb-default-keybindings)
+;(iswitchb-default-keybindings)
 (add-hook 'iswitchb-define-mode-map-hook
           'iswitchb-my-keys)
 (defun iswitchb-my-keys ()
