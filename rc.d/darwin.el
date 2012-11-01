@@ -7,7 +7,7 @@
 (define-key global-map [ns-drag-file] 'ns-find-file)
 
 ;; font
-(when (= emacs-major-version 23)
+(when (>= emacs-major-version 23)
   ;; (create-fontset-from-ascii-font
   ;;  "-apple-monaco-medium-normal-normal-*-12-*" nil "hirakaku12")
   (create-fontset-from-ascii-font
@@ -39,4 +39,3 @@
    "fontset-hirakaku12"
    'katakana-jisx0201
    "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1"))
-
