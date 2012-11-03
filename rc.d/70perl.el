@@ -38,7 +38,7 @@
                         (auto-fill-mode 1)
                         (flyspell-mode 1))))
 
-;; perl-completion (require anything)
+;; perl-completion
 (add-hook 'cperl-mode-hook
 	  (lambda()
 	    (require 'perl-completion)

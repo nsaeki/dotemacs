@@ -9,7 +9,6 @@
 ;(setq-default physical-line-mode t)
 ;(setq physical-line-ignoring-mode-list '(dired-mode))
 
-;; now using anything-show-kill-ring
 ;; (require 'browse-kill-ring)
 ;; (browse-kill-ring-default-keybindings)
 ;; ;(global-set-key "\M-y" 'browse-kill-ring)

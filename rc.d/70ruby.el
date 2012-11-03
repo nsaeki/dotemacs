@@ -19,7 +19,7 @@
 ;; gem install rcodetools
 ;; (install-elisp-from-emacswiki "anything-rcodetools.el")
 (require 'rcodetools)
-(require 'anything-rcodetools)
+;; (require 'anything-rcodetools)
 
 ;; Command to get all Ri entries.
 ;; (setq rct-get-all-methods-command "PAGER=cat fri -l")
