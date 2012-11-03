@@ -8,5 +8,5 @@
 (grep-a-lot-setup-keys)
 (grep-a-lot-advise igrep)
 
-;; (install-elisp-from-emacswiki "grep-edit.el")
+;; (el-get-install "grep-edit")
 (require 'grep-edit)

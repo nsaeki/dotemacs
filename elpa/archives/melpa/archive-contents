@@ -1450,7 +1450,7 @@
 		 [(20120319 1559)
 		  nil "Flymake support for coffee script [source: github]" single])
  (flycheck .
-	   [(20121102 1659)
+	   [(20121102 1948)
 	    nil "Flymake reloaded with useful checkers [source: github]" single])
  (flex-isearch .
 	       [(20120606 1317)

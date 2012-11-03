@@ -53,13 +53,13 @@
 (define-key isearch-mode-map "\M-w" 'isearch-yank-symbol)
 
 ;; (auto-install-batch "sequential-command")
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
+;; (require 'sequential-command-config)
+;; (sequential-command-setup-keys)
 
 ;; (install-elisp-from-emacswiki "recentf-ext.el")
-(setq recentf-max-saved-items 500)
-(setq recentf-exclude '("/TAGS$" "/var/tmp"))
-(require 'recentf-ext)
+;; (setq recentf-max-saved-items 500)
+;; (setq recentf-exclude '("/TAGS$" "/var/tmp"))
+;; (require 'recentf-ext)
 
 ;; (install-elisp-from-emacswiki "tempbuf.el")
 ;(require 'tempbuf)
@@ -71,8 +71,8 @@
 (setq moccur-split-word t)
 
 ;; (install-elisp-from-emacswiki "moccur-edit.el")
-(require 'moccur-edit)
-(setq moccur-split-word t)
+;; (require 'moccur-edit)
+;; (setq moccur-split-word t)
 
 ;; (install-elisp-from-emacswiki "column-marker.el")
 ;(require 'column-marker)
@@ -88,9 +88,9 @@
 ;(require 'multiverse)
 
 ;; (install-elisp-from-emacswiki "point-undo.el")
-(require 'point-undo)
-(define-key global-map (kbd "C-z") 'point-undo)
-(define-key global-map (kbd "C-M-z") 'point-redo)
+;; (require 'point-undo)
+;; (define-key global-map (kbd "C-z") 'point-undo)
+;; (define-key global-map (kbd "C-M-z") 'point-redo)
 ;; (define-key global-map [f5] 'point-undo)
 ;; (define-key global-map [f6] 'point-redo)
 

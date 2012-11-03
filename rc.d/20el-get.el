@@ -14,22 +14,9 @@
         (:name mcomplete
                :type http
                :url "http://homepage1.nifty.com/bmonkey/emacs/elisp/mcomplete.el")
-        (:name helm
-               :type git
-               :url "https://github.com/emacs-helm/helm.git")
-        (:name yasnippet
-               :type git
-               :url "https://github.com/capitaomorte/yasnippet.git")
-        ;; for gist.el
-        (:name gh
-               :type git
-               :url "https://github.com/sigma/gh.el.git")
-        (:name pcache
-               :type git
-               :url "https://github.com/sigma/pcache.git")
-        (:name logito
-               :type git
-               :url "https://github.com/sigma/logito.git")
+        (:name mcomplete-history
+               :type http
+               :url "http://www.bookshelf.jp/elc/mcomplete-history.el")
         ))
 
 (el-get 'sync)

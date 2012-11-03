@@ -41,20 +41,9 @@ Compute the checksum of the given package, and put it in the kill-ring
 
 ;;;***
 
-;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
-;;;;;;  "el-get/el-get-list-packages.el" (20627 50446))
-;;; Generated autoloads from el-get/el-get-list-packages.el
-
-(autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
-Display a list of packages.
-
-\(fn)" t nil)
-
-;;;***
-
 ;;;### (autoloads (turn-off-mcomplete-mode turn-on-mcomplete-mode
 ;;;;;;  mcomplete-mode) "mcomplete/mcomplete" "mcomplete/mcomplete.el"
-;;;;;;  (20627 53470))
+;;;;;;  (20628 45358))
 ;;; Generated autoloads from mcomplete/mcomplete.el
 
 (autoload 'mcomplete-mode "mcomplete/mcomplete" "\
@@ -76,7 +65,7 @@ Turn off minibuffer completion with prefix and substring matching.
 ;;;***
 
 ;;;### (autoloads (smart-compile) "smart-compile/smart-compile" "smart-compile/smart-compile.el"
-;;;;;;  (20627 54620))
+;;;;;;  (20628 41376))
 ;;; Generated autoloads from smart-compile/smart-compile.el
 
 (autoload 'smart-compile "smart-compile/smart-compile" "\
@@ -89,7 +78,7 @@ which is defined in `smart-compile-alist'.
 ;;;***
 
 ;;;### (autoloads (soccur se/make-summary-buffer-mouse) "summarye/summarye"
-;;;;;;  "summarye/summarye.el" (20627 54456))
+;;;;;;  "summarye/summarye.el" (20628 32303))
 ;;; Generated autoloads from summarye/summarye.el
 
 (autoload 'se/make-summary-buffer-mouse "summarye/summarye" "\
@@ -106,15 +95,10 @@ data of the original buffer.
 
 ;;;***
 
-;;;### (autoloads nil nil ("color-theme-railscasts/color-theme-railscasts.el"
-;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
-;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
-;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "ipa/ipa.el"
-;;;;;;  "jaspace/jaspace.el" "moccur-edit/moccur-edit.el" "point-undo/point-undo.el"
-;;;;;;  "sequential-command-config/sequential-command-config.el"
+;;;### (autoloads nil nil ("el-get/el-get-install.el" "grep-edit/grep-edit.el"
+;;;;;;  "mcomplete-history/mcomplete-history.el" "sequential-command-config/sequential-command-config.el"
 ;;;;;;  "sequential-command/sequential-command.el" "viewer/viewer.el")
-;;;;;;  (20627 65467 479288))
+;;;;;;  (20628 45641 631411))
 
 ;;;***
 
