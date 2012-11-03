@@ -1,6 +1,6 @@
 (require 'magit)
 (require 'key-chord)
-(key-chord-define-global "vc" 'magit-status)
+;; (key-chord-define-global "vc" 'magit-status)
 
 (require 'egg)
 (autoload 'egg-grep "egg-grep" nil t)

@@ -95,10 +95,12 @@ data of the original buffer.
 
 ;;;***
 
-;;;### (autoloads nil nil ("el-get/el-get-install.el" "grep-edit/grep-edit.el"
-;;;;;;  "mcomplete-history/mcomplete-history.el" "sequential-command-config/sequential-command-config.el"
+;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
+;;;;;;  "el-get/el-get-install.el" "grep-edit/grep-edit.el" "mcomplete-history/mcomplete-history.el"
+;;;;;;  "moccur-edit/moccur-edit.el" "point-undo/point-undo.el" "recentf-ext/recentf-ext.el"
+;;;;;;  "sequential-command-config/sequential-command-config.el"
 ;;;;;;  "sequential-command/sequential-command.el" "viewer/viewer.el")
-;;;;;;  (20628 45641 631411))
+;;;;;;  (20628 58094 446583))
 
 ;;;***
 

@@ -17,6 +17,9 @@
         (:name mcomplete-history
                :type http
                :url "http://www.bookshelf.jp/elc/mcomplete-history.el")
+        (:name color-theme-idlefingers
+               :type git
+               :url "https://github.com/atog/idle-fingers-emacs.git")
         ))
 
 (el-get 'sync)

@@ -1,12 +1,10 @@
 (require 'color-theme)
 (setq color-theme-load-all-themes nil)
 
-(setq load-path (cons "~/.emacs.d/elisp/themes" load-path))
-
-;(require 'color-theme-tangotango)
-(autoload 'color-theme-railscasts "color-theme-railscasts" nil t)
-;(autoload 'color-theme-idle-fingers "color-theme-idle-fingers" nil t)
-;(autoload 'color-theme-zenburn "color-theme-zenburn" nil t)
+;; (require 'color-theme-tangotango)
+;; (autoload  'color-theme-railscasts "color-theme-railscasts" nil t)
+(autoload  'color-theme-idle-fingers "color-theme-idle-fingers" nil t)
+;; (autoload 'color-theme-zenburn "color-theme-zenburn" nil t)
 
 ;; Source : http://www.emacswiki.org/emacs/ColorTheme#toc10
 ;; select theme - first list element is for windowing system, second is for console/terminal
@@ -33,8 +31,10 @@
 ;; hook on after-make-frame-functions
 ;; (add-hook 'after-make-frame-functions 'test-win-sys)
 
-;(color-theme-tangotango)
-(color-theme-railscasts)
-;(color-theme-idle-fingers)
+;; (color-theme-tangotango)
+;; (color-theme-railscasts)
+(color-theme-idle-fingers)
 
+;; customize
 (set-face-background 'modeline "#e3e3e3")
+(set-cursor-color "gray")

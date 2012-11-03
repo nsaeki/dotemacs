@@ -3,3 +3,4 @@
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'view-mode)
 (key-chord-define-global "df" 'org-remember)
+(key-chord-define-global "vc" 'magit-status)
