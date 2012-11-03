@@ -425,7 +425,7 @@
 	    [(20110805 2108)
 	     nil "No description available. [source: github]" single])
  (s .
-    [(20121102 1312)
+    [(20121102 1558)
      nil "The long lost Emacs string manipulation library. [source: github]" single])
  (rvm .
       [(20121003 921)
@@ -506,7 +506,7 @@
 		   [(20111019 1608)
 		    nil "narrow-to-region that operates recursively [source: github]" single])
  (rebox2 .
-	 [(20121028 238)
+	 [(20121103 2143)
 	  nil "Handling of comment boxes in various styles. [source: github]" single])
  (rdp .
       [(20120928 2154)
@@ -729,6 +729,9 @@
 		    (list-utils
 		     (0 2 0)))
 		   "Persistent storage, returning nil on failure [source: github]" single])
+ (pcre2el .
+	  [(20120924 706)
+	   nil "PCRE/Elisp/rx/SRE regexp syntax converter and utilities [source: github]" single])
  (pcache .
 	 [(20120408 1206)
 	  ((eieio
@@ -1034,6 +1037,9 @@
  (keymap-utils .
 	       [(20120926 14)
 		nil "keymap utilities [source: github]" tar])
+ (keyfreq .
+	  [(20110312 1017)
+	   nil "No description available. [source: svn]" single])
  (keydef .
 	 [(20090428 2131)
 	  nil "a simpler way to define keys, with kbd syntax [source: github]" single])
@@ -1146,7 +1152,7 @@
 		[(20120831 1806)
 		 nil "Major mode API client for status.net open microblogging [source: github]" tar])
  (icicles .
-	  [(20121101 2159)
+	  [(20121103 6)
 	   nil "Minibuffer input completion and cycling. [source: wiki]" tar])
  (ibuffer-vc .
 	     [(20120922 1120)
@@ -1315,6 +1321,9 @@
  (google-contacts .
 		  [(20120927 1854)
 		   nil "Support for Google Contacts in Emacs [source: git]" tar])
+ (google-c-style .
+		 [(20091009 1651)
+		  nil "Google's C/C++ style for c-mode [source: svn]" single])
  (golden-ratio .
 	       [(20121025 1909)
 		nil "Automatic resizing of Emacs windows to the golden ratio [source: github]" single])
@@ -1444,7 +1453,7 @@
 		 [(20120319 1559)
 		  nil "Flymake support for coffee script [source: github]" single])
  (flycheck .
-	   [(20121101 1105)
+	   [(20121102 1948)
 	    nil "Flymake reloaded with useful checkers [source: github]" single])
  (flex-isearch .
 	       [(20120606 1317)
@@ -1495,7 +1504,7 @@
 	      [(20111001 1917)
 	       nil "No description available. [source: github]" single])
  (evil .
-       [(20121102 1012)
+       [(20121102 2035)
 	((undo-tree
 	  (0 5 1)))
 	"Extensible Vi layer for Emacs. [source: git]" tar])
@@ -1519,6 +1528,12 @@
  (erlang .
 	 [(20120831 1448)
 	  nil "No description available. [source: github]" tar])
+ (ergoemacs-keybindings .
+			[(20120814 1528)
+			 nil "No description available. [source: svn]" tar])
+ (eredis .
+	 [(20120808 2207)
+	  nil "eredis, a Redis client in emacs lisp [source: svn]" single])
  (erc-track-score .
 		  [(20100717 958)
 		   nil "Add score support to tracked channel buffers [source: git]" single])
@@ -1707,6 +1722,16 @@
  (cperl-mode .
 	     [(20110624 1417)
 	      nil "Perl code editing commands for Emacs [source: github]" single])
+ (confluence-edit .
+		  [(20110609 1452)
+		   nil "Emacs mode for editing confluence content buffers [source: svn]" single])
+ (confluence .
+	     [(20120117 906)
+	      ((xml-rpc
+		(1 6 4))
+	       (confluence-edit
+		(1 6 -2)))
+	      "Emacs mode for interacting with confluence wikis [source: svn]" single])
  (concurrent .
 	     [(20120306 1807)
 	      ((deferred
@@ -1923,27 +1948,5 @@
 	    "auto-complete sources for Clojure using nrepl completions [source: github]" single])
  (ac-dabbrev .
 	     [(20091116 1626)
-	      nil "auto-complete.el source for dabbrev [source: wiki]" single])
- (keyfreq .
-	  [(20110312 1017)
-	   nil "No description available. [source: svn]" single])
- (google-c-style .
-		 [(20091009 1651)
-		  nil "Google's C/C++ style for c-mode [source: svn]" single])
- (ergoemacs-keybindings .
-			[(20120814 1528)
-			 nil "No description available. [source: svn]" tar])
- (eredis .
-	 [(20120808 2207)
-	  nil "eredis, a Redis client in emacs lisp [source: svn]" single])
- (confluence-edit .
-		  [(20110609 1452)
-		   nil "Emacs mode for editing confluence content buffers [source: svn]" single])
- (confluence .
-	     [(20120117 906)
-	      ((xml-rpc
-		(1 6 4))
-	       (confluence-edit
-		(1 6 -2)))
-	      "Emacs mode for interacting with confluence wikis [source: svn]" single]))
+	      nil "auto-complete.el source for dabbrev [source: wiki]" single]))
 

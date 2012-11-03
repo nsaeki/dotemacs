@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (el-get-checksum el-get-make-recipes el-get-cd
 ;;;;;;  el-get-self-update el-get-update-all el-get-version) "el-get/el-get"
-;;;;;;  "el-get/el-get.el" (20627 50446))
+;;;;;;  "el-get/el-get.el" (20629 13814))
 ;;; Generated autoloads from el-get/el-get.el
 
 (autoload 'el-get-version "el-get/el-get" "\
@@ -41,9 +41,20 @@ Compute the checksum of the given package, and put it in the kill-ring
 
 ;;;***
 
+;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
+;;;;;;  "el-get/el-get-list-packages.el" (20629 13814))
+;;; Generated autoloads from el-get/el-get-list-packages.el
+
+(autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
+Display a list of packages.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads (turn-off-mcomplete-mode turn-on-mcomplete-mode
 ;;;;;;  mcomplete-mode) "mcomplete/mcomplete" "mcomplete/mcomplete.el"
-;;;;;;  (20628 45358))
+;;;;;;  (20629 13626))
 ;;; Generated autoloads from mcomplete/mcomplete.el
 
 (autoload 'mcomplete-mode "mcomplete/mcomplete" "\
@@ -65,7 +76,7 @@ Turn off minibuffer completion with prefix and substring matching.
 ;;;***
 
 ;;;### (autoloads (smart-compile) "smart-compile/smart-compile" "smart-compile/smart-compile.el"
-;;;;;;  (20628 41376))
+;;;;;;  (20629 13626))
 ;;; Generated autoloads from smart-compile/smart-compile.el
 
 (autoload 'smart-compile "smart-compile/smart-compile" "\
@@ -78,7 +89,7 @@ which is defined in `smart-compile-alist'.
 ;;;***
 
 ;;;### (autoloads (soccur se/make-summary-buffer-mouse) "summarye/summarye"
-;;;;;;  "summarye/summarye.el" (20628 32303))
+;;;;;;  "summarye/summarye.el" (20629 13626))
 ;;; Generated autoloads from summarye/summarye.el
 
 (autoload 'se/make-summary-buffer-mouse "summarye/summarye" "\
@@ -95,12 +106,42 @@ data of the original buffer.
 
 ;;;***
 
+;;;### (autoloads (visual-basic-mode) "visual-basic-mode/visual-basic-mode"
+;;;;;;  "visual-basic-mode/visual-basic-mode.el" (20629 18709))
+;;; Generated autoloads from visual-basic-mode/visual-basic-mode.el
+
+(autoload 'visual-basic-mode "visual-basic-mode/visual-basic-mode" "\
+A mode for editing Microsoft Visual Basic programs.
+Features automatic indentation, font locking, keyword capitalization,
+and some minor convenience functions.
+Commands:
+\\{visual-basic-mode-map}
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (wdired-change-to-wdired-mode) "wdired/wdired"
+;;;;;;  "wdired/wdired.el" (20629 15152))
+;;; Generated autoloads from wdired/wdired.el
+
+(autoload 'wdired-change-to-wdired-mode "wdired/wdired" "\
+Put a dired buffer in a mode in which filenames are editable.
+In this mode the names of the files can be changed, and after
+typing C-c C-c the files and directories in disk are renamed.
+
+See `wdired-mode'.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
-;;;;;;  "el-get/el-get-install.el" "grep-edit/grep-edit.el" "mcomplete-history/mcomplete-history.el"
-;;;;;;  "moccur-edit/moccur-edit.el" "point-undo/point-undo.el" "recentf-ext/recentf-ext.el"
-;;;;;;  "sequential-command-config/sequential-command-config.el"
-;;;;;;  "sequential-command/sequential-command.el" "viewer/viewer.el")
-;;;;;;  (20628 58094 446583))
+;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
+;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
+;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
+;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "grep-edit/grep-edit.el"
+;;;;;;  "recentf-ext/recentf-ext.el") (20629 18709 512096))
 
 ;;;***
 

@@ -2,8 +2,6 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 ;(set-scroll-bar-mode 'right)
-(setq scroll-step 1)
-(setq scroll-preserve-screen-position t)
 (setq inhibit-startup-message t)
 (windmove-default-keybindings)
 (mouse-wheel-mode t)
@@ -16,12 +14,15 @@
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq read-file-name-completion-ignore-case t)
+(setq mouse-drag-copy-region t)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+
+(setq scroll-preserve-screen-position t)
 
 ;; keybindings
 ;(global-set-key "\C-cc" 'compile)
