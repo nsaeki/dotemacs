@@ -63,7 +63,7 @@
 	      auto-mode-alist))
 
 ;; creates emacs backup and autosave files in backup directory
-(defvar user-temporary-file-directory "~/.emacs.d/backup/")
+(defvar user-temporary-file-directory "~/.emacs.d/backup")
 (make-directory user-temporary-file-directory t)
 (setq backup-directory-alist
       `(("." . ,user-temporary-file-directory)))
@@ -95,7 +95,6 @@
    (add-to-list 'load-path dir)
    (let (save-abbrevs) (byte-recompile-directory dir)))
 ;(add-to-load-path-recompile "~/.emacs.d/elisp/")
-;(add-to-load-path-recompile "~/.emacs.d/auto-install/")
 
 (defun add-to-load-path (&rest paths)
   (let (path)
@@ -105,48 +104,10 @@
 	(add-to-list 'load-path default-directory)
 	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 	    (normal-top-level-add-subdirs-to-load-path))))))
-(add-to-load-path "auto-install" "elisp" "plugins")
+(add-to-load-path "elisp")
 
 ;; init scripts
 (setq rc-directory "~/.emacs.d/rc.d/")
 (add-to-list 'load-path rc-directory)
 (dolist (file (directory-files rc-directory t "^[0-9]+\.*\\.el$"))
   (load file))
-
-
-
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (add-to-list 'package-archives
-               '("marmalade" . "http://marmalade-repo.org/packages/"))
-  (package-initialize))
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/notes/browsing.org")))
- '(ruby-electric-expand-delimiters-list nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
-
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
