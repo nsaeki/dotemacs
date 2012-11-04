@@ -41,20 +41,9 @@ Compute the checksum of the given package, and put it in the kill-ring
 
 ;;;***
 
-;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
-;;;;;;  "el-get/el-get-list-packages.el" (20629 13814))
-;;; Generated autoloads from el-get/el-get-list-packages.el
-
-(autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
-Display a list of packages.
-
-\(fn)" t nil)
-
-;;;***
-
 ;;;### (autoloads (turn-off-mcomplete-mode turn-on-mcomplete-mode
 ;;;;;;  mcomplete-mode) "mcomplete/mcomplete" "mcomplete/mcomplete.el"
-;;;;;;  (20629 13626))
+;;;;;;  (20630 21163))
 ;;; Generated autoloads from mcomplete/mcomplete.el
 
 (autoload 'mcomplete-mode "mcomplete/mcomplete" "\
@@ -76,7 +65,7 @@ Turn off minibuffer completion with prefix and substring matching.
 ;;;***
 
 ;;;### (autoloads (smart-compile) "smart-compile/smart-compile" "smart-compile/smart-compile.el"
-;;;;;;  (20629 13626))
+;;;;;;  (20630 21397))
 ;;; Generated autoloads from smart-compile/smart-compile.el
 
 (autoload 'smart-compile "smart-compile/smart-compile" "\
@@ -107,7 +96,7 @@ data of the original buffer.
 ;;;***
 
 ;;;### (autoloads (visual-basic-mode) "visual-basic-mode/visual-basic-mode"
-;;;;;;  "visual-basic-mode/visual-basic-mode.el" (20629 18709))
+;;;;;;  "visual-basic-mode/visual-basic-mode.el" (20630 20682))
 ;;; Generated autoloads from visual-basic-mode/visual-basic-mode.el
 
 (autoload 'visual-basic-mode "visual-basic-mode/visual-basic-mode" "\
@@ -122,7 +111,7 @@ Commands:
 ;;;***
 
 ;;;### (autoloads (wdired-change-to-wdired-mode) "wdired/wdired"
-;;;;;;  "wdired/wdired.el" (20629 15152))
+;;;;;;  "wdired/wdired.el" (20630 20682))
 ;;; Generated autoloads from wdired/wdired.el
 
 (autoload 'wdired-change-to-wdired-mode "wdired/wdired" "\
@@ -137,11 +126,8 @@ See `wdired-mode'.
 ;;;***
 
 ;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
-;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
-;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
-;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "grep-edit/grep-edit.el"
-;;;;;;  "recentf-ext/recentf-ext.el") (20629 18709 512096))
+;;;;;;  "el-get/el-get-install.el" "mcomplete-history/mcomplete-history.el"
+;;;;;;  "viewer/viewer.el") (20630 21397 710248))
 
 ;;;***
 
