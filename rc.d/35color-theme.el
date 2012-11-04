@@ -37,4 +37,5 @@
 
 ;; customize
 (set-face-background 'modeline "#e3e3e3")
-(set-cursor-color "gray")
+;; (set-foreground-color "#f0f0f0")
+;; (set-cursor-color "gray")

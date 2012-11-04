@@ -8,7 +8,8 @@
     (eval-print-last-sexp)))
 
 ;; update local recipes on the first time.
-;; (el-get-emacswiki-retrieve-package-list)
+;; (el-get-emacswiki-build-local-recipes)
+;; (load "~/.emacs.d/packages.txt")
 
 (require 'el-get)
 
