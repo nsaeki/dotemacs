@@ -24,6 +24,12 @@
         (:name color-theme-idlefingers
                :type git
                :url "https://github.com/atog/idle-fingers-emacs.git")
+        (:name helm-ls-git
+               :type git
+               :url "https://github.com/emacs-helm/helm-ls-git")
+        (:name helm-mercurial-queue
+               :type git
+               :url "https://github.com/emacs-helm/helm-mercurial-queue")
         ))
 
 (el-get 'sync)

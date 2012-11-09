@@ -8,7 +8,7 @@
 	helm-c-source-ffap-guesser
 	helm-c-source-buffers-list
 	helm-c-source-recentf
-	helm-c-source-bookmarks
+        helm-c-source-bookmarks
 	helm-c-source-file-cache
 	helm-c-source-files-in-current-dir
         ))

@@ -8,3 +8,5 @@
 (el-get-install "mcomplete-history")
 (el-get-install "viewer")
 (el-get-install "smart-compile")
+(el-get-install "helm-ls-git")
+(el-get-install "helm-mercurial-cueue")

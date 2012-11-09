@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (el-get-checksum el-get-make-recipes el-get-cd
 ;;;;;;  el-get-self-update el-get-update-all el-get-version) "el-get/el-get"
-;;;;;;  "el-get/el-get.el" (20629 13814))
+;;;;;;  "el-get/el-get.el" (20630 29140))
 ;;; Generated autoloads from el-get/el-get.el
 
 (autoload 'el-get-version "el-get/el-get" "\
@@ -38,6 +38,39 @@ entry which is not a symbol and is not already a known recipe.
 Compute the checksum of the given package, and put it in the kill-ring
 
 \(fn PACKAGE &optional PACKAGE-STATUS-ALIST)" t nil)
+
+;;;***
+
+;;;### (autoloads (helm-ls-git-ls) "helm-ls-git/helm-ls-git" "helm-ls-git/helm-ls-git.el"
+;;;;;;  (20637 13012))
+;;; Generated autoloads from helm-ls-git/helm-ls-git.el
+
+(autoload 'helm-ls-git-ls "helm-ls-git/helm-ls-git" "\
+
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (helm-hg-find-files-in-project) "helm-mercurial-queue/helm-ls-hg"
+;;;;;;  "helm-mercurial-queue/helm-ls-hg.el" (20637 13032))
+;;; Generated autoloads from helm-mercurial-queue/helm-ls-hg.el
+
+(autoload 'helm-hg-find-files-in-project "helm-mercurial-queue/helm-ls-hg" "\
+
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (helm-qpatchs) "helm-mercurial-queue/helm-mercurial"
+;;;;;;  "helm-mercurial-queue/helm-mercurial.el" (20637 13032))
+;;; Generated autoloads from helm-mercurial-queue/helm-mercurial.el
+
+(autoload 'helm-qpatchs "helm-mercurial-queue/helm-mercurial" "\
+
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -126,8 +159,8 @@ See `wdired-mode'.
 ;;;***
 
 ;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
-;;;;;;  "el-get/el-get-install.el" "mcomplete-history/mcomplete-history.el"
-;;;;;;  "viewer/viewer.el") (20630 21397 710248))
+;;;;;;  "mcomplete-history/mcomplete-history.el" "viewer/viewer.el")
+;;;;;;  (20637 13034 333534))
 
 ;;;***
 
