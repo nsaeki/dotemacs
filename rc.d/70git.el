@@ -6,3 +6,5 @@
 (autoload 'egg-grep "egg-grep" nil t)
 ;; (setq egg-auto-update t)
 ;; (key-chord-define-global "vc" 'egg-status)
+
+(require 'helm-ls-git)
