@@ -41,7 +41,7 @@
 (add-hook 'ruby-mode-hook
           (lambda ()
             (local-set-key "\M-r" 'rct-ri)
-            (local-set-key "\C-cd" 'rct-ri)
+            (local-set-key "\C-cd" 'yari)
             (local-set-key "\M-\C-i" 'rct-complete-symbol)
             ;; disabled. it's heavy and preventing from smooth typing.
 	    ;;(setq ac-sources (append '(ac-source-rcodetools) ac-sources))

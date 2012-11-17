@@ -42,7 +42,7 @@ Compute the checksum of the given package, and put it in the kill-ring
 ;;;***
 
 ;;;### (autoloads (helm-ls-git-ls) "helm-ls-git/helm-ls-git" "helm-ls-git/helm-ls-git.el"
-;;;;;;  (20637 13012))
+;;;;;;  (20637 15001))
 ;;; Generated autoloads from helm-ls-git/helm-ls-git.el
 
 (autoload 'helm-ls-git-ls "helm-ls-git/helm-ls-git" "\
@@ -53,7 +53,7 @@ Compute the checksum of the given package, and put it in the kill-ring
 ;;;***
 
 ;;;### (autoloads (helm-hg-find-files-in-project) "helm-mercurial-queue/helm-ls-hg"
-;;;;;;  "helm-mercurial-queue/helm-ls-hg.el" (20637 13032))
+;;;;;;  "helm-mercurial-queue/helm-ls-hg.el" (20637 15006))
 ;;; Generated autoloads from helm-mercurial-queue/helm-ls-hg.el
 
 (autoload 'helm-hg-find-files-in-project "helm-mercurial-queue/helm-ls-hg" "\
@@ -64,7 +64,7 @@ Compute the checksum of the given package, and put it in the kill-ring
 ;;;***
 
 ;;;### (autoloads (helm-qpatchs) "helm-mercurial-queue/helm-mercurial"
-;;;;;;  "helm-mercurial-queue/helm-mercurial.el" (20637 13032))
+;;;;;;  "helm-mercurial-queue/helm-mercurial.el" (20637 15006))
 ;;; Generated autoloads from helm-mercurial-queue/helm-mercurial.el
 
 (autoload 'helm-qpatchs "helm-mercurial-queue/helm-mercurial" "\
@@ -160,7 +160,7 @@ See `wdired-mode'.
 
 ;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
 ;;;;;;  "mcomplete-history/mcomplete-history.el" "viewer/viewer.el")
-;;;;;;  (20637 13034 333534))
+;;;;;;  (20637 15007 448170))
 
 ;;;***
 

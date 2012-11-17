@@ -39,7 +39,7 @@
 
 (defun split-window-conditional ()
   (interactive)
-  (if (> (* (window-height) 2) (window-width))
+  (if (>= (* (window-height) 2) (window-width))
       (split-window-vertically)
     (split-window-horizontally)))
 ;;(define-key windmove-map "s" 'split-window-conditional)
