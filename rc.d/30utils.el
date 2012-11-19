@@ -111,3 +111,11 @@
 (defconst *dmacro-key* "\C-t" "repeat key")
 (global-set-key *dmacro-key* 'dmacro-exec)
 (autoload 'dmacro-exec "dmacro" nil t)
+
+;; sml-modeline-mode
+(require 'sml-modeline-autoloads)
+(sml-modeline-mode t)
+(set-face-foreground 'sml-modeline-end-face "#000000")
+(set-face-background 'sml-modeline-end-face "#b0b0b0")
+(set-face-foreground 'sml-modeline-vis-face "#000000")
+(set-face-background 'sml-modeline-vis-face "#80c000")
