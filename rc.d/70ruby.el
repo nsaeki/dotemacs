@@ -6,6 +6,7 @@
                 ("\\.rjs$" . ruby-mode)
                 ("\\.ru$" . ruby-mode)
                 ("Rakefile$" . ruby-mode)
+                ("Gemfile$" . ruby-mode)
                 )
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
