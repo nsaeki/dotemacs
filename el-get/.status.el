@@ -31,6 +31,10 @@
             (:name grep-edit :auto-generated t :type emacswiki :description "edit grep buffer and apply the changes to files" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/grep-edit.el"))
  (haml-mode status "removed" recipe nil)
  (helm status "removed" recipe nil)
+ (helm-delicious status "installed" recipe
+                 (:name helm-delicious :type git :url "https://github.com/emacs-helm/helm-delicious"))
+ (helm-gist status "installed" recipe
+            (:name helm-gist :type git :url "https://github.com/emacs-helm/helm-gist"))
  (helm-ls-git status "installed" recipe
               (:name helm-ls-git :type git :url "https://github.com/emacs-helm/helm-ls-git"))
  (helm-mercurial-queue status "installed" recipe

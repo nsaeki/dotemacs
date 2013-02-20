@@ -29,12 +29,6 @@
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/protocol/compact_protocol.rb
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/serializer/deserializer.rb
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/serializer/serializer.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/base_server.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/mongrel_http_server.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/nonblocking_server.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/simple_server.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/thread_pool_server.rb
-/Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/server/threaded_server.rb
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/transport/base_server_transport.rb
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/transport/base_transport.rb
 /Users/saeki/.rbenv/versions/1.9.3-p194/lib/ruby/site_ruby/1.9.1/thrift/transport/buffered_transport.rb

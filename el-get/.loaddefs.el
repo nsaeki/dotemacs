@@ -159,8 +159,9 @@ See `wdired-mode'.
 ;;;***
 
 ;;;### (autoloads nil nil ("color-theme-idlefingers/color-theme-idle-fingers.el"
-;;;;;;  "emacs-evernote-mode/evernote-mode.el" "mcomplete-history/mcomplete-history.el"
-;;;;;;  "viewer/viewer.el") (20670 35130 827063))
+;;;;;;  "helm-delicious/helm-delicious.el" "helm-gist/helm-gist.el"
+;;;;;;  "mcomplete-history/mcomplete-history.el" "viewer/viewer.el")
+;;;;;;  (20773 3644 431866))
 
 ;;;***
 
