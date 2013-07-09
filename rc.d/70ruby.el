@@ -5,6 +5,7 @@
       (append '(("\\.rb$" . ruby-mode)
                 ("\\.rjs$" . ruby-mode)
                 ("\\.ru$" . ruby-mode)
+                ("\\.rake$" . ruby-mode)
                 ("Rakefile$" . ruby-mode)
                 ("Gemfile$" . ruby-mode)
                 )
