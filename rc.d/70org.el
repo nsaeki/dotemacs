@@ -29,8 +29,9 @@
 ;; overwrites default: <C-return>      org-insert-heading-respect-content
 ;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
-;; disables C-,
+;; disables C-, and C-'
 (define-key org-mode-map (kbd "C-,") nil)
+(define-key org-mode-map (kbd "C-'") nil)
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
