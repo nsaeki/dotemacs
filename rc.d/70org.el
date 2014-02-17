@@ -2,14 +2,14 @@
 (setq org-startup-folded 'content)
 
 ;; org-remember
-(org-remember-insinuate)
-;; (setq org-directory "~/notes/")
-(setq org-default-notes-file (expand-file-name "memo.org" org-directory))
-(setq org-remember-templates
-      '(("Note" ?n "** %?\n   %i\n   %a\n   %T" nil "Inbox")
-;        ("Todo" ?t "** TODO %?\n   %i\n   %a   %T\n" nil "Inbox")
-       ))
-(defalias 'memo 'org-remember)
+;; (org-remember-insinuate)
+;; ;; (setq org-directory "~/notes/")
+;; (setq org-default-notes-file (expand-file-name "memo.org" org-directory))
+;; (setq org-remember-templates
+;;       '(("Note" ?n "** %?\n   %i\n   %a\n   %T" nil "Inbox")
+;; ;        ("Todo" ?t "** TODO %?\n   %i\n   %a   %T\n" nil "Inbox")
+;;        ))
+;; (defalias 'memo 'org-remember)
 
 (defun org-insert-upheading (arg)
   "insert upheading"

@@ -4,8 +4,9 @@
 (require 'helm-grep nil t)
 
 (setq helm-for-files-preferred-list
-      '(helm-c-source-ffap-line
-        helm-c-source-ffap-guesser
+      '(
+;;        helm-c-source-ffap-line
+;;        helm-c-source-ffap-guesser
         helm-c-source-buffers-list
         helm-c-source-recentf
         helm-c-source-bookmarks

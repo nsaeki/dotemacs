@@ -1,14 +1,12 @@
 ;; frame size
 (setq initial-frame-alist
-      (append '((top . 42)
-                (left . 45)
-                ;; (width . 84)
-                ;; (height . 42)
-                (width . 168)
-                (height . 46))
+      (append '((top . 32)
+                (left . 630)
+                (width . 110)
+                (height . 60))
 	      initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
-(split-window-horizontally)
+;(split-window-horizontally)
 
 ;(when (eq window-system 'mac)
 ;  (add-hook 'window-setup-hook

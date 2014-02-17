@@ -27,18 +27,9 @@
         (:name helm-ls-git
                :type git
                :url "https://github.com/emacs-helm/helm-ls-git")
-        (:name helm-mercurial-queue
-               :type git
-               :url "https://github.com/emacs-helm/helm-mercurial-queue")
         (:name helm-gist
                :type git
                :url "https://github.com/emacs-helm/helm-gist")
-        (:name helm-delicious
-               :type git
-               :url "https://github.com/emacs-helm/helm-delicious")
-        (:name emacs-evernote-mode
-               :type svn
-               :url "http://emacs-evernote-mode.googlecode.com/svn/trunk/")
         ))
 
 (el-get 'sync)
