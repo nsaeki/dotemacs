@@ -2,7 +2,6 @@
 *~
 *.elc
 auto-save-list
-backup
 bookmark
 history
 save-places
@@ -14,6 +13,7 @@ server
 semanticdb
 .org-id-localtions
 /ac-dict/
+/backup/
 /el-get/
 !/el-get/recipes
 /elpa/

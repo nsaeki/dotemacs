@@ -19,6 +19,7 @@
 (defvar my/elpa-packages
   '(ac-dabbrev
     ;; ack-and-a-half
+    ag
     auto-complete
     ;; auto-complete-clang
     autopair
@@ -97,6 +98,7 @@
     sml-modeline
     summarye
     undo-tree
+    wgrep-ag
     ;; wgrep-ack
     ;; wgrep
     yaml-mode
