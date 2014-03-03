@@ -89,6 +89,8 @@
     ruby-electric
     ruby-test-mode
     ruby-tools
+    ruby-dev
+    rbenv
     sass-mode
     haml-mode
     ruby-mode
@@ -104,7 +106,7 @@
     yaml-mode
     yari
     yasnippet
-    yasnippet-bundle
+    ;; yasnippet-bundle
     zencoding-mode))
 
 (dolist (package my/elpa-packages)
