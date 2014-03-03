@@ -70,8 +70,8 @@
 (setq moccur-split-word t)
 
 ;; (install-elisp-from-emacswiki "moccur-edit.el")
-(require 'moccur-edit)
-(setq moccur-split-word t)
+;(require 'moccur-edit)
+;(setq moccur-split-word t)
 
 ;; (install-elisp-from-emacswiki "column-marker.el")
 ;(require 'column-marker)

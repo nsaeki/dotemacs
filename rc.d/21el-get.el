@@ -1,5 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(add-to-list 'el-get-recipe-path "~/emacs.d/el-get/recipes")
+
+;; emacswiki reicipes' initialization is too slow.
+(setq el-get-install-skip-emacswiki-recipes t)
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -8,8 +10,7 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-
-;; (require 'el-get)
+;; (add-to-list 'el-get-recipe-path "~/emacs.d/el-get/recipes")
 
 (setq el-get-sources
       '(
@@ -22,23 +23,16 @@
         (:name color-theme-idlefingers
                :type git
                :url "https://github.com/atog/idle-fingers-emacs.git")
-        (:name helm-ls-git
-               :type git
-               :url "https://github.com/emacs-helm/helm-ls-git")
-        (:name helm-gist
-               :type git
-               :url "https://github.com/emacs-helm/helm-gist")
         ))
 
 ;; my packages
 (setq my/el-get-packages
       (append
-       '(color-theme-idle-fingers
+       '(color-theme-idlefingers
          mcomplete
          mcomplete-history
-         mcoccur-edit
-         sequential-command-config
-         viewer
+;         sequential-command-config
+;         viewer
          rcodetools
          )))
 
