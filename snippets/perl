@@ -1,0 +1,7 @@
+#name : /usr/bin/env perl
+#group : general
+# --
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
