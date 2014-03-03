@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'el-get-recipe-path "~/emacs.d/el-get/recipes")
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -7,11 +8,8 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-;; update local recipes on the first time.
-;; (el-get-emacswiki-build-local-recipes)
-;; (load "~/.emacs.d/packages.txt")
 
-(require 'el-get)
+;; (require 'el-get)
 
 (setq el-get-sources
       '(
@@ -32,5 +30,16 @@
                :url "https://github.com/emacs-helm/helm-gist")
         ))
 
-(el-get 'sync)
-;(el-get 'wait)
+;; my packages
+(setq my/el-get-packages
+      (append
+       '(color-theme-idle-fingers
+         mcomplete
+         mcomplete-history
+         mcoccur-edit
+         sequential-command-config
+         viewer
+         rcodetools
+         )))
+
+(el-get 'sync my/el-get-packages)
