@@ -12,17 +12,9 @@
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
-;; rbenv
-;; Setting rbenv path
-(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
-                       (getenv "HOME") "/.rbenv/bin:"
-                       (getenv "PATH")))
-(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
-                      (cons (concat (getenv "HOME") "/.rbenv/bin")
-                            exec-path)))
 ;; https://github.com/senny/rbenv.el
-;; (require 'rbenv)
-;; (global-rbenv-mode)
+(require 'rbenv)
+(global-rbenv-mode)
 
 ;; rcodetools
 ;; gem install rcodetools
