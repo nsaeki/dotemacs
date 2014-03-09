@@ -86,7 +86,8 @@
     ruby-block
     ruby-compilation
     ;; inf-ruby
-    ruby-electric
+    ;; ruby-electric
+    ruby-end
     ruby-test-mode
     ruby-tools
     ruby-dev
