@@ -6,9 +6,12 @@
                 ("\\.rjs$" . ruby-mode)
                 ("\\.ru$" . ruby-mode)
                 ("\\.rake$" . ruby-mode)
-                ("^Rakefile" . ruby-mode)
-                ("^Gemfile" . ruby-mode)
-                ("^Vagrantfile" . ruby-mode))
+                ("\\.thor$" . ruby-mode)
+                ("Rakefile$" . ruby-mode)
+                ("Gemfile$" . ruby-mode)
+                ("Capfile$" . ruby-mode)
+                ("Guardfile$" . ruby-mode)
+                ("Vagrantfile$" . ruby-mode))
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
@@ -19,7 +22,7 @@
 ;; rcodetools and xmpfilter
 ;; gem install rcodetools
 (require 'rcodetools)
-(define-key ruby-mode-map (kbd "M-p") 'xmp)
+;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
 
 ;; ruby-dev
 ;; https://github.com/Mon-Ouie/ruby-dev.el
