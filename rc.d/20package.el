@@ -67,6 +67,7 @@
     magit
     markdown-mode
     migemo
+    open-junk-file
     org
     ;; php-mode
     point-undo

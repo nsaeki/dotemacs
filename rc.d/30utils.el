@@ -5,8 +5,7 @@
 ;; (global-linum-mode t)
 ;; (setq linum-format "%4d ")
 
-;; (install-elisp-from-emacswiki "open-junk-file.el")
-;; (require 'open-junk-file)
+(require 'open-junk-file)
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
