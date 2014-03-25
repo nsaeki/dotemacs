@@ -1,8 +1,11 @@
 (require 'markdown-mode)
 (setq auto-mode-alist
-      (append '(("\\.mkdn$" . markdown-mode)
-                ("\\.markdown$" . markdown-mode)
-                ("\\.md$" . markdown-mode))
+      ;; (append '(("\\.md$" . markdown-mode)
+      ;;         ("\\.mkdn$" . markdown-mode)
+      ;;         ("\\.markdown$" . markdown-mode))
+      (append '(("\\.md$" . gfm-mode)
+                ("\\.mkdn$" . gfm-mode)
+                ("\\.markdown$" . gfm-mode))
               auto-mode-alist))
 
 ;; https://gist.github.com/1631630
