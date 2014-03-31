@@ -15,6 +15,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
+(global-hl-line-mode)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -82,7 +83,7 @@
 (setq-default save-place t)
 (require 'saveplace)
 
-;; change buffer names like <2> to <dir> 
+;; change buffer names like <2> to <dir>
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
