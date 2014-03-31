@@ -15,7 +15,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
-(global-hl-line-mode)
+(global-linum-mode t)
+(custom-set-faces
+ '(linum ((t (:inherit (shadow default) :background "#333")))))
+(global-hl-line-mode t)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
