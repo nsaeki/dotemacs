@@ -20,19 +20,13 @@
         (:name mcomplete-history
                :type http
                :url "http://www.bookshelf.jp/elc/mcomplete-history.el")
-        (:name color-theme-idlefingers
-               :type git
-               :url "https://github.com/atog/idle-fingers-emacs.git")
         ))
 
 ;; my packages
 (setq my/el-get-packages
       (append
-       '(color-theme-idlefingers
-         mcomplete
+       '(mcomplete
          mcomplete-history
-;         sequential-command-config
-;         viewer
          rcodetools
          )))
 
