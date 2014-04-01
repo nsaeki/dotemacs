@@ -32,9 +32,9 @@
   (interactive)
   (let ((basename (read-string "Open org file with basename: ")))
     (find-file (concat org-directory
-                       (format-time-string "%Y-%m-%d")
                        (when (> (length basename) 0)
-                         (concat "-" basename))
+                         (concat basename "-"))
+                       (format-time-string "%Y%m%d")
                        ".org")))
     ;; (find-file (concat org-directory
     ;;                    (format-time-string "%Y%m%d")
