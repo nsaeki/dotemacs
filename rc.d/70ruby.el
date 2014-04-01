@@ -48,7 +48,7 @@
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
 (defvar helm-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
-(defvar helm-c-source-gem-open      
+(defvar helm-c-source-gem-open
   '((name . "gem open")
     (init . (lambda ()
               (let ((buffer (helm-candidate-buffer 'global)))
