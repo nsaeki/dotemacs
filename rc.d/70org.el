@@ -27,12 +27,18 @@
     (16 (org-insert-upheading nil))     ; C-u C-u
     (t  (org-insert-heading nil))))
 
-(defun org-new-file
+(defun org-open-today-file
   nil
   (interactive)
-  (find-file (concat org-directory
-                     (format-time-string "%Y%m%d")
-                     ".org"))
+  (let ((basename (read-string "Open org file with basename: ")))
+    (find-file (concat org-directory
+                       (format-time-string "%Y-%m-%d")
+                       (when (> (length basename) 0)
+                         (concat "-" basename))
+                       ".org")))
+    ;; (find-file (concat org-directory
+    ;;                    (format-time-string "%Y%m%d")
+    ;;                    ".org"))
   (goto-char (point-max))
   (org-show-entry))
 
@@ -43,7 +49,7 @@
 (define-key org-mode-map (kbd "C-,") nil)
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c m") 'org-new-file)
+(define-key global-map (kbd "C-c m") 'org-open-today-file)
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
