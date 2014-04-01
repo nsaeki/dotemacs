@@ -19,8 +19,6 @@
 (global-hl-line-mode t)
 (global-linum-mode t)
 (setq linum-format "%4d ")
-(custom-set-faces
- '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333")))))
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
