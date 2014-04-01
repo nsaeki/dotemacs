@@ -61,6 +61,7 @@
     helm-gtags
     helm-ls-git
     helm-migemo
+    helm-bm
     helm
     ;; igrep
     key-chord
