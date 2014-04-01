@@ -1,5 +1,6 @@
 (require 'org)
 (setq org-startup-folded 'content)
+(setq org-directory "~/notes/")
 
 ;; org-remember
 ;; (org-remember-insinuate)
@@ -26,12 +27,23 @@
     (16 (org-insert-upheading nil))     ; C-u C-u
     (t  (org-insert-heading nil))))
 
+(defun org-new-file
+  nil
+  (interactive)
+  (find-file (concat org-directory
+                     (format-time-string "%Y%m%d")
+                     ".org"))
+  (goto-char (point-max))
+  (org-show-entry))
+
 ;; overwrites default: <C-return>      org-insert-heading-respect-content
 ;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
 ;; disables C-, and C-'
 (define-key org-mode-map (kbd "C-,") nil)
 (define-key org-mode-map (kbd "C-'") nil)
+(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c m") 'org-new-file)
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
