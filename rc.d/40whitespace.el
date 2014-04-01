@@ -1,11 +1,3 @@
-(global-hl-line-mode t)
-
-(global-linum-mode t)
-(setq linum-format "%4d ")
-(custom-set-faces
-;; '(linum ((t (:inherit (shadow default) :background "#242424")))))
- '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333")))))
-
 ;; visualize whitespace
 ;; http://qiita.com/itiut@github/items/4d74da2412a29ef59c3a
 (require 'whitespace)

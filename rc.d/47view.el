@@ -21,7 +21,6 @@
 (define-key view-mode-map (kbd "[") 'bm-previous)
 (define-key view-mode-map (kbd "]") 'bm-next)
 
-;; (install-elisp-from-emacswiki "viewer.el")
 (require 'viewer)
 
 ;; Force view-mode if file is read-only
@@ -30,23 +29,9 @@
 ;; change mode line color
 (setq viewer-modeline-color-unwritable "dark slate blue")
 (setq viewer-modeline-color-view "tomato")
-;(setq viewer-modeline-color-default "#A5BAF1")
+
+;; この時点でのmodeline colorがデフォルトになるので注意
 (viewer-change-modeline-color-setup)
 
 (setq view-mode-by-default-regexp "[_.]log$")
 ;(viewer-aggressive-setup t)
-
-;; doesn't need any more...
-;(require 'view-support)
-
-;; http://d.hatena.ne.jp/znz/20081226/emacs
-;(static-when (functionp 'hl-line-mode)
-  (add-hook 'view-mode-hook '(lambda ()
-                               (hl-line-mode 1)
-                               ;;(set-cursor-color "gray")
-                               ))
-  (defadvice view-mode-disable (after disable-hl-line-mode activate)
-    (hl-line-mode -1)
-    ;;(set-cursor-color "#5A647E")
-    )
-;)
