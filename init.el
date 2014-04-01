@@ -15,6 +15,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
+(electric-pair-mode t)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
