@@ -15,10 +15,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
-(global-linum-mode t)
-(custom-set-faces
- '(linum ((t (:inherit (shadow default) :background "#333")))))
-(global-hl-line-mode t)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -71,7 +67,7 @@
                 ("\\.xsd$" . xml-mode)
                 ("\\.rng$" . xml-mode)
                 ("\\.el$" . emacs-lisp-mode))
-	      auto-mode-alist))
+              auto-mode-alist))
 
 ;; creates emacs backup and autosave files in backup directory
 (defvar user-temporary-file-directory "~/.emacs.d/backup")
@@ -111,10 +107,10 @@
   (let (path)
     (dolist (path paths paths)
       (let ((default-directory
-	      (expand-file-name (concat "~/.emacs.d/" path))))
-	(add-to-list 'load-path default-directory)
-	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-	    (normal-top-level-add-subdirs-to-load-path))))))
+              (expand-file-name (concat "~/.emacs.d/" path))))
+        (add-to-list 'load-path default-directory)
+        (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+            (normal-top-level-add-subdirs-to-load-path))))))
 (add-to-load-path "elisp")
 
 ;; init scripts
