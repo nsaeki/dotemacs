@@ -3,6 +3,7 @@
 *.elc
 auto-save-list
 bookmark
+bm-repository
 history
 save-places
 tramp
