@@ -35,14 +35,14 @@
 
 (global-whitespace-mode 1)
 
-(defvar my/bg-color "#232323")
+(defvar my/bg-color "#282828")
 (set-face-attribute 'whitespace-trailing nil
                     :background my/bg-color
                     :foreground "DeepPink"
                     :underline t)
 (set-face-attribute 'whitespace-tab nil
                     :background my/bg-color
-                    :foreground "DarkGray"
+                    :foreground "#363636"
                     :underline t)
 (set-face-attribute 'whitespace-space nil
                     :background my/bg-color
