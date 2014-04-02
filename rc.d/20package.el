@@ -111,7 +111,9 @@
     yari
     yasnippet
     ;; yasnippet-bundle
-    zencoding-mode))
+    zencoding-mode
+    dockerfile-mode
+    ))
 
 (dolist (package my/elpa-packages)
   (unless (package-installed-p package)
