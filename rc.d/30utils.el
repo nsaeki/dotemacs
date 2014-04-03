@@ -6,6 +6,7 @@
 ;; (setq linum-format "%4d ")
 
 (require 'open-junk-file)
+(global-set-key (kbd "C-c j") 'open-junk-file)
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
