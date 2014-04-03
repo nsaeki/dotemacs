@@ -20,6 +20,9 @@
 (global-linum-mode t)
 (setq linum-format "%4d ")
 
+;; do not create .# lock file
+;; (setq create-lockfiles nil)
+
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -71,8 +74,10 @@
 ;; creates emacs backup and autosave files in backup directory
 (defvar user-temporary-file-directory "~/.emacs.d/backup")
 (make-directory user-temporary-file-directory t)
+(setq make-backup-files nil)
 (setq backup-directory-alist
       `(("." . ,user-temporary-file-directory)))
+(setq auto-save-default nil)
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
