@@ -8,6 +8,7 @@
                 ("\\.rake$" . ruby-mode)
                 ("\\.thor$" . ruby-mode)
                 ("Rakefile$" . ruby-mode)
+                ("Thorfile$" . ruby-mode)
                 ("Gemfile$" . ruby-mode)
                 ("Procfile$" . ruby-mode)
                 ("Capfile$" . ruby-mode)
