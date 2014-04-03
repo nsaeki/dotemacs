@@ -62,6 +62,7 @@
     helm-ls-git
     helm-migemo
     helm-bm
+    helm-ag
     helm
     ;; igrep
     key-chord
