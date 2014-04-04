@@ -12,6 +12,7 @@
                 ("Procfile$" . ruby-mode)
                 ("Capfile$" . ruby-mode)
                 ("Guardfile$" . ruby-mode)
+                ("Berksfile$" . ruby-mode)
                 ("Vagrantfile$" . ruby-mode))
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
