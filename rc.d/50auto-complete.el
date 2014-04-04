@@ -1,4 +1,4 @@
-;; (auto-install-batch "auto-complete")
+(ensure-package-installed 'auto-complete)
 (when (require 'auto-complete-config nil t)
   (add-to-list 'ac-dictionary-directories
 	       "~/.emacs.d/ac-dict")

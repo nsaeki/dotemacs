@@ -1,13 +1,15 @@
+(ensure-package-installed 'ag 'helm-ag 'wgrep-ag)
+
 (require 'ag)
+(require 'helm-ag)
 (setq ag-highlight-search t)
 ;; (setq ag-reuse-window 'nil)
 ;; (setq ag-reuse-buffers 'nil)
-(global-set-key (kbd "C-x g") 'ag)
+(global-set-key (kbd "C-x g") 'helm-ag)
 
 (require 'wgrep-ag)
 (autoload 'wgrep-ag-setup "wgrep-ag")
 (add-hook 'ag-mode-hook 'wgrep-ag-setup)
-
 (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
 
 ;; ref. http://kotatu.org/blog/2013/12/18/emacs-ag-wgrep-for-code-grep-search/

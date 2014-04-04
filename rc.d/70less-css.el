@@ -1,2 +1,2 @@
-;; (auto-install-from-url "https://raw.github.com/purcell/less-css-mode/master/less-css-mode.el")
+(ensure-package-installed 'less-css-mode)
 (require 'less-css-mode)

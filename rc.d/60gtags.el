@@ -1,3 +1,4 @@
+(ensure-package-installed 'gtags 'helm-gtags)
 (require 'gtags)
 
 (setq c-mode-hook '(lambda () (gtags-mode 1)))

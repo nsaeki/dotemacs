@@ -1,3 +1,4 @@
+(ensure-package-installed 'shell-command)
 (require 'shell-command)
 (shell-command-completion-mode)
 
@@ -5,7 +6,9 @@
 ;; (global-linum-mode t)
 ;; (setq linum-format "%4d ")
 
+(ensure-package-installed 'open-junk-file)
 (require 'open-junk-file)
+(global-set-key (kbd "C-c j") 'open-junk-file)
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
@@ -30,26 +33,24 @@
   (isearch-search-and-update))
 (define-key isearch-mode-map "\M-w" 'isearch-yank-symbol)
 
-;; (auto-install-batch "sequential-command")
+(ensure-package-installed 'sequential-command)
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
-;; (install-elisp-from-emacswiki "recentf-ext.el")
+(ensure-package-installed 'recentf-ext)
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAGS$" "/var/tmp"))
 (require 'recentf-ext)
 
-;; (install-elisp-from-emacswiki "color-moccur.el")
+(ensure-package-installed 'color-moccur)
 (require 'color-moccur)
 (setq moccur-split-word t)
-
-;; (install-elisp-from-emacswiki "column-marker.el")
-;(require 'column-marker)
 
 ;; (install-elisp "http://taiyaki.org/elisp/mell/src/mell.el")
 ;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
 (require 'text-adjust)
 
+(ensure-package-installed 'point-undo)
 (require 'point-undo)
 (define-key global-map (kbd "C-z") 'point-undo)
 (define-key global-map (kbd "C-M-z") 'point-redo)
@@ -60,6 +61,7 @@
 (autoload 'dmacro-exec "dmacro" nil t)
 
 ;; sml-modeline-mode
+(ensure-package-installed 'sml-modeline)
 (require 'sml-modeline-autoloads)
 (sml-modeline-mode t)
 (set-face-foreground 'sml-modeline-end-face "#000000")

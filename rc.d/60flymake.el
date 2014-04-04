@@ -42,4 +42,3 @@
 (global-set-key "\C-ce" 'flymake-display-err-minibuf)
 (global-set-key "\C-cn" 'flymake-display-next-error)
 (global-set-key "\C-cp" 'flymake-display-prev-error)
-
