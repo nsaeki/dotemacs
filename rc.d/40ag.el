@@ -1,3 +1,5 @@
+(ensure-package-installed 'ag 'helm-ag 'wgrep-ag)
+
 (require 'ag)
 (require 'helm-ag)
 (setq ag-highlight-search t)

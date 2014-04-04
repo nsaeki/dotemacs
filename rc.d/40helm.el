@@ -1,3 +1,4 @@
+(ensure-package-installed 'helm)
 (require 'helm-config)
 (require 'helm-match-plugin)
 ;; (require 'heml-show-completion)
@@ -29,10 +30,11 @@
 ;; (require 'helm-etags)
 ;; (define-key global-map (kbd "M-.") 'helm-etags-select-from-here)
 
-;; (install-elisp-from-emacswiki "descbinds-helm.el")
+(ensure-package-installed 'helm-descbinds)
 (require 'helm-descbinds)
 (helm-descbinds-install)
 
+(ensure-package-installed 'helm-c-moccur)
 (require 'helm-c-moccur)
 (setq moccur-split-word t)
 (global-set-key (kbd "M-o") 'helm-c-moccur-occur-by-moccur)
@@ -42,5 +44,6 @@
              (local-set-key (kbd "O") 'helm-c-moccur-dired-do-moccur-by-moccur)))
 (define-key isearch-mode-map (kbd "M-o") 'helm-c-moccur-from-isearch)
 
+(ensure-package-installed 'helm-migemo)
 (require 'helm-migemo)
 ;;(setq helm-use-migemo t)

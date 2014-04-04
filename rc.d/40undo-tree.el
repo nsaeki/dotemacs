@@ -1,4 +1,4 @@
 ;;http://www.emacswiki.org/emacs/UndoTree
-;; (install-elisp "http://www.dr-qubit.org/undo-tree/undo-tree.el")
+(ensure-package-installed 'undo-tree)
 (require 'undo-tree)
 (global-undo-tree-mode)

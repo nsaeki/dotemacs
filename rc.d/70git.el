@@ -1,7 +1,9 @@
+(ensure-package-installed 'magit)
 (require 'magit)
-(require 'key-chord)
 ;; (key-chord-define-global "vc" 'magit-status) ;; moved to 40key-chord.el
 
+;; (ensure-package-installed 'helm-git 'helm-git-grep 'helm-git-files 'helm-ls-git)
+;; (require 'helm-git-files)
 ;; (require 'helm-ls-git)
 ;; (when (require 'helm-files)
 ;;   (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git-status t)

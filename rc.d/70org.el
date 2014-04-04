@@ -1,3 +1,4 @@
+(ensure-package-installed 'org)
 (require 'org)
 (setq org-startup-folded 'content)
 (setq org-directory "~/notes/")

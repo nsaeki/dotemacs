@@ -1,3 +1,5 @@
+(ensure-package-installed 'bm 'helm-bm)
+
 ;; copied from bm.el
 ;; Make sure the repository is loaded as early as possible
 (setq bm-restore-repository-on-load t)

@@ -1,4 +1,4 @@
-;; ruby-mode
+(ensure-package-installed 'ruby-mode 'flymake-ruby 'rspec-mode)
 (require 'ruby-mode)
 
 (setq auto-mode-alist
@@ -18,20 +18,24 @@
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; https://github.com/senny/rbenv.el
+(ensure-package-installed 'rbenv)
 (require 'rbenv)
 (global-rbenv-mode)
 
 ;; rcodetools and xmpfilter
 ;; gem install rcodetools
+;; (el-get-install 'rcodetools)
 (require 'rcodetools)
 ;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
 
 ;; ruby-dev
 ;; https://github.com/Mon-Ouie/ruby-dev.el
 ;; gem install pry yard
+(ensure-package-installed 'ruby-dev)
 (autoload 'turn-on-ruby-dev "ruby-dev" nil t)
 (add-hook 'ruby-mode-hook 'turn-on-ruby-dev)
 
+(ensure-package-installed 'ruby-end)
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
   '(lambda ()
@@ -40,10 +44,12 @@
     (electric-layout-mode t)))
 
 ;; ruby-block
+(ensure-package-installed 'ruby-block)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
+(ensure-package-installed 'flymake-ruby)
 (require 'flymake-ruby)
 
 ;; open gem source

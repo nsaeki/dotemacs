@@ -1,3 +1,3 @@
-;; (install-elisp "http://github.com/chrisdone/zencoding/raw/master/zencoding-mode.el")
+(ensure-package-installed 'zencoding-mode)
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
