@@ -23,3 +23,9 @@
 (setq migemo-use-pattern-alist t)
 (setq migemo-use-frequent-pattern-alist t)
 
+;; rewrite migemo isearch key-map
+(add-hook 'isearch-mode-hook
+          (lambda ()
+            (define-key isearch-mode-map "\C-y" 'isearch-yank-kill)
+            (define-key isearch-mode-map "\M-y" 'migemo-isearch-yank-line))
+          t)                            ; third arg means add last hook.
