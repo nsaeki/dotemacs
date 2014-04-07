@@ -31,15 +31,15 @@
 (defun org-open-today-file
   nil
   (interactive)
-  (let ((basename (read-string "Open org file with basename: ")))
-    (find-file (concat org-directory
-                       (when (> (length basename) 0)
-                         (concat basename "-"))
-                       (format-time-string "%Y%m%d")
-                       ".org")))
-    ;; (find-file (concat org-directory
-    ;;                    (format-time-string "%Y%m%d")
-    ;;                    ".org"))
+  ;; (let ((basename (read-string "Open org file with basename: ")))
+  ;;   (find-file (concat org-directory
+  ;;                      (when (> (length basename) 0)
+  ;;                        (concat basename "-"))
+  ;;                      (format-time-string "%Y%m%d")
+  ;;                      ".org")))
+  (find-file (concat org-directory
+                     (format-time-string "%Y%m%d")
+                     ".org"))
   (goto-char (point-max))
   (org-show-entry))
 
