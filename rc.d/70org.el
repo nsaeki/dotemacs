@@ -1,17 +1,13 @@
 (ensure-package-installed 'org)
 (require 'org)
 (setq org-startup-folded 'content)
-(setq org-directory "~/notes/")
+(setq org-directory "~/org")
+(setq org-agenda-files (list org-directory))
+(setq org-default-notes-file (concat org-directory "/notes.org"))
 
-;; org-remember
-;; (org-remember-insinuate)
-;; ;; (setq org-directory "~/notes/")
-;; (setq org-default-notes-file (expand-file-name "memo.org" org-directory))
-;; (setq org-remember-templates
-;;       '(("Note" ?n "** %?\n   %i\n   %a\n   %T" nil "Inbox")
-;; ;        ("Todo" ?t "** TODO %?\n   %i\n   %a   %T\n" nil "Inbox")
-;;        ))
-;; (defalias 'memo 'org-remember)
+(setq org-capture-templates
+      '(("n" "Notes" entry (file org-default-notes-file)
+             "* %?\n  %U\n  %a")))
 
 (defun org-insert-upheading (arg)
   "insert upheading"
@@ -28,7 +24,9 @@
     (16 (org-insert-upheading nil))     ; C-u C-u
     (t  (org-insert-heading nil))))
 
-(defun org-open-today-file
+(setq org-journal-directory (concat org-directory "/journal"))
+(push org-journal-directory org-agenda-files)
+(defun org-open-journal-file
   nil
   (interactive)
   ;; (let ((basename (read-string "Open org file with basename: ")))
@@ -37,7 +35,7 @@
   ;;                        (concat basename "-"))
   ;;                      (format-time-string "%Y%m%d")
   ;;                      ".org")))
-  (find-file (concat org-directory
+  (find-file (concat org-journal-directory "/"
                      (format-time-string "%Y%m%d")
                      ".org"))
   (goto-char (point-max))
@@ -50,7 +48,10 @@
 (define-key org-mode-map (kbd "C-,") nil)
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c m") 'org-open-today-file)
+;; (define-key global-map (kbd "C-c k") 'org-capture)
+(define-key global-map (kbd "C-c m") 'org-open-journal-file)
+(define-key global-map "\C-cn"
+  (lambda () (interactive) (org-capture nil "n")))
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
