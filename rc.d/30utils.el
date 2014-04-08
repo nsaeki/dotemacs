@@ -5,7 +5,7 @@
 (ensure-package-installed 'open-junk-file)
 (require 'open-junk-file)
 (setq open-junk-file-format "~/sandbox/%Y-%m-%d-%H%M%S.")
-(global-set-key (kbd "C-c s") 'open-junk-file)
+(global-set-key (kbd "C-c j") 'open-junk-file)
 
 ;; camelCase-mode
 ;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
