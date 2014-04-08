@@ -20,6 +20,3 @@
 
 ;; http proxy
 ;; (setq url-proxy-services '(("http" . "proxy.host:8080")))
-
-(setq org-directory "~/notes/")
-(setq open-junk-file-format "~/work/sandbox/%Y-%m-%d-%H%M%S.")
