@@ -33,5 +33,5 @@
 ;; この時点でのmodeline colorがデフォルトになるので注意
 (viewer-change-modeline-color-setup)
 
-(setq view-mode-by-default-regexp "[_.]log$")
+(setq view-mode-by-default-regexp "\\(?:[_.]log\\|\.gz\\)$")
 ;(viewer-aggressive-setup t)
