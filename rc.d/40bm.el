@@ -32,6 +32,7 @@
 (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
 
 (global-set-key (kbd "C-M-m") 'bm-toggle)
+(global-set-key (kbd "C-@") 'bm-toggle)
 (global-set-key (kbd "M-[") 'bm-previous)
 (global-set-key (kbd "M-]") 'bm-next)
 
