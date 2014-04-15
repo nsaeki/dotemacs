@@ -6,7 +6,8 @@
 (require 'helm-git-files)
 (global-set-key (kbd "C-:") 'helm-git-files)
 
-(require 'helm-ls-git)
-(when (require 'helm-files)
-  (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git-status t)
-  (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git t))
+;; disable this.  suspiciously it crashes emacs.
+;; (require 'helm-ls-git)
+;; (when (require 'helm-files)
+;;   (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git-status t)
+;;   (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git t))
