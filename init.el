@@ -13,6 +13,7 @@
 (savehist-mode 1)
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
 (electric-pair-mode t)
