@@ -3,6 +3,7 @@
 
 (setq auto-mode-alist
       (append '(("\\.rb$" . ruby-mode)
+                ("\\.gemspec$" . ruby-mode)
                 ("\\.rjs$" . ruby-mode)
                 ("\\.ru$" . ruby-mode)
                 ("\\.rake$" . ruby-mode)
@@ -19,14 +20,14 @@
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; https://github.com/senny/rbenv.el
-(ensure-package-installed 'rbenv)
-(require 'rbenv)
-(global-rbenv-mode)
+;; (ensure-package-installed 'rbenv)
+;; (require 'rbenv)
+;; (global-rbenv-mode)
 
 ;; rcodetools and xmpfilter
 ;; gem install rcodetools
 ;; (el-get-install 'rcodetools)
-(require 'rcodetools)
+;; (require 'rcodetools)
 ;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
 
 ;; ruby-dev
