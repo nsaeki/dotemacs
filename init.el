@@ -10,6 +10,7 @@
 (line-number-mode t)
 (column-number-mode t)
 (setq-default indent-tabs-mode nil)
+(setq-default line-spacing 0.2)
 (savehist-mode 1)
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
