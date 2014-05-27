@@ -21,13 +21,13 @@
 
 ;; https://github.com/senny/rbenv.el
 ;; (ensure-package-installed 'rbenv)
-;; (require 'rbenv)
-;; (global-rbenv-mode)
+(require 'rbenv)
+(global-rbenv-mode)
 
 ;; rcodetools and xmpfilter
 ;; gem install rcodetools
 ;; (el-get-install 'rcodetools)
-;; (require 'rcodetools)
+(require 'rcodetools)
 ;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
 
 ;; ruby-dev
