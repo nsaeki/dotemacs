@@ -65,3 +65,6 @@
 (set-face-background 'sml-modeline-end-face "#b0b0b0")
 (set-face-foreground 'sml-modeline-vis-face "#000000")
 (set-face-background 'sml-modeline-vis-face "#80c000")
+
+;; midnight mode for clean-buffer-list
+(require 'midnight)
