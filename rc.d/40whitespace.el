@@ -42,3 +42,7 @@
                     :weight 'bold)
 (set-face-attribute 'whitespace-empty nil
                     :background my/bg-color)
+
+;; https://github.com/purcell/whitespace-cleanup-mode
+(ensure-package-installed 'whitespace-cleanup-mode)
+(global-whitespace-cleanup-mode t)
