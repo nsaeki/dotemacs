@@ -45,4 +45,4 @@
 
 ;; https://github.com/purcell/whitespace-cleanup-mode
 (ensure-package-installed 'whitespace-cleanup-mode)
-(global-whitespace-cleanup-mode t)
+;; (global-whitespace-cleanup-mode t)
