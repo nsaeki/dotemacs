@@ -20,7 +20,7 @@
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; https://github.com/senny/rbenv.el
-;; (ensure-package-installed 'rbenv)
+(ensure-package-installed 'rbenv)
 (require 'rbenv)
 (global-rbenv-mode)
 
@@ -30,20 +30,16 @@
 (require 'rcodetools)
 ;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
 
-;; ruby-dev
-;; https://github.com/Mon-Ouie/ruby-dev.el
-;; gem install pry yard
-(ensure-package-installed 'ruby-dev)
-(autoload 'turn-on-ruby-dev "ruby-dev" nil t)
-(add-hook 'ruby-mode-hook 'turn-on-ruby-dev)
-
-(ensure-package-installed 'ruby-end)
-(require 'ruby-end)
-(add-hook 'ruby-mode-hook
-  '(lambda ()
-    (electric-pair-mode t)
-    (electric-indent-mode t)
-    (electric-layout-mode t)))
+(ensure-package-installed 'smartparens)
+(require 'smartparens-ruby)
+;; highlight block with smartparens
+;; (eval-after-load "ruby-mode"
+;;   '(progn
+;;      (require 'smartparens-ruby)
+;;      (set-face-attribute 'sp-show-pair-match-face nil
+;;                          :background "grey20" :foreground "green"
+;;                          :weight 'semi-bold)))
+;; (add-hook 'ruby-mode-hook 'show-smartparens-mode)
 
 ;; ruby-block
 (ensure-package-installed 'ruby-block)

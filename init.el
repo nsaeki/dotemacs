@@ -17,7 +17,7 @@
 (setq use-dialog-box nil)
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
-(electric-pair-mode t)
+;; (electric-pair-mode t) ;; use smartparens
 (global-hl-line-mode t)
 (global-linum-mode t)
 (setq linum-format "%4d ")

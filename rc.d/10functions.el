@@ -10,11 +10,11 @@
   (save-restriction
     (widen)
     (if (string= "#!" (buffer-substring-no-properties 1 (min 3 (point-max))))
-	(let ((name (buffer-file-name)))
-	  (or (equal ?. (string-to-char (file-name-nondirectory name)))
-	      (let ((mode (file-modes name)))
-		(set-file-modes name (logior mode (logand (/ mode 4) 73)))
-		(message (concat "Wrote " name " (+x)"))))))))
+        (let ((name (buffer-file-name)))
+          (or (equal ?. (string-to-char (file-name-nondirectory name)))
+              (let ((mode (file-modes name)))
+                (set-file-modes name (logior mode (logand (/ mode 4) 73)))
+                (message (concat "Wrote " name " (+x)"))))))))
 (add-hook 'after-save-hook 'make-file-executable)
 
 ;; go to the matching paren if on a paren
@@ -23,7 +23,7 @@
   "Go to the matching paren if on a paren."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-	((looking-at "\\s\)") (forward-char 1) (backward-list 1))))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))))
 
 ;; toggle truncate lines
 ;; http://ubulog.blogspot.com/2007/09/emacsonoff.html
