@@ -7,12 +7,12 @@
 (setq java-mode-hook '(lambda () (gtags-mode 1)))
 
 (setq gtags-select-buffer-single)
-(global-set-key "\C-cgt" 'gtags-find-tag)
-(global-set-key "\C-cgr" 'gtags-find-rtag)
-(global-set-key "\C-cgs" 'gtags-find-symbol)
-(global-set-key "\C-cgp" 'gtags-find-pattern)
-(global-set-key "\C-cgf" 'gtags-find-file)
-(global-set-key "\C-cgb" 'gtags-pop-stack)
+;; (global-set-key "\C-cgt" 'gtags-find-tag)
+;; (global-set-key "\C-cgr" 'gtags-find-rtag)
+;; (global-set-key "\C-cgs" 'gtags-find-symbol)
+;; (global-set-key "\C-cgp" 'gtags-find-pattern)
+;; (global-set-key "\C-cgf" 'gtags-find-file)
+;; (global-set-key "\C-cgb" 'gtags-pop-stack)
 
 (require 'helm-gtags)
 ;; http://emacs.g.hatena.ne.jp/k1LoW/20090204/1233759384
