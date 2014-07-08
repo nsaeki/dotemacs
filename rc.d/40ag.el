@@ -5,7 +5,7 @@
 (setq ag-highlight-search t)
 ;; (setq ag-reuse-window 'nil)
 ;; (setq ag-reuse-buffers 'nil)
-(global-set-key (kbd "C-x g") 'helm-ag)
+(global-set-key (kbd "C-c g") 'helm-ag)
 
 (require 'wgrep-ag)
 (autoload 'wgrep-ag-setup "wgrep-ag")
