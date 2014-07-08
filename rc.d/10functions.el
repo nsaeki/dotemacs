@@ -50,7 +50,7 @@
 ;;  (when (one-window-p) (split-window-vertically))
   (when (one-window-p) (split-window-conditional))
   (other-window 1))
-(global-set-key (kbd "C-,") 'other-window-or-split)
+;; (global-set-key (kbd "C-,") 'other-window-or-split)
 
 ;; preserve scratch buffer
 ;; http://www-tsujii.is.s.u-tokyo.ac.jp/~yoshinag/tips/elisp_tips.html#scratch
