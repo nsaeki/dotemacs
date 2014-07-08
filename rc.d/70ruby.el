@@ -47,12 +47,17 @@
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
-(ensure-package-installed 'flymake-ruby)
-(require 'flymake-ruby)
-
 ;; rspec-mode
 (ensure-package-installed 'rspec-mode)
 (require 'rspec-mode)
+
+;; launch pry in inf-ruby
+;; https://gist.github.com/jsvnm/1390890
+(require 'inf-ruby)
+(add-to-list 'inf-ruby-implementations '("pry" . "pry"))
+(setq inf-ruby-default-implementation "pry")
+(setq inf-ruby-first-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)> *")
+(setq inf-ruby-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)[>*\"'] *")
 
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1

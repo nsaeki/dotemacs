@@ -10,5 +10,5 @@
               smart-compile-alist))
 
 ;; set to default (using shebang)
-(delete '("\\.pl\\'" . "perl -cw %f") smart-compile-alist)
-(delete '("\\.rb\\'" . "ruby -cw %f") smart-compile-alist)
+;; (delete '("\\.pl\\'" . "perl -cw %f") smart-compile-alist)
+;; (delete '("\\.rb\\'" . "ruby -cw %f") smart-compile-alist)
