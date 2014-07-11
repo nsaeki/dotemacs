@@ -3,4 +3,4 @@
 (global-anzu-mode t)
 (global-set-key (kbd "C-c q") 'anzu-query-replace)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
-(global-set-key (kbd "C-c t") 'anzu-query-replace-at-cursor-thing)
+(global-set-key (kbd "C-c s") 'anzu-query-replace-at-cursor-thing)

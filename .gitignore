@@ -21,3 +21,4 @@ semanticdb
 /rc.d/[0-9]*environment.el
 /url/
 /var/
+/.mc-lists.el
