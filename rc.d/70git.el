@@ -2,11 +2,17 @@
 (require 'magit)
 ;; (key-chord-define-global "vc" 'magit-status) ;; moved to 40key-chord.el
 
+;; (ensure-package-installed 'git-gutter)
+(require 'git-gutter)
+;; (ensure-package-installed 'git-gutter-fringe)
+;; (require 'git-gutter-fringe)
+(global-git-gutter-mode t)
+
 ;; (ensure-package-installed 'helm-git 'helm-git-grep 'helm-git-files 'helm-ls-git)
 ;; (require 'helm-git-files)
 ;; (global-set-key (kbd "C-:") 'helm-git-files)
 
-;; disable this.  suspiciously it crashes emacs.
+;; disable this. suspiciously it crashes emacs.
 ;; (require 'helm-ls-git)
 ;; (when (require 'helm-files)
 ;;   (add-to-list 'helm-for-files-preferred-list helm-c-source-ls-git-status t)
