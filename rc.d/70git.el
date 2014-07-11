@@ -9,16 +9,15 @@
 ;; (require 'git-gutter-fringe)
 ;; (setq git-gutter-fr:side 'right-fringe)
 (global-git-gutter-mode t)
-;; (custom-set-variables
-;;  '(git-gutter:modified-sign "|")
-;;  '(git-gutter:added-sign "|")
-;;  '(git-gutter:deleted-sign "|"))
-;; (set-face-background 'git-gutter:modified "plum4")
-;; (set-face-background 'git-gutter:added "SeaGreen4")
-;; (set-face-background 'git-gutter:deleted "red")
 (set-face-foreground 'git-gutter:modified "plum4")
 (set-face-foreground 'git-gutter:added "seagreen4")
-(set-face-foreground 'git-gutter:deleted "red")
+(set-face-foreground 'git-gutter:deleted "red4")
+;; (custom-set-variables
+;;  '(git-gutter:unchanged-sign " "))
+;; (set-face-background 'git-gutter:unchanged "#333")
+;; (set-face-background 'git-gutter:modified "#333")
+;; (set-face-background 'git-gutter:added "#333")
+;; (set-face-background 'git-gutter:deleted "#333")
 
 ;; (ensure-package-installed 'helm-git 'helm-git-grep 'helm-git-files 'helm-ls-git)
 ;; (require 'helm-git-files)
