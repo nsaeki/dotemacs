@@ -51,6 +51,10 @@
 (ensure-package-installed 'rspec-mode)
 (require 'rspec-mode)
 
+;; yard-mode
+(ensure-package-installed 'yard-mode)
+(add-hook 'ruby-mode-hook 'yard-mode)
+
 ;; launch pry in inf-ruby
 ;; https://gist.github.com/jsvnm/1390890
 (require 'inf-ruby)
