@@ -23,7 +23,7 @@
 ;;                     helm-c-source-locate)))
 
 (global-set-key (kbd "C-;") 'helm-for-files)
-(global-set-key (kbd "C-,") 'helm-M-x)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
