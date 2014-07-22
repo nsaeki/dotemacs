@@ -68,3 +68,12 @@
 
 ;; midnight mode for clean-buffer-list
 (require 'midnight)
+
+;; marked
+;; http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
+(defun marked ()
+  "run Marked on the current file and revert the buffer"
+  (interactive)
+  (shell-command
+   (format "open -a 'Marked 2' %s"
+       (shell-quote-argument (buffer-file-name)))))
