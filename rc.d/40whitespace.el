@@ -38,7 +38,8 @@
                     :underline t)
 (set-face-attribute 'whitespace-space nil
                     :background my/bg-color
-                    :foreground "GreenYellow"
+                    :foreground "#404040"
+                    ;; :foreground "GreenYellow"
                     :weight 'bold)
 (set-face-attribute 'whitespace-empty nil
                     :background my/bg-color)
