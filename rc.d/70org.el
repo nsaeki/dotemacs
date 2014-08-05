@@ -49,9 +49,9 @@
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 ;; (define-key global-map (kbd "C-c k") 'org-capture)
-(define-key global-map (kbd "C-c m") 'org-open-journal-file)
-(define-key global-map "\C-cn"
-  (lambda () (interactive) (org-capture nil "n")))
+(define-key global-map (kbd "C-c j") 'org-open-journal-file)
+;; (define-key global-map "\C-cn"
+;;   (lambda () (interactive) (org-capture nil "n")))
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
