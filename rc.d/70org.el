@@ -44,11 +44,11 @@
 ;; overwrites default: <C-return>      org-insert-heading-respect-content
 ;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
 
-;; disables C-, and C-'
-(define-key org-mode-map (kbd "C-,") nil)
+;; disables C-, and C-' (org-cycle-agenda-files)
+;; (define-key org-mode-map (kbd "C-,") nil)
 (define-key org-mode-map (kbd "C-'") nil)
-(define-key org-mode-map (kbd "C-c a") 'org-agenda)
 ;; (define-key global-map (kbd "C-c k") 'org-capture)
+(define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c j") 'org-open-journal-file)
 ;; (define-key global-map "\C-cn"
 ;;   (lambda () (interactive) (org-capture nil "n")))
