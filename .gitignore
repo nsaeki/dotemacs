@@ -22,3 +22,5 @@ semanticdb
 /url/
 /var/
 /.mc-lists.el
+/projectile-bookmarks.eld
+/projectile.cache
