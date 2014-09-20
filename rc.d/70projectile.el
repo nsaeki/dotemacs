@@ -7,3 +7,10 @@
 (require 'helm-projectile)
 ;; (global-set-key (kbd "C-c h") 'helm-projectile)
 (global-set-key (kbd "C-'") 'helm-projectile)
+
+;; reorder sources
+(setq helm-projectile-sources-list
+  '(helm-source-projectile-buffers-list
+    helm-source-projectile-files-list
+    helm-source-projectile-projects
+    helm-source-projectile-recentf-list))
