@@ -47,3 +47,9 @@
 (ensure-package-installed 'helm-migemo)
 (require 'helm-migemo)
 ;;(setq helm-use-migemo t)
+
+(ensure-package-installed 'helm-ghq)
+(require 'helm-ghq)
+(setq helm-for-files-preferred-list
+      (append helm-for-files-preferred-list '(helm-source-ghq)))
+(global-set-key (kbd "C-:") 'helm-ghq)
