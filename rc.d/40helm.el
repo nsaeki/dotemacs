@@ -11,13 +11,6 @@
     helm-source-file-cache
     helm-source-files-in-current-dir))
 
-;; (cond ((eq system-type 'darwin)
-;;        (add-to-list 'helm-for-files-prefered-list
-;;                     helm-c-source-mac-spotlight))
-;;       ((eq system-type 'gnu/linux)
-;;        (add-to-list 'helm-for-files-prefered-list
-;;                     helm-c-source-locate)))
-
 (global-set-key (kbd "C-;") 'helm-for-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-.") 'helm-imenu)
