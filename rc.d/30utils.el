@@ -12,23 +12,8 @@
 ;; Emacs 23 has `capitalized-words-mode', but it doesn't work correctly.
 (autoload 'camelCase-mode "camelCase-mode" nil t)
 
-;; ThingAtPoint and isearch-word-at-point
+;; ThingAtPoint
 (require 'thingatpt)
-(defun isearch-yank-symbol ()
-  "*Put symbol at current point into search string."
-  (interactive)
-  (let ((sym (symbol-at-point)))
-    (if sym
-        (progn
-          (setq isearch-regexp t
-                isearch-string (concat "\\_<"
-                                       (regexp-quote (symbol-name sym)) "\\_>")
-                isearch-message (mapconcat
-                                 'isearch-text-char-description isearch-string "")
-                isearch-yank-flag t))
-      (ding)))
-  (isearch-search-and-update))
-(define-key isearch-mode-map "\M-w" 'isearch-yank-symbol)
 
 (ensure-package-installed 'sequential-command)
 (require 'sequential-command-config)
