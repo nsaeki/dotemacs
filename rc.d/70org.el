@@ -55,5 +55,5 @@
 
 ;; ORGMODE-markdown
 ;; https://github.com/alexhenning/ORGMODE-Markdown
-(load "org-export-generic.el")
-(load "org-export-markdown.el")
+;; (load "org-export-generic.el")
+;; (load "org-export-markdown.el")
