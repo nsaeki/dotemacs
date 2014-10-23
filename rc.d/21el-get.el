@@ -27,7 +27,6 @@
       (append
        '(mcomplete
          mcomplete-history
-         rcodetools
          )))
 
 (el-get 'sync my/el-get-packages)

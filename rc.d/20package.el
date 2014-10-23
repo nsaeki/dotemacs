@@ -27,24 +27,3 @@ Return a list of installed packages or nil for every skipped package."
      (unless (package-installed-p package)
        (package-install package)))
    packages))
-
-(defvar my/elpa-packages
-  '(ac-dabbrev
-    browse-kill-ring
-    quickrun
-    summarye
-    sass-mode
-    haml-mode
-    flymake-css
-    flymake-cursor
-    flymake-haml
-    flymake-jslint
-    flymake-python-pyflakes
-    flymake-sass
-    flymake-shell
-    flymake-easy
-    ))
-
-(dolist (package my/elpa-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
