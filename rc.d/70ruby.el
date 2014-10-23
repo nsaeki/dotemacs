@@ -25,11 +25,6 @@
 (global-rbenv-mode)
 
 ;; rcodetools and xmpfilter
-;; gem install rcodetools
-;; (el-get-install 'rcodetools)
-(require 'rcodetools)
-;; (define-key ruby-mode-map (kbd "M-p") 'xmp)
-
 (ensure-package-installed 'smartparens)
 (require 'smartparens-ruby)
 ;; highlight block with smartparens
