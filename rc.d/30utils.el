@@ -7,11 +7,6 @@
 (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
 (global-set-key (kbd "C-c k") 'open-junk-file)
 
-;; camelCase-mode
-;; http://www.eecs.ucf.edu/~leavens/emacs/camelCase/camelCase-mode.el
-;; Emacs 23 has `capitalized-words-mode', but it doesn't work correctly.
-(autoload 'camelCase-mode "camelCase-mode" nil t)
-
 ;; ThingAtPoint
 (require 'thingatpt)
 
