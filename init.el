@@ -23,7 +23,7 @@
 (setq linum-format "%4d ")
 
 ;; for CamelCase
-(global-subword-mode 1)
+;; (global-subword-mode 1)
 
 ;; do not create .# lock file
 ;; (setq create-lockfiles nil)
