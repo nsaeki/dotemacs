@@ -1,13 +1,19 @@
 (ensure-package-installed 'org)
 (require 'org)
-(setq org-startup-folded 'content)
+(setq org-startup-folded 'nofold)
 (setq org-directory "~/org")
 (setq org-agenda-files (list org-directory))
-(setq org-default-notes-file (concat org-directory "/notes.org"))
 
+(define-key org-mode-map (kbd "C-'") nil)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+
+(setq org-default-capture-file (concat org-directory "/capture.org"))
 (setq org-capture-templates
-      '(("n" "Notes" entry (file org-default-notes-file)
+      '(("n" "Note" entry (file org-default-capture-file)
              "* %?\n  %U\n  %a")))
+
+(define-key global-map (kbd "C-c m")
+  (lambda () (interactive) (org-capture nil "n")))
 
 (defun org-insert-upheading (arg)
   "insert upheading"
@@ -24,36 +30,27 @@
     (16 (org-insert-upheading nil))     ; C-u C-u
     (t  (org-insert-heading nil))))
 
-(setq org-journal-directory (concat org-directory "/journal"))
-(push org-journal-directory org-agenda-files)
-(defun org-open-journal-file
+(setq org-notes-directory (concat org-directory "/notes"))
+(push org-notes-directory org-agenda-files)
+(defun org-open-notes
   nil
   (interactive)
-  ;; (let ((basename (read-string "Open org file with basename: ")))
-  ;;   (find-file (concat org-directory
-  ;;                      (when (> (length basename) 0)
-  ;;                        (concat basename "-"))
-  ;;                      (format-time-string "%Y%m%d")
-  ;;                      ".org")))
-  (find-file (concat org-journal-directory "/"
+  (find-file (concat org-notes-directory "/"
                      (format-time-string "%Y%m%d")
                      ".org"))
   (goto-char (point-max))
   (org-show-entry))
 
-;; overwrites default: <C-return>      org-insert-heading-respect-content
-;(define-key org-mode-map (kbd "<C-return>") 'org-insert-heading-dwim)
+(defun org-open-notes-with-name
+  nil
+  (interactive)
+  (let ((notename (read-string "Open org file with name: ")))
+    (find-file (concat org-notes-directory "/"
+                       (format-time-string "%Y%m%d")
+                       (when (> (length notename) 0)
+                         (concat "-" notename))
+                       ".org")))
+  (goto-char (point-max))
+  (org-show-entry))
 
-;; disables C-, and C-' (org-cycle-agenda-files)
-;; (define-key org-mode-map (kbd "C-,") nil)
-(define-key org-mode-map (kbd "C-'") nil)
-;; (define-key global-map (kbd "C-c k") 'org-capture)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c j") 'org-open-journal-file)
-;; (define-key global-map "\C-cn"
-;;   (lambda () (interactive) (org-capture nil "n")))
-
-;; ORGMODE-markdown
-;; https://github.com/alexhenning/ORGMODE-Markdown
-;; (load "org-export-generic.el")
-;; (load "org-export-markdown.el")
+(define-key global-map (kbd "C-c n") 'org-open-notes)
