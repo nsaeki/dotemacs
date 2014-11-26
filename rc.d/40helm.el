@@ -41,4 +41,4 @@
 (require 'helm-ghq)
 (setq helm-for-files-preferred-list
       (append helm-for-files-preferred-list '(helm-source-ghq)))
-(global-set-key (kbd "C-:") 'helm-ghq)
+;; (global-set-key (kbd "C-:") 'helm-ghq)
