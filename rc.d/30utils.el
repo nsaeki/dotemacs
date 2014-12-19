@@ -1,9 +1,8 @@
-;; (require 'shell-commandd
+;; (require 'shell-command)
 (shell-command-completion-mode)
 
 (require 'open-junk-file)
 (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
-(global-set-key (kbd "C-c k") 'open-junk-file)
 
 ;; (require 'thingatpt)
 
@@ -14,20 +13,11 @@
 (setq recentf-exclude '("/TAGS$" "/var/tmp"))
 (require 'recentf-ext)
 
-;; (require 'color-moccur)
-(setq moccur-split-word t)
-
 ;; (install-elisp "http://taiyaki.org/elisp/mell/src/mell.el")
 ;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
 (require 'text-adjust)
 
-(require 'point-undo)
-(define-key global-map (kbd "C-z") 'point-undo)
-(define-key global-map (kbd "C-M-z") 'point-redo)
-
 ;; dmacro
-(defconst *dmacro-key* "\C-t" "repeat key")
-(global-set-key *dmacro-key* 'dmacro-exec)
 (autoload 'dmacro-exec "dmacro" nil t)
 
 ;; sml-modeline-mode
@@ -52,5 +42,8 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
-;; (require 'undohist)
-;; (undohist-initialize)
+(require 'undohist)
+(undohist-initialize)
+
+(require 'goto-chg)
+(require 'point-undo)

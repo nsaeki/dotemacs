@@ -2,16 +2,11 @@
 (setq org-directory "~/org")
 (setq org-agenda-files (list org-directory))
 
-(define-key org-mode-map (kbd "C-'") nil)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-
 (setq org-default-capture-file (concat org-directory "/capture.org"))
 (setq org-capture-templates
       '(("n" "Note" entry (file org-default-capture-file)
-             "* %?\n  %U\n  %a")))
-
-(define-key global-map (kbd "C-c m")
-  (lambda () (interactive) (org-capture nil "n")))
+         "* %?\n  %U\n  %a")))
+(define-key org-mode-map (kbd "C-'") nil)
 
 (defun org-insert-upheading (arg)
   "insert upheading"
@@ -50,5 +45,3 @@
                        ".org")))
   (goto-char (point-max))
   (org-show-entry))
-
-(define-key global-map (kbd "C-c n") 'org-open-notes)

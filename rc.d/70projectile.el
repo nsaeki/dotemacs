@@ -4,7 +4,6 @@
 (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
 
 ;; (require 'helm-projectile)
-(global-set-key (kbd "C-'") 'helm-projectile)
 
 ;; reorder sources
 (setq helm-projectile-sources-list

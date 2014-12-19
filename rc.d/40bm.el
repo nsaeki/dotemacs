@@ -29,11 +29,6 @@
 (setq bm-repository-file "~/.emacs.d/bm-repository")
 (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
 
-(global-set-key (kbd "C-M-m") 'bm-toggle)
-(global-set-key (kbd "C-@") 'bm-toggle)
-(global-set-key (kbd "M-[") 'bm-previous)
-(global-set-key (kbd "M-]") 'bm-next)
-
 (setq bm-persistent-face 'bm-face)
 (custom-set-faces
   '(bm-face ((t (:background "#595900")))))

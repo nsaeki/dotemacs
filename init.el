@@ -36,13 +36,6 @@
 
 (setq scroll-preserve-screen-position t)
 
-;; keybindings
-;(global-set-key "\C-cc" 'compile)
-(global-set-key [M-return] 'indent-new-comment-line)
-(global-unset-key "\C-z")
-(define-key global-map (kbd "C-m") 'newline-and-indent)
-(define-key global-map (kbd "M-k") 'kill-this-buffer)
-
 ;; editing in dired-mode
 (require 'dired)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)

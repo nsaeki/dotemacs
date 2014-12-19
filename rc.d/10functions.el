@@ -17,14 +17,6 @@
                 (message (concat "Wrote " name " (+x)"))))))))
 (add-hook 'after-save-hook 'make-file-executable)
 
-;; go to the matching paren if on a paren
-(global-set-key "\C-x%" 'match-paren)
-(defun match-paren (arg)
-  "Go to the matching paren if on a paren."
-  (interactive "p")
-  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))))
-
 ;; toggle truncate lines
 ;; http://ubulog.blogspot.com/2007/09/emacsonoff.html
 (defun toggle-truncate-lines ()
@@ -34,7 +26,6 @@
       (setq truncate-lines nil)
     (setq truncate-lines t))
   (recenter))
-(global-set-key "\C-cl" 'toggle-truncate-lines)
 (setq-default truncate-partial-width-windows nil)
 
 (defun split-window-conditional ()

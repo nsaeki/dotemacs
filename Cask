@@ -1,10 +1,6 @@
 (source gnu)
 (source melpa)
 
-(depends-on "region-bindings-mode")
-(depends-on "volatile-highlights")
-(depends-on "undohist")
-
 (depends-on "shell-command")
 (depends-on "open-junk-file")
 (depends-on "sequential-command")
@@ -65,3 +61,8 @@
 (depends-on "yaml-mode")
 (depends-on "zencoding-mode")
 (depends-on "quickrun")
+(depends-on "region-bindings-mode")
+(depends-on "volatile-highlights")
+(depends-on "undohist")
+(depends-on "smartrep")
+(depends-on "web-mode")
