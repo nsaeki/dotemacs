@@ -1,6 +1,7 @@
 ;; visualize whitespace
 ;; http://qiita.com/itiut@github/items/4d74da2412a29ef59c3a
-(require 'whitespace)
+
+;; package: whitespace
 (setq whitespace-style '(face           ; faceで可視化
                          trailing       ; 行末
                          tabs           ; タブ
@@ -11,7 +12,8 @@
                          ))
 
 (setq whitespace-display-mappings
-      '((space-mark ?\u3000 [?\u25a1])
+      ;; '((space-mark ?\u3000 [?\u25a1])
+      '((space-mark ?\u3000 [?\uff3f])
         ;; WARNING: the mapping below has a problem.
         ;; When a TAB occupies exactly one column, it will display the
         ;; character ?\xBB at that column followed by a TAB which goes to
@@ -21,9 +23,6 @@
 
 ;; スペースは全角のみを可視化
 (setq whitespace-space-regexp "\\(\u3000+\\)")
-
-;; 保存前に自動でクリーンアップ
-;; (setq whitespace-action '(auto-cleanup))
 
 (global-whitespace-mode 1)
 
@@ -38,12 +37,17 @@
                     :underline t)
 (set-face-attribute 'whitespace-space nil
                     :background my/bg-color
-                    :foreground "#404040"
-                    ;; :foreground "GreenYellow"
+                    :foreground "#484848"
                     :weight 'bold)
 (set-face-attribute 'whitespace-empty nil
                     :background my/bg-color)
 
+;; Color Test
+;;      Full width space : あお　ぞら
+;;   Trailing whitespace :   
+;;                   Tab :	aaa
+;;          Trailing Tab :	
+
 ;; https://github.com/purcell/whitespace-cleanup-mode
-(ensure-package-installed 'whitespace-cleanup-mode)
+;; package: whitespace-cleanup-mode
 ;; (global-whitespace-cleanup-mode t)

@@ -1,53 +1,23 @@
-(ensure-package-installed 'ruby-mode 'flymake-ruby 'rspec-mode)
-(require 'ruby-mode)
-
 (setq auto-mode-alist
-      (append '(("\\.rb$" . ruby-mode)
-                ("\\.gemspec$" . ruby-mode)
-                ("\\.rjs$" . ruby-mode)
-                ("\\.ru$" . ruby-mode)
-                ("\\.rake$" . ruby-mode)
-                ("\\.thor$" . ruby-mode)
-                ("Rakefile$" . ruby-mode)
-                ("Thorfile$" . ruby-mode)
-                ("Gemfile$" . ruby-mode)
-                ("Procfile$" . ruby-mode)
-                ("Capfile$" . ruby-mode)
-                ("Guardfile$" . ruby-mode)
-                ("Berksfile$" . ruby-mode)
-                ("Vagrantfile$" . ruby-mode))
+      (append '(("Berksfile$" . ruby-mode))
               auto-mode-alist))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; https://github.com/senny/rbenv.el
-(ensure-package-installed 'rbenv)
-(require 'rbenv)
+;; (require 'rbenv)
 (global-rbenv-mode)
 
-;; rcodetools and xmpfilter
-(ensure-package-installed 'smartparens)
 (require 'smartparens-ruby)
-;; highlight block with smartparens
-;; (eval-after-load "ruby-mode"
-;;   '(progn
-;;      (require 'smartparens-ruby)
-;;      (set-face-attribute 'sp-show-pair-match-face nil
-;;                          :background "grey20" :foreground "green"
-;;                          :weight 'semi-bold)))
-;; (add-hook 'ruby-mode-hook 'show-smartparens-mode)
 
 ;; ruby-block
-(ensure-package-installed 'ruby-block)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
 ;; rspec-mode
-(ensure-package-installed 'rspec-mode)
-(require 'rspec-mode)
+;; (require 'rspec-mode)
 
 ;; yard-mode
-(ensure-package-installed 'yard-mode)
 (add-hook 'ruby-mode-hook 'yard-mode)
 
 ;; launch pry in inf-ruby

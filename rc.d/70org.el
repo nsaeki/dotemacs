@@ -1,5 +1,3 @@
-(ensure-package-installed 'org)
-(require 'org)
 (setq org-startup-folded 'nofold)
 (setq org-directory "~/org")
 (setq org-agenda-files (list org-directory))

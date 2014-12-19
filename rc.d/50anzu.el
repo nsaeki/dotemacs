@@ -1,4 +1,3 @@
-(ensure-package-installed 'anzu)
 (require 'anzu)
 (global-anzu-mode t)
 (global-set-key (kbd "C-c q") 'anzu-query-replace)
@@ -6,9 +5,7 @@
 (global-set-key (kbd "C-c s") 'anzu-query-replace-at-cursor-thing)
 
 (set-face-attribute 'anzu-mode-line nil
-                    ;; :foreground "yellow" :weight 'bold)
-                    ;; :foreground "cyan" :weight 'bold)
-                     :foreground "green" :weight 'bold)
+                    :foreground "#0aa" :weight 'bold)
 
 (custom-set-variables
  '(anzu-mode-lighter "")

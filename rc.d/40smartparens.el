@@ -1,3 +1,3 @@
-(ensure-package-installed 'smartparens)
+;; package: smartparens
 (require 'smartparens-config)
 (smartparens-global-mode)

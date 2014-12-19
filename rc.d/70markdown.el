@@ -1,15 +1,3 @@
-(ensure-package-installed 'markdown-mode)
-
-(require 'markdown-mode)
-(setq auto-mode-alist
-      ;; (append '(("\\.md$" . markdown-mode)
-      ;;         ("\\.mkdn$" . markdown-mode)
-      ;;         ("\\.markdown$" . markdown-mode))
-      (append '(("\\.md$" . gfm-mode)
-                ("\\.mkdn$" . gfm-mode)
-                ("\\.markdown$" . gfm-mode))
-              auto-mode-alist))
-
 ;; https://gist.github.com/1631630
 (defun markdown-imenu-create-index ()
   (let* ((root '(nil . nil))

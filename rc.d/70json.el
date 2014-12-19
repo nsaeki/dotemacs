@@ -1,12 +1,2 @@
-(ensure-package-installed 'json-mode)
+;; (ensure-package-installed 'json-mode)
 (require 'json)
-
-
-
-
-
-
-
-
-
-

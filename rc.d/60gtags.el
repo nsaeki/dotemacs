@@ -1,6 +1,4 @@
-(ensure-package-installed 'gtags 'helm-gtags)
 (require 'gtags)
-
 (setq c-mode-hook '(lambda () (gtags-mode 1)))
 (setq c++-mode-hook '(lambda () (gtags-mode 1)))
 (setq php-mode-hook '(lambda () (gtags-mode 1)))
@@ -14,15 +12,15 @@
 ;; (global-set-key "\C-cgf" 'gtags-find-file)
 ;; (global-set-key "\C-cgb" 'gtags-pop-stack)
 
-(require 'helm-gtags)
+;; (require 'helm-gtags)
 ;; http://emacs.g.hatena.ne.jp/k1LoW/20090204/1233759384
 (defun helm-etags-and-gtags-select ()
   "Tag jump using etags, gtags and `helm'."
   (interactive)
   (let* ((initial-pattern (regexp-quote (or (thing-at-point 'symbol) ""))))
     (helm (list helm-c-source-gtags-select
-                    helm-c-source-etags-select)
-              initial-pattern)
+                helm-c-source-etags-select)
+          initial-pattern)
     "Find Tag: " nil))
 
 (defvar helm-etags-and-gtags-related-select nil)

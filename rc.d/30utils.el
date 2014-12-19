@@ -1,33 +1,26 @@
-(ensure-package-installed 'shell-command)
-(require 'shell-command)
+;; (require 'shell-commandd
 (shell-command-completion-mode)
 
-(ensure-package-installed 'open-junk-file)
 (require 'open-junk-file)
 (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
 (global-set-key (kbd "C-c k") 'open-junk-file)
 
-;; ThingAtPoint
-(require 'thingatpt)
+;; (require 'thingatpt)
 
-(ensure-package-installed 'sequential-command)
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
-(ensure-package-installed 'recentf-ext)
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAGS$" "/var/tmp"))
 (require 'recentf-ext)
 
-(ensure-package-installed 'color-moccur)
-(require 'color-moccur)
+;; (require 'color-moccur)
 (setq moccur-split-word t)
 
 ;; (install-elisp "http://taiyaki.org/elisp/mell/src/mell.el")
 ;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
 (require 'text-adjust)
 
-(ensure-package-installed 'point-undo)
 (require 'point-undo)
 (define-key global-map (kbd "C-z") 'point-undo)
 (define-key global-map (kbd "C-M-z") 'point-redo)
@@ -38,8 +31,6 @@
 (autoload 'dmacro-exec "dmacro" nil t)
 
 ;; sml-modeline-mode
-(ensure-package-installed 'sml-modeline)
-(require 'sml-modeline-autoloads)
 (sml-modeline-mode t)
 (set-face-foreground 'sml-modeline-end-face "#000000")
 (set-face-background 'sml-modeline-end-face "#b0b0b0")
@@ -47,7 +38,7 @@
 (set-face-background 'sml-modeline-vis-face "#80c000")
 
 ;; midnight mode for clean-buffer-list
-(require 'midnight)
+;; (require 'midnight)
 
 ;; marked
 ;; http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
@@ -57,3 +48,9 @@
   (shell-command
    (format "open -a 'Marked 2' %s"
        (shell-quote-argument (buffer-file-name)))))
+
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
+;; (require 'undohist)
+;; (undohist-initialize)
