@@ -22,8 +22,7 @@
 (defun toggle-truncate-lines ()
   "toggle trancate lines"
   (interactive)
-  (if truncate-lines
-      (setq truncate-lines nil)
+  (if truncate-lines (setq truncate-lines nil)
     (setq truncate-lines t))
   (recenter))
 (setq-default truncate-partial-width-windows nil)
@@ -64,35 +63,39 @@
                 (progn (my-make-scratch 0) nil)
               t)))
 
-;; restore frame size
+;; Restore frame size
 ;; Source: http://d.hatena.ne.jp/Tan90909090/20121124/1353757368
-;; (edit and snip some comment)
+;; Edit and snip some comment
 (defconst my-save-frame-file "~/.emacs.d/.framesize")
+
 (defun my-save-frame-size()
   "Save current frame position and size into `my-save-frame-file'"
   (interactive)
   (let* ((param (frame-parameters (selected-frame)))
          (current-height (frame-height))
          (current-width (frame-width))
-         (current-top-margin (if (integerp (car (last (assoc 'top param))))
-                                 (car (last (assoc 'top param)))
-                                 0))
-         (current-left-margin (if (integerp (car (last (assoc 'left param))))
-                                  (car (last (assoc 'left param)))
-                                  0))
+         (top (if (listp (assoc-default 'top param))
+                  (car (cdr (assoc-default 'top param)))
+                (assoc-default 'top param)))
+         (left (if (listp (assoc-default 'left param))
+                  (car (cdr (assoc-default 'left param)))
+                (assoc-default 'left param)))
+         (current-top-margin (if (integerp top) 0))
+         (current-left-margin (if (integerp left) 0))
          (buf nil)
-         (file my-save-frame-file)
-         )
+         (file my-save-frame-file))
     (unless (setq buf (get-file-buffer (expand-file-name file)))
       (setq buf (find-file-noselect (expand-file-name file))))
     (set-buffer buf)
     (erase-buffer)
     (insert
      (concat
-      "(set-frame-size (selected-frame) "(int-to-string current-width)" "(int-to-string current-height)")\n"
-      "(set-frame-position (selected-frame) "(int-to-string current-left-margin)" "(int-to-string current-top-margin)")\n"
-      ))
+      "(set-frame-size (selected-frame) "
+      (int-to-string current-width)" "(int-to-string current-height)")\n"
+      "(set-frame-position (selected-frame) "
+      (int-to-string current-left-margin)" "(int-to-string current-top-margin)")\n"))
     (save-buffer)))
+
 (defun my-load-frame-size()
   "Restore frame position and size from `my-save-frame-file'"
   (interactive)

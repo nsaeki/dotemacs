@@ -41,8 +41,8 @@
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
-(set-face-background 'vhl/default-face "#aa7")
-(setq Vhl/highlight-zero-width-ranges t)
+(set-face-background 'vhl/default-face "#aa0")
+
 
 (require 'undohist)
 (undohist-initialize)

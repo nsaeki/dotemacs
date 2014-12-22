@@ -16,6 +16,7 @@
 (global-set-key (kbd "M-]") 'bm-next)
 
 (global-set-key (kbd "C-;") 'helm-for-files)
+(global-set-key (kbd "C-z") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "C-.") 'helm-imenu)
@@ -45,24 +46,24 @@
 
 ;; smartprep
 (smartrep-define-key
-    undo-tree-map "C-x" '(("u" . 'undo-tree-undo)
-                          ("U" . 'undo-tree-redo)))
-
-(smartrep-define-key
     global-map "C-c" '(("k" . 'goto-last-change)
                        ("j" . 'goto-last-change-reverse)
                        ("u" . 'point-undo)
                        ("U" . 'point-redo)
-                       ("=" . 'er/expand-region)
-                       ("-" . 'er/contract-region)
-                       ("t" . 'dmacro-exec)
+                       ;; ("=" . 'er/expand-region)
+                       ;; ("-" . 'er/contract-region)
                        ("n" . 'mc/mark-next-like-this)
                        ("p" . 'mc/mark-previous-like-this)
                        ("a" . 'mc/mark-all-like-this)
-                       ("-" . 'er/contract-region)
                        ("t" . 'dmacro-exec)))
 
 ;; key-chord
 (key-chord-define-global "jk" 'view-mode)
 (key-chord-define-global "df" 'org-remember)
 (key-chord-define-global "vc" 'magit-status)
+
+;; region-bindings
+(define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
+(define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
+(define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
+(define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
