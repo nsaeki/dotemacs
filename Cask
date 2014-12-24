@@ -66,3 +66,4 @@
 (depends-on "undohist")
 (depends-on "smartrep")
 (depends-on "web-mode")
+(depends-on "powershell")
