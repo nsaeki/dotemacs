@@ -3,7 +3,7 @@
 ;; (require 'ag)
 ;; (require 'helm-ag)
 (setq ag-highlight-search t)
-(setq ag-reuse-buffers 't)
+(setq ag-reuse-buffers t)
 
 ;; (require 'wgrep-ag)
 (autoload 'wgrep-ag-setup "wgrep-ag")

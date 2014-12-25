@@ -8,8 +8,9 @@
 ;; (global-set-key (kbd "C-c c") 'compile)
 
 ;; append packages
-(global-set-key (kbd "M-g .") 'helm-ag)
-(global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
+(global-set-key (kbd "M-g .") 'ag-project)
+;; (global-set-key (kbd "M-g .") 'helm-do-ag)
+;; (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
 
 (global-set-key (kbd "C-M-m") 'bm-toggle)
 (global-set-key (kbd "M-[") 'bm-previous)
