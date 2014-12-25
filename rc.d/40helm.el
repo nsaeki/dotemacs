@@ -11,12 +11,12 @@
  '(helm-ls-git-show-abs-or-relative 'relative)
  '(helm-mini-default-sources '(helm-source-buffers-list
                                helm-source-recentf
-                               helm-source-files-in-current-dir))
+                               helm-source-files-in-current-dir
+                               helm-source-ghq))
  '(helm-for-files-preferred-list '(helm-source-ls-git
                                    helm-source-recentf
                                    helm-source-file-cache
-                                   helm-source-files-in-current-dir
-                                   helm-source-ghq)))
+                                   helm-source-files-in-current-dir)))
 
 ;; (file-cache-add-directory-list '("~/.emacs.d/"))
 ;; (setq file-cache-filter-regexps
