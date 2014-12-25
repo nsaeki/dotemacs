@@ -15,14 +15,14 @@
 (global-set-key (kbd "M-[") 'bm-previous)
 (global-set-key (kbd "M-]") 'bm-next)
 
-(global-set-key (kbd "C-;") 'helm-for-files)
+(global-set-key (kbd "C-;") 'helm-mini)
+(global-set-key (kbd "C-'") 'helm-for-files)
 (global-set-key (kbd "C-z") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-'") 'helm-projectile)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-M-=") 'er/contract-region)
