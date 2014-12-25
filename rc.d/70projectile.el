@@ -1,4 +1,4 @@
 ;; (install-packege: 'projectile 'helm-projectile)
+(setq projectile-keymap-prefix (kbd "M-p"))
 (projectile-global-mode)
-(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
-(helm-projectile-toggle 1)
+(helm-projectile-on)
