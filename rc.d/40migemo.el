@@ -3,14 +3,20 @@
 ;; http://d.hatena.ne.jp/ground256/20111008/1318063872
 (require 'migemo)
 
-;; cmigemo
-;;(setq migemo-command "cmigemo")
-(setq migemo-command "/usr/local/bin/cmigemo")
+;; for C/Migemo
+(setq migemo-command "cmigemo")
 (setq migemo-options '("-q" "--emacs"))
-(setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+(setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
 (setq migemo-user-dictionary nil)
-(setq migemo-coding-system 'utf-8-unix)
 (setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+
+;; for Mac OS X Homebrewed cmigemo
+(when (file-executable-p "/usr/local/bin/cmigemo")
+  (setq migemo-command "/usr/local/bin/cmigemo"))
+(when (file-exists-p "/usr/local/share/migemo/utf-8/migemo-dict")
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"))
+
 (migemo-init)
 (set-process-query-on-exit-flag (get-process "migemo") nil)
 
