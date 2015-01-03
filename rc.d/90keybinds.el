@@ -21,6 +21,7 @@
 (global-set-key (kbd "C-z") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-o") 'helm-occur)
+(global-set-key (kbd "M-.") 'helm-etags-select)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
