@@ -31,6 +31,8 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 
+(global-set-key (kbd "C-x j") 'open-junk-file)
+
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "C-c q") 'anzu-query-replace)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
@@ -50,7 +52,8 @@
                        ("n" . 'mc/mark-next-like-this)
                        ("p" . 'mc/mark-previous-like-this)
                        ("a" . 'mc/mark-all-like-this)
-                       ("t" . 'dmacro-exec)))
+                       ("t" . 'dmacro-exec)
+                       ("q" . 'smartrep-quit)))
 
 ;; key-chord
 (key-chord-define-global "jk" 'view-mode)
