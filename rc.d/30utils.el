@@ -4,7 +4,21 @@
 (require 'open-junk-file)
 (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
 
-;; (require 'thingatpt)
+;; http://www.emacswiki.org/emacs/SearchAtPoint
+(defun isearch-yank-symbol ()
+  "*Put symbol at current point into search string."
+  (interactive)
+  (let ((sym (symbol-at-point)))
+    (if sym
+        (progn
+          (setq isearch-regexp t
+                isearch-string (concat "\\_<" (regexp-quote (symbol-name sym)) "\\_>")
+                isearch-message (mapconcat 'isearch-text-char-description isearch-string "")
+                isearch-yank-flag t))
+      (ding)))
+  (isearch-search-and-update))
+(define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol)
+
 
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
