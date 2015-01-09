@@ -9,11 +9,14 @@
                      helm-ag
                      wgrep-ag
                      bm
-                     helm-bm
                      helm
+                     helm-bm
                      helm-descbinds
                      helm-migemo
                      helm-ghq
+                     helm-swoop
+                     ace-jump-mode
+                     ace-isearch-mode
                      key-chord
                      migemo
                      popwin

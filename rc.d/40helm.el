@@ -1,5 +1,6 @@
 (require 'helm-config)
 (require 'helm-match-plugin)
+(require 'helm-swoop)
 (require 'helm-ls-git)
 (require 'helm-ghq)
 
