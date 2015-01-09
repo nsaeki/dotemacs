@@ -29,5 +29,5 @@
 ;; package: helm-descbinds
 (helm-descbinds-install)
 
-;; (require 'helm-migemo)
-;;(setq helm-use-migemo t)
+(require 'helm-migemo)
+(setq helm-use-migemo t)
