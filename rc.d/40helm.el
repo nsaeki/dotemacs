@@ -10,24 +10,13 @@
  '(helm-delete-minibuffer-contents-from-point t)
  '(helm-ff-skip-boring-files t)
  '(helm-ls-git-show-abs-or-relative 'relative)
+ '(helm-ff-transformer-show-only-basename nil)
  '(helm-mini-default-sources '(helm-source-buffers-list
                                helm-source-recentf
                                helm-source-files-in-current-dir
-                               helm-source-ghq))
- '(helm-for-files-preferred-list '(helm-source-ls-git
-                                   helm-source-recentf
-                                   helm-source-file-cache
-                                   helm-source-files-in-current-dir)))
+                               helm-source-ghq)))
 
-;; (file-cache-add-directory-list '("~/.emacs.d/"))
-;; (setq file-cache-filter-regexps
-;;       (append file-cache-filter-regexps
-;;               ;; 無視したいファイルの正規表現を指定もできる
-;;               '("\\.cache$")))
-
-(define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
-
-;; package: helm-descbinds
+;; (define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
 (helm-descbinds-install)
 
 ;; (require 'helm-migemo)
