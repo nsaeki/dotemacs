@@ -16,7 +16,7 @@
                                helm-source-files-in-current-dir
                                helm-source-ghq)))
 
-;; (define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
+(define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
 (helm-descbinds-install)
 
 ;; (require 'helm-migemo)
