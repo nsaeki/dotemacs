@@ -17,6 +17,7 @@
                      helm-swoop
                      ace-jump-mode
                      ace-isearch
+                     all-ext
                      key-chord
                      migemo
                      popwin

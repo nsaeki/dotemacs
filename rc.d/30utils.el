@@ -48,3 +48,4 @@
 
 (require 'goto-chg)
 (require 'point-undo)
+(require 'all-ext)
