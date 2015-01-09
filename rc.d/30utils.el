@@ -43,9 +43,8 @@
 (volatile-highlights-mode t)
 (set-face-background 'vhl/default-face "#aa0")
 
-
-(require 'undohist)
-(undohist-initialize)
+;; (require 'undohist)
+;; (undohist-initialize)
 
 (require 'goto-chg)
 (require 'point-undo)
