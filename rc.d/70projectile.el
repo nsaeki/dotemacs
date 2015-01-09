@@ -5,4 +5,5 @@
 
 (defun projectile-helm-ag ()
   (interactive)
-  (helm-ag (projectile-project-root)))
+  (helm-ag (when (projectile-project-p)
+             (projectile-project-root))))
