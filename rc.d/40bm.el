@@ -15,9 +15,9 @@
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when Emacs is killed, so we
 ;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
+;; (add-hook 'kill-emacs-hook '(lambda nil
+;;                               (bm-buffer-save-all)
+;;                               (bm-repository-save)))
 
 ;; Update bookmark repository when saving the file.
 (add-hook 'after-save-hook 'bm-buffer-save)
