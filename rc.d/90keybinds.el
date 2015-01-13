@@ -41,7 +41,7 @@
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
 (global-set-key (kbd "C-c m") 'org-open-notes)
-(global-set-key (kbd "C-c s") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
 ;; smartprep
 (smartrep-define-key
