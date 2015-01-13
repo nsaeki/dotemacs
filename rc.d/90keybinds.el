@@ -30,6 +30,7 @@
 (global-set-key (kbd "<C-M-return>") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c a") 'mc/mark-all-like-this)
 
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
@@ -40,7 +41,8 @@
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
-(global-set-key (kbd "C-c m") 'org-open-notes)
+(global-set-key (kbd "C-c n") 'org-open-notes)
+(global-set-key (kbd "C-c m") 'org-capture)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
 ;; smartprep
@@ -49,9 +51,6 @@
                        ("U" . 'goto-last-change-reverse)
                        ("k" . 'point-undo)
                        ("j" . 'point-redo)
-                       ("n" . 'mc/mark-next-like-this)
-                       ("p" . 'mc/mark-previous-like-this)
-                       ("a" . 'mc/mark-all-like-this)
                        ("t" . 'dmacro-exec)
                        ("q" . 'smartrep-quit)))
 
