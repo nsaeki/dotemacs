@@ -1,6 +1,4 @@
-(setq auto-mode-alist
-      (append '(("Berksfile$" . ruby-mode))
-              auto-mode-alist))
+(add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; https://github.com/senny/rbenv.el
