@@ -8,10 +8,6 @@
       '(("n" "Note" entry (file org-default-capture-file)
          "* %?\n\  %i\n\n  %U\n  [[%F]]")))
 
-(setq org-capture-templates
-      '(("n" "Note" entry (file org-default-capture-file)
-         "* %?\n  %U\n  %a")))
-
 (defun my-org-insert-upheading (arg)
   "insert upheading"
   (interactive "P")
