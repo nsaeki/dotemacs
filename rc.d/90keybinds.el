@@ -24,13 +24,13 @@
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-M-=") 'er/contract-region)
-
-(global-set-key (kbd "<C-M-return>") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c a") 'mc/mark-all-like-this)
+(global-set-key (kbd "<C-M-return>") 'mc/edit-lines)
+(global-set-key (kbd "C-c h") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-M-=") 'er/contract-region)
 
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
@@ -51,7 +51,6 @@
                        ("U" . 'goto-last-change-reverse)
                        ("k" . 'point-undo)
                        ("j" . 'point-redo)
-                       ("t" . 'dmacro-exec)
                        ("q" . 'smartrep-quit)))
 
 ;; key-chord
