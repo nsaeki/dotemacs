@@ -14,7 +14,7 @@
 (setq read-file-name-completion-ignore-case t)
 (setq mouse-drag-copy-region t)
 (global-font-lock-mode t)
-;; (electric-pair-mode t)                  ; replace smartparens
+;; (electric-pair-mode t)                  ; replaced by smartparens
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
 (global-hl-line-mode t)
@@ -26,7 +26,7 @@
 (setq eval-expression-print-level nil)
 (which-function-mode t)
 
-(setq-default mode-line-format
+(setq-default mode-line-format          ; almost all are default
               '("%e" mode-line-front-space
                 mode-line-mule-info
                 mode-line-client
@@ -34,12 +34,12 @@
                 mode-line-remote
                 mode-line-frame-identification
                 mode-line-buffer-identification
-                "  "
+                "   "
                 mode-line-position
                 smartrep-mode-line-string
                 (vc-mode vc-mode)
                 "  "
-                mode-line-misc-info     ; prepend mode-line-modes to display which-function-mode
+                mode-line-misc-info ; prepend this to mode-line-modes to display which-function-mode
                 mode-line-modes
                 mode-line-end-spaces))
 
