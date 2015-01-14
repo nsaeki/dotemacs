@@ -18,6 +18,7 @@
                                   (assoc-default 'left param)))
            (buf nil)
            (file my-save-frame-file))
+      ;; TODO: chack update before save
       (unless (setq buf (get-file-buffer (expand-file-name file)))
         (setq buf (find-file-noselect (expand-file-name file))))
       (set-buffer buf)
@@ -39,4 +40,5 @@
 
   (add-hook 'emacs-startup-hook 'my-load-frame-size)
   (add-hook 'kill-emacs-hook 'my-save-frame-size)
+  ;; TODO: use window-configuration-change-hook in place of timer.
   (run-with-idle-timer 60 t 'my-save-frame-size))
