@@ -5,6 +5,7 @@
 
 ;; https://github.com/senny/rbenv.el
 ;; (require 'rbenv)
+(setq rbenv-show-active-ruby-in-modeline nil)
 (global-rbenv-mode)
 
 (require 'smartparens-ruby)

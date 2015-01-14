@@ -23,6 +23,23 @@
 ;; (global-subword-mode 1)                 ; for CamelCase
 (setq scroll-preserve-screen-position t)
 (setq eval-expression-print-length nil)
+(which-function-mode t)
+
+(setq-default mode-line-format
+              '("%e" mode-line-front-space
+                mode-line-mule-info
+                mode-line-client
+                mode-line-modified
+                mode-line-remote
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                mode-line-position
+                smartrep-mode-line-string
+                (vc-mode vc-mode)
+                "  "
+                mode-line-misc-info     ; prepend mode-line-modes to display which-function-mode
+                mode-line-modes
+                mode-line-end-spaces))
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; one line at a time
