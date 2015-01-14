@@ -1,74 +1,65 @@
-(let ((my-packages '(shell-command
-                     open-junk-file
-                     sequential-command
-                     recentf-ext
-                     color-moccur
-                     point-undo
-                     sml-modeline
+(let ((my-packages '(ace-jump-mode
                      ag
-                     helm-ag
-                     wgrep-ag
-                     bm
-                     helm
-                     helm-bm
-                     helm-descbinds
-                     helm-migemo
-                     helm-ghq
-                     ace-jump-mode
                      all-ext
-                     key-chord
-                     migemo
-                     popwin
-                     smartparens
-                     undo-tree
-                     whitespace-cleanup-mode
-                     auto-save-buffers-enhanced
                      anzu
                      auto-complete
-                     expand-region
                      auto-highlight-symbol
-                     highlight-symbol
-                     multiple-cursors
-                     smart-compile
+                     auto-save-buffers-enhanced
+                     bm
                      coffee-mode
-                     flymake-coffee
-                     ;; csv-mode
+                     color-moccur
                      dash-at-point
                      dockerfile-mode
-                     magit
-                     git-gutter
-                     git-gutter-fringe
-                     helm-git
-                     helm-git-grep
-                     helm-git-files
-                     helm-ls-git
+                     expand-region
                      gist
+                     git-gutter-fringe
+                     helm
+                     helm-ag
+                     helm-bm
+                     helm-c-yasnippet
+                     helm-descbinds
+                     helm-ghq
                      helm-gist
-                     ;; gtags
-                     ;; helm-gtags
-                     less-css-mode
-                     markdown-mode
-                     org
-                     projectile
+                     helm-ls-git
+                     helm-migemo
                      helm-projectile
+                     highlight-symbol
+                     inf-ruby
+                     json-mode
+                     key-chord
+                     less-css-mode
+                     magit
+                     markdown-mode
+                     migemo
+                     multiple-cursors
+                     open-junk-file
+                     org
+                     point-undo
+                     popwin
+                     powershell
+                     projectile
+                     quickrun
                      rainbow-mode
                      rbenv
-                     flymake-ruby
-                     ruby-block
-                     inf-ruby
+                     recentf-ext
+                     region-bindings-mode
                      rspec-mode
+                     rubocop
+                     sass-mode
+                     sequential-command
+                     shell-command
+                     smart-compile
+                     smartparens
+                     smartrep
+                     sml-modeline
+                     undo-tree
+                     volatile-highlights
+                     web-mode
+                     whitespace-cleanup-mode
+                     yaml-mode
                      yard-mode
                      yasnippet
-                     helm-c-yasnippet
-                     yaml-mode
-                     zencoding-mode
-                     quickrun
-                     region-bindings-mode
-                     volatile-highlights
-                     undohist
-                     smartrep
-                     web-mode
-                     powershell)))
+                     zencoding-mode)))
   (dolist (x my-packages)
     (when (not (package-installed-p x))
       (package-install x))))
