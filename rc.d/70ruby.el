@@ -6,9 +6,10 @@
 (setq rbenv-show-active-ruby-in-modeline nil)
 (global-rbenv-mode)
 
-(require 'smartparens-ruby)
+;; Already required in smartparen-config in 40smartparens.el.
+;; (require 'smartparens-ruby)
 
-;; rspec-mode
+;; This will be hooked some ruby-modes and auto-loaded.
 ;; (require 'rspec-mode)
 
 ;; yard-mode
