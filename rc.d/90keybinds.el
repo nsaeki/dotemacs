@@ -35,8 +35,8 @@
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
-(global-set-key (kbd "C-c q") 'anzu-query-replace)
-(global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-c r") 'anzu-query-replace)
+(global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)
 (global-set-key (kbd "C-c w") 'anzu-query-replace-at-cursor-thing)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
