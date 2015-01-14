@@ -23,6 +23,7 @@
 ;; (global-subword-mode 1)                 ; for CamelCase
 (setq scroll-preserve-screen-position t)
 (setq eval-expression-print-length nil)
+(setq eval-expression-print-level nil)
 (which-function-mode t)
 
 (setq-default mode-line-format
