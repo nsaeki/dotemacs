@@ -34,6 +34,7 @@
                 mode-line-remote
                 mode-line-frame-identification
                 mode-line-buffer-identification
+                "  "
                 mode-line-position
                 smartrep-mode-line-string
                 (vc-mode vc-mode)
