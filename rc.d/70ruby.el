@@ -8,11 +8,6 @@
 
 (require 'smartparens-ruby)
 
-;; ruby-block
-(require 'ruby-block)
-(ruby-block-mode t)
-(setq ruby-block-highlight-toggle t)
-
 ;; rspec-mode
 ;; (require 'rspec-mode)
 
