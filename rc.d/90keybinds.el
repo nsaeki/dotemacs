@@ -19,8 +19,7 @@
 (global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-I") 'helm-resume)
-(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-i") 'helm-resume)
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 

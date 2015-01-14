@@ -14,9 +14,7 @@
                      helm-descbinds
                      helm-migemo
                      helm-ghq
-                     helm-swoop
                      ace-jump-mode
-                     ace-isearch
                      all-ext
                      key-chord
                      migemo
