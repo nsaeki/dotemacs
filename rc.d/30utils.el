@@ -32,7 +32,7 @@
 (require 'text-adjust)
 
 ;; dmacro
-(autoload 'dmacro-exec "dmacro" nil t)
+;; (autoload 'dmacro-exec "dmacro" nil t)
 
 ;; sml-modeline-mode
 (sml-modeline-mode t)
