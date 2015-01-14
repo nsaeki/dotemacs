@@ -1,12 +1,14 @@
 (setq org-startup-folded 'nofold)
 (setq org-directory "~/org")
 (setq org-agenda-files (list org-directory))
+
 (define-key org-mode-map (kbd "C-'") nil)
+(define-key org-mode-map (kbd "C-c a") 'org-agenda)
 
 (setq org-default-capture-file (concat org-directory "/capture.org"))
 (setq org-capture-templates
       '(("n" "Note" entry (file org-default-capture-file)
-         "* %?\n\  %i\n\n  %U\n  [[%F]]")))
+         "* %?\n%i\n\n  %T\n  [[%F]]")))
 
 (defun my-org-insert-upheading (arg)
   "insert upheading"
@@ -54,6 +56,7 @@
                   ".org"))
          (org-capture-templates
           '(("c" "Capture" entry (file+headline current-org-capture-file "Capture")
-             "* %?\n\n  %i\n\n  %U\n  [[%F]]")))
-         (org-capture-entry (org-capture-select-template  "c")))
+             "* %?\n%i\n\n  %T\n  [[%F]]")))
+         ;; FIXME: 一度 org-captureを起動しないと org-capture-select-template が使えない
+         (org-capture-entry (org-capture-select-template "c")))
     (org-capture)))
