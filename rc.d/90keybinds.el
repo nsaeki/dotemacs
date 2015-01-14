@@ -41,8 +41,8 @@
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
-(global-set-key (kbd "C-c n") 'org-open-notes)
-(global-set-key (kbd "C-c m") 'org-capture)
+(global-set-key (kbd "C-c n") 'my-org-open-notes)
+(global-set-key (kbd "C-c m") 'my-org-quick-note)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
 ;; smartprep
