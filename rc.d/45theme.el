@@ -7,10 +7,27 @@
 
   ;; some customizations
   (custom-set-faces
-   '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333"))))
-   '(mode-line ((t (:background "cornsilk4" :foreground "#000000"))))
    '(default ((t (:foreground "#d9d9d9"))))
    '(font-lock-comment-face ((t (:italic t :foreground "#6e6e6e"))))
-   '(show-paren-match-face ((t (:foreground "#1B1D1E" :background "#FD971F"))))
-   '(paren-face ((t (:foreground "#A6E22A" :background nil)))))
-  )
+   '(paren-face ((t (:foreground "#A6E22A" :background nil))))
+   '(show-paren-match-face ((t (:foreground "#1B1D1E" :background "goldenrod3"))))
+   '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333"))))
+   '(mode-line ((t (:background "#e3e3e3" :foreground "#000000"))))
+   '(sml-modeline-vis-face ((t (:background "#80c000" :foreground "#000000"))))
+   '(sml-modeline-end-face ((t (:background "#9c998a" :foreground "#000000"))))
+   '(which-func ((t (:foreground "#0060a0"))))
+   '(anzu-mode-line ((t (:foreground "#007070" :bold t))))
+   ))
+
+;; 調整用
+;; (set-face-attribute 'anzu-mode-line nil
+;;                     :foreground "#066" :weight 'bold)
+;; (set-face-foreground 'which-func  "#059")
+;; (set-face-foreground 'sml-modeline-end-face "#000000")
+;; (set-face-background 'sml-modeline-end-face "#9c998a")
+;; (set-face-foreground 'sml-modeline-vis-face "#000000")
+;; (set-face-background 'sml-modeline-vis-face "#a0e000")
+;; (set-face-background 'sml-modeline-vis-face "#80c000")
+;; (set-face-background 'show-paren-match-face "#FD971F")
+;; (set-face-background 'show-paren-match-face "goldenrod3")
+;; (set-face-background 'show-paren-match-face "LightSkyBlue4")
