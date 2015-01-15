@@ -27,8 +27,8 @@
 (setq org-capture-templates
       '(("n" "Add new item to default note file." entry (file nil)
          "* %?\n%i\n\n  %T\n  %a"
-         '((:empty-lines 1))
-         )))
+         :empty-lines 1)
+        ))
 
 (defun my-org-current-note ()
   "Returns today's note file path as YYYYMMDD.org"
