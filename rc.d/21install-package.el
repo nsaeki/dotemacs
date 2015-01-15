@@ -53,6 +53,7 @@
                      smartrep
                      sml-modeline
                      undo-tree
+                     viewer
                      volatile-highlights
                      web-mode
                      whitespace-cleanup-mode
