@@ -1,6 +1,7 @@
 (setq org-startup-folded 'nofold)
 (setq org-directory "~/org")
 (setq org-agenda-files (list org-directory))
+(setq org-default-notes-file (concat org-directory "/notes.org"))
 
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
@@ -24,14 +25,10 @@
 (push my-org-notes-directory org-agenda-files)
 
 (setq org-capture-templates
-      '(("n" "Add to today's note" entry
-         (file+headline (my-org-current-note) "Capture")
+      '(("n" "Add new item to default note file." entry (file nil)
          "* %?\n%i\n\n  %T\n  %a"
-         ;; TODO: this does not work
          '((:empty-lines 1))
-         )
-        ("i" "Add to default capture file" entry (file)
-         "* %?\n%i\n\n  %T\n  %a")))
+         )))
 
 (defun my-org-current-note ()
   "Returns today's note file path as YYYYMMDD.org"
