@@ -1,7 +1,7 @@
 (require 'anzu)
 (global-anzu-mode t)
 (set-face-attribute 'anzu-mode-line nil
-                    :foreground "#0aa" :weight 'bold)
+                    :foreground "#066" :weight 'bold)
 
 (custom-set-variables
  '(anzu-mode-lighter "")
