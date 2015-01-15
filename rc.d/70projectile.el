@@ -1,7 +1,8 @@
 ;; (install-packege: 'projectile 'helm-projectile)
 (setq projectile-keymap-prefix (kbd "M-p"))
 (projectile-global-mode)
-(helm-projectile-on)
+;; temporary off, helm-projectile.el is empty file.
+;;(helm-projectile-on)
 
 (defun projectile-helm-ag ()
   (interactive)
