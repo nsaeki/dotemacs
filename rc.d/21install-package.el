@@ -22,7 +22,6 @@
                      helm-gist
                      helm-ls-git
                      helm-migemo
-                     helm-projectile
                      highlight-symbol
                      inf-ruby
                      json-mode
