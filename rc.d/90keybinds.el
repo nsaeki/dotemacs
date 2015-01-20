@@ -7,6 +7,7 @@
 
 (global-set-key (kbd "M-g .") 'projectile-helm-ag)
 (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
+(global-set-key (kbd "M-g i") 'helm-resume)
 
 (global-set-key (kbd "C-M-m") 'bm-toggle)
 (global-set-key (kbd "M-[") 'bm-previous)
@@ -19,7 +20,6 @@
 (global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-i") 'helm-resume)
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 
