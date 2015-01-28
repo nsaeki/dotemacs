@@ -3,6 +3,7 @@
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "<C-tab>") 'other-window)
+(global-set-key (kbd "C-|") 'other-window-or-split)
 
 ;; (global-set-key (kbd "M-n") 'forward-sexp)
 ;; (global-set-key (kbd "M-p") 'backward-sexp)
