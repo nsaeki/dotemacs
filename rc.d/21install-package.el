@@ -43,6 +43,7 @@
                      recentf-ext
                      region-bindings-mode
                      rspec-mode
+                     ruby-test-mode
                      rubocop
                      sass-mode
                      sequential-command
