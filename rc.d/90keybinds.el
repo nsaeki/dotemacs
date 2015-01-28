@@ -4,8 +4,8 @@
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "<C-tab>") 'other-window)
 
-(global-set-key (kbd "M-n") 'forward-sexp)
-(global-set-key (kbd "M-p") 'backward-sexp)
+;; (global-set-key (kbd "M-n") 'forward-sexp)
+;; (global-set-key (kbd "M-p") 'backward-sexp)
 (global-set-key (kbd "M-j") 'ace-jump-mode)
 
 (global-set-key (kbd "M-g .") 'projectile-helm-ag)
@@ -18,7 +18,8 @@
 (global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "C-'") 'helm-ls-git-ls)
 (global-set-key (kbd "C-.") 'helm-imenu)
-(global-set-key (kbd "C-,") 'helm-resume)
+;; (global-set-key (kbd "C-,") 'helm-resume)
+(global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "C-z") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
