@@ -32,15 +32,11 @@
   (if (>= (* (window-height) 2) (window-width))
       (split-window-vertically)
     (split-window-horizontally)))
-;;(define-key windmove-map "s" 'split-window-conditional)
 
 (defun other-window-or-split ()
   (interactive)
-;;  (when (one-window-p) (split-window-horizontally))
-;;  (when (one-window-p) (split-window-vertically))
   (when (one-window-p) (split-window-conditional))
   (other-window 1))
-;; (global-set-key (kbd "C-,") 'other-window-or-split)
 
 ;; preserve scratch buffer
 ;; http://www-tsujii.is.s.u-tokyo.ac.jp/~yoshinag/tips/elisp_tips.html#scratch
