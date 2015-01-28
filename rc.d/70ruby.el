@@ -23,6 +23,15 @@
 (setq inf-ruby-first-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)> *")
 (setq inf-ruby-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)[>*\"'] *")
 
+;; ruby-test-mode
+;; Recognize test_*.rb as a test file
+(require 'ruby-test-mode)
+(defun my-advice:ruby-prefixed-test-p (filename)
+  (and (string-match "^test_" (file-name-base filename))
+       (string-match "^rb$" (file-name-extension filename))))
+(advice-add 'ruby-test-p :after-until 'my-advice:ruby-prefixed-test-p)
+;; (advice-remove 'ruby-test-p 'my-advice:ruby-prefixed-test-p)
+
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
 (defvar helm-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
