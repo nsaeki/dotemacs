@@ -5,9 +5,9 @@
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "C-|") 'other-window-or-split)
 
-;; (global-set-key (kbd "M-n") 'forward-sexp)
-;; (global-set-key (kbd "M-p") 'backward-sexp)
 (global-set-key (kbd "M-j") 'ace-jump-mode)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
 
 (global-set-key (kbd "M-g .") 'projectile-helm-ag)
 (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
@@ -19,7 +19,7 @@
 (global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "C-'") 'helm-ls-git-ls)
 (global-set-key (kbd "C-.") 'helm-imenu)
-;; (global-set-key (kbd "C-,") 'helm-resume)
+(global-set-key (kbd "C-M-z") 'helm-resume)
 (global-set-key (kbd "C-,") 'helm-bm)
 (global-set-key (kbd "C-z") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -36,24 +36,30 @@
 (global-set-key (kbd "C-S-=") 'er/contract-region)
 
 (global-set-key (kbd "C-x j") 'open-junk-file)
+(global-set-key (kbd "C-x n") 'my-org-open-note)
 
-(global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
-(global-set-key (kbd "C-c R") 'anzu-query-replace)
-(global-set-key (kbd "C-c w") 'anzu-query-replace-at-cursor-thing)
-(global-set-key (kbd "C-c c") 'smart-compile)
+(global-set-key (kbd "C-c b") 'smart-compile)
+(global-set-key (kbd "C-c c") 'my-org-quick-capture)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
-(global-set-key (kbd "C-c n") 'my-org-open-note)
-(global-set-key (kbd "C-c m") 'my-org-quick-note)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c q") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-c w") 'anzu-query-replace-at-cursor-thing)
+(global-set-key (kbd "C-c r") 'my-vcs-revert-hunk)
+(global-set-key (kbd "C-c s") 'git-gutter:stage-hunk)
+(global-set-key (kbd "C-c =") 'my-vcs-popup-hunk)
 
 ;; smartprep
 (smartrep-define-key
-    global-map "C-c" '(("u" . 'goto-last-change)
-                       ("U" . 'goto-last-change-reverse)
+    global-map "C-c" '(("u" . 'undo-tree-undo)
+                       ("U" . 'undo-tree-redo)
                        ("k" . 'point-undo)
                        ("j" . 'point-redo)
-                       ("q" . 'smartrep-quit)))
+                       ("n" . 'my-vcs-next-hunk)
+                       ("p" . 'my-vcs-previous-hunk)
+                       ("]" . 'goto-last-change-reverse)
+                       ("[" . 'goto-last-change)
+                       ("C-g" . 'smartrep-quit)))
 
 ;; key-chord
 (key-chord-define-global "jk" 'view-mode)

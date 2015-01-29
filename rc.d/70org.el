@@ -54,7 +54,7 @@
     (goto-char (point-max))
     (org-show-entry)))
 
-(defun my-org-quick-note ()
-  "Insert new entry to current note."
+(defun my-org-quick-capture ()
+  nil
   (interactive)
   (org-capture nil "n"))
