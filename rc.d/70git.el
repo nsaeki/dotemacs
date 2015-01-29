@@ -39,4 +39,8 @@
   "........") ;;
 
 ;; diff-hl
+(global-diff-hl-mode t)
 (setq diff-hl-draw-borders nil)
+;; using right margin
+(diff-hl-margin-mode)
+(setq diff-hl-margin-side 'right)
