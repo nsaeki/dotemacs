@@ -4,7 +4,7 @@
 ;; (require 'git-gutter-fringe)
 ;; (global-git-gutter-mode t)
 (set-face-foreground 'git-gutter:modified "plum4")
-(set-face-foreground 'git-gutter:added "seagreen4")
+(set-face-foreground 'git-gutter:added "SeaGreen4")
 (set-face-foreground 'git-gutter:deleted "red4")
 
 ;; small and a little left
@@ -41,6 +41,10 @@
 ;; diff-hl
 (global-diff-hl-mode t)
 (setq diff-hl-draw-borders nil)
+
 ;; using right margin
 (diff-hl-margin-mode)
 (setq diff-hl-margin-side 'right)
+(custom-set-faces
+ '(diff-hl-change
+   ((t (:foreground "pink4" :background "#58444a")))))
