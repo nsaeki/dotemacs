@@ -1,10 +1,8 @@
 ;; (require 'magit)
-;; (require 'git-gutter)
-;; (git-gutter:linum-setup)
 
-(require 'git-gutter-fringe)
-(global-git-gutter-mode t)
-
+;; git-gutter-fringe
+;; (require 'git-gutter-fringe)
+;; (global-git-gutter-mode t)
 (set-face-foreground 'git-gutter:modified "plum4")
 (set-face-foreground 'git-gutter:added "seagreen4")
 (set-face-foreground 'git-gutter:deleted "red4")
@@ -38,4 +36,7 @@
   ".XXX...."
   ".XXX...."
   ".XXX...."
-  "........")
+  "........") ;;
+
+;; diff-hl
+(setq diff-hl-draw-borders nil)

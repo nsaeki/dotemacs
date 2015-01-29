@@ -13,6 +13,7 @@
                      expand-region
                      gist
                      git-gutter-fringe
+                     diff-hl
                      helm
                      helm-ag
                      helm-bm
