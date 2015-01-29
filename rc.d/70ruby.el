@@ -9,12 +9,6 @@
 ;; Already required in smartparen-config in 40smartparens.el.
 ;; (require 'smartparens-ruby)
 
-;; This will be hooked some ruby-modes and auto-loaded.
-;; (require 'rspec-mode)
-
-;; yard-mode
-(add-hook 'ruby-mode-hook 'yard-mode)
-
 ;; launch pry in inf-ruby
 ;; https://gist.github.com/jsvnm/1390890
 (require 'inf-ruby)
@@ -23,14 +17,33 @@
 (setq inf-ruby-first-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)> *")
 (setq inf-ruby-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)[>*\"'] *")
 
+;; yard-mode
+(add-hook 'ruby-mode-hook 'yard-mode)
+
+;; rspec-mode
+;; This will be hooked some ruby-modes and auto-loaded.
+;; (require 'rspec-mode)
+
 ;; ruby-test-mode
+;; Also hooked in ruby-test-mode.el, but it isn't marked autoload.
+(add-hook 'ruby-mode-hook 'ruby-test-mode)
+
 ;; Recognize test_*.rb as a test file
-(require 'ruby-test-mode)
 (defun my-advice:ruby-prefixed-test-p (filename)
   (and (string-match "^test_" (file-name-base filename))
        (string-match "^rb$" (file-name-extension filename))))
 (advice-add 'ruby-test-p :after-until 'my-advice:ruby-prefixed-test-p)
 ;; (advice-remove 'ruby-test-p 'my-advice:ruby-prefixed-test-p)
+
+;; minitest-mode
+;; Avoid conflict with rspec-mode prefix
+(when (package-installed-p 'rspec-mode)
+  (custom-set-variables
+   '(minitest-keymap-prefix (kbd "C-c ."))))
+
+;; Needs the same advice as ruby-test-mode
+(advice-add 'minitest-test-file-p :after-until
+            'my-advice:ruby-prefixed-test-p)
 
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1

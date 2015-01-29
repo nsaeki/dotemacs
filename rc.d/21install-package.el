@@ -42,8 +42,9 @@
                      rbenv
                      recentf-ext
                      region-bindings-mode
-                     rspec-mode
                      ruby-test-mode
+                     rspec-mode
+                     minitest
                      rubocop
                      sass-mode
                      sequential-command
