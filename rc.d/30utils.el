@@ -19,7 +19,6 @@
   (isearch-search-and-update))
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol)
 
-
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
