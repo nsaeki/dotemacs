@@ -72,3 +72,20 @@
             (if (string= "*scratch*" (buffer-name))
                 (progn (my-make-scratch 0) nil)
               t)))
+
+(defun my-vc-rootdir ()
+  "Return VCS root directory of current buffer file.
+If the buffer is not in VCS, return nil"
+  (interactive)
+  (let ((backend (vc-deduce-backend)))
+    (when backend
+      (vc-call-backend backend 'root default-directory))))
+
+(defun my-dired-jump-to-project-root ()
+  "Open VCS root directory in dired mode if current buffer is in VCS.
+Otherwise open current directory"
+  nil
+  (interactive)
+  (let ((rootdir (my-vc-rootdir)))
+    (if rootdir (dired-jump nil rootdir)
+      (dired-jump))))
