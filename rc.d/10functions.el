@@ -39,6 +39,19 @@
   (when (one-window-p) (split-window-sensibly))
   (other-window 1))
 
+(defun my-swap-buffer ()
+  "Swap buffers with next window"
+  (interactive)
+  (let* ((current (selected-window))
+         ;; Zero means this does not select minibuffer even if it's active
+         (other (next-window current 0))
+         (current-buf (window-buffer current)))
+    (unless (or (eq current other)
+                (window-minibuffer-p current))
+      (set-window-buffer (selected-window) (window-buffer other))
+      (set-window-buffer other current-buf)
+      (select-window other))))
+
 ;; preserve scratch buffer
 ;; http://www-tsujii.is.s.u-tokyo.ac.jp/~yoshinag/tips/elisp_tips.html#scratch
 (defun my-make-scratch (&optional arg)
