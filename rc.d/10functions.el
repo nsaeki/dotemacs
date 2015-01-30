@@ -87,5 +87,6 @@ Otherwise open current directory"
   nil
   (interactive)
   (let ((rootdir (my-vc-rootdir)))
-    (if rootdir (dired-jump nil rootdir)
+    (if (and rootdir (file-directory-p rootdir))
+        (dired-jump nil rootdir)
       (dired-jump))))
