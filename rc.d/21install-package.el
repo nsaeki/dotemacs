@@ -54,6 +54,7 @@
                      smartparens
                      smartrep
                      sml-modeline
+                     sql-indent
                      undo-tree
                      viewer
                      volatile-highlights
