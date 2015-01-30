@@ -8,6 +8,7 @@
   (helm-ag (when (projectile-project-p)
              (projectile-project-root))))
 
+(require 'helm-projectile)
 (defun my-helm-for-project ()
   nil
   (interactive)
