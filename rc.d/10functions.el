@@ -27,15 +27,16 @@
   (recenter))
 (setq-default truncate-partial-width-windows nil)
 
-(defun split-window-conditional ()
-  (interactive)
-  (if (>= (* (window-height) 2) (window-width))
-      (split-window-vertically)
-    (split-window-horizontally)))
+;; replaced by split-window-sensibly
+;; (defun split-window-conditional ()
+;;   (interactive)
+;;   (if (>= (* (window-height) 2) (window-width))
+;;       (split-window-vertically)
+;;     (split-window-horizontally)))
 
 (defun other-window-or-split ()
   (interactive)
-  (when (one-window-p) (split-window-conditional))
+  (when (one-window-p) (split-window-sensibly))
   (other-window 1))
 
 ;; preserve scratch buffer
