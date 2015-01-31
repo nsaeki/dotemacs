@@ -3,4 +3,4 @@
 
 ;; for anything
 (setq anything-samewindow nil)
-;; (push '("^\*helm.*" :regexp 1 :height 20) popwin:special-display-config)
+(push '("^\*helm.*" :regexp 1 :height 20) popwin:special-display-config)
