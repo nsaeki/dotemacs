@@ -37,6 +37,7 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-S-=") 'er/contract-region)
 
+(global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "C-c c") 'smart-compile)
