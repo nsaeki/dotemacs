@@ -64,15 +64,16 @@
   (interactive)
   (let* ((completion-ignore-case t)
          (use-empty-active-region nil)
-         (engine (unless engine
-                   (completing-read "Search engine (default google): "
-                                    (make-search-engine-name-list) nil t
-                                    nil nil "google")))
-         (word (unless word
-                 (if (use-region-p)
-                     (buffer-substring-no-properties (region-beginning) (region-end))
-                   (or (thing-at-point 'symbol t)
-                       (read-string "Search word: "))))))
+         (engine (or engine
+                     (completing-read "Search engine (default google): "
+                                      (make-search-engine-name-list) nil t
+                                      nil nil "google")))
+         (word (cond
+                (word)
+                ((use-region-p)
+                 (buffer-substring-no-properties (region-beginning) (region-end)))
+                ((thing-at-point 'symbol t))
+                (t (read-string "Search word: ")))))
     (search-web engine word)))
 (when (eq system-type 'darwin)
   (add-to-list 'search-engines '("dict" . "dict:///%s")))
