@@ -40,6 +40,7 @@
                      projectile
                      quickrun
                      rainbow-mode
+                     search-web
                      rbenv
                      recentf-ext
                      region-bindings-mode

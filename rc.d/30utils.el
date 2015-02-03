@@ -58,3 +58,21 @@
 (require 'goto-chg)
 (require 'point-undo)
 (require 'all-ext)
+
+(require 'search-web)
+(defun search-web-dwin (&optional engine word)
+  (interactive)
+  (let* ((completion-ignore-case t)
+         (use-empty-active-region nil)
+         (engine (unless engine
+                   (completing-read "Search engine (default google): "
+                                    (make-search-engine-name-list) nil t
+                                    nil nil "google")))
+         (word (unless word
+                 (if (use-region-p)
+                     (buffer-substring-no-properties (region-beginning) (region-end))
+                   (or (thing-at-point 'symbol t)
+                       (read-string "Search word: "))))))
+    (search-web engine word)))
+(when (eq system-type 'darwin)
+  (add-to-list 'search-engines '("dict" . "dict:///%s")))
