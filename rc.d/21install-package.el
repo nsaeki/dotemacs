@@ -1,5 +1,6 @@
 (let ((my-packages '(ace-jump-mode
                      ag
+                     wgrep-ag
                      all-ext
                      anzu
                      auto-complete
