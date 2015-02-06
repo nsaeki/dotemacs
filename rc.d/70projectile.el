@@ -3,10 +3,6 @@
 (setq projectile-keymap-prefix (kbd "M-s-p"))
 (projectile-global-mode)
 
-(defun my-projectile-helm-ag ()
-  (interactive)
-  (helm-ag (when (projectile-project-p)
-             (projectile-project-root))))
 (defun my-projectile-helm-ag (arg)
   (interactive "p")
   (case arg
@@ -18,10 +14,10 @@
 (defun my-helm-for-project ()
   nil
   (interactive)
-  (helm :sources  '(helm-source-projectile-buffers-list
-                    helm-source-projectile-recentf-list
-                    ;; Useful but slow to display
-                    ;; helm-source-ls-git-status
-                    ;; helm-source-ls-git
-                    )
+  (helm :sources '(helm-source-projectile-buffers-list
+                   helm-source-projectile-recentf-list
+                   ;; Useful but slow to display
+                   ;; helm-source-ls-git-status
+                   ;; helm-source-ls-git
+                   helm-source-files-in-current-dir)
         :buffer "*helm for project*"))
