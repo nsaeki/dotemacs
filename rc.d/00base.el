@@ -11,7 +11,7 @@
 (ffap-bindings)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil)
-(setq read-file-name-completion-ignore-case t)
+(setq completion-ignore-case t)
 (setq mouse-drag-copy-region t)
 (global-font-lock-mode t)
 ;; (electric-pair-mode t)                  ; replaced by smartparens
