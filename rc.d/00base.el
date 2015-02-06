@@ -68,6 +68,10 @@
 (require 'dired)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;; auto-mode-alist for misc file types.
 (setq auto-mode-alist
       (append '(("Cask$" . lisp-mode)
