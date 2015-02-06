@@ -38,6 +38,7 @@
                      popwin
                      powershell
                      projectile
+                     helm-projectile
                      quickrun
                      rainbow-mode
                      search-web
