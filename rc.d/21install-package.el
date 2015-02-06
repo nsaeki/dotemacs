@@ -1,4 +1,6 @@
-(let ((my-packages '(ace-jump-mode
+(let ((my-packages '(init-loader
+                     ;; exec-path-from-shell
+                     ace-jump-mode
                      ag
                      wgrep-ag
                      all-ext

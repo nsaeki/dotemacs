@@ -9,7 +9,11 @@
 (add-to-load-path "site-lisp")
 
 ;; init scripts
-(setq rc-directory "~/.emacs.d/rc.d/")
-(add-to-list 'load-path rc-directory)
-(dolist (file (directory-files rc-directory t "^[0-9]+\.*\\.el$"))
-  (load file))
+;; (setq rc-directory "~/.emacs.d/rc.d/")
+;; (add-to-list 'load-path rc-directory)
+;; (dolist (file (directory-files rc-directory t "^[0-9]+\.*\\.el$"))
+;;   (load file))
+
+(package-initialize)
+(setq init-loader-show-log-after-init 'error-only)
+(init-loader-load "~/.emacs.d/rc.d/")
