@@ -25,6 +25,7 @@
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
 (which-function-mode t)
+(global-auto-revert-mode 1)
 
 (setq-default mode-line-format          ; almost all are default
               '("%e" mode-line-front-space
