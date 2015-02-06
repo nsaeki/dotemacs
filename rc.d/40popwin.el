@@ -1,6 +1,6 @@
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
+(setq popwin:popup-window-height 20)
 
-;; for anything
-(setq anything-samewindow nil)
+;; for helm
 (push '("^\*helm.*" :regexp 1 :height 25) popwin:special-display-config)
