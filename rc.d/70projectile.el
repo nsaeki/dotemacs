@@ -18,4 +18,4 @@
                     ;; helm-source-ls-git-status
                     ;; helm-source-ls-git
                     )
-        :buffer "*helm for porject*"))
+        :buffer "*helm for project*"))
