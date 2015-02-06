@@ -7,6 +7,12 @@
   (interactive)
   (helm-ag (when (projectile-project-p)
              (projectile-project-root))))
+(defun my-projectile-helm-ag (arg)
+  (interactive "p")
+  (case arg
+    (4 (helm-ag nil))
+    (t (helm-ag (when (projectile-project-p)
+                  (projectile-project-root))))))
 
 (require 'helm-projectile)
 (defun my-helm-for-project ()
