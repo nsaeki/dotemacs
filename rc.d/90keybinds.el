@@ -1,6 +1,7 @@
 ;; Custom Keybindings
 (when (display-graphic-p)
-  (global-unset-key (kbd "C-z")))
+  ;; (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z") 'helm-find-files))
 
 (global-set-key (kbd "<M-return>") 'indent-new-comment-line)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
@@ -26,8 +27,8 @@
 (global-set-key (kbd "M-[") 'bm-previous)
 
 (global-set-key (kbd "C-;") 'helm-mini)
+(global-set-key (kbd "C-:") 'helm-bm)
 (global-set-key (kbd "C-'") 'helm-ls-git-ls)
-(global-set-key (kbd "C-,") 'er/expand-region)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -36,6 +37,7 @@
 (global-set-key (kbd "C-M-z") 'helm-resume)
 (global-set-key (kbd "C-M-;") 'my-helm-for-project)
 
+(global-set-key (kbd "C-,") 'er/expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 ;; Instead of this, simply press "-" after 'er/expand-region
 ;; (global-set-key (kbd "C-+") 'er/contract-region)
@@ -49,6 +51,7 @@
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c D") 'dash-at-point-with-docset)
 (global-set-key (kbd "C-c h") 'my-swap-buffer)
+(global-set-key (kbd "C-c i") 'delete-indentation)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my-org-open-note)
 (global-set-key (kbd "C-c m") 'my-org-quick-capture)
@@ -64,11 +67,11 @@
 ;; (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 ;; (global-set-key (kbd "C-x v n") 'git-gutter:revert-hunk)
 ;; (global-set-key (kbd "C-x v j") 'git-gutter:stage-hunk)
-
 ;; smartrep
 (smartrep-define-key
     global-map "C-c" '(("u" . 'goto-last-change)
                        ("U" . 'goto-last-change-reverse)
+                       ("i" . 'delete-indentation)
                        ("k" . 'point-undo)
                        ("j" . 'point-redo)))
 
@@ -84,4 +87,5 @@
 (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
 (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
 (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-
+(define-key region-bindings-mode-map "," 'er/expand-region)
+(define-key region-bindings-mode-map "." 'er/contract-region)
