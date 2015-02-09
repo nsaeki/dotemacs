@@ -1,6 +1,7 @@
 (setq ring-bell-function '(lambda ()))
 (setq inhibit-startup-message t)
 (setq completion-ignore-case t)
+(setq set-mark-command-repeat-pop t)
 (setq mouse-drag-copy-region t)
 (setq scroll-preserve-screen-position t)
 (setq eval-expression-print-length nil)
