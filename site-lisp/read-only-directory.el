@@ -27,12 +27,12 @@
 (defun read-only-directory-add (dir)
   (if (read-only-directory-file-p dir)
       (message (format "%s is already in read-only-directory-list" dir))
-    (add-to-list 'read-only-directory-list dir)
+    (add-to-list 'read-only-directory-list (expand-file-name dir))
     (read-only-directory-save)
     (message (format "Added %s to read-only-directory-list" dir))))
 
 (defun read-only-directory-del (dir)
-  (delete dir read-only-directory-list)
+  (delete (expand-file-name dir) read-only-directory-list)
   (read-only-directory-save))
 
 (defun read-only-directory-save (&optional file)
