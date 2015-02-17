@@ -53,7 +53,7 @@
 (global-set-key (kbd "C-c h") 'my-swap-buffer)
 (global-set-key (kbd "C-c i") 'delete-indentation)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c m") 'my-org-open-note)
+(global-set-key (kbd "C-c n") 'my-org-open-note)
 ;; (global-set-key (kbd "C-c m") 'my-org-quick-capture)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c w") 'quickrun-with-arg)
@@ -88,3 +88,4 @@
 (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
 ;; (define-key region-bindings-mode-map "," 'er/expand-region)
 ;; (define-key region-bindings-mode-map "." 'er/contract-region)
+
