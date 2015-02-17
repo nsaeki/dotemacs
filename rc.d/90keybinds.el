@@ -37,7 +37,6 @@
 (global-set-key (kbd "C-M-z") 'helm-resume)
 (global-set-key (kbd "C-M-;") 'my-helm-for-project)
 
-;; (global-set-key (kbd "C-,") 'er/expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 ;; Instead of this, simply press "-" after 'er/expand-region
 ;; (global-set-key (kbd "C-+") 'er/contract-region)
@@ -54,8 +53,8 @@
 (global-set-key (kbd "C-c h") 'my-swap-buffer)
 (global-set-key (kbd "C-c i") 'delete-indentation)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c n") 'my-org-open-note)
-(global-set-key (kbd "C-c m") 'my-org-quick-capture)
+(global-set-key (kbd "C-c m") 'my-org-open-note)
+;; (global-set-key (kbd "C-c m") 'my-org-quick-capture)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c w") 'quickrun-with-arg)
 (global-set-key (kbd "C-c o") 'browse-url)
