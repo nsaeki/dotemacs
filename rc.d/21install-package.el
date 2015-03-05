@@ -14,6 +14,8 @@
                      dash-at-point
                      dockerfile-mode
                      expand-region
+                     go-mode
+                     gotest
                      gist
                      git-gutter-fringe
                      diff-hl
