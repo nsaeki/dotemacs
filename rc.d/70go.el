@@ -1,4 +1,5 @@
 ;; use latest go-mode installed from MELPA
+;; go get code.google.com/p/rog-go/exp/cmd/godef
 (require 'go-mode-autoloads)
 (add-hook 'go-mode-hook (lambda ()
                           (local-set-key (kbd "M-.") #'godef-jump)
@@ -14,5 +15,6 @@
 (define-key go-test-mode-map (kbd "x") 'go-run)
 
 ;; gocode
+;; go get -u github.com/nsf/gocode
 (require 'go-autocomplete)
 (require 'auto-complete-config)
