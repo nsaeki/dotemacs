@@ -17,23 +17,6 @@
                 (message (concat "Wrote " name " (+x)"))))))))
 (add-hook 'after-save-hook 'make-file-executable)
 
-;; toggle truncate lines
-;; http://ubulog.blogspot.com/2007/09/emacsonoff.html
-(defun toggle-truncate-lines ()
-  "toggle trancate lines"
-  (interactive)
-  (if truncate-lines (setq truncate-lines nil)
-    (setq truncate-lines t))
-  (recenter))
-(setq-default truncate-partial-width-windows nil)
-
-;; replaced by split-window-sensibly
-;; (defun split-window-conditional ()
-;;   (interactive)
-;;   (if (>= (* (window-height) 2) (window-width))
-;;       (split-window-vertically)
-;;     (split-window-horizontally)))
-
 (defun other-window-or-split ()
   (interactive)
   (when (one-window-p) (split-window-sensibly))
