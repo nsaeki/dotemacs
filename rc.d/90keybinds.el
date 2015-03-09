@@ -50,7 +50,7 @@
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
-(global-set-key (kbd "C-c t") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c h") 'my-swap-buffer)
 (global-set-key (kbd "C-c i") 'delete-indentation)
 (global-set-key (kbd "C-c n") 'my-org-open-note)
