@@ -26,6 +26,7 @@
 (global-set-key (kbd "M-]") 'bm-next)
 (global-set-key (kbd "M-[") 'bm-previous)
 
+(global-set-key (kbd "C-c SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "C-:") 'helm-bm)
 (global-set-key (kbd "C-'") 'helm-ls-git-ls)
@@ -48,16 +49,16 @@
 
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
-(global-set-key (kbd "C-c D") 'dash-at-point-with-docset)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-c t") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c h") 'my-swap-buffer)
 (global-set-key (kbd "C-c i") 'delete-indentation)
-(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my-org-open-note)
 ;; (global-set-key (kbd "C-c m") 'my-org-quick-capture)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c w") 'quickrun-with-arg)
-(global-set-key (kbd "C-c o") 'browse-url)
+;; Instead of browse-url, just find-file with ffap.
+;; (global-set-key (kbd "C-c o") 'browse-url)
 (global-set-key (kbd "C-c s") 'search-web-dwin)
 ;; (global-set-key (kbd "C-c g")
 ;;                 (lambda () (interactive) (search-web-dwin "google")))
