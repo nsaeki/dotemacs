@@ -16,20 +16,14 @@
            (current-left-margin (if (listp (assoc-default 'left param))
                                     (car (cdr (assoc-default 'left param)))
                                   (assoc-default 'left param)))
-           (buf nil)
            (file my-save-frame-file))
-      ;; TODO: chack update before save
-      (unless (setq buf (get-file-buffer (expand-file-name file)))
-        (setq buf (find-file-noselect (expand-file-name file))))
-      (set-buffer buf)
-      (erase-buffer)
-      (insert
-       (concat
-        "(set-frame-size (selected-frame) "
-        (int-to-string current-width)" "(int-to-string current-height)")\n"
-        "(set-frame-position (selected-frame) "
-        (int-to-string current-left-margin)" "(int-to-string current-top-margin)")\n"))
-      (save-buffer)))
+      (with-temp-file file
+        (insert
+         (format "(set-frame-size (selected-frame) %d %d)\n"
+                 current-width current-height))
+        (insert
+         (format "(set-frame-position (selected-frame) %d %d)"
+                 current-left-margin current-top-margin)))))
 
   (defun my-load-frame-size()
     "Restore frame position and size from `my-save-frame-file'"
@@ -40,5 +34,4 @@
 
   (add-hook 'emacs-startup-hook 'my-load-frame-size)
   (add-hook 'kill-emacs-hook 'my-save-frame-size)
-  ;; TODO: use window-configuration-change-hook in place of timer.
   (run-with-idle-timer 60 t 'my-save-frame-size))
