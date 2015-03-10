@@ -2,7 +2,7 @@
 ;; go get code.google.com/p/rog-go/exp/cmd/godef
 (require 'go-mode-autoloads)
 (add-hook 'go-mode-hook (lambda ()
-                          (local-set-key (kbd "M-.") #'godef-jump)
+                          ;; (local-set-key (kbd "M-.") #'godef-jump)
                           (local-set-key (kbd "C-c ,") 'go-test-mode-map)
                           (flycheck-mode t)))
 
