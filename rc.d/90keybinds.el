@@ -58,8 +58,7 @@
 ;; (global-set-key (kbd "C-c m") 'my-org-quick-capture)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c w") 'quickrun-with-arg)
-;; Instead of browse-url, just find-file with ffap.
-;; (global-set-key (kbd "C-c o") 'browse-url)
+(global-set-key (kbd "C-c o") 'browse-url)
 (global-set-key (kbd "C-c s") 'search-web-dwin)
 ;; (global-set-key (kbd "C-c g")
 ;;                 (lambda () (interactive) (search-web-dwin "google")))
