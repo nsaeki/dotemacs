@@ -27,6 +27,7 @@
 (global-set-key (kbd "M-[") 'bm-previous)
 
 (global-set-key (kbd "C-c SPC") 'helm-all-mark-rings)
+(global-set-key (kbd "C-c C-SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "C-:") 'helm-bm)
 (global-set-key (kbd "C-'") 'helm-ls-git-ls)
