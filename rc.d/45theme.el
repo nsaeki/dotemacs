@@ -15,14 +15,28 @@
    '(mode-line ((t (:background "#e3e3e3" :foreground "#000000"))))
    '(sml-modeline-vis-face ((t (:background "#a0e000" :foreground "#000000"))))
    '(sml-modeline-end-face ((t (:background "#9c998a" :foreground "#000000"))))
-   '(which-func ((t (:foreground "#0060a0"))))
-   '(anzu-mode-line ((t (:foreground "#007070" :bold t))))
-   ))
+
+   '(which-func ((t (:foreground "#809a4d"))))
+   '(anzu-mode-line ((t (:foreground "chocolate" :bold t)))))
+
+  ;; change mode-line color by evil state
+  (lexical-let ((default-color (cons (face-background 'mode-line)
+                                     (face-foreground 'mode-line))))
+    (add-hook 'post-command-hook
+              (lambda ()
+                (let ((color (cond ((minibufferp) default-color)
+                                   ((evil-normal-state-p) '("#44789c" . "#000000"))
+                                   ((evil-insert-state-p) '("#00bff1" . "#000000"))
+                                   ((evil-emacs-state-p)  '("#444488" . "#000000"))
+                                   (t default-color))))
+                  (set-face-background 'mode-line (car color))
+                  (set-face-foreground 'mode-line (cdr color)))))))
 
 ;; 調整用
 ;; (set-face-attribute 'anzu-mode-line nil
-;;                     :foreground "#066" :weight 'bold)
-;; (set-face-foreground 'which-func  "#059")
+;;                     :foreground "chocolate" :weight 'bold)
+;; (set-face-foreground 'which-func "dark olive green")
+;; (set-face-foreground 'which-func "#a0e000")
 ;; (set-face-foreground 'sml-modeline-end-face "#000000")
 ;; (set-face-background 'sml-modeline-end-face "#9c998a")
 ;; (set-face-foreground 'sml-modeline-vis-face "#000000")

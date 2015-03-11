@@ -14,6 +14,7 @@
                      dash-at-point
                      dockerfile-mode
                      expand-region
+                     evil
                      go-mode
                      gotest
                      gist

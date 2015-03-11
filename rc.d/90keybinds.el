@@ -80,7 +80,8 @@
                        ("p" . 'my-vcs-previous-hunk)))
 
 ;; key-chord
-(key-chord-define-global "jk" 'view-mode)
+;; (key-chord-define-global "jk" 'view-mode)
+(key-chord-define-global "jk" 'evil-mode)
 (key-chord-define-global "vc" 'magit-status)
 
 ;; region-bindings
