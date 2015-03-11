@@ -10,7 +10,9 @@
 (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
 (add-hook 'kill-buffer-hook 'bm-buffer-save)
 (add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
+                              ;; Sometimes error happens on quitting emacs.
+                              ;; bm-buffer-save: Wrong type argument: listp, \.\.\.
+                              ;; (bm-buffer-save-all)
                               (bm-repository-save)))
 
 (setq bm-persistent-face 'bm-face)
