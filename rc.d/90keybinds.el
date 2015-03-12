@@ -1,6 +1,7 @@
 ;; Custom Keybindings
 (when (display-graphic-p)
   ;; (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-z"))
   (global-set-key (kbd "C-z") 'helm-find-files))
 
 (global-set-key (kbd "<M-return>") 'indent-new-comment-line)
@@ -82,6 +83,7 @@
 ;; key-chord
 ;; (key-chord-define-global "jk" 'view-mode)
 (key-chord-define-global "jk" 'evil-mode)
+(key-chord-define-global "df" 'vc-diff)
 (key-chord-define-global "vc" 'magit-status)
 
 ;; region-bindings
