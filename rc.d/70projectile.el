@@ -1,8 +1,5 @@
 ;; projectile
-;; Avoid assigning "C-c p" prefix. Set useless prefix to me.
-(setq projectile-keymap-prefix (kbd "M-s-p"))
 (projectile-global-mode)
-
 (defun my-projectile-helm-ag (arg)
   (interactive "p")
   (case arg
@@ -21,3 +18,5 @@
                    ;; helm-source-ls-git
                    helm-source-files-in-current-dir)
         :buffer "*helm for project*"))
+
+(helm-projectile-toggle 1)
