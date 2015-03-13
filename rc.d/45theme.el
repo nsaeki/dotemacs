@@ -32,6 +32,7 @@
                                    ((evil-replace-state-p)  '("#44789c" . "#000000"))
                                    ((evil-motion-state-p)   '("#f1e896" . "#000000"))
                                    ((evil-emacs-state-p)    '("#444488" . "#000000"))
+                                   (view-mode  '("tomato3" . "#000000"))
                                    (t default-color))))
                   (set-face-background 'mode-line (car color))
                   (set-face-foreground 'mode-line (cdr color)))))))
