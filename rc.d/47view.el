@@ -5,6 +5,8 @@
 ;; like less
 (define-key view-mode-map (kbd "N") 'View-search-last-regexp-backward)
 (define-key view-mode-map (kbd "?") 'View-search-regexp-backward)
+(define-key view-mode-map (kbd "f") 'View-scroll-page-forward)
+(define-key view-mode-map (kbd "b") 'View-scroll-page-backward)
 (define-key view-mode-map (kbd "G") 'View-goto-percent)
 ;; like vi
 (define-key view-mode-map (kbd "h") 'backward-char)
