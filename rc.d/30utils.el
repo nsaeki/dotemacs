@@ -60,20 +60,26 @@
 (require 'all-ext)
 
 (require 'search-web)
-(defun search-web-dwin (&optional engine word)
+
+;; Still using my version of search-web-dwim becuase original version of
+;; this function is a bit inconvenient for me (commented below).
+(defun my/search-web-dwim (&optional engine word)
   (interactive)
   (let* ((completion-ignore-case t)
          (use-empty-active-region nil)
+         ;; Set default engine to google whatever search-engine-history has.
          (engine (or engine
                      (completing-read "Search engine (default google): "
-                                      (make-search-engine-name-list) nil t
-                                      nil nil "google")))
+                                      search-web-engines nil t nil
+                                      'search-web-engine-history "google")))
          (word (cond
                 (word)
+                ;; If region is activated but empty, ignore that.
                 ((use-region-p)
                  (buffer-substring-no-properties (region-beginning) (region-end)))
                 ((thing-at-point 'symbol t))
-                (t (read-string "Search word: ")))))
+                ;; Prompt to input search word if word is empty.
+                (t (read-string "Search Word: " nil 'search-web-word-history)))))
     (search-web engine word)))
 (when (eq system-type 'darwin)
-  (add-to-list 'search-engines '("dict" . "dict:///%s")))
+  (add-to-list 'search-web-engines '("dict" "dict:///%s" nil)))

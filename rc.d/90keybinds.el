@@ -60,14 +60,13 @@
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c w") 'quickrun-with-arg)
 (global-set-key (kbd "C-c o") 'browse-url)
-(global-set-key (kbd "C-c s") 'search-web-dwin)
-;; (global-set-key (kbd "C-c g")
-;;                 (lambda () (interactive) (search-web-dwin "google")))
+(global-set-key (kbd "C-c s") 'my/search-web-dwim)
 
 (global-set-key (kbd "C-x v p") 'projectile-dired)
 ;; (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 ;; (global-set-key (kbd "C-x v n") 'git-gutter:revert-hunk)
 ;; (global-set-key (kbd "C-x v j") 'git-gutter:stage-hunk)
+
 ;; smartrep
 (smartrep-define-key
     global-map "C-c" '(("u" . 'goto-last-change)
