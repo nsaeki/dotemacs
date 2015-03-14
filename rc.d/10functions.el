@@ -33,7 +33,7 @@
                 (window-minibuffer-p current))
       (set-window-buffer (selected-window) (window-buffer other))
       (set-window-buffer other current-buf)
-      (if (eq arg 4) (select-window other)))))
+      (if (= arg 1) (select-window other)))))
 
 ;; preserve scratch buffer
 ;; http://www-tsujii.is.s.u-tokyo.ac.jp/~yoshinag/tips/elisp_tips.html#scratch
