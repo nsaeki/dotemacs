@@ -13,6 +13,7 @@
 (blink-cursor-mode 0)
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
+(setq blink-matching-paren nil)         ; suppress Match message in minibuffer
 (savehist-mode 1)
 (setq linum-format "%4d ")
 (global-linum-mode t)
