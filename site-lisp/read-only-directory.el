@@ -2,6 +2,8 @@
   (expand-file-name "~/.emacs.d/read-only-directories")
   nil)
 
+(defcustom read-only-directory-default-directories '() nil)
+
 (defvar read-only-directory-list nil '())
 
 (defun read-only-directory-file-p (file)
@@ -51,10 +53,12 @@
     (setq file read-only-directory-save-file))
   (when file
     (condition-case nil
-        (setq read-only-directory-list (with-temp-buffer
-                              (insert-file-contents file)
-                              (goto-char (point-min))
-                              (read (current-buffer))))
+        (setq read-only-directory-list
+              (append (with-temp-buffer
+                        (insert-file-contents file)
+                        (goto-char (point-min))
+                        (read (current-buffer)))
+                      read-only-directory-default-directories))
       (error (message "Cannot read read-only-directory-list at %s" file)))))
 
 (defun read-only-directory-init ()
