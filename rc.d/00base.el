@@ -25,6 +25,7 @@
 (which-function-mode t)
 ;; (global-subword-mode 1)                 ; for CamelCase
 (setq-default indent-tabs-mode nil)
+(setq tab-stop-list '(2 4))
 (setq-default line-spacing 0.2)         ; a little wider
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil)
