@@ -6,7 +6,6 @@
                      all-ext
                      anzu
                      auto-complete
-                     auto-highlight-symbol
                      auto-save-buffers-enhanced
                      bm
                      coffee-mode
@@ -29,6 +28,7 @@
                      helm-gist
                      helm-ls-git
                      helm-migemo
+                     auto-highlight-symbol
                      highlight-symbol
                      inf-ruby
                      json-mode

@@ -86,4 +86,4 @@
 (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
 (define-key region-bindings-mode-map "N" 'mc/unmark-next-like-this)
 (define-key region-bindings-mode-map "P" 'mc/unmark-previous-like-this)
-(define-key region-bindings-mode-map (kbd "RET") 'mc/edit-lines)
+(define-key region-bindings-mode-map (kbd "<return>") 'mc/edit-lines)
