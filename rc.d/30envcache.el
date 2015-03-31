@@ -1,0 +1,2 @@
+(require 'envcache)
+(envcache/init)

@@ -1,7 +1,4 @@
-(setenv "GOPATH"
-        (replace-regexp-in-string
-         "[[:space:]\n]*$" ""
-         (shell-command-to-string "$SHELL -c 'echo $GOPATH'")))
+(setenv "GOPATH" (envcache/getenv "GOPATH"))
 
 ;; use latest go-mode installed from MELPA
 ;; go get code.google.com/p/rog-go/exp/cmd/godef
