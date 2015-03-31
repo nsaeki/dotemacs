@@ -1,8 +1,13 @@
+(setenv "GOPATH"
+        (replace-regexp-in-string
+         "[[:space:]\n]*$" ""
+         (shell-command-to-string "$SHELL -c 'echo $GOPATH'")))
+
 ;; use latest go-mode installed from MELPA
 ;; go get code.google.com/p/rog-go/exp/cmd/godef
 (require 'go-mode-autoloads)
 (add-hook 'go-mode-hook (lambda ()
-                          ;; (local-set-key (kbd "M-.") #'godef-jump)
+                          (local-set-key (kbd "M-.") #'godef-jump)
                           (local-set-key (kbd "C-c ,") 'go-test-mode-map)
                           (flycheck-mode t)))
 
