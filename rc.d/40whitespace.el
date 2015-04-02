@@ -34,7 +34,9 @@
 (set-face-attribute 'whitespace-tab nil
                     :background my/bg-color
                     :foreground "#363636"
-                    :underline t)
+                    ;; underline stains modeline (confirmed in Emacs 24.4).
+                    ;; :underline t
+                    )
 (set-face-attribute 'whitespace-space nil
                     :background my/bg-color
                     :foreground "#484848"
