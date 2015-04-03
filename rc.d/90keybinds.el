@@ -30,6 +30,7 @@
 (global-set-key (kbd "C-c SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-c C-SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-;") 'helm-mini)
+(global-set-key (kbd "C-'") 'helm-ls-git-ls)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
