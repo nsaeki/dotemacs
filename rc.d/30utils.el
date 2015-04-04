@@ -2,6 +2,7 @@
 (shell-command-completion-mode)
 
 (require 'open-junk-file)
+(setq open-junk-file-find-file-function 'find-file)
 (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
 
 ;; http://www.emacswiki.org/emacs/SearchAtPoint
