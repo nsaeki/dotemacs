@@ -8,4 +8,7 @@
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
+
+(el-get-bundle nsaeki/envcache.el)
+(el-get-bundle nsaeki/read-only-directory.el)
+(el-get-bundle nsaeki/idlefingers-emacs)

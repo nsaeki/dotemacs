@@ -2,7 +2,7 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory "~/.emacs.d/themes/"))
   (add-to-list 'custom-theme-load-path
-               (file-name-as-directory "~/.emacs.d/themes/idlefingers-emacs/"))
+               (file-name-as-directory "~/.emacs.d/el-get/idlefingers-emacs/"))
   (load-theme 'idlefingers t)
 
   ;; some customizations
