@@ -19,6 +19,7 @@
                      gist
                      git-gutter-fringe
                      diff-hl
+                     header2
                      helm
                      helm-ag
                      helm-bm
