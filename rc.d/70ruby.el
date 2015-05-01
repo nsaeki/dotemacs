@@ -45,6 +45,10 @@
 (advice-add 'minitest-test-file-p :after-until
             'my-advice:ruby-prefixed-test-p)
 
+;; rcodetooles
+(require 'rcodetools)
+(define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
+
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
 (defvar helm-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
