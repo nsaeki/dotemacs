@@ -56,6 +56,7 @@
 (global-set-key (kbd "C-c n") 'my-org-open-note)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c o") 'browse-url)
+(global-set-key (kbd "C-c y") 'copy-file-name-to-clipboard)
 (global-set-key (kbd "C-c s") 'my/search-web-dwim)
 (global-set-key (kbd "C-c g") (lambda () (interactive) (my/search-web-dwim "google")))
 (global-set-key (kbd "C-c e") (lambda () (interactive) (my/search-web-dwim "dict")))
