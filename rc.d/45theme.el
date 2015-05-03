@@ -8,7 +8,7 @@
   ;; some customizations
   (custom-set-faces
    '(default ((t (:foreground "#d9d9d9"))))
-   '(font-lock-comment-face ((t (:italic t :foreground "#6e6e6e"))))
+   '(font-lock-comment-face ((t (:foreground "dim gray" :italic nil))))
    '(paren-face ((t (:foreground "#A6E22A" :background nil))))
    '(show-paren-match-face ((t (:foreground "#1B1D1E" :background "goldenrod3"))))
    '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333"))))
