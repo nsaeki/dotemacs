@@ -6,7 +6,8 @@
 (add-hook 'go-mode-hook (lambda ()
                           (local-set-key (kbd "M-.") #'godef-jump)
                           (local-set-key (kbd "C-c ,") 'go-test-mode-map)
-                          (flycheck-mode t)))
+                          ;; (flycheck-mode t)
+                          ))
 
 ;; gotest
 (define-prefix-command 'go-test-mode-map)
