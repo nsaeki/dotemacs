@@ -47,7 +47,7 @@
 
 ;; rcodetooles
 (require 'rcodetools)
-(define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
+(define-key ruby-mode-map (kbd "C-c , x") 'xmp)
 
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
