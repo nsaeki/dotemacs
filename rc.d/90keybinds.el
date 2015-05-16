@@ -55,6 +55,7 @@
 (global-set-key (kbd "C-c t") 'my-swap-buffer)
 (global-set-key (kbd "C-c n") 'my-org-open-note)
 (global-set-key (kbd "C-c q") 'quickrun)
+(global-set-key (kbd "C-c w") 'quickrun-with-arg)
 (global-set-key (kbd "C-c o") 'browse-url)
 (global-set-key (kbd "C-c y") 'copy-file-name-to-clipboard)
 (global-set-key (kbd "C-c s") 'my/search-web-dwim)
