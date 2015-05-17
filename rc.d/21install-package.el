@@ -16,6 +16,11 @@
                      expand-region
                      evil
                      go-mode
+                     go-errcheck
+                     go-eldoc
+                     go-direx
+                     go-autocomplete
+                     golint
                      gotest
                      gist
                      git-gutter-fringe

@@ -13,10 +13,7 @@
   (interactive)
   (helm :sources '(helm-source-projectile-buffers-list
                    helm-source-projectile-recentf-list
-                   ;; Useful but slow to display
-                   ;; helm-source-ls-git-status
-                   ;; helm-source-ls-git
-                   helm-source-files-in-current-dir)
+                   helm-source-projectile-files-list)
         :buffer "*helm for project*"))
 
 (setq projectile-enable-caching t)
