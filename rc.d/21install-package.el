@@ -10,6 +10,7 @@
                      bm
                      coffee-mode
                      color-moccur
+                     direx
                      dash-at-point
                      dockerfile-mode
                      expand-region
