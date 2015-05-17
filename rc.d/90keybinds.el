@@ -79,6 +79,10 @@
     global-map "C-x" '(("n" . 'my-vcs-next-hunk)
                        ("p" . 'my-vcs-previous-hunk)))
 
+(smartrep-define-key
+    global-map "M-g" '(("n" . 'next-error)
+                       ("p" . 'previous-error)))
+
 ;; key-chord
 ;; (key-chord-define-global "jk" 'view-mode)
 (key-chord-define-global "jk" 'evil-mode)
