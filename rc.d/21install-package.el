@@ -41,7 +41,6 @@
                      multiple-cursors
                      open-junk-file
                      org
-                     point-undo
                      popwin
                      powershell
                      projectile

@@ -71,9 +71,7 @@
 (smartrep-define-key
     global-map "C-c" '(("u" . 'goto-last-change)
                        ("U" . 'goto-last-change-reverse)
-                       ("i" . 'delete-indentation)
-                       ("k" . 'point-undo)
-                       ("j" . 'point-redo)))
+                       ("i" . 'delete-indentation)))
 
 (smartrep-define-key
     global-map "C-x" '(("n" . 'my-vcs-next-hunk)
