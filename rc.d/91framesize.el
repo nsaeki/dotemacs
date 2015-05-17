@@ -19,11 +19,11 @@
            (file my-save-frame-file))
       (with-temp-file file
         (insert
-         (format "(set-frame-size (selected-frame) %d %d)\n"
-                 current-width current-height))
+         (format "(set-frame-position (selected-frame) %d %d)\n"
+                 current-left-margin current-top-margin))
         (insert
-         (format "(set-frame-position (selected-frame) %d %d)"
-                 current-left-margin current-top-margin)))))
+         (format "(set-frame-size (selected-frame) %d %d)"
+                 current-width current-height)))))
 
   (defun my-load-frame-size()
     "Restore frame position and size from `my-save-frame-file'"
