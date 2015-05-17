@@ -43,7 +43,7 @@
     (set-buffer (get-buffer-create "*scratch*"))
     (funcall initial-major-mode)
     (erase-buffer)
-    (when (and initial-scratch-message (not inhibit-startup-message))
+    (when initial-scratch-message
       (insert initial-scratch-message))
     (or arg (progn (setq arg 0)
                    (switch-to-buffer "*scratch*")))
