@@ -8,7 +8,7 @@
 (add-hook 'go-mode-hook (lambda ()
                           (local-set-key (kbd "M-.") #'godef-jump)
                           (local-set-key (kbd "C-c ,") 'go-test-mode-map)
-                          (local-set-key (kbd "C-c C-j") 'go-direx-pop-to-buffer)
+                          (local-set-key (kbd "C-c j") 'go-direx-pop-to-buffer)
                           ;; (flycheck-mode t)
                           ))
 
