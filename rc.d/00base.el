@@ -19,7 +19,8 @@
 (global-linum-mode t)
 (column-number-mode t)
 (global-font-lock-mode t)
-(global-hl-line-mode t)
+;; Use global-hl-line-timer-function instead
+;; (global-hl-line-mode t)
 ;; (electric-pair-mode t)                  ; use smartparens
 (global-auto-revert-mode 1)
 (which-function-mode t)

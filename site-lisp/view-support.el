@@ -35,7 +35,7 @@
 
 (defun view-mode-hook0 ()
   (define-many-keys view-mode-map pager-keybind)
-  (hl-line-mode 1)
+  ;; (hl-line-mode 1)
   (define-key view-mode-map " " 'scroll-up))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
