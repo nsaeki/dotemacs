@@ -74,7 +74,6 @@ Otherwise open current directory"
         (dired-jump nil rootdir)
       (dired-jump))))
 
-
 ;; http://emacsredux.com/blog/2013/03/27/copy-filename-to-the-clipboard/
 (defun copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
@@ -95,6 +94,3 @@ Otherwise open current directory"
 (setq global-hl-line-timer
       (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
 ;; (cancel-timer global-hl-line-timer)
-
-
-
