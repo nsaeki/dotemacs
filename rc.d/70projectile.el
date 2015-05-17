@@ -19,4 +19,5 @@
                    helm-source-files-in-current-dir)
         :buffer "*helm for project*"))
 
+(setq projectile-enable-caching t)
 (helm-projectile-toggle 1)
