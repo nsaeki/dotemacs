@@ -94,3 +94,9 @@ Otherwise open current directory"
 (setq global-hl-line-timer
       (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
 ;; (cancel-timer global-hl-line-timer)
+
+(defun my/open-blog-file ()
+  (interactive)
+  (let ((filename (format-time-string "%Y%m%d")))
+    (find-file (concat "~/notes/blog/" filename ".md"))
+    (goto-char (point-max))))

@@ -47,11 +47,11 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c a") 'mc/mark-all-dwim)
 
-(global-set-key (kbd "C-c b") popwin:keymap)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c m") 'my/open-blog-file)
 (global-set-key (kbd "C-c j") 'my/org-open-journal)
 (global-set-key (kbd "C-c J") 'my/org-open-journal-with-title)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
