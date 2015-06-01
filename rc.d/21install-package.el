@@ -77,7 +77,8 @@
                      yaml-mode
                      yard-mode
                      yasnippet
-                     zencoding-mode)))
+                     zencoding-mode
+                     zop-to-char)))
   (dolist (x my-packages)
     (when (not (package-installed-p x))
       (package-install x))))

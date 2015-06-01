@@ -12,6 +12,7 @@
 ;; (global-set-key (kbd "M-?") 'help-command)
 ;; (keyboard-translate ?\C-h ?\C-?)
 
+(global-set-key (kbd "M-z") 'zop-up-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
