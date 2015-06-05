@@ -9,8 +9,10 @@
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 (global-set-key (kbd "C-|") 'other-window-or-split)
 
-;; (global-set-key (kbd "M-?") 'help-command)
-;; (keyboard-translate ?\C-h ?\C-?)
+;; (global-set-key (kbd "C-h") 'delete-backward-char)
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "M-?") 'help-command)
 
 (global-set-key (kbd "M-z") 'zop-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
