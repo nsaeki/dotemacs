@@ -47,4 +47,5 @@
 
 (add-hook 'markdown-mode-hook
           '(lambda ()
-             (setq imenu-create-index-function 'markdown-imenu-create-index)))
+             (setq imenu-create-index-function 'markdown-imenu-create-index)
+             (local-set-key (kbd "C-M-m") 'markdown-insert-list-item)))
