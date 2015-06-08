@@ -4,6 +4,7 @@
   (global-unset-key (kbd "C-x C-z"))
   (global-set-key (kbd "C-z") 'helm-resume))
 
+(global-unset-key (kbd "C-h h"))        ;hello page is heavy to display
 (global-set-key (kbd "<M-return>") 'indent-new-comment-line)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
@@ -50,13 +51,14 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c a") 'mc/mark-all-dwim)
 
+(global-set-key (kbd "C-c b") 'my/open-blog-file)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my/org-open-journal)
 (global-set-key (kbd "C-c N") 'my/org-open-journal-with-title)
-(global-set-key (kbd "C-c m") 'my/open-blog-file)
+(global-set-key (kbd "C-c m") 'bm-toggle)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-set-key (kbd "C-c t") 'my-swap-buffer)
 (global-set-key (kbd "C-c q") 'quickrun)
