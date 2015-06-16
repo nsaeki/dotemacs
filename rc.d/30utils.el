@@ -83,3 +83,6 @@
     (search-web engine word)))
 (when (eq system-type 'darwin)
   (add-to-list 'search-web-engines '("dict" "dict:///%s" nil)))
+
+;; zop-to-char
+(setq zop-to-char-kill-keys '(?\r ?\C-k ?\C-w))
