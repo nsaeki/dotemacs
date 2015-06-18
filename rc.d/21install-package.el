@@ -47,6 +47,7 @@
                      multiple-cursors
                      open-junk-file
                      org
+                     ox-gfm
                      popwin
                      powershell
                      projectile

@@ -12,4 +12,3 @@
 (el-get-bundle nsaeki/envcache.el)
 (el-get-bundle nsaeki/read-only-directory.el)
 (el-get-bundle nsaeki/idlefingers-emacs)
-(el-get-bundle larstvei/ox-gfm)
