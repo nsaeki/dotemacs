@@ -71,6 +71,7 @@
                      smartrep
                      sml-modeline
                      sql-indent
+                     toml-mode
                      undo-tree
                      viewer
                      volatile-highlights
