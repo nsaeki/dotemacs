@@ -62,6 +62,7 @@
                      rspec-mode
                      minitest
                      rubocop
+                     rust-mode
                      sass-mode
                      sequential-command
                      shell-command
