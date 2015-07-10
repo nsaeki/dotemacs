@@ -15,6 +15,8 @@
                      dockerfile-mode
                      expand-region
                      evil
+                     elixir-mode
+                     alchemist
                      go-mode
                      go-errcheck
                      go-eldoc
