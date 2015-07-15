@@ -34,7 +34,6 @@
 (global-set-key (kbd "C-c SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-c C-SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-;") 'helm-mini)
-(global-set-key (kbd "C-'") 'helm-ghq)
 (global-set-key (kbd "C-.") 'helm-imenu)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -42,7 +41,8 @@
 (global-set-key (kbd "M-o") 'helm-occur)
 (global-set-key (kbd "C-M-o") 'helm-multi-occur)
 (global-set-key (kbd "C-M-z") 'helm-resume)
-(global-set-key (kbd "C-M-;") 'my-helm-for-project)
+(global-set-key (kbd "C-M-;") 'my-helm-for-files-in-project)
+(global-set-key (kbd "C-'") 'my-helm-for-projects)
 
 (global-set-key (kbd "C-,") 'er/expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)

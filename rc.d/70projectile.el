@@ -8,8 +8,16 @@
                   (projectile-project-root))))))
 
 (require 'helm-projectile)
-(defun my-helm-for-project ()
-  nil
+
+(defun my-helm-for-projects ()
+  "Helm for projectile projecss and ghq list"
+  (interactive)
+  (helm :sources '(helm-source-projectile-projects
+                   helm-source-ghq)
+        :buffer "*helm for project*"))
+
+(defun my-helm-for-files-in-project ()
+  "Helm for file and buffers in current project"
   (interactive)
   (helm :sources '(helm-source-projectile-buffers-list
                    helm-source-projectile-recentf-list
