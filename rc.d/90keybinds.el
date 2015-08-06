@@ -51,7 +51,7 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c a") 'mc/mark-all-dwim)
 
-(global-set-key (kbd "C-c b") 'my/open-blog-file)
+;; (global-set-key (kbd "C-c b") 'my/open-blog-file)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
