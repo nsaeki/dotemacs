@@ -11,6 +11,7 @@
                      bm
                      coffee-mode
                      color-moccur
+                     neotree
                      direx
                      dash-at-point
                      dockerfile-mode

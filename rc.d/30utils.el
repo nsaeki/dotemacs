@@ -93,3 +93,8 @@
   (interactive)
   (shell-command
    (format "atom %s" (shell-quote-argument (buffer-file-name)))))
+
+;; neotree
+(custom-set-variables
+ '(neo-vc-integration '(face))
+ '(neo-theme '(ascii)))

@@ -55,6 +55,8 @@
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-c j") 'neotree-toggle)
+(global-set-key (kbd "C-c C-j") 'neotree-toggle)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my/org-open-journal)
 (global-set-key (kbd "C-c N") 'my/org-open-journal-with-title)
