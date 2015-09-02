@@ -67,6 +67,7 @@
                      minitest
                      rubocop
                      rust-mode
+                     scala-mode2
                      sass-mode
                      sequential-command
                      shell-command
