@@ -1,6 +1,8 @@
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
+(setq ruby-insert-encoding-magic-comment nil)
+
 ;; https://github.com/senny/rbenv.el
 ;; (require 'rbenv)
 (setq rbenv-show-active-ruby-in-modeline nil)
