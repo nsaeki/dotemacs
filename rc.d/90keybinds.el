@@ -20,7 +20,8 @@
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
-(global-set-key (kbd "M-k") 'bury-buffer)
+;; (global-set-key (kbd "M-k") 'bury-buffer)
+(global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
