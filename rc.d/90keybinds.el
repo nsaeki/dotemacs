@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "M-?") 'help-command)
 
-(global-set-key (kbd "M-z") 'zop-to-char)
+(global-set-key (kbd "M-z") 'zop-up-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
