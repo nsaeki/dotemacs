@@ -1,7 +1,5 @@
+(require 'helm)
 (require 'helm-config)
-(require 'helm-match-plugin)
-(require 'helm-ls-git)
-(require 'helm-ghq)
 
 (custom-set-variables
  '(helm-truncate-lines t)
@@ -15,21 +13,7 @@
                                helm-source-files-in-current-dir
                                helm-source-ghq)))
 
-(require 'helm-migemo)
-;; Workaround for helm-migemo
-;; http://rubikitch.com/2014/12/19/helm-migemo/
-(eval-after-load "helm-migemo"
-  '(defun helm-compile-source--candidates-in-buffer (source)
-     (helm-aif (assoc 'candidates-in-buffer source)
-         (append source
-                 `((candidates
-                    . ,(or (cdr it)
-                           (lambda ()
-                             ;; Do not use `source' because other plugins
-                             ;; (such as helm-migemo) may change it
-                             (helm-candidates-in-buffer (helm-get-current-source)))))
-                   (volatile) (match identity)))
-       source)))
+(helm-migemo-mode t)
 
 (require 'helm-bm)
 (push '(migemo) helm-source-bm)
@@ -39,3 +23,6 @@
 
 (define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
 (helm-descbinds-install)
+
+(require 'helm-ls-git)
+(require 'helm-ghq)
