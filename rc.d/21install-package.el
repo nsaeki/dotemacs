@@ -36,7 +36,6 @@
                      helm-c-yasnippet
                      helm-descbinds
                      helm-ghq
-                     helm-gist
                      helm-ls-git
                      helm-migemo
                      auto-highlight-symbol
