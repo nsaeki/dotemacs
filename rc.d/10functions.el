@@ -22,6 +22,11 @@
   (when (one-window-p) (split-window-sensibly))
   (other-window 1))
 
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
 (defun my-swap-buffer (arg)
   "Swap buffers with next window"
   (interactive "p")
