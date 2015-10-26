@@ -58,6 +58,7 @@
                      quickrun
                      rainbow-mode
                      search-web
+                     shell-pop
                      rbenv
                      recentf-ext
                      region-bindings-mode

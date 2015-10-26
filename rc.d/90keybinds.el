@@ -2,7 +2,7 @@
 (when (display-graphic-p)
   ;; (global-unset-key (kbd "C-z"))
   (global-unset-key (kbd "C-x C-z"))
-  (global-set-key (kbd "C-z") 'helm-resume))
+  (global-set-key (kbd "C-z") 'shell-pop))
 
 (global-unset-key (kbd "C-h h"))        ;hello page is heavy to display
 (global-set-key (kbd "<M-return>") 'indent-new-comment-line)
