@@ -27,6 +27,13 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
+(defun align-repeat (start end regexp)
+  "Repeat alignment with respect to
+     the given regular expression."
+  (interactive "r\nsAlign regexp: ")
+  (align-regexp start end
+                (concat "\\(\\s-*\\)" regexp) 1 1 t))
+
 (defun my-swap-buffer (arg)
   "Swap buffers with next window"
   (interactive "p")
