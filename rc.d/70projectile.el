@@ -12,8 +12,8 @@
 (defun my-helm-for-projects ()
   "Helm for projectile projecss and ghq list"
   (interactive)
-  (helm :sources '(helm-source-projectile-projects
-                   helm-source-ghq)
+  (helm :sources '(helm-source-ghq
+                   helm-source-projectile-projects)
         :buffer "*helm for project*"))
 
 (defun my-helm-for-files-in-project ()
