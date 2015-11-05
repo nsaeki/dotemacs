@@ -18,6 +18,8 @@
 (setq inf-ruby-default-implementation "pry")
 (setq inf-ruby-first-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)> *")
 (setq inf-ruby-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)[>*\"'] *")
+(define-key inf-ruby-minor-mode-map (kbd "C-c C-z") 'inf-ruby-console-auto)
+(push '("^\*pry*" :regexp 1 :height 25) popwin:special-display-config)
 
 ;; yard-mode
 (add-hook 'ruby-mode-hook 'yard-mode)
@@ -39,9 +41,8 @@
 
 ;; minitest-mode
 ;; Avoid conflict with rspec-mode prefix
-(when (package-installed-p 'rspec-mode)
-  (custom-set-variables
-   '(minitest-keymap-prefix (kbd "C-c ."))))
+(custom-set-variables
+ '(minitest-keymap-prefix (kbd "C-c .")))
 
 ;; Needs the same advice as ruby-test-mode
 (advice-add 'minitest-test-file-p :after-until
