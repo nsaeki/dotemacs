@@ -43,6 +43,7 @@
 ;; Avoid conflict with rspec-mode prefix
 (custom-set-variables
  '(minitest-keymap-prefix (kbd "C-c .")))
+(push '("^\*Minitest*" :regexp 1 :height 25) popwin:special-display-config)
 
 ;; Needs the same advice as ruby-test-mode
 (advice-add 'minitest-test-file-p :after-until
