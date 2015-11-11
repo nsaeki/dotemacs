@@ -19,6 +19,7 @@
                      evil
                      elixir-mode
                      alchemist
+                     flycheck
                      go-mode
                      go-errcheck
                      go-eldoc
