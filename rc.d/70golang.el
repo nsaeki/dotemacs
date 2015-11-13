@@ -1,17 +1,17 @@
 (setenv "GOPATH" (envcache/getenv "GOPATH"))
 
 ;; use latest go-mode installed from MELPA
-;; go get code.google.com/p/rog-go/exp/cmd/godef
-;; or
 ;; go get https://github.com/rogpeppe/godef
 (require 'go-mode-autoloads)
-(add-hook 'go-mode-hook (lambda ()
-                          (local-set-key (kbd "M-.") #'godef-jump)
-                          (local-set-key (kbd "C-c ,") 'go-test-mode-map)
-                          (local-set-key (kbd "C-c j") 'go-direx-pop-to-buffer)
-                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
-                          (flycheck-mode t)
-                          ))
+;; (add-hook 'go-mode-hook (flycheck-mode t)
+
+(eval-after-load 'go-mode
+  '(progn
+     (define-key go-mode-map (kbd "M-.") #'godef-jump)
+     (define-key go-mode-map (kbd "C-c ,") 'go-test-mode-map)
+     (define-key go-mode-map (kbd "C-c j") 'go-direx-pop-to-buffer)
+     (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
+     (define-key go-mode-map (kbd "C-c C-l") 'golint)))
 
 ;; gotest
 (define-prefix-command 'go-test-mode-map)
@@ -34,7 +34,7 @@
 ;; go get -u github.com/golang/lint/golint
 ;; (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
-(push '("^\*golint*" :regexp t :dedicated t) popwin:special-display-config)
+;; (push '("^\*golint*" :regexp t :dedicated t) popwin:special-display-config)
 
 ;; go-direx
 ;; go get -u github.com/jstemmer/gotags
@@ -42,5 +42,25 @@
       popwin:special-display-config)
 
 ;; go-errcheck
-;; go get github.com/kisielk/errcheck
+;; go get -u github.com/kisielk/errcheck
 ;; nothing needed to be required.
+
+;; helm-go-package
+(eval-after-load 'go-mode
+  '(substitute-key-definition 'go-import-add 'helm-go-package go-mode-map))
+
+;; http://syohex.hatenablog.com/entry/20130618/1371567527
+(defvar my/helm-go-source
+  '((name . "Helm Go")
+    (candidates . go-packages)
+    (action . (("Show document" . godoc)
+               ("Import package" . my/helm-go-import-add)))))
+
+(defun my/helm-go-import-add (candidate)
+  (dolist (package (helm-marked-candidates))
+    (go-import-add current-prefix-arg package)))
+
+(defun my/helm-godoc ()
+  (Interactive)
+  (helm :sources '(my/helm-go-source) :buffer "*helm godoc*"
+        :buffer "*helm godoc*"))
