@@ -12,3 +12,4 @@
 (el-get-bundle nsaeki/envcache.el)
 (el-get-bundle nsaeki/read-only-directory.el)
 (el-get-bundle nsaeki/idlefingers-emacs)
+(el-get-bundle sugyan/helm-go-package :checkout "52d6ed2dca82d860d63ef654e85a9dd762c272f5")
