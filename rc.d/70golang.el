@@ -9,7 +9,8 @@
                           (local-set-key (kbd "M-.") #'godef-jump)
                           (local-set-key (kbd "C-c ,") 'go-test-mode-map)
                           (local-set-key (kbd "C-c j") 'go-direx-pop-to-buffer)
-                          ;; (flycheck-mode t)
+                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
+                          (flycheck-mode t)
                           ))
 
 ;; gotest
