@@ -1,10 +1,9 @@
 ;; Custom Keybindings
 (when (display-graphic-p)
-  ;; (global-unset-key (kbd "C-z"))
   (global-unset-key (kbd "C-x C-z"))
   (global-set-key (kbd "C-z") 'shell-pop))
 
-(global-unset-key (kbd "C-h h"))        ;hello page is heavy to display
+(global-unset-key (kbd "C-h h"))        ; disable 'view-hello-file
 (global-set-key (kbd "<M-return>") 'indent-new-comment-line)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
@@ -19,7 +18,6 @@
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
-;; (global-set-key (kbd "M-k") 'bury-buffer)
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
@@ -51,7 +49,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c a") 'mc/mark-all-dwim)
 
-;; (global-set-key (kbd "C-c b") 'my/open-blog-file)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
@@ -70,6 +67,7 @@
 (global-set-key (kbd "C-c s") 'my/search-web-dwim)
 (global-set-key (kbd "C-c g") (lambda () (interactive) (my/search-web-dwim "google")))
 (global-set-key (kbd "C-c e") (lambda () (interactive) (my/search-web-dwim "dict")))
+(global-set-key (kbd "C-c =") 'vc-diff)
 
 (global-set-key (kbd "C-x v p") 'projectile-dired)
 ;; (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
