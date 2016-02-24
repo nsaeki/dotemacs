@@ -2,6 +2,7 @@
 (setq org-directory "~/notes")
 (setq org-agenda-files (list org-directory))
 (setq org-default-notes-file (concat org-directory "/scribble.org"))
+(setq org-imenu-depth 4)
 
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
