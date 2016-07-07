@@ -64,6 +64,7 @@
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "C-c s") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c t") 'my-swap-buffer)
+(global-set-key (kbd "C-c v") 'browse-url-of-file)
 (global-set-key (kbd "C-c y") 'copy-file-name-to-clipboard)
 (global-set-key (kbd "C-c f") 'my/search-web-dwim)
 (global-set-key (kbd "C-c g") (lambda () (interactive) (my/search-web-dwim "google")))
