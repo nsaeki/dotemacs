@@ -49,9 +49,9 @@
             'my-advice:ruby-prefixed-test-p)
 
 ;; rcodetooles
-(require 'rcodetools)
-(define-key ruby-mode-map (kbd "C-c , x") 'xmp)
-(define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
+;; (require 'rcodetools)
+;; (define-key ruby-mode-map (kbd "C-c , x") 'xmp)
+;; (define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
 
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
