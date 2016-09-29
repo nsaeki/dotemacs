@@ -52,6 +52,7 @@
                      open-junk-file
                      org
                      ox-gfm
+                     php-mode
                      popwin
                      powershell
                      projectile
