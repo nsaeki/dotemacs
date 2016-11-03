@@ -13,7 +13,7 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (global-set-key (kbd "M-?") 'help-command)
 
-(global-set-key (kbd "M-z") 'zop-to-char)
+(global-set-key (kbd "M-z") 'zop-up-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
