@@ -31,6 +31,11 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil)
 
+;; turn off shell command echo (from: https://www.emacswiki.org/emacs/MatthewOzorDotEmacs)
+(defun my-comint-init ()
+  (setq comint-process-echoes t))
+(add-hook 'comint-mode-hook 'my-comint-init)
+
 ;; Shift + Arrow Key moves window focus
 (windmove-default-keybindings)
 
