@@ -24,7 +24,7 @@
     (interactive)
     (unwind-protect
         (inf-ruby-console-auto)
-      (inf-ruby))))
+      (inf-ruby "pry"))))
 (push '("^\*pry*" :regexp 1 :height 25) popwin:special-display-config)
 
 ;; yard-mode
