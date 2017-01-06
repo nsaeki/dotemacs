@@ -10,6 +10,7 @@ tramp
 anything-c-adaptive-history
 srecode-map.el
 ac-comphist.dat
+recentf
 server
 semanticdb
 .org-id-localtions

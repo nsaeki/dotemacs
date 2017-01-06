@@ -1,8 +1,8 @@
 (setenv "GOPATH" (envcache/getenv "GOPATH"))
 
 ;; use latest go-mode installed from MELPA
-;; go get https://github.com/rogpeppe/godef
-(require 'go-mode-autoloads)
+;; go get github.com/rogpeppe/godef
+;; (require 'go-mode-autoloads)
 ;; (add-hook 'go-mode-hook (flycheck-mode t)
 
 (eval-after-load 'go-mode
