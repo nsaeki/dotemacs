@@ -9,33 +9,19 @@
     (define-key global-map [ns-drag-file] 'ns-find-file)
 
     ;; font
+    ;; Ref. http://extra-vision.blogspot.jp/2016/07/emacs.html
     (when (>= emacs-major-version 23)
       (create-fontset-from-ascii-font
-       "-apple-menlo-medium-normal-normal-*-12-*" nil "hirakaku12")
+       "Menlo"
+       nil
+       "Menlo_Hiragino")
 
-      (set-frame-font "fontset-hirakaku12")
-      (add-to-list 'default-frame-alist '(font . "fontset-hirakaku12"))
-
-      ;; Ricty
-      ;;(set-face-attribute 'default nil :family "Ricty" :height 140)
-      ;;(set-fontset-font "fontset-default" 'japanese-jisx0208 '("Ricty" . "iso10646-*"))
+      (add-to-list 'default-frame-alist '(font . "fontset-Menlo_Hiragino"))
 
       (set-fontset-font
-       "fontset-hirakaku12"
-       'japanese-jisx0208
-       "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1")
-
-      (set-fontset-font
-       "fontset-hirakaku12"
-       'jisx0201
-       "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1")
-
-      (set-fontset-font
-       "fontset-hirakaku12"
-       'japanese-jisx0212
-       "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1")
-
-      (set-fontset-font
-       "fontset-hirakaku12"
-       'katakana-jisx0201
-       "-apple-hiragino_kaku_gothic_pro-medium-normal-normal-*-14-*-iso10646-1"))))
+       "fontset-Menlo_Hiragino"
+       ;; 'unicode
+       'japanese-jisx0213.2004-1
+       (font-spec :family "Hiragino Sans W3" :size 12)
+       nil
+       'append))))
