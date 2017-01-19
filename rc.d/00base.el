@@ -97,3 +97,6 @@
 (setq auto-save-default nil)
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
+
+;; for Emacs Mac Port
+(setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
