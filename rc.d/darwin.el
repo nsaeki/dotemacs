@@ -2,6 +2,9 @@
   (when (display-graphic-p)
     (mac-auto-ascii-mode 1)
 
+    ;; disable M-h to hide window and so on.
+    (setq mac-pass-command-to-system nil)
+
     ;; Command-Key and Option-Key
     (setq ns-command-modifier (quote meta))
     (setq ns-alternate-modifier (quote super))
