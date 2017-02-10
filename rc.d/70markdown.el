@@ -1,4 +1,15 @@
 ;; https://gist.github.com/1631630
+(progn
+  ;; markdown-mode
+  (custom-set-faces
+   '(markdown-header-face-1 ((t (:inherit outline-1 :weight bold))))
+   '(markdown-header-face-2 ((t (:inherit outline-2 :weight bold))))
+   '(markdown-header-face-3 ((t (:inherit outline-3 :weight bold))))
+   '(markdown-header-face-4 ((t (:inherit outline-4 :weight bold))))
+   '(markdown-header-face-5 ((t (:inherit outline-5 :weight bold))))
+   '(markdown-header-face-6 ((t (:inherit outline-6 :weight bold))))
+   '(markdown-pre-face ((t (:inherit org-formula))))))
+
 (defun markdown-imenu-create-index ()
   (let* ((root '(nil . nil))
          cur-alist

@@ -112,3 +112,18 @@ Otherwise open current directory"
   (let ((filename (format-time-string "%Y%m%d")))
     (find-file (concat "~/notes/blog/" filename ".md"))
     (goto-char (point-max))))
+
+(defun my/open-journal (&optional filename)
+  (interactive)
+  (let ((filename (or filename (format-time-string "%Y%m%d"))))
+    (find-file (concat my/org-journal-directory "/" filename ".md"))
+    (goto-char (point-max))
+    (org-show-entry)))
+
+(defun my/open-journal-with-title (&optional title)
+  (interactive)
+  (let ((filename (if title (concat (format-time-string "%Y%m%d-") title)
+                (read-string "Open journal file with name: "
+                             (format-time-string "%Y%m%d-")))))
+    (my/org-open-journal filename)))
+

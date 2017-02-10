@@ -31,20 +31,6 @@
          :empty-lines 1)
         ))
 
-(defun my/org-open-journal (&optional filename)
-  (interactive)
-  (let ((filename (or filename (format-time-string "%Y%m%d"))))
-    (find-file (concat my/org-journal-directory "/" filename ".org"))
-    (goto-char (point-max))
-    (org-show-entry)))
-
-(defun my/org-open-journal-with-title (&optional title)
-  (interactive)
-  (let ((filename (if title (concat (format-time-string "%Y%m%d-") title)
-                (read-string "Open journal file with name: "
-                             (format-time-string "%Y%m%d-")))))
-    (my/org-open-journal filename)))
-
 (defun my/org-quick-capture ()
   (interactive)
   (org-capture nil "n"))
