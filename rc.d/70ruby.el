@@ -14,18 +14,12 @@
 ;; launch pry in inf-ruby
 ;; https://gist.github.com/jsvnm/1390890
 (require 'inf-ruby)
-(add-to-list 'inf-ruby-implementations '("pry" . "pry"))
 (setq inf-ruby-default-implementation "pry")
-(setq inf-ruby-first-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)> *")
-(setq inf-ruby-prompt-pattern "^\\[[0-9]+\\] pry\\((.*)\\)[>*\"'] *")
-;; (define-key inf-ruby-minor-mode-map (kbd "C-c C-z") 'inf-ruby-console-auto)
 (define-key inf-ruby-minor-mode-map (kbd "C-c C-z")
   (lambda ()
     (interactive)
-    (unwind-protect
-        (inf-ruby-console-auto)
-      (inf-ruby "pry"))))
-(push '("^\*pry*" :regexp 1 :height 25) popwin:special-display-config)
+    (inf-ruby)))
+(push '("^\*pry\*" :regexp 1 :height 25) popwin:special-display-config)
 
 ;; yard-mode
 (add-hook 'ruby-mode-hook 'yard-mode)
