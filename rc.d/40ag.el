@@ -1,5 +1,6 @@
 (setq ag-highlight-search t)
 (setq ag-reuse-buffers t)
+(setq helm-ag-base-command "rg --vimgrep --no-heading")
 ;; (setq helm-ag-insert-at-point 'symbol)
 
 (add-hook 'ag-mode-hook 'wgrep-ag-setup)
