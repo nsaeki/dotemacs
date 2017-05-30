@@ -51,6 +51,7 @@
                      multiple-cursors
                      open-junk-file
                      org
+                     org-journal
                      ox-gfm
                      php-mode
                      popwin

@@ -1,7 +1,4 @@
 (setq org-startup-folded 'nofold)
-(setq org-directory "~/notes")
-(setq org-agenda-files (list org-directory))
-(setq org-default-notes-file (concat org-directory "/scribble.org"))
 (setq org-imenu-depth 4)
 
 (define-key org-mode-map (kbd "C-'") nil)
@@ -22,9 +19,19 @@
     (16 (org-insert-upheading nil))     ; C-u C-u
     (t  (org-insert-heading nil))))
 
-(setq my/org-journal-directory (concat org-directory "/journal"))
-(push my/org-journal-directory org-agenda-files)
 
+;;; org-journal
+(require 'org-journal)
+(setq org-journal-file-format "%Y%m%d.org")
+(setq org-journal-date-format "%F")
+(setq org-journal-time-format "<%Y-%m-%d %R> ")
+(setq org-journal-dir "~/notes/journal")
+(push org-journal-dir org-agenda-files)
+
+;;; ox-gfm (auto required)
+;; (require 'ox-gfm)
+
+;;; org-capture
 (setq org-capture-templates
       '(("n" "Add new item to default note file." entry (file nil)
          "* %?\n%i\n\n  %T\n  %a"

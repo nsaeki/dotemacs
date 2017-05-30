@@ -107,23 +107,16 @@ Otherwise open current directory"
       (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
 ;; (cancel-timer global-hl-line-timer)
 
-(defun my/open-blog-file ()
-  (interactive)
-  (let ((filename (format-time-string "%Y%m%d")))
-    (find-file (concat "~/notes/blog/" filename ".md"))
-    (goto-char (point-max))))
+(setq my/notes-directory "~/notes")
+(setq my/journal-directory (concat my/notes-directory "/journal"))
 
 (defun my/open-journal (&optional filename)
   (interactive)
   (let ((filename (or filename (format-time-string "%Y%m%d"))))
-    (find-file (concat my/org-journal-directory "/" filename ".md"))
+    (find-file (concat my/journal-directory "/" filename ".md"))
     (goto-char (point-max))
     (org-show-entry)))
 
-(defun my/open-journal-with-title (&optional title)
+(defun my/open-notes-dir ()
   (interactive)
-  (let ((filename (if title (concat (format-time-string "%Y%m%d-") title)
-                (read-string "Open journal file with name: "
-                             (format-time-string "%Y%m%d-")))))
-    (my/org-open-journal filename)))
-
+  (dired-jump nil (concat my/notes-directory "/")))
