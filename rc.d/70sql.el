@@ -1,6 +1,5 @@
 (eval-after-load "sql"
   '(load-library "sql-indent"))
-(sql-set-product "mysql")
 
 (setq sql-indent-first-column-regexp
       (concat "\\(^\\s-*\\(" (regexp-opt '(
