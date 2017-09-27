@@ -13,12 +13,13 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (global-set-key (kbd "M-?") 'help-command)
 
-(global-set-key (kbd "M-z") 'zop-up-to-char)
+;; (global-set-key (kbd "M-z") 'zop-to-char)
+(global-set-key (kbd "M-Z") 'zap-up-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
-(global-set-key (kbd "M-k") 'kill-this-buffer)
+;; (global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
@@ -53,7 +54,8 @@
 (global-set-key (kbd "C-c b") 'bm-show-all)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
-(global-set-key (kbd "C-c j") 'neotree-toggle)
+(global-set-key (kbd "C-c j") 'org-journal-new-entry)
+;; (global-set-key (kbd "C-c j") 'neotree-toggle)
 ;; (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my/open-notes-dir)

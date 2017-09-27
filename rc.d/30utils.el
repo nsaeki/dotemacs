@@ -1,5 +1,6 @@
 ;; (require 'shell-command)
 (shell-command-completion-mode)
+(require 'misc)                         ; for zap-up-to-char
 
 (require 'open-junk-file)
 (setq open-junk-file-find-file-function 'find-file)
