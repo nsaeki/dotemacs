@@ -3,6 +3,10 @@
              (local-set-key (kbd "C-.") 'helm-imenu)
              (local-set-key (kbd "C-c C-.") 'php-show-arglist)))
 
+(add-to-list 'auto-mode-alist '(".php$" . web-mode))
+(add-hook 'web-mode-hook
+          '(lambda ()
+             (setq web-mode-enable-auto-indentation nil)))
 ;; php-imenu
 (autoload 'php-imenu-create-index "php-imenu" nil t)
 ;; Add the index creation function to the php-mode-hook
