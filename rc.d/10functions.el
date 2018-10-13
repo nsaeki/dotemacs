@@ -120,3 +120,6 @@ Otherwise open current directory"
 (defun my/open-notes-dir ()
   (interactive)
   (dired-jump nil (concat my/notes-directory "/")))
+
+(require 'dired-x)
+
