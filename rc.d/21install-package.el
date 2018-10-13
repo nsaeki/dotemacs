@@ -1,5 +1,4 @@
 (let ((my-packages '(init-loader
-                     ;; exec-path-from-shell
                      ;; ace-jump-mode
                      avy
                      ag
@@ -15,6 +14,7 @@
                      direx
                      dash-at-point
                      dockerfile-mode
+                     exec-path-from-shell
                      expand-region
                      evil
                      elixir-mode
