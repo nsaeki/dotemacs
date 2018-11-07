@@ -19,7 +19,7 @@
   (lambda ()
     (interactive)
     (inf-ruby)))
-(push '("^\*pry\*" :regexp 1 :height 25) popwin:special-display-config)
+;; (push '("^\*pry\*" :regexp 1 :height 25) popwin:special-display-config)
 
 ;; yard-mode
 (add-hook 'ruby-mode-hook 'yard-mode)

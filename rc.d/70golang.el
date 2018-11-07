@@ -38,8 +38,8 @@
 
 ;; go-direx
 ;; go get -u github.com/jstemmer/gotags
-(push '("^\*go-direx:" :regexp t :position left :width 0.4 :dedicated t :stick t)
-      popwin:special-display-config)
+;; (push '("^\*go-direx:" :regexp t :position left :width 0.4 :dedicated t :stick t)
+;;       popwin:special-display-config)
 
 ;; go-errcheck
 ;; go get -u github.com/kisielk/errcheck
