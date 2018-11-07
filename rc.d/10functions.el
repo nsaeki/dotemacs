@@ -97,14 +97,15 @@ Otherwise open current directory"
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+;; (require 'hl-line)
+;; (global-hl-line-mode)
 ;; http://rubikitch.com/2015/05/14/global-hl-line-mode-timer/
-(require 'hl-line)
-(defun global-hl-line-timer-function ()
-  (global-hl-line-unhighlight-all)
-  (let ((global-hl-line-mode t))
-    (global-hl-line-highlight)))
-(setq global-hl-line-timer
-      (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
+;; (defun global-hl-line-timer-function ()
+;;   (global-hl-line-unhighlight-all)
+;;   (let ((global-hl-line-mode t))
+;;     (global-hl-line-highlight)))
+;; (setq global-hl-line-timer
+;;       (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
 ;; (cancel-timer global-hl-line-timer)
 
 (setq my/notes-directory "~/notes")
