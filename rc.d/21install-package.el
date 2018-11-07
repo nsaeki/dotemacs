@@ -60,6 +60,7 @@
                      helm-projectile
                      quickrun
                      rainbow-mode
+                     rjsx-mode
                      search-web
                      shell-pop
                      rbenv

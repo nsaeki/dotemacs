@@ -3,6 +3,12 @@
 ;(defalias 'javascript-mode 'js2-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+(add-hook 'rjsx-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq js-indent-level 2)
+            (setq js2-strict-missing-semi-warning nil)))
+
 ;; http://8-p.info/emacs-javascript.html
 (defun indent-and-back-to-indentation ()
   (interactive)
