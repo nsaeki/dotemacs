@@ -22,7 +22,8 @@
 
 ;;; org-journal
 (require 'org-journal)
-(setq org-journal-file-format "%Y%m%d.org")
+;; (setq org-journal-file-format "%Y%m%d.org")
+(setq org-journal-file-format "journal.org")
 (setq org-journal-date-format "%F")
 (setq org-journal-time-format "<%Y-%m-%d %R> ")
 (setq org-journal-dir "~/notes/journal")
