@@ -1,15 +1,11 @@
-(setenv "GOPATH" (envcache/getenv "GOPATH"))
+;; (setenv "GOPATH" (envcache/getenv "GOPATH"))
 
-;; use latest go-mode installed from MELPA
-;; go get github.com/rogpeppe/godef
-;; (require 'go-mode-autoloads)
-;; (add-hook 'go-mode-hook (flycheck-mode t)
+(add-hook 'go-mode-hook #'lsp)
+(add-hook 'go-mode-hook 'flycheck-mode)
 
 (eval-after-load 'go-mode
   '(progn
-     (define-key go-mode-map (kbd "M-.") #'godef-jump)
      (define-key go-mode-map (kbd "C-c ,") 'go-test-mode-map)
-     (define-key go-mode-map (kbd "C-c j") 'go-direx-pop-to-buffer)
      (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
      (define-key go-mode-map (kbd "C-c C-l") 'golint)))
 
@@ -21,29 +17,15 @@
 (define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
 (define-key go-test-mode-map (kbd "x") 'go-run)
 
-;; gocode
-;; go get -u github.com/nsf/gocode
-;; (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs"))
-(require 'go-autocomplete)
-(require 'auto-complete-config)
+;; (require 'go-autocomplete)
+;; (require 'auto-complete-config)
 
 ;; go-eldoc
-(add-hook 'go-mode-hook 'go-eldoc-setup)
+;; (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;; golint
-;; go get -u github.com/golang/lint/golint
-;; (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
 ;; (push '("^\*golint*" :regexp t :dedicated t) popwin:special-display-config)
-
-;; go-direx
-;; go get -u github.com/jstemmer/gotags
-;; (push '("^\*go-direx:" :regexp t :position left :width 0.4 :dedicated t :stick t)
-;;       popwin:special-display-config)
-
-;; go-errcheck
-;; go get -u github.com/kisielk/errcheck
-;; nothing needed to be required.
 
 ;; helm-go-package
 (eval-after-load 'go-mode

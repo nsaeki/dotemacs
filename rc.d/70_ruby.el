@@ -8,8 +8,7 @@
 (setq rbenv-show-active-ruby-in-modeline nil)
 (global-rbenv-mode)
 
-;; Already required in smartparen-config in 40smartparens.el.
-;; (require 'smartparens-ruby)
+(add-hook 'ruby-mode-hook #'lsp)
 
 ;; launch pry in inf-ruby
 ;; https://gist.github.com/jsvnm/1390890
@@ -23,10 +22,6 @@
 
 ;; yard-mode
 (add-hook 'ruby-mode-hook 'yard-mode)
-
-;; rspec-mode
-;; This will be hooked some ruby-modes and auto-loaded.
-;; (require 'rspec-mode)
 
 ;; ruby-test-mode
 ;; Also hooked in ruby-test-mode.el, but it isn't marked autoload.
@@ -47,11 +42,6 @@
 ;; Needs the same advice as ruby-test-mode
 (advice-add 'minitest-test-file-p :after-until
             'my-advice:ruby-prefixed-test-p)
-
-;; rcodetooles
-;; (require 'rcodetools)
-;; (define-key ruby-mode-map (kbd "C-c , x") 'xmp)
-;; (define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
 
 ;; open gem source
 ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1

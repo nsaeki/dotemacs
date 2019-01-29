@@ -32,3 +32,4 @@ semanticdb
 /bookmarks
 /read-only-directories
 /smex-items
+/.lsp-session-*

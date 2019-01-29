@@ -1,35 +1,36 @@
-(let ((my-packages '(init-loader
-                     ;; ace-jump-mode
-                     avy
-                     ag
-                     wgrep-ag
+(let ((my-packages '(ag
+                     ;; auto-complete
+                     ;; direx
+                     ;; lsp
+                     ;; neotree
+                     ;; alchemist
                      all-ext
                      anzu
-                     auto-complete
+                     auto-highlight-symbol
                      auto-save-buffers-enhanced
+                     avy
                      bm
                      coffee-mode
                      color-moccur
-                     neotree
-                     direx
+                     company
+                     company-lsp
                      dash-at-point
+                     diff-hl
                      dockerfile-mode
+                     ;; elixir-mode
+                     evil
                      exec-path-from-shell
                      expand-region
-                     evil
-                     elixir-mode
-                     alchemist
                      flycheck
-                     go-mode
-                     go-errcheck
-                     go-eldoc
-                     go-direx
-                     go-autocomplete
-                     golint
-                     gotest
                      gist
                      git-gutter-fringe
-                     diff-hl
+                     go-autocomplete
+                     go-direx
+                     go-eldoc
+                     go-errcheck
+                     go-mode
+                     golint
+                     gotest
                      header2
                      helm
                      helm-ag
@@ -39,15 +40,19 @@
                      helm-ghq
                      helm-ls-git
                      helm-migemo
-                     auto-highlight-symbol
+                     helm-projectile
                      highlight-symbol
                      inf-ruby
+                     init-loader
                      json-mode
                      key-chord
                      less-css-mode
+                     lsp-mode
+                     lsp-ui
                      magit
                      markdown-mode
                      migemo
+                     minitest
                      multiple-cursors
                      open-junk-file
                      org
@@ -57,24 +62,22 @@
                      popwin
                      powershell
                      projectile
-                     helm-projectile
                      quickrun
                      rainbow-mode
-                     rjsx-mode
-                     search-web
-                     shell-pop
                      rbenv
                      recentf-ext
                      region-bindings-mode
-                     ruby-test-mode
+                     rjsx-mode
                      rspec-mode
-                     minitest
                      rubocop
+                     ruby-test-mode
                      rust-mode
-                     slim-mode
                      sass-mode
+                     search-web
                      sequential-command
                      shell-command
+                     shell-pop
+                     slim-mode
                      smart-compile
                      smartparens
                      smartrep
@@ -85,6 +88,7 @@
                      viewer
                      volatile-highlights
                      web-mode
+                     wgrep-ag
                      whitespace-cleanup-mode
                      yaml-mode
                      yard-mode
