@@ -3,6 +3,7 @@
 ;(defalias 'javascript-mode 'js2-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+(add-hook 'javascript-mode-hook #'lsp)
 (add-hook 'rjsx-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)

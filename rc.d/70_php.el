@@ -1,3 +1,4 @@
+(add-hook 'php-mode-hook #'lsp)
 (add-hook 'php-mode-hook
           '(lambda ()
              (local-set-key (kbd "C-.") 'helm-imenu)

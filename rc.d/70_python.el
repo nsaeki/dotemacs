@@ -1,3 +1,5 @@
+(add-hook 'python-mode-hook #'lsp)
+
 (setq
  python-shell-interpreter "ipython"
  python-shell-interpreter-args ""
