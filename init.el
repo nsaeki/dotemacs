@@ -8,6 +8,10 @@
             (normal-top-level-add-subdirs-to-load-path))))))
 (add-to-load-path "site-lisp")
 
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  (require 'use-package))
+
 ;; init scripts
 ;; (setq rc-directory "~/.emacs.d/rc.d/")
 ;; (add-to-list 'load-path rc-directory)
@@ -17,4 +21,3 @@
 (package-initialize)
 (setq init-loader-show-log-after-init 'error-only)
 (init-loader-load "~/.emacs.d/rc.d/")
-
