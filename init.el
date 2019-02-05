@@ -4,9 +4,6 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;(when (not package-archive-contents)
-  ;;(package-refresh-contents))
-
 (eval-when-compile
   (require 'use-package))
 
@@ -19,6 +16,8 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 (add-to-load-path "site-lisp")
+
+;;; Settings
 
 (setq ring-bell-function '(lambda ()))
 (setq inhibit-startup-message t)
@@ -35,6 +34,7 @@
 (blink-cursor-mode 0)
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
+(sml-modeline-mode t)
 (setq blink-matching-paren nil)         ; suppress Match message in minibuffer
 (savehist-mode 1)
 (setq linum-format "%4d ")
@@ -86,23 +86,13 @@
 (setq mouse-wheel-follow-mouse 't) ; scroll window under mouse
 (setq scroll-step 1) ; keyboard scroll one line at a time
 
+(setq recentf-max-saved-items 500)
+(setq recentf-exclude '("/TAGS$" "/var/tmp"))
+
 ;; dabberv
 ;(setq *dabbervs-case-fold* t)
 (setq dabberv-case-fold-search nil)
 ;(setq dabbrev-case-replace nil)
-
-;; Remembers cursor position
-(setq save-place-file "~/.emacs.d/save-places")
-(setq-default save-place t)
-(require 'saveplace)
-
-;; Editing in dired-mode
-(require 'dired)
-(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-
-(require 'server)
-(unless (server-running-p)
-  (server-start))
 
 ;; auto-mode-alist for misc file types.
 (setq auto-mode-alist
@@ -124,14 +114,76 @@
 ;; for Emacs Mac Port
 (setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
 
-;;;; Custom functions
-;; insert date
+(shell-command-completion-mode)
+
+;; Settings by system
+(when (eq system-type 'windows-nt)
+  ;; PATH
+  (setq exec-path (cons "c:/cygwin/bin" exec-path))
+  (setenv "PATH" (concat '"c:/cygwin/bin:" (getenv "PATH")))
+  ;; (setq exec-path (cons "c:/cygwin/usr/bin" exec-path))
+  ;; (setenv "PATH" (concat '"c:/cygwin/usr/bin:" (getenv "PATH")))
+  ;; (setq exec-path (cons "c:/cygwin/usr/local/bin" exec-path))
+  ;; (setenv "PATH" (concat '"c:/cygwin/usr/local/bin:" (getenv "PATH")))
+
+  ;; shell command
+  (add-hook 'comint-output-filter-functions
+            'shell-strip-ctrl-m nil t)
+  (add-hook 'comint-output-filter-functions
+            'comint-watch-for-password-prompt nil t)
+  (setq explicit-shell-file-name "bash.exe")
+  ;; For subprocesses invoked via the shell
+  ;; (e.g., "shell -c command")
+  (setq shell-file-name explicit-shell-file-name)
+
+  ;; Locale
+  (setenv "LANG" "C")
+
+  ;; cygwin
+  (require 'cygwin-mount)
+  (cygwin-mount-activate))
+
+(when (eq system-type 'darwin)
+  (when (display-graphic-p)
+    (mac-auto-ascii-mode 1)
+
+    ;; disable M-h to hide window and so on.
+    (setq mac-pass-command-to-system nil)
+
+    ;; Command-Key and Option-Key
+    (setq ns-command-modifier (quote meta))
+    (setq ns-alternate-modifier (quote super))
+    (setq ns-pop-up-frames nil)
+
+    ;; drag and drop
+    (define-key global-map [ns-drag-file] 'ns-find-file)
+
+    ;; font
+    ;; Ref. http://extra-vision.blogspot.jp/2016/07/emacs.html
+    (when (>= emacs-major-version 23)
+      (create-fontset-from-ascii-font
+       "Menlo"
+       nil
+       "Menlo_Hiragino")
+
+      (add-to-list 'default-frame-alist '(font . "fontset-Menlo_Hiragino"))
+
+      (set-fontset-font
+       "fontset-Menlo_Hiragino"
+       ;; 'unicode
+       'japanese-jisx0213.2004-1
+       (font-spec :family "Hiragino Sans W3" :size 12)
+       nil
+       'append))))
+
+
+;;; Custom functions
+
 (defun my-get-datetime (fmt) (insert (format-time-string fmt)))
 (defun date () (interactive) (my-get-datetime "%Y-%m-%d"))
 (defun time () (interactive) (my-get-datetime "%H:%M:%S"))
 (defun datetime () (interactive) (my-get-datetime "%Y-%m-%d %H:%M:%S"))
 
-;; save script file as executable
 (defun make-file-executable ()
   "Make the file of this buffer executable, when it is a script source."
   (save-restriction
@@ -249,90 +301,6 @@ Otherwise open current directory"
   (interactive)
   (dired-jump nil (concat my/notes-directory "/")))
 
-(require 'dired-x)
-
-(when (eq system-type 'windows-nt)
-  ;; PATH
-  (setq exec-path (cons "c:/cygwin/bin" exec-path))
-  (setenv "PATH" (concat '"c:/cygwin/bin:" (getenv "PATH")))
-  ;; (setq exec-path (cons "c:/cygwin/usr/bin" exec-path))
-  ;; (setenv "PATH" (concat '"c:/cygwin/usr/bin:" (getenv "PATH")))
-  ;; (setq exec-path (cons "c:/cygwin/usr/local/bin" exec-path))
-  ;; (setenv "PATH" (concat '"c:/cygwin/usr/local/bin:" (getenv "PATH")))
-
-  ;; shell command
-  (add-hook 'comint-output-filter-functions
-            'shell-strip-ctrl-m nil t)
-  (add-hook 'comint-output-filter-functions
-            'comint-watch-for-password-prompt nil t)
-  (setq explicit-shell-file-name "bash.exe")
-  ;; For subprocesses invoked via the shell
-  ;; (e.g., "shell -c command")
-  (setq shell-file-name explicit-shell-file-name)
-
-  ;; Locale
-  (setenv "LANG" "C")
-
-  ;; cygwin
-  (require 'cygwin-mount)
-  (cygwin-mount-activate))
-
-(when (eq system-type 'darwin)
-  (when (display-graphic-p)
-    (mac-auto-ascii-mode 1)
-
-    ;; disable M-h to hide window and so on.
-    (setq mac-pass-command-to-system nil)
-
-    ;; Command-Key and Option-Key
-    (setq ns-command-modifier (quote meta))
-    (setq ns-alternate-modifier (quote super))
-    (setq ns-pop-up-frames nil)
-
-    ;; drag and drop
-    (define-key global-map [ns-drag-file] 'ns-find-file)
-
-    ;; font
-    ;; Ref. http://extra-vision.blogspot.jp/2016/07/emacs.html
-    (when (>= emacs-major-version 23)
-      (create-fontset-from-ascii-font
-       "Menlo"
-       nil
-       "Menlo_Hiragino")
-
-      (add-to-list 'default-frame-alist '(font . "fontset-Menlo_Hiragino"))
-
-      (set-fontset-font
-       "fontset-Menlo_Hiragino"
-       ;; 'unicode
-       'japanese-jisx0213.2004-1
-       (font-spec :family "Hiragino Sans W3" :size 12)
-       nil
-       'append))))
-
-;; el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-
-;; (el-get-bundle nsaeki/envcache.el)
-(el-get-bundle nsaeki/read-only-directory.el)
-(el-get-bundle nsaeki/idlefingers-emacs)
-;; (el-get-bundle sugyan/helm-go-package :checkout "52d6ed2dca82d860d63ef654e85a9dd762c272f5")
-(el-get-bundle antonj/scss-mode)
-
-(shell-command-completion-mode)
-(require 'misc)                         ; for zap-up-to-char
-(require 'open-junk-file)
-(setq open-junk-file-find-file-function 'find-file)
-(setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S.")
-
 ;; http://www.emacswiki.org/emacs/SearchAtPoint
 (defun isearch-yank-symbol ()
   "*Put symbol at current point into search string."
@@ -347,64 +315,6 @@ Otherwise open current directory"
       (ding)))
   (isearch-search-and-update))
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol)
-
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
-
-(setq recentf-max-saved-items 500)
-(setq recentf-exclude '("/TAGS$" "/var/tmp"))
-(require 'recentf-ext)
-
-;; (install-elisp "http://taiyaki.org/elisp/mell/src/mell.el")
-;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
-(require 'text-adjust)
-
-;; dmacro
-;; (autoload 'dmacro-exec "dmacro" nil t)
-
-;; sml-modeline-mode
-(sml-modeline-mode t)
-
-;; midnight mode for clean-buffer-list
-;; (require 'midnight)
-
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
-(set-face-background 'vhl/default-face "#aa0")
-
-;; (require 'undohist)
-;; (undohist-initialize)
-
-(require 'goto-chg)
-(require 'all-ext)
-
-(require 'search-web)
-
-;; Still using my version of search-web-dwim becuase original version of
-;; this function is a bit inconvenient for me (commented below).
-(defun my/search-web-dwim (&optional engine word)
-  (interactive)
-  (let* ((completion-ignore-case t)
-         (use-empty-active-region nil)
-         ;; Set default engine to google whatever search-engine-history has.
-         (engine (or engine
-                     (completing-read "Search engine (default google): "
-                                      search-web-engines nil t nil
-                                      'search-web-engine-history "google")))
-         (word (cond
-                (word)
-                ;; If region is activated but empty, ignore that.
-                ((use-region-p)
-                 (buffer-substring-no-properties (region-beginning) (region-end)))
-                ((thing-at-point 'symbol t))
-                ;; Prompt to input search word if word is empty.
-                (t (read-string "Search Word: " nil 'search-web-word-history)))))
-    (search-web engine word)))
-(when (eq system-type 'darwin)
-  (add-to-list 'search-web-engines '("dict" "dict:///%s" nil)))
-
-;; zop-to-char
-(setq zop-to-char-kill-keys '(?\r ?\C-k ?\C-w))
 
 ;; marked
 ;; http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
@@ -422,212 +332,33 @@ Otherwise open current directory"
   (shell-command
    (format "atom %s" (shell-quote-argument (buffer-file-name)))))
 
-;; neotree
-(custom-set-variables
- '(neo-vc-integration '(face))
- '(neo-theme '(ascii)))
 
-;; ==> rc.d/35_migemo.el <==
-;; reference
-;; http://d.hatena.ne.jp/samurai20000/20100907/1283791433
-;; http://d.hatena.ne.jp/ground256/20111008/1318063872
-(require 'migemo)
 
-;; for C/Migemo
-(setq migemo-command "cmigemo")
-(setq migemo-options '("-q" "--emacs"))
-(setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
-(setq migemo-user-dictionary nil)
-(setq migemo-regex-dictionary nil)
-(setq migemo-coding-system 'utf-8-unix)
 
-;; for Mac OS X Homebrewed cmigemo
-(when (file-executable-p "/usr/local/bin/cmigemo")
-  (setq migemo-command "/usr/local/bin/cmigemo"))
-(when (file-exists-p "/usr/local/share/migemo/utf-8/migemo-dict")
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"))
 
-(migemo-init)
-(set-process-query-on-exit-flag (get-process "migemo") nil)
 
-;; default off
-;(setq migemo-isearch-enable-p nil)
+;;; el-get
 
-;; emacs cache
-(setq migemo-use-pattern-alist t)
-(setq migemo-use-frequent-pattern-alist t)
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
-;; rewrite migemo isearch key-map
-(add-hook 'isearch-mode-hook
-          (lambda ()
-            (define-key isearch-mode-map "\C-y" 'isearch-yank-kill)
-            (define-key isearch-mode-map "\M-y" 'migemo-isearch-yank-line))
-          t)                            ; third arg means add last hook.
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-;; ==> rc.d/40_ag.el <==
-(setq ag-highlight-search t)
-(setq ag-reuse-buffers t)
-(setq helm-ag-base-command "rg --vimgrep --no-heading")
-;; (setq helm-ag-insert-at-point 'symbol)
+;; (el-get-bundle nsaeki/envcache.el)
+(el-get-bundle nsaeki/read-only-directory.el)
+(el-get-bundle nsaeki/idlefingers-emacs)
+;; (el-get-bundle sugyan/helm-go-package :checkout "52d6ed2dca82d860d63ef654e85a9dd762c272f5")
+(el-get-bundle antonj/scss-mode)
 
-(add-hook 'ag-mode-hook 'wgrep-ag-setup)
-(eval-after-load 'ag
-  '(progn
-     (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)))
 
-;; ==> rc.d/40_bm.el <==
-;; copied from bm.el
-(setq bm-repository-file "~/.emacs.d/bm-repository")
-(setq bm-restore-repository-on-load t)
-(setq-default bm-buffer-persistence t)
+;;; Colors and themes
 
-(add-hook 'after-init-hook 'bm-repository-load)
-(add-hook 'find-file-hooks 'bm-buffer-restore)
-(add-hook 'after-revert-hook 'bm-buffer-restore)
-(add-hook 'after-save-hook 'bm-buffer-save)
-(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-(add-hook 'kill-buffer-hook 'bm-buffer-save)
-(add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
-
-(setq bm-persistent-face 'bm-face)
-(custom-set-faces
- '(bm-face ((t (:background "#595900")))))
-
-(require 'bm)
-
-;; ==> rc.d/40_helm.el <==
-(require 'helm)
-(require 'helm-config)
-
-(custom-set-variables
- '(helm-truncate-lines t)
- '(helm-buffer-max-length 35)
- '(helm-delete-minibuffer-contents-from-point t)
- '(helm-ff-skip-boring-files t)
- '(helm-ls-git-show-abs-or-relative 'relative)
- '(helm-ff-transformer-show-only-basename nil)
- '(helm-mini-default-sources '(helm-source-buffers-list
-                               helm-source-recentf
-                               helm-source-files-in-current-dir
-                               helm-source-ghq)))
-
-(helm-migemo-mode t)
-
-(require 'helm-bm)
-(push '(migemo) helm-source-bm)
-
-(require 'helm-imenu)
-(push '(migemo) helm-source-imenu)
-
-(define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
-(helm-descbinds-install)
-
-(require 'helm-ls-git)
-(require 'helm-ghq)
-
-;; ==> rc.d/40_key-chord.el <==
-;; package: key-chord
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.04)
-
-;; ==> rc.d/40_path.el <==
-;; (when (equal system-type 'darwin)
-;;   (let ((path-from-shell (envcache/getenv "PATH")))
-;;     (setenv "PATH" path-from-shell)
-;;     (setq exec-path (split-string path-from-shell path-separator))))
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-;; ==> rc.d/40_region-bindings.el <==
-(require 'region-bindings-mode)
-(region-bindings-mode-enable)
-
-;; ;; ==> rc.d/40_smartparens.el <==
-;; package: smartparens
-(require 'smartparens-config)
-(smartparens-global-mode t)
-
-;; ==> rc.d/40_undo-tree.el <==
-;; package: undo-tree
-(global-undo-tree-mode)
-
-;; ==> rc.d/40_whitespace.el <==
-;; visualize whitespace
-;; http://qiita.com/itiut@github/items/4d74da2412a29ef59c3a
-
-;; package: whitespace
-(setq whitespace-style '(face           ; faceで可視化
-                         trailing       ; 行末
-                         tabs           ; タブ
-                         spaces         ; スペース
-                         empty          ; 先頭/末尾の空行
-                         space-mark     ; 表示のマッピング
-                         tab-mark
-                         ))
-
-(setq whitespace-display-mappings
-      ;; '((space-mark ?\u3000 [?\u25a1])
-      '((space-mark ?\u3000 [?\uff3f])
-        ;; WARNING: the mapping below has a problem.
-        ;; When a TAB occupies exactly one column, it will display the
-        ;; character ?\xBB at that column followed by a TAB which goes to
-        ;; the next TAB column.
-        ;; If this is a problem for you, please, comment the line below.
-        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
-
-;; スペースは全角のみを可視化
-(setq whitespace-space-regexp "\\(\u3000+\\)")
-
-(global-whitespace-mode 1)
-
-(defvar my/bg-color "#282828")
-(set-face-attribute 'whitespace-trailing nil
-                    :background my/bg-color
-                    :foreground "DeepPink"
-                    :underline t)
-(set-face-attribute 'whitespace-tab nil
-                    :background my/bg-color
-                    :foreground "#363636"
-                    ;; underline stains modeline (confirmed in Emacs 24.4).
-                    ;; :underline t
-                    )
-(set-face-attribute 'whitespace-space nil
-                    :background my/bg-color
-                    :foreground "#484848"
-                    :weight 'bold)
-(set-face-attribute 'whitespace-empty nil
-                    :background my/bg-color)
-
-;; Color Test
-;;      Full width space : あお　ぞら
-;;   Trailing whitespace :   
-;;                   Tab :	aaa
-;;          Trailing Tab :	
-
-;; https://github.com/purcell/whitespace-cleanup-mode
-;; package: whitespace-cleanup-mode
-;; (global-whitespace-cleanup-mode t)
-
-;; ==> rc.d/41_autosave.el <==
-;; package: auto-save-buffers-enhanced
-;; (auto-save-buffers-enhanced-include-only-checkout-path t)
-(setq auto-save-buffers-enhanced-exclude-regexps '("^/scp:"
-                                                   "^/scpc:"
-                                                   "^/ssh:"
-                                                   "/sudo:"
-                                                   "/multi:"))
-(auto-save-buffers-enhanced t)
-(setq auto-save-buffers-enhanced-interval 1)
-
-;; ==> rc.d/41_smartrep.el <==
-(require 'smartrep)
-
-;; ==> rc.d/42_evil.el <==
-(require 'evil)
-
-;; ==> rc.d/45_theme.el <==
+(require 'cl)
 (when (display-graphic-p)
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory "~/.emacs.d/themes/"))
@@ -667,23 +398,246 @@ Otherwise open current directory"
                   (set-face-background 'mode-line (car color))
                   (set-face-foreground 'mode-line (cdr color)))))))
 
-;; 調整用
-;; (set-face-attribute 'anzu-mode-line nil
-;;                     :foreground "chocolate" :weight 'bold)
-;; (set-face-foreground 'which-func "#24992c")
-;; (set-face-foreground 'sml-modeline-end-face "#000000")
-;; (set-face-background 'sml-modeline-end-face "#9c998a")
-;; (set-face-foreground 'sml-modeline-vis-face "#000000")
-;; (set-face-background 'sml-modeline-vis-face "#a0e000")
-;; (set-face-background 'show-paren-match-face "#FD971F")
-;; (set-face-background 'show-paren-match-face "goldenrod3")
-;; (set-face-background 'show-paren-match-face "LightSkyBlue4")
+;;; Libraries
+
+(use-package saveplace
+  :config
+  (setq save-place-file "~/.emacs.d/save-places")
+  (setq-default save-place t))
+
+(use-package dired
+  :config
+  (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start)))
+
+(use-package dired-x)
+(use-package misc)                         ; for zap-up-to-char
+(use-package open-junk-file
+  :init
+  (setq open-junk-file-find-file-function 'find-file)
+  (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S."))
+
+(use-package sequential-command-config)
+(sequential-command-setup-keys)
+
+(use-package recentf-ext)
+
+;; (install-elisp "http://taiyaki.org/elisp/mell/src/mell.el")
+;; (install-elisp "http://taiyaki.org/elisp/text-adjust/src/text-adjust.el")
+(use-package text-adjust)
+(use-package volatile-highlights
+  :config
+  (volatile-highlights-mode t)
+  (set-face-background 'vhl/default-face "#aa0"))
+
+(use-package goto-chg)
+(use-package all-ext)
+
+(use-package zop-to-char
+  :init
+  (setq zop-to-char-kill-keys '(?\r ?\C-k ?\C-w)))
+
+(use-package migemo
+  :init
+  ;; for C/Migemo
+  (setq migemo-command "cmigemo")
+  (setq migemo-options '("-q" "--emacs"))
+  (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+  (setq migemo-use-pattern-alist t)
+  (setq migemo-use-frequent-pattern-alist t)
+
+  ;; for Mac OS X Homebrewed cmigemo
+  (when (file-executable-p "/usr/local/bin/cmigemo")
+    (setq migemo-command "/usr/local/bin/cmigemo"))
+  (when (file-exists-p "/usr/local/share/migemo/utf-8/migemo-dict")
+    (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"))
+
+  :config
+  (migemo-init)
+  (set-process-query-on-exit-flag (get-process "migemo") nil)
+
+  ;; rewrite migemo isearch key-map
+  (add-hook 'isearch-mode-hook
+            (lambda ()
+              (define-key isearch-mode-map "\C-y" 'isearch-yank-kill)
+              (define-key isearch-mode-map "\M-y" 'migemo-isearch-yank-line))
+            t))
+
+;; ==> rc.d/40_ag.el <==
+(setq ag-highlight-search t)
+(setq ag-reuse-buffers t)
+(setq helm-ag-base-command "rg --vimgrep --no-heading")
+;; (setq helm-ag-insert-at-point 'symbol)
+
+(add-hook 'ag-mode-hook 'wgrep-ag-setup)
+(eval-after-load 'ag
+  '(progn
+     (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)))
+
+;; ==> rc.d/40_bm.el <==
+;; copied from bm.el
+(setq bm-repository-file "~/.emacs.d/bm-repository")
+(setq bm-restore-repository-on-load t)
+(setq-default bm-buffer-persistence t)
+
+(add-hook 'after-init-hook 'bm-repository-load)
+(add-hook 'find-file-hooks 'bm-buffer-restore)
+(add-hook 'after-revert-hook 'bm-buffer-restore)
+(add-hook 'after-save-hook 'bm-buffer-save)
+(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+(add-hook 'kill-buffer-hook 'bm-buffer-save)
+(add-hook 'kill-emacs-hook '(lambda nil
+                              (bm-buffer-save-all)
+                              (bm-repository-save)))
+
+(setq bm-persistent-face 'bm-face)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "#d9d9d9"))))
+ '(anzu-mode-line ((t (:foreground "chocolate" :bold t))))
+ '(bm-face ((t (:background "#595900"))))
+ '(diff-hl-change ((t (:foreground "pink4" :background "#58444a"))))
+ '(font-lock-comment-face ((t (:foreground "dim gray" :italic nil))))
+ '(git-gutter:added ((t (:foreground "SeaGreen4"))))
+ '(git-gutter:deleted ((t (:foreground "red4"))))
+ '(git-gutter:modified ((t (:foreground "plum4"))))
+ '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333"))))
+ '(markdown-header-face-1 ((t (:inherit outline-1 :weight bold))))
+ '(markdown-header-face-2 ((t (:inherit outline-2 :weight bold))))
+ '(markdown-header-face-3 ((t (:inherit outline-3 :weight bold))))
+ '(markdown-header-face-4 ((t (:inherit outline-4 :weight bold))))
+ '(markdown-header-face-5 ((t (:inherit outline-5 :weight bold))))
+ '(markdown-header-face-6 ((t (:inherit outline-6 :weight bold))))
+ '(markdown-pre-face ((t (:inherit org-formula))))
+ '(mode-line ((t (:background "#e3e3e3" :foreground "#000000"))))
+ '(paren-face ((t (:foreground "#A6E22A" :background nil))))
+ '(rst-level-1-face ((t (:foreground "LightSkyBlue"))) t)
+ '(rst-level-2-face ((t (:foreground "LightGoldenrod"))) t)
+ '(rst-level-3-face ((t (:foreground "Cyan1"))) t)
+ '(rst-level-4-face ((t (:foreground "chocolate1"))) t)
+ '(rst-level-5-face ((t (:foreground "PaleGreen"))) t)
+ '(rst-level-6-face ((t (:foreground "Aquamarine"))) t)
+ '(show-paren-match-face ((t (:foreground "#1B1D1E" :background "goldenrod3"))))
+ '(sml-modeline-end-face ((t (:background "#bcb9ba" :foreground "#000000"))))
+ '(sml-modeline-vis-face ((t (:background "#a0e000" :foreground "#000000"))))
+ '(which-func ((t (:foreground "forest green")))))
+
+(use-package bm)
+
+;; ==> rc.d/40_helm.el <==
+(use-package helm)
+(use-package helm-config)
+
+(helm-migemo-mode t)
+
+(use-package helm-bm)
+(push '(migemo) helm-source-bm)
+
+(use-package helm-imenu)
+(push '(migemo) helm-source-imenu)
+
+(define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
+(helm-descbinds-install)
+
+(use-package helm-ls-git)
+(use-package helm-ghq)
+
+(use-package key-chord
+  :init
+  (key-chord-mode t)
+  (setq key-chord-two-keys-delay 0.04))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+(use-package region-bindings-mode
+  :config
+  (region-bindings-mode-enable))
+
+(use-package smartparens-config
+  :config
+  (smartparens-global-mode t))
+
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
+
+(use-package whitespace
+  :init
+  (setq whitespace-style '(face         ; faceで可視化
+                           trailing     ; 行末
+                           tabs         ; タブ
+                           spaces       ; スペース
+                           empty        ; 先頭/末尾の空行
+                           space-mark   ; 表示のマッピング
+                           tab-mark
+                           ))
+  (setq whitespace-display-mappings
+        ;; '((space-mark ?\u3000 [?\u25a1])
+        '((space-mark ?\u3000 [?\uff3f])
+          ;; WARNING: the mapping below has a problem.
+          ;; When a TAB occupies exactly one column, it will display the
+          ;; character ?\xBB at that column followed by a TAB which goes to
+          ;; the next TAB column.
+          ;; If this is a problem for you, please, comment the line below.
+          (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+
+  ;; スペースは全角のみを可視化
+  (setq whitespace-space-regexp "\\(\u3000+\\)")
+
+  :config
+  (global-whitespace-mode 1)
+
+  (defvar my/bg-color "#282828")
+  (set-face-attribute 'whitespace-trailing nil
+                      :background my/bg-color
+                      :foreground "DeepPink"
+                      :underline t)
+  (set-face-attribute 'whitespace-tab nil
+                      :background my/bg-color
+                      :foreground "#363636"
+                      ;; underline stains modeline (confirmed in Emacs 24.4).
+                      ;; :underline t
+                      )
+  (set-face-attribute 'whitespace-space nil
+                      :background my/bg-color
+                      :foreground "#484848"
+                      :weight 'bold)
+  (set-face-attribute 'whitespace-empty nil
+                      :background my/bg-color))
+
+;; ==> rc.d/41_autosave.el <==
+;; package: auto-save-buffers-enhanced
+;; (auto-save-buffers-enhanced-include-only-checkout-path t)
+(use-package auto-save-buffers-enhanced
+  :init
+  (setq auto-save-buffers-enhanced-exclude-regexps '("^/scp:"
+                                                     "^/scpc:"
+                                                     "^/ssh:"
+                                                     "/sudo:"
+                                                     "/multi:"))
+  (setq auto-save-buffers-enhanced-interval 1))
+  :config
+  (auto-save-buffers-enhanced t)
+
+(use-package smartrep)
+(use-package evil)
 
 ;; ==> rc.d/47_view.el <==
 ;; Changes view-mode when opens file with C-x C-r
 (setq view-read-only t)
 
-(require 'view)
+(use-package view)
 ;; like less
 (define-key view-mode-map (kbd "N") 'View-search-last-regexp-backward)
 (define-key view-mode-map (kbd "?") 'View-search-regexp-backward)
@@ -702,7 +656,7 @@ Otherwise open current directory"
 (define-key view-mode-map (kbd "[") 'bm-previous)
 (define-key view-mode-map (kbd "]") 'bm-next)
 
-(require 'viewer)
+(use-package viewer)
 
 ;; Force view-mode if file is read-only
 (viewer-stay-in-setup)
@@ -718,15 +672,12 @@ Otherwise open current directory"
 ;(viewer-aggressive-setup t)
 
 ;; ==> rc.d/50_anzu.el <==
-(require 'anzu)
+(use-package anzu)
 (global-anzu-mode t)
-(custom-set-variables
- '(anzu-mode-lighter "")
- '(anzu-use-migemo t)
- '(anzu-search-threshold 1000))
+
 
 ;; ==> rc.d/50_company.el <==
-(require 'company)
+(use-package company)
 (global-company-mode)
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
@@ -739,7 +690,8 @@ Otherwise open current directory"
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map (kbd "RET") nil))
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil))
 
 ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
 (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
@@ -760,22 +712,22 @@ Otherwise open current directory"
                     :background "gray40")
 
 ;; ==> rc.d/50_expand-region.el <==
-(require 'expand-region)
+(use-package expand-region)
 
 ;; ==> rc.d/50_highlight-symbol.el <==
 ;; package: auto-highlight-symbol highlight-symbol
 (global-auto-highlight-symbol-mode t)
 
 ;; ==> rc.d/50_multiple-cursor.el <==
-(require 'multiple-cursors)
+(use-package multiple-cursors)
 
 ;; ==> rc.d/50_shell-pop.el <==
-(require 'shell-pop)
+(use-package shell-pop)
 
 ;; ==> rc.d/60_lsp.el <==
-(require 'lsp-mode)
-(require 'lsp-ui)
-(require 'company-lsp)
+(use-package lsp-mode)
+(use-package lsp-ui)
+(use-package company-lsp)
 (push 'company-lsp company-backends)
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -787,8 +739,8 @@ Otherwise open current directory"
 
 
 ;; ==> rc.d/70_elixir.el <==
-(require 'elixir-mode)
-(require 'alchemist)
+(use-package elixir-mode)
+(use-package alchemist)
 
 ;; ==> rc.d/70_golang.el <==
 ;; (setenv "GOPATH" (envcache/getenv "GOPATH"))
@@ -810,14 +762,14 @@ Otherwise open current directory"
 (define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
 (define-key go-test-mode-map (kbd "x") 'go-run)
 
-;; (require 'go-autocomplete)
-;; (require 'auto-complete-config)
+;; (use-package go-autocomplete)
+;; (use-package auto-complete-config)
 
 ;; go-eldoc
 ;; (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;; golint
-(require 'golint)
+(use-package golint)
 ;; (push '("^\*golint*" :regexp t :dedicated t) popwin:special-display-config)
 
 ;; helm-go-package
@@ -929,7 +881,7 @@ Otherwise open current directory"
                                    (delete-overlay ovl)) ovl)))))
 
 (defun my-js2-mode-hook ()
-  (require 'espresso)
+  (use-package espresso)
   (setq espresso-indent-level 4
         indent-tabs-mode nil
         c-basic-offset 4)
@@ -957,7 +909,7 @@ Otherwise open current directory"
 
 ;; ==> rc.d/70_json.el <==
 ;; (ensure-package-installed 'json-mode)
-(require 'json)
+(use-package json)
 
 ;; ==> rc.d/70_markdown.el <==
 ;; https://gist.github.com/1631630
@@ -1047,7 +999,7 @@ Otherwise open current directory"
 
 
 ;;; org-journal
-(require 'org-journal)
+(use-package org-journal)
 ;; (setq org-journal-file-format "%Y%m%d.org")
 (setq org-journal-file-format "journal.org")
 (setq org-journal-date-format "%F")
@@ -1056,7 +1008,7 @@ Otherwise open current directory"
 (push org-journal-dir org-agenda-files)
 
 ;;; ox-gfm (auto required)
-;; (require 'ox-gfm)
+;; (use-package ox-gfm)
 
 ;;; org-capture
 (setq org-capture-templates
@@ -1101,7 +1053,7 @@ Otherwise open current directory"
     (t (helm-ag (when (projectile-project-p)
                   (projectile-project-root))))))
 
-(require 'helm-projectile)
+(use-package helm-projectile)
 
 (defun my-helm-for-projects ()
   "Helm for projectile projects and ghq list"
@@ -1145,25 +1097,10 @@ Otherwise open current directory"
 
 ;; ==> rc.d/70_rest.el <==
 ;; http://d.hatena.ne.jp/LaclefYoshi/20100922/1285125722
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(rst-level-1-face ((t (:foreground "LightSkyBlue"))) t)
- '(rst-level-2-face ((t (:foreground "LightGoldenrod"))) t)
- '(rst-level-3-face ((t (:foreground "Cyan1"))) t)
- '(rst-level-4-face ((t (:foreground "chocolate1"))) t)
- '(rst-level-5-face ((t (:foreground "PaleGreen"))) t)
- '(rst-level-6-face ((t (:foreground "Aquamarine"))) t))
+
  ;; (rst-level-7-face ((t (:foreground "LightSteelBlue"))) t)  ;; メモ
  ;; (rst-level-8-face ((t (:foreground "LightSalmon"))) t)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(rst-level-face-base-light 50))
+
 
 ;; ==> rc.d/70_ruby.el <==
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
@@ -1172,7 +1109,7 @@ Otherwise open current directory"
 (setq ruby-insert-encoding-magic-comment nil)
 
 ;; https://github.com/senny/rbenv.el
-;; (require 'rbenv)
+;; (use-package rbenv)
 (setq rbenv-show-active-ruby-in-modeline nil)
 (global-rbenv-mode)
 
@@ -1180,7 +1117,7 @@ Otherwise open current directory"
 
 ;; launch pry in inf-ruby
 ;; https://gist.github.com/jsvnm/1390890
-(require 'inf-ruby)
+(use-package inf-ruby)
 (setq inf-ruby-default-implementation "pry")
 (define-key inf-ruby-minor-mode-map (kbd "C-c C-z")
   (lambda ()
@@ -1204,8 +1141,7 @@ Otherwise open current directory"
 
 ;; minitest-mode
 ;; Avoid conflict with rspec-mode prefix
-(custom-set-variables
- '(minitest-keymap-prefix (kbd "C-c .")))
+
 
 ;; Needs the same advice as ruby-test-mode
 (advice-add 'minitest-test-file-p :after-until
@@ -1240,7 +1176,7 @@ Otherwise open current directory"
 (defalias 'gem 'helm-gem-open)
 
 ;; ==> rc.d/70_scss.el <==
-(require 'scss-mode)
+(use-package scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; ==> rc.d/70_sql.el <==
@@ -1258,16 +1194,13 @@ Otherwise open current directory"
 
 ;; ==> rc.d/70_vcs.el <==
 ;; magit
-;; (require 'magit)
+;; (use-package magit)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; git-gutter-fringe
-(require 'git-gutter-fringe)
+(use-package git-gutter-fringe)
 ;; (global-git-gutter-mode t)
-(custom-set-faces
- '(git-gutter:modified ((t (:foreground "plum4"))))
- '(git-gutter:added ((t (:foreground "SeaGreen4"))))
- '(git-gutter:deleted ((t (:foreground "red4")))))
+
 
 ;; small and a little left
 (fringe-helper-define 'git-gutter-fr:added nil
@@ -1306,9 +1239,7 @@ Otherwise open current directory"
 (setq diff-hl-draw-borders nil)
 (diff-hl-margin-mode)
 (setq diff-hl-margin-side 'right)
-(custom-set-faces
- '(diff-hl-change
-   ((t (:foreground "pink4" :background "#58444a")))))
+
 
 ;; Switch main component to use
 ;; (defalias 'my-vcs-next-hunk 'git-gutter:next-hunk)
@@ -1318,7 +1249,7 @@ Otherwise open current directory"
 (defalias 'my-vcs-previous-hunk 'diff-hl-previous-hunk)
 
 ;; ==> rc.d/70_web.el <==
-;; (require 'web-mode)
+;; (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -1329,11 +1260,11 @@ Otherwise open current directory"
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 ;; ==> rc.d/70_yasnippet.el <==
-(require 'yasnippet)
+(use-package yasnippet)
 (yas-global-mode 1)
 
 ;; ==> rc.d/70_zencoding.el <==
-;; (require 'zencoding-mode)
+;; (use-package zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 ;; ==> rc.d/90_keybinds.el <==
@@ -1482,7 +1413,7 @@ Otherwise open current directory"
   (run-with-idle-timer 60 t 'my-save-frame-size))
 
 ;; ==> rc.d/91_read-only-directory.el <==
-(require 'read-only-directory)
+(use-package read-only-directory)
 ;; This cause package-install failure
 ;; (setq read-only-directory-default-directories
 ;;       (list (expand-file-name "~/.emacs.d/elpa")))
