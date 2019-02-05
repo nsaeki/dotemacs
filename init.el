@@ -470,95 +470,61 @@ Otherwise open current directory"
               (define-key isearch-mode-map "\M-y" 'migemo-isearch-yank-line))
             t))
 
-;; ==> rc.d/40_ag.el <==
-(setq ag-highlight-search t)
-(setq ag-reuse-buffers t)
-(setq helm-ag-base-command "rg --vimgrep --no-heading")
-;; (setq helm-ag-insert-at-point 'symbol)
+(use-package ag
+  :init
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers t)
+  (setq helm-ag-base-command "rg --vimgrep --no-heading")
+  :config
+  (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+  (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode))
 
-(add-hook 'ag-mode-hook 'wgrep-ag-setup)
-(eval-after-load 'ag
-  '(progn
-     (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)))
+(use-package bm
+  :init
+  (setq bm-repository-file "~/.emacs.d/bm-repository")
+  (setq bm-restore-repository-on-load t)
+  (setq bm-buffer-persistence t)
+  (setq bm-persistent-face 'bm-face)
+  :config
+  (add-hook 'after-init-hook 'bm-repository-load)
+  (add-hook 'find-file-hooks 'bm-buffer-restore)
+  (add-hook 'after-revert-hook 'bm-buffer-restore)
+  (add-hook 'after-save-hook 'bm-buffer-save)
+  (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+  (add-hook 'kill-buffer-hook 'bm-buffer-save)
+  (add-hook 'kill-emacs-hook '(lambda nil
+                                (bm-buffer-save-all)
+                                (bm-repository-save))))
 
-;; ==> rc.d/40_bm.el <==
-;; copied from bm.el
-(setq bm-repository-file "~/.emacs.d/bm-repository")
-(setq bm-restore-repository-on-load t)
-(setq-default bm-buffer-persistence t)
+(use-package helm
+  :defer t
+  :config
+  (helm-migemo-mode t)
+  (define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
+  (helm-descbinds-install))
 
-(add-hook 'after-init-hook 'bm-repository-load)
-(add-hook 'find-file-hooks 'bm-buffer-restore)
-(add-hook 'after-revert-hook 'bm-buffer-restore)
-(add-hook 'after-save-hook 'bm-buffer-save)
-(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-(add-hook 'kill-buffer-hook 'bm-buffer-save)
-(add-hook 'kill-emacs-hook '(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
-
-(setq bm-persistent-face 'bm-face)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#d9d9d9"))))
- '(anzu-mode-line ((t (:foreground "chocolate" :bold t))))
- '(bm-face ((t (:background "#595900"))))
- '(diff-hl-change ((t (:foreground "pink4" :background "#58444a"))))
- '(font-lock-comment-face ((t (:foreground "dim gray" :italic nil))))
- '(git-gutter:added ((t (:foreground "SeaGreen4"))))
- '(git-gutter:deleted ((t (:foreground "red4"))))
- '(git-gutter:modified ((t (:foreground "plum4"))))
- '(linum ((t (:inherit (shadow default) :foreground "dim gray" :background "#333"))))
- '(markdown-header-face-1 ((t (:inherit outline-1 :weight bold))))
- '(markdown-header-face-2 ((t (:inherit outline-2 :weight bold))))
- '(markdown-header-face-3 ((t (:inherit outline-3 :weight bold))))
- '(markdown-header-face-4 ((t (:inherit outline-4 :weight bold))))
- '(markdown-header-face-5 ((t (:inherit outline-5 :weight bold))))
- '(markdown-header-face-6 ((t (:inherit outline-6 :weight bold))))
- '(markdown-pre-face ((t (:inherit org-formula))))
- '(mode-line ((t (:background "#e3e3e3" :foreground "#000000"))))
- '(paren-face ((t (:foreground "#A6E22A" :background nil))))
- '(rst-level-1-face ((t (:foreground "LightSkyBlue"))) t)
- '(rst-level-2-face ((t (:foreground "LightGoldenrod"))) t)
- '(rst-level-3-face ((t (:foreground "Cyan1"))) t)
- '(rst-level-4-face ((t (:foreground "chocolate1"))) t)
- '(rst-level-5-face ((t (:foreground "PaleGreen"))) t)
- '(rst-level-6-face ((t (:foreground "Aquamarine"))) t)
- '(show-paren-match-face ((t (:foreground "#1B1D1E" :background "goldenrod3"))))
- '(sml-modeline-end-face ((t (:background "#bcb9ba" :foreground "#000000"))))
- '(sml-modeline-vis-face ((t (:background "#a0e000" :foreground "#000000"))))
- '(which-func ((t (:foreground "forest green")))))
-
-(use-package bm)
-
-;; ==> rc.d/40_helm.el <==
-(use-package helm)
 (use-package helm-config)
-
-(helm-migemo-mode t)
-
-(use-package helm-bm)
-(push '(migemo) helm-source-bm)
-
-(use-package helm-imenu)
-(push '(migemo) helm-source-imenu)
-
-(define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
-(helm-descbinds-install)
+(use-package helm-bm
+  :config
+  (push '(migemo) helm-source-bm))
+(use-package helm-imenu
+  :config
+  (push '(migemo) helm-source-imenu))
 
 (use-package helm-ls-git)
 (use-package helm-ghq)
 
 (use-package key-chord
-  :init
+  :config
   (key-chord-mode t)
   (setq key-chord-two-keys-delay 0.04))
 
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :init
+  (setq exec-path-from-shell-check-startup-files nil)
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (use-package region-bindings-mode
   :config
@@ -633,57 +599,51 @@ Otherwise open current directory"
 (use-package smartrep)
 (use-package evil)
 
-;; ==> rc.d/47_view.el <==
-;; Changes view-mode when opens file with C-x C-r
-(setq view-read-only t)
+(use-package view
+  :init
+  (setq view-read-only t)
+  :config
+  ;; like less
+  (define-key view-mode-map (kbd "N") 'View-search-last-regexp-backward)
+  (define-key view-mode-map (kbd "?") 'View-search-regexp-backward)
+  (define-key view-mode-map (kbd "f") 'View-scroll-page-forward)
+  (define-key view-mode-map (kbd "b") 'View-scroll-page-backward)
+  (define-key view-mode-map (kbd "G") 'View-goto-percent)
+  ;; like vi
+  (define-key view-mode-map (kbd "h") 'backward-char)
+  (define-key view-mode-map (kbd "j") 'next-line)
+  (define-key view-mode-map (kbd "k") 'previous-line)
+  (define-key view-mode-map (kbd "l") 'forward-char)
+  (define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
+  (define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
+  ;; bm.el
+  (define-key view-mode-map (kbd "m") 'bm-toggle)
+  (define-key view-mode-map (kbd "[") 'bm-previous)
+  (define-key view-mode-map (kbd "]") 'bm-next))
 
-(use-package view)
-;; like less
-(define-key view-mode-map (kbd "N") 'View-search-last-regexp-backward)
-(define-key view-mode-map (kbd "?") 'View-search-regexp-backward)
-(define-key view-mode-map (kbd "f") 'View-scroll-page-forward)
-(define-key view-mode-map (kbd "b") 'View-scroll-page-backward)
-(define-key view-mode-map (kbd "G") 'View-goto-percent)
-;; like vi
-(define-key view-mode-map (kbd "h") 'backward-char)
-(define-key view-mode-map (kbd "j") 'next-line)
-(define-key view-mode-map (kbd "k") 'previous-line)
-(define-key view-mode-map (kbd "l") 'forward-char)
-(define-key view-mode-map (kbd "J") 'View-scroll-line-forward)
-(define-key view-mode-map (kbd "K") 'View-scroll-line-backward)
-;; bm.el
-(define-key view-mode-map (kbd "m") 'bm-toggle)
-(define-key view-mode-map (kbd "[") 'bm-previous)
-(define-key view-mode-map (kbd "]") 'bm-next)
+(use-package viewer
+  :init
+  (setq viewer-modeline-color-unwritable "dark slate blue")
+  (setq viewer-modeline-color-view "tomato3")
+  (setq view-mode-by-default-regexp "\\(?:[_.]log\\|\.gz\\)$")
 
-(use-package viewer)
+  :config
+  ;; Force view-mode if file is read-only
+  (viewer-stay-in-setup)
+  ;; この時点でのmodeline colorがデフォルトになるので注意
+  (viewer-change-modeline-color-setup))
 
-;; Force view-mode if file is read-only
-(viewer-stay-in-setup)
+(use-package anzu
+  :config
+  (global-anzu-mode t))
 
-;; change mode line color
-(setq viewer-modeline-color-unwritable "dark slate blue")
-(setq viewer-modeline-color-view "tomato3")
-
-;; この時点でのmodeline colorがデフォルトになるので注意
-(viewer-change-modeline-color-setup)
-
-(setq view-mode-by-default-regexp "\\(?:[_.]log\\|\.gz\\)$")
-;(viewer-aggressive-setup t)
-
-;; ==> rc.d/50_anzu.el <==
-(use-package anzu)
-(global-anzu-mode t)
-
-
-;; ==> rc.d/50_company.el <==
-(use-package company)
-(global-company-mode)
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 2)
-(setq company-selection-wrap-around t)
-
-(with-eval-after-load 'company
+(use-package company
+  :init
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2)
+  (setq company-selection-wrap-around t)
+  :config
+  (global-company-mode)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (define-key company-search-map (kbd "C-n") 'company-select-next)
@@ -691,106 +651,80 @@ Otherwise open current directory"
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
   (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil))
+  (define-key company-active-map (kbd "<return>") nil)
+  ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+  (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+  (set-face-attribute 'company-tooltip nil :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common nil :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common-selection nil :foreground "white" :background "steelblue")
+  (set-face-attribute 'company-tooltip-selection nil :foreground "black" :background "steelblue")
+  (set-face-attribute 'company-preview-common nil :background nil :foreground "lightgrey" :underline t)
+  (set-face-attribute 'company-scrollbar-fg nil :background "orange")
+  (set-face-attribute 'company-scrollbar-bg nil :background "gray40"))
 
-;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-(define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
-
-(set-face-attribute 'company-tooltip nil
-                    :foreground "black" :background "lightgrey")
-(set-face-attribute 'company-tooltip-common nil
-                    :foreground "black" :background "lightgrey")
-(set-face-attribute 'company-tooltip-common-selection nil
-                    :foreground "white" :background "steelblue")
-(set-face-attribute 'company-tooltip-selection nil
-                    :foreground "black" :background "steelblue")
-(set-face-attribute 'company-preview-common nil
-                    :background nil :foreground "lightgrey" :underline t)
-(set-face-attribute 'company-scrollbar-fg nil
-                    :background "orange")
-(set-face-attribute 'company-scrollbar-bg nil
-                    :background "gray40")
-
-;; ==> rc.d/50_expand-region.el <==
 (use-package expand-region)
+(use-package highlight-symbol)
+(use-package auto-highlight-symbol
+  :config
+  (global-auto-highlight-symbol-mode t))
 
-;; ==> rc.d/50_highlight-symbol.el <==
-;; package: auto-highlight-symbol highlight-symbol
-(global-auto-highlight-symbol-mode t)
-
-;; ==> rc.d/50_multiple-cursor.el <==
 (use-package multiple-cursors)
-
-;; ==> rc.d/50_shell-pop.el <==
 (use-package shell-pop)
 
-;; ==> rc.d/60_lsp.el <==
-(use-package lsp-mode)
-(use-package lsp-ui)
-(use-package company-lsp)
-(push 'company-lsp company-backends)
+(use-package lsp-mode
+  :init
+  (setq lsp-auto-guess-root t)
+  :config
+  (add-hook 'shell-script-mode-hook #'lsp)
+  (add-hook 'css-mode-hook #'lsp)
+  (add-hook 'go-mode-hook #'lsp))
 
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(setq lsp-auto-guess-root t)
-(setq lsp-ui-doc-enable nil)
+(use-package lsp-ui
+  :init
+  (setq lsp-ui-doc-enable nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+(use-package company-lsp
+  :config
+  (push 'company-lsp company-backends))
 
-(add-hook 'shell-script-mode-hook #'lsp)
-(add-hook 'css-mode-hook #'lsp)
-
-
-;; ==> rc.d/70_elixir.el <==
 (use-package elixir-mode)
 (use-package alchemist)
 
-;; ==> rc.d/70_golang.el <==
-;; (setenv "GOPATH" (envcache/getenv "GOPATH"))
+(use-package go-mode
+  :config
+  (define-key go-mode-map (kbd "C-c ,") 'go-test-mode-map)
+  (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
+  (define-key go-mode-map (kbd "C-c C-l") 'golint)
+  (add-hook 'go-mode-hook 'flycheck-mode)
+  (substitute-key-definition 'go-import-add 'helm-go-package go-mode-map)
 
-(add-hook 'go-mode-hook #'lsp)
-(add-hook 'go-mode-hook 'flycheck-mode)
+  ;; http://syohex.hatenablog.com/entry/20130618/1371567527
+  (defvar my/helm-go-source
+    '((name . "Helm Go")
+      (candidates . go-packages)
+      (action . (("Show document" . godoc)
+                 ("Import package" . my/helm-go-import-add)))))
 
-(eval-after-load 'go-mode
-  '(progn
-     (define-key go-mode-map (kbd "C-c ,") 'go-test-mode-map)
-     (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
-     (define-key go-mode-map (kbd "C-c C-l") 'golint)))
+  (defun my/helm-go-import-add (candidate)
+    (dolist (package (helm-marked-candidates))
+      (go-import-add current-prefix-arg package)))
 
-;; gotest
-(define-prefix-command 'go-test-mode-map)
-(define-key go-test-mode-map (kbd "s") 'go-test-current-test)
-(define-key go-test-mode-map (kbd "f") 'go-test-current-file)
-(define-key go-test-mode-map (kbd "a") 'go-test-current-project)
-(define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
-(define-key go-test-mode-map (kbd "x") 'go-run)
+  (defun my/helm-godoc ()
+    (Interactive)
+    (helm :sources '(my/helm-go-source) :buffer "*helm godoc*"
+          :buffer "*helm godoc*")))
 
-;; (use-package go-autocomplete)
-;; (use-package auto-complete-config)
+(use-package gotest
+  :config
+  (define-prefix-command 'go-test-mode-map)
+  (define-key go-test-mode-map (kbd "s") 'go-test-current-test)
+  (define-key go-test-mode-map (kbd "f") 'go-test-current-file)
+  (define-key go-test-mode-map (kbd "a") 'go-test-current-project)
+  (define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
+  (define-key go-test-mode-map (kbd "x") 'go-run))
 
-;; go-eldoc
-;; (add-hook 'go-mode-hook 'go-eldoc-setup)
-
-;; golint
 (use-package golint)
-;; (push '("^\*golint*" :regexp t :dedicated t) popwin:special-display-config)
-
-;; helm-go-package
-(eval-after-load 'go-mode
-  '(substitute-key-definition 'go-import-add 'helm-go-package go-mode-map))
-
-;; http://syohex.hatenablog.com/entry/20130618/1371567527
-(defvar my/helm-go-source
-  '((name . "Helm Go")
-    (candidates . go-packages)
-    (action . (("Show document" . godoc)
-               ("Import package" . my/helm-go-import-add)))))
-
-(defun my/helm-go-import-add (candidate)
-  (dolist (package (helm-marked-candidates))
-    (go-import-add current-prefix-arg package)))
-
-(defun my/helm-godoc ()
-  (Interactive)
-  (helm :sources '(my/helm-go-source) :buffer "*helm godoc*"
-        :buffer "*helm godoc*"))
 
 ;; ==> rc.d/70_js.el <==
 ;; (autoload 'js2-mode "js2" nil t)
