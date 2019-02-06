@@ -1,3 +1,4 @@
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -28,16 +29,22 @@
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
 (setq custom-file (locate-user-emacs-file "custom.el"))
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+(setq tab-stop-list '(2 4 8))
+(setq-default line-spacing 0.2)         ; a little wider
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
 
+(savehist-mode 1)
 (ffap-bindings)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
-(sml-modeline-mode t)
 (setq blink-matching-paren nil)         ; suppress Match message in minibuffer
-(savehist-mode 1)
+(sml-modeline-mode t)
 (setq linum-format "%4d ")
 (global-linum-mode t)
 (column-number-mode t)
@@ -46,12 +53,6 @@
 (global-auto-revert-mode 1)
 (which-function-mode t)
 ;; (global-subword-mode 1)                 ; for CamelCase
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
-(setq tab-stop-list '(2 4 8))
-(setq-default line-spacing 0.2)         ; a little wider
-(defalias 'yes-or-no-p 'y-or-n-p)
-(setq use-dialog-box nil)
 
 ;; turn off shell command echo (from: https://www.emacswiki.org/emacs/MatthewOzorDotEmacs)
 (defun my-comint-init ()
@@ -80,11 +81,10 @@
 (setq mouse-wheel-progressive-speed nil) ; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't)       ; scroll window under mouse
 (setq scroll-step 1)              ; keyboard scroll one line at a time
-
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAGS$" "/var/tmp"))
-
 (setq dabberv-case-fold-search nil)
+(setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
 
 ;; Creates backup and autosave files in backup directory
 (defvar user-temporary-file-directory "~/.emacs.d/backup")
@@ -95,9 +95,6 @@
 (setq auto-save-default nil)
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
-
-(setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
-
 
 ;; Settings by system
 (when (eq system-type 'windows-nt)
@@ -235,7 +232,6 @@ If the buffer is not in VCS, return nil"
 (defun my-dired-jump-to-project-root ()
   "Open VCS root directory in dired mode if current buffer is in VCS.
 Otherwise open current directory"
-  nil
   (interactive)
   (let ((rootdir (my-vc-rootdir)))
     (if (and rootdir (file-directory-p rootdir))
@@ -276,6 +272,29 @@ Otherwise open current directory"
   (isearch-search-and-update))
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol)
 
+(use-package search-web
+  :config
+  ;; Still using my version of search-web-dwim becuase original version of
+  ;; this function is a bit inconvenient for me (commented below).
+  (defun my/search-web-dwim (&optional engine word)
+    (interactive)
+    (let* ((completion-ignore-case t)
+           (use-empty-active-region nil)
+           ;; Set default engine to google whatever search-engine-history has.
+           (engine (or engine
+                       (completing-read "Search engine (default google): "
+                                        search-web-engines nil t nil
+                                        'search-web-engine-history "google")))
+           (word (cond
+                  (word)
+                  ((use-region-p) (buffer-substring-no-properties
+                                   (region-beginning) (region-end)))
+                  ((thing-at-point 'symbol t))
+                  (t (read-string "Search Word: " nil 'search-web-word-history)))))
+      (search-web engine word)))
+  (when (eq system-type 'darwin)
+    (add-to-list 'search-web-engines '("dict" "dict:///%s" nil))))
+
 ;; marked
 ;; http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
 (defun marked ()
@@ -285,15 +304,7 @@ Otherwise open current directory"
    (format "open -a 'Marked 2' %s"
        (shell-quote-argument (buffer-file-name)))))
 
-;; open atom in current buffer
-(defun atom ()
-  "Open current buffer in Atom editor"
-  (interactive)
-  (shell-command
-   (format "atom %s" (shell-quote-argument (buffer-file-name)))))
-
 ;;; el-get
-
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -303,13 +314,11 @@ Otherwise open current directory"
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-
 ;; (el-get-bundle nsaeki/envcache.el)
 (el-get-bundle nsaeki/read-only-directory.el)
 (el-get-bundle nsaeki/idlefingers-emacs)
 ;; (el-get-bundle sugyan/helm-go-package :checkout "52d6ed2dca82d860d63ef654e85a9dd762c272f5")
 (el-get-bundle antonj/scss-mode)
-
 
 ;;; Colors and themes
 
@@ -373,21 +382,27 @@ Otherwise open current directory"
 (use-package dired
   :config
   (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+(use-package dired-x)
 
 (use-package server
   :config
   (unless (server-running-p)
     (server-start)))
 
-(use-package dired-x)
-(use-package misc)                         ; for zap-up-to-char
+(use-package misc
+  :commands zap-up-to-char
+  :config
+  (global-set-key (kbd "M-Z") 'zap-up-to-char))
+
 (use-package open-junk-file
+  :defer t
   :init
   (setq open-junk-file-find-file-function 'find-file)
   (setq open-junk-file-format "~/sandbox/%Y%m%d%H%M%S."))
 
-(use-package sequential-command-config)
-(sequential-command-setup-keys)
+(use-package sequential-command-config
+  :config
+  (sequential-command-setup-keys))
 
 (use-package recentf-ext)
 
@@ -401,10 +416,6 @@ Otherwise open current directory"
 
 (use-package goto-chg)
 (use-package all-ext)
-
-(use-package zop-to-char
-  :init
-  (setq zop-to-char-kill-keys '(?\r ?\C-k ?\C-w)))
 
 (use-package migemo
   :init
@@ -466,18 +477,16 @@ Otherwise open current directory"
   :config
   (helm-migemo-mode t)
   (define-key isearch-mode-map (kbd "M-o") 'helm-occur-from-isearch)
-  (helm-descbinds-install))
-
-(use-package helm-config)
-(use-package helm-bm
-  :config
-  (push '(migemo) helm-source-bm))
-(use-package helm-imenu
-  :config
-  (push '(migemo) helm-source-imenu))
-
-(use-package helm-ls-git)
-(use-package helm-ghq)
+  (helm-descbinds-mode t)
+  (use-package helm-config)
+  (use-package helm-bm
+    :config
+    (push '(migemo) helm-source-bm))
+  (use-package helm-imenu
+    :config
+    (push '(migemo) helm-source-imenu))
+  (use-package helm-ls-git)
+  (use-package helm-ghq))
 
 (use-package key-chord
   :config
@@ -507,6 +516,7 @@ Otherwise open current directory"
   (smartparens-global-mode t))
 
 (use-package undo-tree
+  :defer t
   :config
   (global-undo-tree-mode))
 
@@ -518,8 +528,7 @@ Otherwise open current directory"
                            spaces       ; スペース
                            empty        ; 先頭/末尾の空行
                            space-mark   ; 表示のマッピング
-                           tab-mark
-                           ))
+                           tab-mark))
   (setq whitespace-display-mappings
         ;; '((space-mark ?\u3000 [?\u25a1])
         '((space-mark ?\u3000 [?\uff3f])
@@ -529,13 +538,11 @@ Otherwise open current directory"
           ;; the next TAB column.
           ;; If this is a problem for you, please, comment the line below.
           (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
-
   ;; スペースは全角のみを可視化
   (setq whitespace-space-regexp "\\(\u3000+\\)")
 
   :config
   (global-whitespace-mode 1)
-
   (defvar my/bg-color "#282828")
   (set-face-attribute 'whitespace-trailing nil
                       :background my/bg-color
@@ -554,9 +561,6 @@ Otherwise open current directory"
   (set-face-attribute 'whitespace-empty nil
                       :background my/bg-color))
 
-;; ==> rc.d/41_autosave.el <==
-;; package: auto-save-buffers-enhanced
-;; (auto-save-buffers-enhanced-include-only-checkout-path t)
 (use-package auto-save-buffers-enhanced
   :init
   (setq auto-save-buffers-enhanced-exclude-regexps '("^/scp:"
@@ -564,9 +568,9 @@ Otherwise open current directory"
                                                      "^/ssh:"
                                                      "/sudo:"
                                                      "/multi:"))
-  (setq auto-save-buffers-enhanced-interval 1))
+  (setq auto-save-buffers-enhanced-interval 1)
   :config
-  (auto-save-buffers-enhanced t)
+  (auto-save-buffers-enhanced t))
 
 (use-package smartrep
   :config
@@ -647,13 +651,22 @@ Otherwise open current directory"
   (set-face-attribute 'company-scrollbar-fg nil :background "orange")
   (set-face-attribute 'company-scrollbar-bg nil :background "gray40"))
 
-(use-package expand-region)
+(use-package expand-region
+  :init
+  (global-set-key (kbd "C-,") 'er/expand-region)
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
 (use-package highlight-symbol)
 (use-package auto-highlight-symbol
   :config
   (global-auto-highlight-symbol-mode t))
 
-(use-package multiple-cursors)
+(use-package multiple-cursors
+  :config
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c A") 'mc/mark-all-dwim))
+
 (use-package shell-pop)
 
 (use-package lsp-mode
@@ -662,27 +675,24 @@ Otherwise open current directory"
   :config
   (add-hook 'shell-script-mode-hook #'lsp)
   (add-hook 'css-mode-hook #'lsp)
-  (add-hook 'go-mode-hook #'lsp))
-
-(use-package lsp-ui
-  :init
-  (setq lsp-ui-doc-enable nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-(use-package company-lsp
-  :config
-  (push 'company-lsp company-backends))
-
-(use-package elixir-mode)
-(use-package alchemist)
+  (add-hook 'go-mode-hook #'lsp)
+  (use-package lsp-ui
+    :init
+    (setq lsp-ui-doc-enable nil)
+    :config
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (use-package company-lsp
+    :config
+    (push 'company-lsp company-backends)))
 
 (use-package go-mode
+  :defer t
   :config
   (define-key go-mode-map (kbd "C-c ,") 'go-test-mode-map)
   (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
   (define-key go-mode-map (kbd "C-c C-l") 'golint)
-  (add-hook 'go-mode-hook 'flycheck-mode)
   (substitute-key-definition 'go-import-add 'helm-go-package go-mode-map)
+  (add-hook 'go-mode-hook 'flycheck-mode)
 
   ;; http://syohex.hatenablog.com/entry/20130618/1371567527
   (defvar my/helm-go-source
@@ -690,454 +700,296 @@ Otherwise open current directory"
       (candidates . go-packages)
       (action . (("Show document" . godoc)
                  ("Import package" . my/helm-go-import-add)))))
-
   (defun my/helm-go-import-add (candidate)
     (dolist (package (helm-marked-candidates))
       (go-import-add current-prefix-arg package)))
-
   (defun my/helm-godoc ()
-    (Interactive)
+    (interactive)
     (helm :sources '(my/helm-go-source) :buffer "*helm godoc*"
-          :buffer "*helm godoc*")))
+          :buffer "*helm godoc*"))
 
-(use-package gotest
-  :config
-  (define-prefix-command 'go-test-mode-map)
-  (define-key go-test-mode-map (kbd "s") 'go-test-current-test)
-  (define-key go-test-mode-map (kbd "f") 'go-test-current-file)
-  (define-key go-test-mode-map (kbd "a") 'go-test-current-project)
-  (define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
-  (define-key go-test-mode-map (kbd "x") 'go-run))
+  (use-package gotest
+    :config
+    (define-prefix-command 'go-test-mode-map)
+    (define-key go-test-mode-map (kbd "s") 'go-test-current-test)
+    (define-key go-test-mode-map (kbd "f") 'go-test-current-file)
+    (define-key go-test-mode-map (kbd "a") 'go-test-current-project)
+    (define-key go-test-mode-map (kbd "c") 'go-test-current-coverage)
+    (define-key go-test-mode-map (kbd "x") 'go-run))
 
-(use-package golint)
+  (use-package golint))
 
-;; ==> rc.d/70_js.el <==
-;; (autoload 'js2-mode "js2" nil t)
-;(autoload 'js-mode "js" nil t)
-;(defalias 'javascript-mode 'js2-mode)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-(add-hook 'javascript-mode-hook #'lsp)
-(add-hook 'rjsx-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)
-            (setq js-indent-level 2)
-            (setq js2-strict-missing-semi-warning nil)))
-
-;; http://8-p.info/emacs-javascript.html
-(defun indent-and-back-to-indentation ()
-  (interactive)
-  (indent-for-tab-command)
-  (let ((point-of-indentation
-         (save-excursion
-           (back-to-indentation)
-           (point))))
-    (skip-chars-forward "\s " point-of-indentation)))
-;;(define-key js2-mode-map "\C-i" 'indent-and-back-to-indentation)
-(setq js2-cleanup-whitespace nil
-      js2-mirror-mode nil
-      js2-bounce-indent-flag nil)
-
-;; http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode
-;; http://d.hatena.ne.jp/speg03/20091011/1255244329
-
-;; http://16777215.blogspot.com/2011/05/emacs23-js2-mode-without-espresso.html
-;(autoload 'espresso-mode "espresso")
-
-(defun my-js2-indent-function ()
-  (interactive)
-  (save-restriction
-    (widen)
-    (let* ((inhibit-point-motion-hooks t)
-           (parse-status (save-excursion (syntax-ppss (point-at-bol))))
-           (offset (- (current-column) (current-indentation)))
-           (indentation (espresso--proper-indentation parse-status))
-           node)
-
-      (save-excursion
-
-        ;; I like to indent case and labels to half of the tab width
-        (back-to-indentation)
-        (if (looking-at "case\\s-")
-            (setq indentation (+ indentation (/ espresso-indent-level 2))))
-
-        ;; consecutive declarations in a var statement are nice if
-        ;; properly aligned, i.e:
-        ;;
-        ;; var foo = "bar",
-        ;;     bar = "foo";
-        (setq node (js2-node-at-point))
-        (when (and node
-                   (= js2-NAME (js2-node-type node))
-                   (= js2-VAR (js2-node-type (js2-node-parent node))))
-          (setq indentation (+ 4 indentation))))
-
-      (indent-line-to indentation)
-      (when (> offset 0) (forward-char offset)))))
-
-(defun my-indent-sexp ()
-  (interactive)
-  (save-restriction
-    (save-excursion
-      (widen)
-      (let* ((inhibit-point-motion-hooks t)
-             (parse-status (syntax-ppss (point)))
-             (beg (nth 1 parse-status))
-             (end-marker (make-marker))
-             (end (progn (goto-char beg) (forward-list) (point)))
-             (ovl (make-overlay beg end)))
-        (set-marker end-marker end)
-        (overlay-put ovl 'face 'highlight)
-        (goto-char beg)
-        (while (< (point) (marker-position end-marker))
-          ;; don't reindent blank lines so we don't set the "buffer
-          ;; modified" property for nothing
-          (beginning-of-line)
-          (unless (looking-at "\\s-*$")
-            (indent-according-to-mode))
-          (forward-line))
-        (run-with-timer 0.5 nil '(lambda(ovl)
-                                   (delete-overlay ovl)) ovl)))))
-
-(defun my-js2-mode-hook ()
-  (use-package espresso)
-  (setq espresso-indent-level 4
-        indent-tabs-mode nil
-        c-basic-offset 4)
-  (c-toggle-auto-state 0)
-  (c-toggle-hungry-state 1)
-  (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
-  ;;(define-key js2-mode-map [(meta control |)] 'cperl-lineup)
-  (define-key js2-mode-map "\C-\M-\\"
-    '(lambda()
-       (interactive)
-       (insert "/* -----[ ")
-       (save-excursion
-         (insert " ]----- */"))
-       ))
-  (define-key js2-mode-map "\C-m" 'newline-and-indent)
-  ;;(define-key js2-mode-map [(backspace)] 'c-electric-backspace)
-  ;;(define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
-  (define-key js2-mode-map "\C-\M-q" 'my-indent-sexp)
-  (define-key js2-mode-map "\C-i" 'indent-and-back-to-indentation)
-  (if (featurep 'js2-highlight-vars)
-    (js2-highlight-vars-mode))
-  (message "My JS2 hook"))
-
-(add-hook 'js2-mode-hook 'my-js2-mode-hook)
-
-;; ==> rc.d/70_json.el <==
-;; (ensure-package-installed 'json-mode)
 (use-package json)
 
-;; ==> rc.d/70_markdown.el <==
-;; https://gist.github.com/1631630
-(progn
-  ;; markdown-mode
-  (custom-set-faces
-   '(markdown-header-face-1 ((t (:inherit outline-1 :weight bold))))
-   '(markdown-header-face-2 ((t (:inherit outline-2 :weight bold))))
-   '(markdown-header-face-3 ((t (:inherit outline-3 :weight bold))))
-   '(markdown-header-face-4 ((t (:inherit outline-4 :weight bold))))
-   '(markdown-header-face-5 ((t (:inherit outline-5 :weight bold))))
-   '(markdown-header-face-6 ((t (:inherit outline-6 :weight bold))))
-   '(markdown-pre-face ((t (:inherit org-formula))))))
-
-(defun markdown-imenu-create-index ()
-  (let* ((root '(nil . nil))
-         cur-alist
-         (cur-level 0)
-         (pattern "^\\(\\(#+\\)[ \t]*\\(.+\\)\\|\\([^# \t\n=-].*\\)\n===+\\|\\([^# \t\n=-].*\\)\n---+\\)$")
-         (empty-heading "-")
-         (self-heading ".")
-         hashes pos level heading)
-    (save-excursion
-      (goto-char (point-min))
-      (while (re-search-forward pattern (point-max) t)
-        (cond
-         ((setq hashes (match-string-no-properties 2))
-          (setq heading (match-string-no-properties 3)
-                pos (match-beginning 1)
-                level (length hashes)))
-         ((setq heading (match-string-no-properties 4))
-          (setq pos (match-beginning 4)
-                level 1))
-         ((setq heading (match-string-no-properties 5))
-          (setq pos (match-beginning 5)
-                level 2)))
-        (let ((alist (list (cons heading pos))))
+(use-package markdown-mode
+  :defer t
+  :init
+  (add-hook 'markdown-mode-hook
+            '(lambda ()
+               (setq imenu-create-index-function 'markdown-imenu-create-index)
+               (local-set-key (kbd "C-M-m") 'markdown-insert-list-item)))
+  (custom-set-faces '(markdown-header-face-1 ((t (:inherit outline-1 :weight bold))))
+                    '(markdown-header-face-2 ((t (:inherit outline-2 :weight bold))))
+                    '(markdown-header-face-3 ((t (:inherit outline-3 :weight bold))))
+                    '(markdown-header-face-4 ((t (:inherit outline-4 :weight bold))))
+                    '(markdown-header-face-5 ((t (:inherit outline-5 :weight bold))))
+                    '(markdown-header-face-6 ((t (:inherit outline-6 :weight bold))))
+                    '(markdown-pre-face ((t (:inherit org-formula)))))
+  :config
+  (defun markdown-imenu-create-index ()
+    (let* ((root '(nil . nil))
+           cur-alist
+           (cur-level 0)
+           (pattern "^\\(\\(#+\\)[ \t]*\\(.+\\)\\|\\([^# \t\n=-].*\\)\n===+\\|\\([^# \t\n=-].*\\)\n---+\\)$")
+           (empty-heading "-")
+           (self-heading ".")
+           hashes pos level heading)
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward pattern (point-max) t)
           (cond
-           ((= cur-level level)		; new sibling
-            (setcdr cur-alist alist)
-            (setq cur-alist alist))
-           ((< cur-level level)		; first child
-            (dotimes (i (- level cur-level 1))
-              (setq alist (list (cons empty-heading alist))))
-            (if cur-alist
-                (let* ((parent (car cur-alist))
-                       (self-pos (cdr parent)))
-                  (setcdr parent (cons (cons self-heading self-pos) alist)))
-              (setcdr root alist))		; primogenitor
-            (setq cur-alist alist)
-            (setq cur-level level))
-           (t				; new sibling of an ancestor
-            (let ((sibling-alist (last (cdr root))))
-              (dotimes (i (1- level))
-                (setq sibling-alist (last (cdar sibling-alist))))
-              (setcdr sibling-alist alist)
+           ((setq hashes (match-string-no-properties 2))
+            (setq heading (match-string-no-properties 3)
+                  pos (match-beginning 1)
+                  level (length hashes)))
+           ((setq heading (match-string-no-properties 4))
+            (setq pos (match-beginning 4)
+                  level 1))
+           ((setq heading (match-string-no-properties 5))
+            (setq pos (match-beginning 5)
+                  level 2)))
+          (let ((alist (list (cons heading pos))))
+            (cond
+             ((= cur-level level)       ; new sibling
+              (setcdr cur-alist alist)
               (setq cur-alist alist))
-            (setq cur-level level)))))
-      (cdr root))))
+             ((< cur-level level)       ; first child
+              (dotimes (i (- level cur-level 1))
+                (setq alist (list (cons empty-heading alist))))
+              (if cur-alist
+                  (let* ((parent (car cur-alist))
+                         (self-pos (cdr parent)))
+                    (setcdr parent (cons (cons self-heading self-pos) alist)))
+                (setcdr root alist))    ; primogenitor
+              (setq cur-alist alist)
+              (setq cur-level level))
+             (t                         ; new sibling of an ancestor
+              (let ((sibling-alist (last (cdr root))))
+                (dotimes (i (1- level))
+                  (setq sibling-alist (last (cdar sibling-alist))))
+                (setcdr sibling-alist alist)
+                (setq cur-alist alist))
+              (setq cur-level level)))))
+        (cdr root)))))
 
-(add-hook 'markdown-mode-hook
-          '(lambda ()
-             (setq imenu-create-index-function 'markdown-imenu-create-index)
-             (local-set-key (kbd "C-M-m") 'markdown-insert-list-item)))
+(use-package org
+  :defer t
+  :init
+  (setq org-startup-folded 'nofold)
+  (setq org-imenu-depth 4)
+  (define-key org-mode-map (kbd "C-'") nil)
+  (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 
-;; ==> rc.d/70_org.el <==
-(setq org-startup-folded 'nofold)
-(setq org-imenu-depth 4)
+  :config
+  (defun org-insert-upheading (arg)
+    "insert upheading"
+    (interactive "P")
+    (org-insert-heading arg)
+    (cond ((org-at-heading-p) (org-do-promote))
+          ((org-at-item-p) (org-indent-item))))
 
-(define-key org-mode-map (kbd "C-'") nil)
-(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+  (defun org-insert-heading-dwim (arg)
+    nil
+    (interactive "P")
+    (case arg
+      (4  (org-insert-subheading nil))  ; C-u
+      (16 (org-insert-upheading nil))   ; C-u C-u
+      (t  (org-insert-heading nil)))))
 
-(defun org-insert-upheading (arg)
-  "insert upheading"
-  (interactive "P")
-  (org-insert-heading arg)
-  (cond ((org-on-heading-p) (org-do-promote))
-        ((org-at-item-p) (org-indent-item -1))))
+(use-package org-journal
+  :defer t
+  :init
+  ;; (setq org-journal-file-format "%Y%m%d.org")
+  (setq org-journal-file-format "journal.org")
+  (setq org-journal-date-format "%F")
+  (setq org-journal-time-format "<%Y-%m-%d %R> ")
+  (setq org-journal-dir "~/notes/journal")
+  (push org-journal-dir org-agenda-files))
 
-(defun org-insert-heading-dwim (arg)
-  nil
-  (interactive "P")
-  (case arg
-    (4  (org-insert-subheading nil))    ; C-u
-    (16 (org-insert-upheading nil))     ; C-u C-u
-    (t  (org-insert-heading nil))))
+(use-package ox-gfm)
 
+(use-package projectile
+  :config
+  (projectile-mode t)
+  (defun my-projectile-helm-ag (arg)
+    (interactive "p")
+    (case arg
+      (4 (helm-ag nil))
+      (t (helm-ag (when (projectile-project-p)
+                    (projectile-project-root))))))
+  (global-set-key (kbd "C-x v p") 'projectile-dired))
 
-;;; org-journal
-(use-package org-journal)
-;; (setq org-journal-file-format "%Y%m%d.org")
-(setq org-journal-file-format "journal.org")
-(setq org-journal-date-format "%F")
-(setq org-journal-time-format "<%Y-%m-%d %R> ")
-(setq org-journal-dir "~/notes/journal")
-(push org-journal-dir org-agenda-files)
-
-;;; ox-gfm (auto required)
-;; (use-package ox-gfm)
-
-;;; org-capture
-(setq org-capture-templates
-      '(("n" "Add new item to default note file." entry (file nil)
-         "* %?\n%i\n\n  %T\n  %a"
-         :empty-lines 1)
-        ))
-
-(defun my/org-quick-capture ()
-  (interactive)
-  (org-capture nil "n"))
-
-;; ==> rc.d/70_projectile.el <==
-;; projectile
-(projectile-global-mode)
-(defun my-projectile-helm-ag (arg)
-  (interactive "p")
-  (case arg
-    (4 (helm-ag nil))
-    (t (helm-ag (when (projectile-project-p)
-                  (projectile-project-root))))))
-
-(global-set-key (kbd "C-x v p") 'projectile-dired)
-
-(use-package helm-projectile)
-
-(defun my-helm-for-projects ()
-  "Helm for projectile projects and ghq list"
-  (interactive)
-  (helm :sources '(helm-source-projectile-projects
-                   helm-source-ghq)
-        :buffer "*helm for project*"))
-
-(defun my-helm-for-files-in-project ()
-  "Helm for file and buffers in current project"
-  (interactive)
-  (helm :sources '(helm-source-projectile-buffers-list
-                   helm-source-projectile-recentf-list
-                   helm-source-projectile-files-list)
-        :buffer "*helm for project*"))
-
-(setq projectile-enable-caching t)
-(helm-projectile-toggle 1)
-
-;; ==> rc.d/70_python.el <==
-(add-hook 'python-mode-hook #'lsp)
-
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
-;; ==> rc.d/70_rainbow.el <==
-;; (ensure-package-installed 'rainbow-mode)
-(add-hook 'css-mode-hook 'rainbow-mode)
-(add-hook 'scss-mode-hook 'rainbow-mode)
-(add-hook 'html-mode-hook 'rainbow-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-
-;; ==> rc.d/70_rest.el <==
-;; http://d.hatena.ne.jp/LaclefYoshi/20100922/1285125722
-
- ;; (rst-level-7-face ((t (:foreground "LightSteelBlue"))) t)  ;; メモ
- ;; (rst-level-8-face ((t (:foreground "LightSalmon"))) t)
-
-
-;; ==> rc.d/70_ruby.el <==
-(add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-
-(setq ruby-insert-encoding-magic-comment nil)
-
-;; https://github.com/senny/rbenv.el
-;; (use-package rbenv)
-(setq rbenv-show-active-ruby-in-modeline nil)
-(global-rbenv-mode)
-
-(add-hook 'ruby-mode-hook #'lsp)
-
-;; launch pry in inf-ruby
-;; https://gist.github.com/jsvnm/1390890
-(use-package inf-ruby)
-(setq inf-ruby-default-implementation "pry")
-(define-key inf-ruby-minor-mode-map (kbd "C-c C-z")
-  (lambda ()
+(use-package helm-projectile
+  :config
+  (defun my-helm-for-projects ()
+    "Helm for projectile projects and ghq list"
     (interactive)
-    (inf-ruby)))
-;; (push '("^\*pry\*" :regexp 1 :height 25) popwin:special-display-config)
+    (helm :sources '(helm-source-projectile-projects
+                     helm-source-ghq)
+          :buffer "*helm for project*"))
 
-;; yard-mode
-(add-hook 'ruby-mode-hook 'yard-mode)
+  (defun my-helm-for-files-in-project ()
+    "Helm for file and buffers in current project"
+    (interactive)
+    (helm :sources '(helm-source-projectile-buffers-list
+                     helm-source-projectile-recentf-list
+                     helm-source-projectile-files-list)
+          :buffer "*helm for project*"))
 
-;; ruby-test-mode
-;; Also hooked in ruby-test-mode.el, but it isn't marked autoload.
-(add-hook 'ruby-mode-hook 'ruby-test-mode)
+  (setq projectile-enable-caching t)
+  (helm-projectile-toggle 1))
 
-;; Recognize test_*.rb as a test file
-(defun my-advice:ruby-prefixed-test-p (filename)
-  (and (string-match "^test_" (file-name-base filename))
-       (string-match "^rb$" (file-name-extension filename))))
-(advice-add 'ruby-test-p :after-until 'my-advice:ruby-prefixed-test-p)
-;; (advice-remove 'ruby-test-p 'my-advice:ruby-prefixed-test-p)
+(use-package python
+  :defer t
+  :init
+  (add-hook 'python-mode-hook #'lsp)
+  (setq
+   python-shell-interpreter "ipython"
+   python-shell-interpreter-args ""
+   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+   python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+   ;; python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+   python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
 
-;; minitest-mode
-;; Avoid conflict with rspec-mode prefix
+(use-package rainbow-mode
+  :init
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'scss-mode-hook 'rainbow-mode)
+  (add-hook 'html-mode-hook 'rainbow-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode))
 
+(use-package ruby-mode
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+  (add-hook 'ruby-mode-hook #'lsp)
+  (add-hook 'ruby-mode-hook 'yard-mode)
+  (add-hook 'ruby-mode-hook 'ruby-test-mode)
+  (setq ruby-insert-encoding-magic-comment nil)
 
-;; Needs the same advice as ruby-test-mode
-(advice-add 'minitest-test-file-p :after-until
-            'my-advice:ruby-prefixed-test-p)
+  :config
+  (use-package rbenv
+    :config
+    (setq rbenv-show-active-ruby-in-modeline nil)
+    (global-rbenv-mode))
+  ;; launch pry in inf-ruby
+  (use-package inf-ruby
+    :config
+    (setq inf-ruby-default-implementation "pry")
+    (define-key inf-ruby-minor-mode-map (kbd "C-c C-z")
+      (lambda () (interactive) (inf-ruby))))
+  (use-package yard-mode)
+  (use-package ruby-test-mode
+    :config
+    ;; Recognize test_*.rb as a test file
+    (defun my-advice:ruby-prefixed-test-p (filename)
+      (and (string-match "^test_" (file-name-base filename))
+           (string-match "^rb$" (file-name-extension filename))))
+    (advice-add 'ruby-test-p :after-until 'my-advice:ruby-prefixed-test-p)
+    (advice-add 'minitest-test-file-p :after-until
+                'my-advice:ruby-prefixed-test-p))
 
-;; open gem source
-;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
-(defvar helm-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
-(defvar helm-c-source-gem-open
-  '((name . "gem open")
-    (init . (lambda ()
-              (let ((buffer (helm-candidate-buffer 'global)))
-                (with-current-buffer buffer
-                  (call-process-shell-command helm-gem-open-ruby-command  nil buffer)
-                  (sort-lines nil (point-min) (point-max))))))
-    (candidates-in-buffer)
-    (candidate-number-limit . 99999)
-    (action ("Open" . helm-c-source-gem-open-action))))
+  ;; open gem source
+  ;; http://d.hatena.ne.jp/kitokitoki/20110302/p1
+  (defvar helm-gem-open-ruby-command "ruby -rubygems -e 'puts Dir[\"{#{Gem::Specification.dirs.join(\",\")}}/*.gemspec\"].collect {|s| File.basename(s).gsub(/\.gemspec$/, \"\")}'")
+  (defvar helm-c-source-gem-open
+    '((name . "gem open")
+      (init . (lambda ()
+                (let ((buffer (helm-candidate-buffer 'global)))
+                  (with-current-buffer buffer
+                    (call-process-shell-command helm-gem-open-ruby-command  nil buffer)
+                    (sort-lines nil (point-min) (point-max))))))
+      (candidates-in-buffer)
+      (candidate-number-limit . 99999)
+      (action ("Open" . helm-c-source-gem-open-action))))
 
-(defun helm-c-source-gem-open-action (candidate)
-  (unless (executable-find "which-gemfile.rb")
-    (error "couldn't find which-gemfile.rb in your path."))
-  (find-file (with-temp-buffer
-               (call-process "which-gemfile.rb" nil t 0 candidate)
-               (delete-backward-char 1)
-               (buffer-string))))
+  (defun helm-c-source-gem-open-action (candidate)
+    (unless (executable-find "which-gemfile.rb")
+      (error "couldn't find which-gemfile.rb in your path."))
+    (find-file (with-temp-buffer
+                 (call-process "which-gemfile.rb" nil t 0 candidate)
+                 (delete-char 1)
+                 (buffer-string))))
 
-(defun helm-gem-open ()
-  (interactive)
-  (helm helm-c-source-gem-open))
+  (defun helm-gem-open ()
+    (interactive)
+    (helm helm-c-source-gem-open))
+  (defalias 'gem 'helm-gem-open))
 
-(defalias 'gem 'helm-gem-open)
+(use-package scss-mode
+  :defer
+  :init
+  (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode)))
 
-;; ==> rc.d/70_scss.el <==
-(use-package scss-mode)
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(use-package sql
+  :defer t
+  :config
+  (use-package sql-indent
+    :init
+    (setq sql-indent-first-column-regexp
+          (concat "\\(^\\s-*\\("
+                  (regexp-opt '("select" "update" "insert" "delete"
+                                "union" "intersect"
+                                "from" "where" "into" "group" "having" "order"
+                                "set"
+                                "create" "drop" "truncate")
+                              'symbols)
+                  "\\|--\\)\\(\\b\\|\\s-\\)\\)\\|\\(^```$\\)"))))
 
-;; ==> rc.d/70_sql.el <==
-(eval-after-load "sql"
-  '(load-library "sql-indent"))
+(use-package magit
+  :defer t
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0"))
 
-(setq sql-indent-first-column-regexp
-      (concat "\\(^\\s-*\\(" (regexp-opt '(
-                                           "select" "update" "insert" "delete"
-                                           "union" "intersect"
-                                           "from" "where" "into" "group" "having" "order"
-                                           "set"
-                                           "create" "drop" "truncate")
-                                         'symbols) "\\|--\\)\\(\\b\\|\\s-\\)\\)\\|\\(^```$\\)"))
-
-;; ==> rc.d/70_vcs.el <==
-;; magit
-;; (use-package magit)
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-;; git-gutter-fringe
-(use-package git-gutter-fringe)
-;; (global-git-gutter-mode t)
-
-
-;; small and a little left
-(fringe-helper-define 'git-gutter-fr:added nil
-  "........"
-  "..XX...."
-  "..XX...."
-  "XXXXXX.."
-  "XXXXXX.."
-  "..XX...."
-  "..XX...."
-  "........")
-
-(fringe-helper-define 'git-gutter-fr:deleted nil
-  "........"
-  "........"
-  "........"
-  "XXXXXX.."
-  "XXXXXX.."
-  "........"
-  "........"
-  "........")
-
-(fringe-helper-define 'git-gutter-fr:modified nil
-  "........"
-  ".XXX...."
-  ".XXX...."
-  ".XXX...."
-  ".XXX...."
-  ".XXX...."
-  ".XXX...."
-  "........")
+(use-package git-gutter-fringe
+  :config
+  ;; small and a little left
+  (fringe-helper-define 'git-gutter-fr:added nil
+    "........"
+    "..XX...."
+    "..XX...."
+    "XXXXXX.."
+    "XXXXXX.."
+    "..XX...."
+    "..XX...."
+    "........")
+  (fringe-helper-define 'git-gutter-fr:deleted nil
+    "........"
+    "........"
+    "........"
+    "XXXXXX.."
+    "XXXXXX.."
+    "........"
+    "........"
+    "........")
+  (fringe-helper-define 'git-gutter-fr:modified nil
+    "........"
+    ".XXX...."
+    ".XXX...."
+    ".XXX...."
+    ".XXX...."
+    ".XXX...."
+    ".XXX...."
+    "........"))
 
 (use-package diff-hl
   :defer t
   :init
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (setq diff-hl-draw-borders nil)
-  (setq diff-hl-margin-side 'right)
+  (setq diff-hl-side 'right)
   :config
   (global-diff-hl-mode t)
   (diff-hl-margin-mode)
@@ -1245,13 +1097,10 @@ Otherwise open current directory"
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (global-set-key (kbd "M-?") 'help-command)
 
-;; (global-set-key (kbd "M-z") 'zop-to-char)
-(global-set-key (kbd "M-Z") 'zap-up-to-char)
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-x j") 'open-junk-file)
 
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
-;; (global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
@@ -1274,13 +1123,6 @@ Otherwise open current directory"
 (global-set-key (kbd "C-M-z") 'helm-resume)
 (global-set-key (kbd "C-M-;") 'my-helm-for-files-in-project)
 (global-set-key (kbd "C-'") 'my-helm-for-projects)
-
-(global-set-key (kbd "C-,") 'er/expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c A") 'mc/mark-all-dwim)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'bm-show-all)
