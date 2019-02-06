@@ -27,6 +27,7 @@
 (setq scroll-preserve-screen-position t)
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
+(setq custom-file (locate-user-emacs-file "custom.el"))
 
 (ffap-bindings)
 (tool-bar-mode 0)
