@@ -42,8 +42,6 @@
 (global-linum-mode t)
 (column-number-mode t)
 (global-font-lock-mode t)
-;; Use global-hl-line-timer-function instead
-;; (global-hl-line-mode t)
 ;; (electric-pair-mode t)                  ; use smartparens
 (global-auto-revert-mode 1)
 (which-function-mode t)
@@ -59,9 +57,6 @@
 (defun my-comint-init ()
   (setq comint-process-echoes t))
 (add-hook 'comint-mode-hook 'my-comint-init)
-
-;; Shift + Arrow Key moves window focus
-(windmove-default-keybindings)
 
 (setq-default mode-line-format
               '("%e" mode-line-front-space
@@ -81,26 +76,15 @@
                 mode-line-modes
                 mode-line-end-spaces))
 
-;; Scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; one line at a time
 (setq mouse-wheel-progressive-speed nil) ; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ; scroll window under mouse
-(setq scroll-step 1) ; keyboard scroll one line at a time
+(setq mouse-wheel-follow-mouse 't)       ; scroll window under mouse
+(setq scroll-step 1)              ; keyboard scroll one line at a time
 
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAGS$" "/var/tmp"))
 
-;; dabberv
-;(setq *dabbervs-case-fold* t)
 (setq dabberv-case-fold-search nil)
-;(setq dabbrev-case-replace nil)
-
-;; auto-mode-alist for misc file types.
-(setq auto-mode-alist
-      (append '(("Cask$" . lisp-mode)
-                ("\\.xsd$" . xml-mode)
-                ("\\.rng$" . xml-mode))
-              auto-mode-alist))
 
 ;; Creates backup and autosave files in backup directory
 (defvar user-temporary-file-directory "~/.emacs.d/backup")
@@ -113,7 +97,7 @@
       `((".*" ,user-temporary-file-directory t)))
 
 ;; for Emacs Mac Port
-(setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
+;; (setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
 
 (shell-command-completion-mode)
 
@@ -214,7 +198,7 @@
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
-(defun my-swap-buffer (arg)
+(defun my-swap-buffers (arg)
   "Swap buffers with next window"
   (interactive "p")
   (let* ((current (selected-window))
@@ -277,30 +261,13 @@ Otherwise open current directory"
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-;; (require 'hl-line)
-;; (global-hl-line-mode)
-;; http://rubikitch.com/2015/05/14/global-hl-line-mode-timer/
-;; (defun global-hl-line-timer-function ()
-;;   (global-hl-line-unhighlight-all)
-;;   (let ((global-hl-line-mode t))
-;;     (global-hl-line-highlight)))
-;; (setq global-hl-line-timer
-;;       (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
-;; (cancel-timer global-hl-line-timer)
-
-(setq my/notes-directory "~/notes")
-(setq my/journal-directory (concat my/notes-directory "/journal"))
-
+(setq my/journal-directory "~/notes/journal")
 (defun my/open-journal (&optional filename)
   (interactive)
   (let ((filename (or filename (format-time-string "%Y%m%d"))))
     (find-file (concat my/journal-directory "/" filename ".md"))
     (goto-char (point-max))
     (org-show-entry)))
-
-(defun my/open-notes-dir ()
-  (interactive)
-  (dired-jump nil (concat my/notes-directory "/")))
 
 ;; http://www.emacswiki.org/emacs/SearchAtPoint
 (defun isearch-yank-symbol ()
@@ -523,7 +490,10 @@ Otherwise open current directory"
 (use-package key-chord
   :config
   (key-chord-mode t)
-  (setq key-chord-two-keys-delay 0.04))
+  (setq key-chord-two-keys-delay 0.04)
+  (key-chord-define-global "jk" 'evil-mode)
+  (key-chord-define-global "df" 'vc-diff)
+  (key-chord-define-global "vc" 'magit-status))
 
 (use-package exec-path-from-shell
   :init
@@ -534,7 +504,11 @@ Otherwise open current directory"
 
 (use-package region-bindings-mode
   :config
-  (region-bindings-mode-enable))
+  (region-bindings-mode-enable)
+  (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
+  (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
+  (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
+  (define-key region-bindings-mode-map (kbd "<return>") 'mc/edit-lines))
 
 (use-package smartparens-config
   :config
@@ -602,7 +576,20 @@ Otherwise open current directory"
   :config
   (auto-save-buffers-enhanced t)
 
-(use-package smartrep)
+(use-package smartrep
+  :config
+  ;; smartrep
+  (smartrep-define-key
+      global-map "C-c" '(("u" . 'goto-last-change)
+                         ("U" . 'goto-last-change-reverse)
+                         ("i" . 'delete-indentation)))
+  (smartrep-define-key
+      global-map "C-x" '(("n" . 'my-vcs-next-hunk)
+                         ("p" . 'my-vcs-previous-hunk)))
+  (smartrep-define-key
+      global-map "M-g" '(("n" . 'next-error)
+                         ("p" . 'previous-error))))
+
 (use-package evil)
 
 (use-package view
@@ -993,6 +980,8 @@ Otherwise open current directory"
     (t (helm-ag (when (projectile-project-p)
                   (projectile-project-root))))))
 
+(global-set-key (kbd "C-x v p") 'projectile-dired)
+
 (use-package helm-projectile)
 
 (defun my-helm-for-projects ()
@@ -1310,8 +1299,6 @@ Otherwise open current directory"
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c j") 'org-journal-new-entry)
-;; (global-set-key (kbd "C-c j") 'neotree-toggle)
-;; (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c n") 'my/open-notes-dir)
 (global-set-key (kbd "C-c m") 'bm-toggle)
@@ -1319,42 +1306,9 @@ Otherwise open current directory"
 (global-set-key (kbd "C-c o") 'browse-url)
 (global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
-(global-set-key (kbd "C-c t") 'my-swap-buffer)
-(global-set-key (kbd "C-c v") 'browse-url-of-file)
 (global-set-key (kbd "C-c y") 'copy-file-name-to-clipboard)
 (global-set-key (kbd "C-c f") 'my/search-web-dwim)
 (global-set-key (kbd "C-c g") (lambda () (interactive) (my/search-web-dwim "google")))
 (global-set-key (kbd "C-c e") (lambda () (interactive) (my/search-web-dwim "dict")))
 (global-set-key (kbd "C-c =") 'vc-diff)
-
-(global-set-key (kbd "C-x v p") 'projectile-dired)
-;; (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
-;; (global-set-key (kbd "C-x v n") 'git-gutter:revert-hunk)
-;; (global-set-key (kbd "C-x v j") 'git-gutter:stage-hunk)
-
-;; smartrep
-(smartrep-define-key
-    global-map "C-c" '(("u" . 'goto-last-change)
-                       ("U" . 'goto-last-change-reverse)
-                       ("i" . 'delete-indentation)))
-
-(smartrep-define-key
-    global-map "C-x" '(("n" . 'my-vcs-next-hunk)
-                       ("p" . 'my-vcs-previous-hunk)))
-
-(smartrep-define-key
-    global-map "M-g" '(("n" . 'next-error)
-                       ("p" . 'previous-error)))
-
-;; key-chord
-;; (key-chord-define-global "jk" 'view-mode)
-(key-chord-define-global "jk" 'evil-mode)
-(key-chord-define-global "df" 'vc-diff)
-(key-chord-define-global "vc" 'magit-status)
-
-;; region-bindings
-(define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
-(define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
-(define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-(define-key region-bindings-mode-map (kbd "<return>") 'mc/edit-lines)
 
