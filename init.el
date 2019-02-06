@@ -272,29 +272,6 @@ Otherwise open current directory"
   (isearch-search-and-update))
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol)
 
-(use-package search-web
-  :config
-  ;; Still using my version of search-web-dwim becuase original version of
-  ;; this function is a bit inconvenient for me (commented below).
-  (defun my/search-web-dwim (&optional engine word)
-    (interactive)
-    (let* ((completion-ignore-case t)
-           (use-empty-active-region nil)
-           ;; Set default engine to google whatever search-engine-history has.
-           (engine (or engine
-                       (completing-read "Search engine (default google): "
-                                        search-web-engines nil t nil
-                                        'search-web-engine-history "google")))
-           (word (cond
-                  (word)
-                  ((use-region-p) (buffer-substring-no-properties
-                                   (region-beginning) (region-end)))
-                  ((thing-at-point 'symbol t))
-                  (t (read-string "Search Word: " nil 'search-web-word-history)))))
-      (search-web engine word)))
-  (when (eq system-type 'darwin)
-    (add-to-list 'search-web-engines '("dict" "dict:///%s" nil))))
-
 ;; marked
 ;; http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
 (defun marked ()
@@ -364,10 +341,10 @@ Otherwise open current directory"
 
 ;;; Packages
 
-(use-package auto-async-byte-compile
-  :defer t
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
+;; (use-package auto-async-byte-compile
+;;   :defer t
+;;   :init
+;;   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
 
 (use-package shell-command
   :commands (shell-command shell-command-on-region grep grep-find compile)
@@ -416,6 +393,29 @@ Otherwise open current directory"
 
 (use-package goto-chg)
 (use-package all-ext)
+
+(use-package search-web
+  :config
+  ;; Still using my version of search-web-dwim becuase original version of
+  ;; this function is a bit inconvenient for me (commented below).
+  (defun my/search-web-dwim (&optional engine word)
+    (interactive)
+    (let* ((completion-ignore-case t)
+           (use-empty-active-region nil)
+           ;; Set default engine to google whatever search-engine-history has.
+           (engine (or engine
+                       (completing-read "Search engine (default google): "
+                                        search-web-engines nil t nil
+                                        'search-web-engine-history "google")))
+           (word (cond
+                  (word)
+                  ((use-region-p) (buffer-substring-no-properties
+                                   (region-beginning) (region-end)))
+                  ((thing-at-point 'symbol t))
+                  (t (read-string "Search Word: " nil 'search-web-word-history)))))
+      (search-web engine word)))
+  (when (eq system-type 'darwin)
+    (add-to-list 'search-web-engines '("dict" "dict:///%s" nil))))
 
 (use-package migemo
   :init
