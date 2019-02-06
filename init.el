@@ -96,10 +96,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-;; for Emacs Mac Port
-;; (setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
+(setq frame-title-format (format (if (buffer-file-name) "%%f" "%%b")))
 
-(shell-command-completion-mode)
 
 ;; Settings by system
 (when (eq system-type 'windows-nt)
@@ -161,13 +159,7 @@
        nil
        'append))))
 
-
 ;;; Custom functions
-
-(defun my-get-datetime (fmt) (insert (format-time-string fmt)))
-(defun date () (interactive) (my-get-datetime "%Y-%m-%d"))
-(defun time () (interactive) (my-get-datetime "%H:%M:%S"))
-(defun datetime () (interactive) (my-get-datetime "%Y-%m-%d %H:%M:%S"))
 
 (defun make-file-executable ()
   "Make the file of this buffer executable, when it is a script source."
@@ -300,11 +292,6 @@ Otherwise open current directory"
   (shell-command
    (format "atom %s" (shell-quote-argument (buffer-file-name)))))
 
-
-
-
-
-
 ;;; el-get
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -372,6 +359,11 @@ Otherwise open current directory"
   :defer t
   :init
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
+
+(use-package shell-command
+  :commands (shell-command shell-command-on-region grep grep-find compile)
+  :config
+  (shell-command-completion-mode t))
 
 (use-package saveplace
   :config
@@ -948,28 +940,6 @@ Otherwise open current directory"
   (interactive)
   (org-capture nil "n"))
 
-;; ==> rc.d/70_php.el <==
-(add-hook 'php-mode-hook #'lsp)
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "C-.") 'helm-imenu)
-             (local-set-key (kbd "C-c C-.") 'php-show-arglist)))
-
-(add-to-list 'auto-mode-alist '(".php$" . web-mode))
-(add-hook 'web-mode-hook
-          '(lambda ()
-             (setq web-mode-enable-auto-indentation nil)))
-;; php-imenu
-(autoload 'php-imenu-create-index "php-imenu" nil t)
-;; Add the index creation function to the php-mode-hook
-;; In php-mode 1.2, it's php-mode-user-hook.  In 1.4, it's php-mode-hook.
-(add-hook 'php-mode-hook 'php-imenu-setup)
-(defun php-imenu-setup ()
-  (setq imenu-create-index-function (function php-imenu-create-index))
-  ;; uncomment if you prefer speedbar:
-  ;(setq php-imenu-alist-postprocessor (function reverse))
-  (imenu-add-menubar-index))
-
 ;; ==> rc.d/70_projectile.el <==
 ;; projectile
 (projectile-global-mode)
@@ -1162,39 +1132,57 @@ Otherwise open current directory"
   ".XXX...."
   "........")
 
-;; diff-hl
-(global-diff-hl-mode t)
-(add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-(setq diff-hl-draw-borders nil)
-(diff-hl-margin-mode)
-(setq diff-hl-margin-side 'right)
+(use-package diff-hl
+  :defer t
+  :init
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (setq diff-hl-draw-borders nil)
+  (setq diff-hl-margin-side 'right)
+  :config
+  (global-diff-hl-mode t)
+  (diff-hl-margin-mode)
+  (defalias 'my-vcs-next-hunk 'diff-hl-next-hunk)
+  (defalias 'my-vcs-previous-hunk 'diff-hl-previous-hunk))
 
+(use-package web-mode
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '(".php$" . web-mode))
+  (add-hook 'web-mode-hook
+            '(lambda ()
+               (setq web-mode-enable-auto-indentation nil))))
 
-;; Switch main component to use
-;; (defalias 'my-vcs-next-hunk 'git-gutter:next-hunk)
-;; (defalias 'my-vcs-previous-hunk 'git-gutter:previous-hunk)
+(use-package php-mode
+  :defer t
+  :init
+  (add-hook 'php-mode-hook #'lsp)
+  (add-hook 'php-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-.") 'helm-imenu)
+               (local-set-key (kbd "C-c C-.") 'php-show-arglist)))
+  (autoload 'php-imenu-create-index "php-imenu" nil t)
+  (add-hook 'php-mode-hook 'php-imenu-setup)
+  :config
+  (defun php-imenu-setup ()
+    (setq imenu-create-index-function (function php-imenu-create-index))
+    (imenu-add-menubar-index)))
 
-(defalias 'my-vcs-next-hunk 'diff-hl-next-hunk)
-(defalias 'my-vcs-previous-hunk 'diff-hl-previous-hunk)
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
 
-;; ==> rc.d/70_web.el <==
-;; (use-package web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-;; ==> rc.d/70_yasnippet.el <==
-(use-package yasnippet)
-(yas-global-mode 1)
-
-;; ==> rc.d/70_zencoding.el <==
-;; (use-package zencoding-mode)
-(add-hook 'sgml-mode-hook 'zencoding-mode)
+(use-package zencoding-mode
+  :defer t
+  :init
+  (add-hook 'sgml-mode-hook 'zencoding-mode))
 
 ;; Restore frame size
 ;; Source: http://d.hatena.ne.jp/Tan90909090/20121124/1353757368
@@ -1234,7 +1222,7 @@ Otherwise open current directory"
   (add-hook 'kill-emacs-hook 'my-save-frame-size)
   (run-with-idle-timer 60 t 'my-save-frame-size))
 
-(use-package read-only-directory)
+(require 'read-only-directory)
 (read-only-directory-init)
 
 (defun my-read-only-directory ()
@@ -1299,13 +1287,11 @@ Otherwise open current directory"
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c j") 'org-journal-new-entry)
-(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c n") 'my/open-notes-dir)
 (global-set-key (kbd "C-c m") 'bm-toggle)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-set-key (kbd "C-c o") 'browse-url)
-(global-set-key (kbd "C-c q") 'quickrun)
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-c t") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c y") 'copy-file-name-to-clipboard)
 (global-set-key (kbd "C-c f") 'my/search-web-dwim)
 (global-set-key (kbd "C-c g") (lambda () (interactive) (my/search-web-dwim "google")))
