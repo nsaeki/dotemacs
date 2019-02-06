@@ -398,7 +398,12 @@ Otherwise open current directory"
                   (set-face-background 'mode-line (car color))
                   (set-face-foreground 'mode-line (cdr color)))))))
 
-;;; Libraries
+;;; Packages
+
+(use-package auto-async-byte-compile
+  :defer t
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
 
 (use-package saveplace
   :config
@@ -1201,8 +1206,53 @@ Otherwise open current directory"
 ;; (use-package zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
-;; ==> rc.d/90_keybinds.el <==
-;; Custom Keybindings
+;; Restore frame size
+;; Source: http://d.hatena.ne.jp/Tan90909090/20121124/1353757368
+;; Edit and snip some comment
+(when (display-graphic-p)
+  (defconst my-save-frame-file "~/.emacs.d/.framesize")
+
+  (defun my-save-frame-size()
+    "Save current frame position and size into `my-save-frame-file'"
+    (interactive)
+    (let* ((param (frame-parameters (selected-frame)))
+           (current-height (frame-height))
+           (current-width (frame-width))
+           (current-top-margin (if (listp (assoc-default 'top param))
+                                   (car (cdr (assoc-default 'top param)))
+                                 (assoc-default 'top param)))
+           (current-left-margin (if (listp (assoc-default 'left param))
+                                    (car (cdr (assoc-default 'left param)))
+                                  (assoc-default 'left param)))
+           (file my-save-frame-file))
+      (with-temp-file file
+        (insert
+         (format "(set-frame-position (selected-frame) %d %d)\n"
+                 current-left-margin current-top-margin))
+        (insert
+         (format "(set-frame-size (selected-frame) %d %d)"
+                 current-width current-height)))))
+
+  (defun my-load-frame-size()
+    "Restore frame position and size from `my-save-frame-file'"
+    (interactive)
+    (let ((file my-save-frame-file))
+      (when (file-exists-p file)
+        (load-file file))))
+
+  (add-hook 'emacs-startup-hook 'my-load-frame-size)
+  (add-hook 'kill-emacs-hook 'my-save-frame-size)
+  (run-with-idle-timer 60 t 'my-save-frame-size))
+
+(use-package read-only-directory)
+(read-only-directory-init)
+
+(defun my-read-only-directory ()
+  (interactive)
+  (read-only-mode t)
+  (read-only-directory (when (projectile-project-p)
+                         (projectile-project-root))))
+
 (when (display-graphic-p)
   (global-unset-key (kbd "C-x C-z"))
   (global-set-key (kbd "C-z") 'shell-pop))
@@ -1306,56 +1356,4 @@ Otherwise open current directory"
 (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
 (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
 (define-key region-bindings-mode-map (kbd "<return>") 'mc/edit-lines)
-
-;; ==> rc.d/91_framesize.el <==
-;; Restore frame size
-;; Source: http://d.hatena.ne.jp/Tan90909090/20121124/1353757368
-;; Edit and snip some comment
-(when (display-graphic-p)
-  (defconst my-save-frame-file "~/.emacs.d/.framesize")
-
-  (defun my-save-frame-size()
-    "Save current frame position and size into `my-save-frame-file'"
-    (interactive)
-    (let* ((param (frame-parameters (selected-frame)))
-           (current-height (frame-height))
-           (current-width (frame-width))
-           (current-top-margin (if (listp (assoc-default 'top param))
-                                   (car (cdr (assoc-default 'top param)))
-                                 (assoc-default 'top param)))
-           (current-left-margin (if (listp (assoc-default 'left param))
-                                    (car (cdr (assoc-default 'left param)))
-                                  (assoc-default 'left param)))
-           (file my-save-frame-file))
-      (with-temp-file file
-        (insert
-         (format "(set-frame-position (selected-frame) %d %d)\n"
-                 current-left-margin current-top-margin))
-        (insert
-         (format "(set-frame-size (selected-frame) %d %d)"
-                 current-width current-height)))))
-
-  (defun my-load-frame-size()
-    "Restore frame position and size from `my-save-frame-file'"
-    (interactive)
-    (let ((file my-save-frame-file))
-      (when (file-exists-p file)
-        (load-file file))))
-
-  (add-hook 'emacs-startup-hook 'my-load-frame-size)
-  (add-hook 'kill-emacs-hook 'my-save-frame-size)
-  (run-with-idle-timer 60 t 'my-save-frame-size))
-
-;; ==> rc.d/91_read-only-directory.el <==
-(use-package read-only-directory)
-;; This cause package-install failure
-;; (setq read-only-directory-default-directories
-;;       (list (expand-file-name "~/.emacs.d/elpa")))
-(read-only-directory-init)
-
-(defun my-read-only-directory ()
-  (interactive)
-  (read-only-mode t)
-  (read-only-directory (when (projectile-project-p)
-                         (projectile-project-root))))
 
