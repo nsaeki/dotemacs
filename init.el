@@ -808,6 +808,7 @@ Otherwise open current directory"
 
 (use-package org-journal
   :defer t
+  :commands org-journal-new-entry
   :init
   ;; (setq org-journal-file-format "%Y%m%d.org")
   (setq org-journal-file-format "journal.org")
