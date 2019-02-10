@@ -1,4 +1,3 @@
-
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -248,14 +247,6 @@ Otherwise open current directory"
     (when filename
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
-
-(setq my/journal-directory "~/notes/journal")
-(defun my/open-journal (&optional filename)
-  (interactive)
-  (let ((filename (or filename (format-time-string "%Y%m%d"))))
-    (find-file (concat my/journal-directory "/" filename ".md"))
-    (goto-char (point-max))
-    (org-show-entry)))
 
 ;; http://www.emacswiki.org/emacs/SearchAtPoint
 (defun isearch-yank-symbol ()
@@ -791,6 +782,7 @@ Otherwise open current directory"
   (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 
   :config
+  (use-package ox-gfm)
   (defun org-insert-upheading (arg)
     "insert upheading"
     (interactive "P")
@@ -809,15 +801,13 @@ Otherwise open current directory"
 (use-package org-journal
   :defer t
   :commands org-journal-new-entry
+  :custom
+  (org-journal-dir "~/notes/journal")
+  (org-journal-file-format "%Y%m%d.org")
+  (org-journal-date-format "%F")
+  (org-journal-time-format "<%Y-%m-%d %R> ")
   :init
-  ;; (setq org-journal-file-format "%Y%m%d.org")
-  (setq org-journal-file-format "journal.org")
-  (setq org-journal-date-format "%F")
-  (setq org-journal-time-format "<%Y-%m-%d %R> ")
-  (setq org-journal-dir "~/notes/journal")
   (push org-journal-dir org-agenda-files))
-
-(use-package ox-gfm)
 
 (use-package projectile
   :config
