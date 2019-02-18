@@ -634,6 +634,17 @@ Otherwise open current directory"
   (define-key company-active-map (kbd "<return>") nil)
   ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
   (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+
+  ;; company-dabbrevで日本語を補完しない https://qiita.com/wktkshn/items/3ac46671d1c242a59f7e
+  (define-category ?s "word constituents for company-dabbrev")
+  (let ((i 0))
+    (while (< i 128)
+      (if (equal ?w (char-syntax i))
+          (modify-category-entry i ?s)
+        (modify-category-entry i ?s nil t))
+      (setq i (1+ i))))
+  (setq company-dabbrev-char-regexp "\\cs")
+
   (set-face-attribute 'company-tooltip nil :foreground "black" :background "lightgrey")
   (set-face-attribute 'company-tooltip-common nil :foreground "black" :background "lightgrey")
   (set-face-attribute 'company-tooltip-common-selection nil :foreground "white" :background "steelblue")
