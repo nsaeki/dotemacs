@@ -1,6 +1,6 @@
 (when (eq system-type 'darwin)
   (when (display-graphic-p)
-    (mac-auto-ascii-mode 1)
+    ;; (mac-auto-ascii-mode 1)
 
     ;; disable M-h to hide window and so on.
     (setq mac-pass-command-to-system nil)

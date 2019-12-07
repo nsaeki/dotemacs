@@ -31,7 +31,7 @@
                      go-mode
                      golint
                      gotest
-                     header2
+;                     header2
                      helm
                      helm-ag
                      helm-bm

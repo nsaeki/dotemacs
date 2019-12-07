@@ -1,5 +1,6 @@
 (require 'helm)
 (require 'helm-config)
+(require 'helm-occur)
 
 (custom-set-variables
  '(helm-truncate-lines t)
@@ -10,8 +11,8 @@
  '(helm-ff-transformer-show-only-basename nil)
  '(helm-mini-default-sources '(helm-source-buffers-list
                                helm-source-recentf
-                               helm-source-files-in-current-dir
-                               helm-source-ghq)))
+                               helm-source-files-in-current-dir)))
+                               ;; helm-source-ghq)))
 
 (helm-migemo-mode t)
 
@@ -25,4 +26,4 @@
 (helm-descbinds-install)
 
 (require 'helm-ls-git)
-(require 'helm-ghq)
+;; (require 'helm-ghq)

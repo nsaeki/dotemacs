@@ -33,3 +33,4 @@ semanticdb
 /read-only-directories
 /smex-items
 /.lsp-session-*
+/migemo-pattern
