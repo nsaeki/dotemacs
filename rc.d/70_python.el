@@ -1,6 +1,7 @@
 (add-hook 'python-mode-hook #'lsp)
 
 (setq
+ python-indent 4
  python-shell-interpreter "ipython"
  python-shell-interpreter-args ""
  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
