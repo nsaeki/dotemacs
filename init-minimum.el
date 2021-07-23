@@ -47,7 +47,7 @@
   (global-unset-key (kbd "C-x C-z")))
 
 (global-unset-key (kbd "C-h h"))        ; disable 'view-hello-file
-(global-set-key (kbd "<M-return>") 'indent-new-comment-line)
+(global-set-key (kbd "<M-RET>") 'indent-new-comment-line)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 

@@ -1,1 +1,1 @@
-init-minimum.el
+init-simple.el
