@@ -339,8 +339,8 @@ Otherwise open current directory"
   :straight t
   :config
   (smartrep-define-key
-      global-map "C-c" '(("p" . 'goto-last-change)
-                         ("n" . 'goto-last-change-reverse)
+      global-map "C-c" '(("u" . 'goto-last-change)
+                         ("U" . 'goto-last-change-reverse)
                          ;; ("i" . 'delete-indentation)
                          ("o" . er/expand-region)
                          ("i" . er/contract-region)
